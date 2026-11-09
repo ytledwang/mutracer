@@ -1,23 +1,26 @@
-import { Aperture, Camera, Globe, Palette } from 'lucide-react';
+import { Aperture, Camera, Globe, Layers, Palette } from 'lucide-react';
 import { setUi, useViewer, type InspectorTab } from '../store';
 import { EnvironmentPanel } from './panels/EnvironmentPanel';
 import { MaterialPanel } from './panels/MaterialPanel';
 import { CameraPanel } from './panels/CameraPanel';
 import { RenderPanel } from './panels/RenderPanel';
+import { SceneTemplatePanel } from './SceneTemplatePanel';
 import { SceneTree } from './SceneTree';
 
 export const TABS: { id: InspectorTab; label: string; Icon: typeof Globe }[] = [
   { id: 'environment', label: 'Lighting', Icon: Globe },
   { id: 'material', label: 'Material', Icon: Palette },
   { id: 'camera', label: 'Camera', Icon: Camera },
-  { id: 'render', label: 'Render', Icon: Aperture }
+  { id: 'render', label: 'Render', Icon: Aperture },
+  { id: 'scene-templates', label: '场景模板', Icon: Layers }
 ];
 
 const PANELS: Record<InspectorTab, () => JSX.Element> = {
   environment: EnvironmentPanel,
   material: MaterialPanel,
   camera: CameraPanel,
-  render: RenderPanel
+  render: RenderPanel,
+  'scene-templates': SceneTemplatePanel
 };
 
 export function Inspector({ mobile }: { mobile: boolean }) {

@@ -8,6 +8,9 @@ export interface PathedFile {
 }
 
 export const isModelFile = (name: string) => /\.(glb|gltf|pbrt|pbrt\.gz)$/i.test(name);
+/** CAD/mesh formats the browser cannot parse; they must be converted to .glb first (tools/import-smoke/convert_*.sh). */
+export const isConvertibleModelFile = (name: string) => /\.(fbx|stp|step)$/i.test(name);
+export const convertHint = (name: string) => `${name.split('/').pop()} is not loaded directly. Convert it to .glb with tools/import-smoke/convert_${/\.fbx$/i.test(name) ? 'fbx' : 'stp'}_to_glb.sh, then open the .glb`;
 export const isHDRFile = (name: string) => name.toLowerCase().endsWith('.hdr');
 /** A MaterialX document, or a zip package of one with its textures. */
 export const isMaterialXFile = (name: string) => /\.(mtlx|zip)$/i.test(name);

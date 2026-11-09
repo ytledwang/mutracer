@@ -62,7 +62,7 @@ function useShortcuts() {
       } else if (key === 'escape') {
         useViewer.setState({ pickingFocus: false });
         getEngine()?.select(null);
-      } else if (/^[1-4]$/.test(key)) setUi({ tab: TABS[Number(key) - 1].id, right: true });
+      } else if (/^[1-5]$/.test(key)) setUi({ tab: TABS[Number(key) - 1].id, right: true });
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);

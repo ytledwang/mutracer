@@ -19,3 +19,7 @@ native/host/target/
 
 .cache/
 native/toolchain/node_modules
+
+# Private FBX fixture (my-stage-hk backup); not for public repo
+tools/import-smoke/fixtures/sample.fbx
+tools/import-smoke/out/sample-fbx.*

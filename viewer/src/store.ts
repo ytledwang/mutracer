@@ -269,7 +269,7 @@ export interface LensInfo {
   guessedMetersPerUnit: number;
 }
 
-export type InspectorTab = 'environment' | 'material' | 'camera' | 'render';
+export type InspectorTab = 'environment' | 'material' | 'camera' | 'render' | 'scene-templates';
 
 export type ToastTone = 'info' | 'success' | 'warning' | 'error';
 

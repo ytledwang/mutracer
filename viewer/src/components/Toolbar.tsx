@@ -154,7 +154,7 @@ function OpenMenu() {
           <div className="menu-note">Or drop files anywhere on the viewport.</div>
         </Popover>
       </MenuTrigger>
-      <input ref={files} id="open-files" type="file" hidden multiple accept=".glb,.gltf,.pbrt,.gz,.ply,.bin,.png,.jpg,.jpeg,.webp,.ktx2,.hdr,.exr,.tga,.tif,.tiff,.spd" onChange={(e) => { onFiles(e.currentTarget.files); e.currentTarget.value = ''; }} />
+      <input ref={files} id="open-files" type="file" hidden multiple accept=".glb,.gltf,.fbx,.stp,.step,.pbrt,.gz,.ply,.bin,.png,.jpg,.jpeg,.webp,.ktx2,.hdr,.exr,.tga,.tif,.tiff,.spd" onChange={(e) => { onFiles(e.currentTarget.files); e.currentTarget.value = ''; }} />
       <input ref={folder} type="file" hidden {...{ webkitdirectory: '' }} onChange={(e) => { onFiles(e.currentTarget.files); e.currentTarget.value = ''; }} />
       <input ref={hdr} type="file" hidden accept=".hdr" onChange={(e) => { onFiles(e.currentTarget.files); e.currentTarget.value = ''; }} />
       <UrlDialog open={urlOpen} onOpenChange={setUrlOpen} />

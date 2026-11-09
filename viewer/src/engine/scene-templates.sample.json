@@ -1,0 +1,30 @@
+[
+  {
+    "id": 2,
+    "type": "scene_template",
+    "name": "场景渲染模板",
+    "replace_id": "39f62a18-7db3-4be8-af18-77d2f488b076",
+    "data_bucket_url": "official_asset/template/DefaultScene"
+  },
+  {
+    "id": 4,
+    "type": "scene_template",
+    "name": "空调挂机卧室场景",
+    "replace_id": "5aa00e1c-50ed-4e08-9fc2-eed9aa7a4923",
+    "data_bucket_url": "official_asset/template/ACS_Bedroom_0302_Scene"
+  },
+  {
+    "id": 5,
+    "type": "scene_template",
+    "name": "冰箱厨房场景",
+    "replace_id": "ccdaa114-cdb7-4ef5-af26-022938a780d5",
+    "data_bucket_url": "official_asset/template/RF_Kitchen_0302_Scene"
+  },
+  {
+    "id": 12,
+    "type": "scene_template",
+    "name": "场景-7-烟机-2视角",
+    "replace_id": null,
+    "data_bucket_url": "official_asset/good_templates/Scene_7_WH_2cam"
+  }
+]

@@ -1,0 +1,1324 @@
+{
+  "lights": {
+    "00000000-0000-0000-0000-000000000000": {
+      "children": [
+        "1b7a392a-f56d-4e5f-b81d-a2fc17131872"
+      ],
+      "name": "light_root",
+      "type": "root"
+    },
+    "1b7a392a-f56d-4e5f-b81d-a2fc17131872": {
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "type": "group",
+      "name": "Common_Light",
+      "children": [
+        "bfeb3600-24f7-4b2f-a0d4-87edd93ac028",
+        "18af4357-b428-428b-97a1-7994c7fd14b4",
+        "32d5fa25-14b7-4a04-9cb2-0db8c362169c"
+      ]
+    },
+    "bfeb3600-24f7-4b2f-a0d4-87edd93ac028": {
+      "type": "light",
+      "name": "Back",
+      "is_visible": true,
+      "is_locked": false,
+      "light_channels": [
+        0
+      ],
+      "position": [
+        1.3,
+        0,
+        0.6
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        -180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "power": 15,
+        "type": "area_light",
+        "ies_texture": "",
+        "function_mat": "",
+        "size_x": 400,
+        "size_z": 200,
+        "attenuation_radius": 150,
+        "barn_door_length": 20,
+        "barn_door_angle": 88,
+        "source_texture": "94a52149-37e9-4ae0-88b1-c392f326ffa7"
+      },
+      "ids": []
+    },
+    "18af4357-b428-428b-97a1-7994c7fd14b4": {
+      "type": "light",
+      "name": "Top",
+      "is_visible": true,
+      "is_locked": false,
+      "light_channels": [
+        0
+      ],
+      "position": [
+        0,
+        0,
+        1.8
+      ],
+      "rotation_euler": [
+        0,
+        -90,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "power": 5,
+        "type": "area_light",
+        "ies_texture": "",
+        "function_mat": "",
+        "size_x": 1000,
+        "size_z": 1000,
+        "attenuation_radius": 1000,
+        "barn_door_length": 20,
+        "barn_door_angle": 88,
+        "source_texture": ""
+      }
+    },
+    "32d5fa25-14b7-4a04-9cb2-0db8c362169c": {
+      "type": "light",
+      "name": "Front",
+      "is_visible": true,
+      "is_locked": false,
+      "light_channels": [
+        0
+      ],
+      "position": [
+        -1.5,
+        -1.5,
+        1.5
+      ],
+      "rotation_euler": [
+        0,
+        -10,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "power": 10,
+        "type": "area_light",
+        "ies_texture": "",
+        "function_mat": "",
+        "size_x": 400,
+        "size_z": 400,
+        "attenuation_radius": 1000,
+        "barn_door_length": 20,
+        "barn_door_angle": 88,
+        "source_texture": ""
+      }
+    }
+  },
+  "textures": {
+    "94a52149-37e9-4ae0-88b1-c392f326ffa7": {
+      "type": "texture",
+      "name": "GradientTexture0",
+      "urls": "official_asset/good_templates/Empty_file/textures/GradientTexture0.tga",
+      "format": "TC_DEFAULT"
+    }
+  },
+  "cameras": {
+    "00000000-0000-0000-0000-000000000000": {
+      "children": [
+        "d2a85350-68b7-422c-a106-da49701cddb4"
+      ],
+      "name": "camera_root",
+      "type": "free",
+      "position": [
+        0.4450600718893005,
+        -1.0506967462072265,
+        -0.40707425863937335
+      ],
+      "rotation_euler": [
+        -1.8191142794027564e-12,
+        -1.3866891860961919,
+        -67.49434661865232
+      ],
+      "frame_size": [
+        1308.0556640625,
+        795.138916015625
+      ],
+      "camera": {
+        "type": "perspective",
+        "fov": 60.087,
+        "dof": false,
+        "focal_distance": 0,
+        "aperture_fstop": 4,
+        "sensor_width": 24.576000213623047,
+        "post_processing_settings": {
+          "exposure": 0.8,
+          "temperature": 6500,
+          "saturation": 0.8,
+          "contrast": 1.2,
+          "gamma": 0.9,
+          "gain": 1,
+          "offset": 0,
+          "vignette": 0,
+          "bloom_intensity": 0,
+          "bloom_threshold": -1,
+          "bloom_scale": 0,
+          "highlight_contrast": 1,
+          "shadow_contrast": 1
+        }
+      },
+      "ids": [],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "d2a85350-68b7-422c-a106-da49701cddb4": {
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "type": "group",
+      "name": "default_camera_group",
+      "children": []
+    },
+    "dcb416b7-3a03-413e-bb07-fd736f60f21b": {
+      "ids": [],
+      "position": [
+        2.8631902460027097,
+        -0.8530740209323093,
+        -0.3977184211103003
+      ],
+      "rotation_euler": [
+        -0.00004599999999741116,
+        -3.199791000000004,
+        -132.600098
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "e032efa5-d11c-44cb-a80c-b2f6466f3649": {
+      "type": "camera",
+      "name": "细节1",
+      "is_visible": true,
+      "is_locked": true,
+      "position": [
+        1.2830767464982444,
+        -2.1734962557326734,
+        0.32731046597328045
+      ],
+      "rotation_euler": [
+        -1.8209858261344535e-12,
+        -15.948388099670414,
+        -110.1416931152344
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "animatinons": [],
+      "camera": {
+        "type": "perspective",
+        "fov": 35,
+        "dof": false,
+        "focal_distance": 0,
+        "aperture_fstop": 4,
+        "sensor_width": 24.576000213623047,
+        "post_processing_settings": {
+          "exposure": 0.8,
+          "temperature": 6500,
+          "saturation": 0.8,
+          "contrast": 1.2,
+          "gamma": 0.9,
+          "gain": 1,
+          "offset": 0,
+          "vignette": 0,
+          "bloom_intensity": 0,
+          "bloom_threshold": -1,
+          "bloom_scale": 0,
+          "highlight_contrast": 1,
+          "shadow_contrast": 1
+        }
+      },
+      "frame_size": [
+        1920,
+        1080
+      ],
+      "frame_color": [
+        0,
+        0,
+        0
+      ],
+      "ids": []
+    },
+    "122f166b-777a-4716-b9ad-3696a16ba048": {
+      "type": "camera",
+      "name": "新相机2",
+      "is_visible": true,
+      "is_locked": true,
+      "position": [
+        0.4450600718893005,
+        -1.0506967462072265,
+        -0.40707425863937335
+      ],
+      "rotation_euler": [
+        -1.8191142794027564e-12,
+        -1.3866891860961919,
+        -67.49434661865232
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "animatinons": [],
+      "camera": {
+        "type": "perspective",
+        "fov": 60.087,
+        "dof": false,
+        "focal_distance": 0,
+        "aperture_fstop": 4,
+        "sensor_width": 24.576000213623047,
+        "post_processing_settings": {
+          "exposure": 0.8,
+          "temperature": 6500,
+          "saturation": 0.8,
+          "contrast": 1.2,
+          "gamma": 0.9,
+          "gain": 1,
+          "offset": 0,
+          "vignette": 0,
+          "bloom_intensity": 0,
+          "bloom_threshold": -1,
+          "bloom_scale": 0,
+          "highlight_contrast": 1,
+          "shadow_contrast": 1
+        }
+      },
+      "frame_size": [
+        1920,
+        1080
+      ],
+      "frame_color": [
+        0,
+        0,
+        0
+      ],
+      "ids": []
+    },
+    "00dd6fdb-3567-459a-a43d-45315c9cddbb": {
+      "type": "camera",
+      "name": "新相机3",
+      "is_visible": true,
+      "is_locked": true,
+      "position": [
+        -1.7119149159797569,
+        0.6723184533724852,
+        -0.7030147077892166
+      ],
+      "rotation_euler": [
+        -1.8191142794027564e-12,
+        -1.3866891860961919,
+        -67.49434661865232
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "animatinons": [],
+      "camera": {
+        "type": "perspective",
+        "fov": 60.087,
+        "dof": false,
+        "focal_distance": 0,
+        "aperture_fstop": 4,
+        "sensor_width": 24.576000213623047,
+        "post_processing_settings": {
+          "exposure": 0.8,
+          "temperature": 6500,
+          "saturation": 0.8,
+          "contrast": 1.2,
+          "gamma": 0.9,
+          "gain": 1,
+          "offset": 0,
+          "vignette": 0,
+          "bloom_intensity": 0,
+          "bloom_threshold": -1,
+          "bloom_scale": 0,
+          "highlight_contrast": 1,
+          "shadow_contrast": 1
+        }
+      },
+      "frame_size": [
+        1920,
+        1080
+      ],
+      "frame_color": [
+        0,
+        0,
+        0
+      ],
+      "ids": []
+    },
+    "2bf6afb9-1f57-41f7-bdb8-406604842f17": {
+      "type": "camera",
+      "name": "新相机4",
+      "is_visible": true,
+      "is_locked": true,
+      "position": [
+        0.30918717808073554,
+        1.933739896054166,
+        -0.7016226288044806
+      ],
+      "rotation_euler": [
+        -1.819027247196827e-12,
+        3.8585042953491215,
+        -105.91545867919925
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "animatinons": [],
+      "camera": {
+        "type": "perspective",
+        "fov": 60.087,
+        "dof": false,
+        "focal_distance": 0,
+        "aperture_fstop": 4,
+        "sensor_width": 24.576000213623047,
+        "post_processing_settings": {
+          "exposure": 0.8,
+          "temperature": 6500,
+          "saturation": 0.8,
+          "contrast": 1.2,
+          "gamma": 0.9,
+          "gain": 1,
+          "offset": 0,
+          "vignette": 0,
+          "bloom_intensity": 0,
+          "bloom_threshold": -1,
+          "bloom_scale": 0,
+          "highlight_contrast": 1,
+          "shadow_contrast": 1
+        }
+      },
+      "frame_size": [
+        1920,
+        1080
+      ],
+      "frame_color": [
+        0,
+        0,
+        0
+      ],
+      "ids": []
+    },
+    "9d535b38-4d80-4861-9d04-d0f93ec93a33": {
+      "type": "camera",
+      "name": "新相机5",
+      "is_visible": true,
+      "is_locked": true,
+      "position": [
+        0.8684173633086247,
+        -0.19213489720324725,
+        -0.25647372270205004
+      ],
+      "rotation_euler": [
+        -1.8190079268004272e-12,
+        -0.6802960634231568,
+        -109.96039581298832
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "animatinons": [],
+      "camera": {
+        "type": "perspective",
+        "fov": 72.861,
+        "dof": false,
+        "focal_distance": 0,
+        "aperture_fstop": 4,
+        "sensor_width": 24.576000213623047,
+        "post_processing_settings": {
+          "exposure": 0.8,
+          "temperature": 6500,
+          "saturation": 0.8,
+          "contrast": 1.2,
+          "gamma": 0.9,
+          "gain": 1,
+          "offset": 0,
+          "vignette": 0,
+          "bloom_intensity": 0,
+          "bloom_threshold": -1,
+          "bloom_scale": 0,
+          "highlight_contrast": 1,
+          "shadow_contrast": 1
+        }
+      },
+      "frame_size": [
+        1920,
+        1080
+      ],
+      "frame_color": [
+        0,
+        0,
+        0
+      ],
+      "ids": []
+    }
+  },
+  "decals": {
+    "00000000-0000-0000-0000-000000000000": {
+      "children": [],
+      "name": "decal_root",
+      "type": "root"
+    }
+  },
+  "models": {
+    "00000000-0000-0000-0000-000000000000": {
+      "type": "root",
+      "name": "model_root",
+      "children": [
+        "7a0c17c7-e6fd-42be-8606-47db0bc1cdee"
+      ]
+    },
+    "7a0c17c7-e6fd-42be-8606-47db0bc1cdee": {
+      "type": "group",
+      "name": "3.FBX",
+      "children": [
+        "cfd40322-c0fd-460a-90de-602bbebbe1c9"
+      ],
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "is_visible": true
+    },
+    "cfd40322-c0fd-460a-90de-602bbebbe1c9": {
+      "type": "group",
+      "name": "鍙岄棬",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "children": [
+        "70f7f0e4-dc2a-47c9-8d6b-2db641482b6c",
+        "2c7eda09-bd4f-4b1a-9619-01fd5cc8dd20",
+        "f9659280-a612-4df6-9fcf-7e8647f91d52",
+        "c136922e-a64c-454a-855c-9ceeded8c85b",
+        "988e0ebf-4f50-4151-9ccb-18748c0c4216",
+        "6bb5e428-97a8-4345-8337-dff3544d7cb6",
+        "1411c264-6a99-4f42-bae4-7721b0a78522",
+        "670ac3c7-b89f-4485-af1c-dfe5e2436681",
+        "bf24b1ca-c477-47db-8156-d323cef0f314",
+        "180044c5-9b85-4b73-b954-05a7447ba01a",
+        "1ed92b94-944d-4581-81ae-8b297d57eebe",
+        "ed89b64d-1f3f-4443-b8c3-e57930a29deb"
+      ]
+    },
+    "70f7f0e4-dc2a-47c9-8d6b-2db641482b6c": {
+      "type": "model",
+      "name": "BRep_1",
+      "mesh": "d08d0279-1058-4001-9e95-38bc19495bef",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "2c7eda09-bd4f-4b1a-9619-01fd5cc8dd20": {
+      "type": "model",
+      "name": "BRep_10",
+      "mesh": "c9defec8-e16e-4a27-a4cc-3be8c6affb04",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "f9659280-a612-4df6-9fcf-7e8647f91d52": {
+      "type": "model",
+      "name": "BRep_11",
+      "mesh": "e6640589-c07b-4807-a7ff-580b8a549fc1",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "c136922e-a64c-454a-855c-9ceeded8c85b": {
+      "type": "model",
+      "name": "BRep_12",
+      "mesh": "3b4a3f45-b966-4f84-9dbf-8d1e0678db83",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "988e0ebf-4f50-4151-9ccb-18748c0c4216": {
+      "type": "model",
+      "name": "BRep_2",
+      "mesh": "1fdd1236-7885-4f51-b492-f1d24ba103fd",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "6bb5e428-97a8-4345-8337-dff3544d7cb6": {
+      "type": "model",
+      "name": "BRep_3",
+      "mesh": "912bdeff-146e-471a-9a46-73b7e3c3ac07",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "1411c264-6a99-4f42-bae4-7721b0a78522": {
+      "type": "model",
+      "name": "BRep_4",
+      "mesh": "38b4f1d6-445d-44c3-be8c-47f64b0eb390",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "670ac3c7-b89f-4485-af1c-dfe5e2436681": {
+      "type": "model",
+      "name": "BRep_5",
+      "mesh": "bbff03d6-7f1b-4bdc-991f-2db16e1de679",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "bf24b1ca-c477-47db-8156-d323cef0f314": {
+      "type": "model",
+      "name": "BRep_6",
+      "mesh": "58286f8e-2f13-4ec8-bdd8-0ae7eefd7870",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "180044c5-9b85-4b73-b954-05a7447ba01a": {
+      "type": "model",
+      "name": "BRep_7",
+      "mesh": "1544df51-837d-4f90-ba35-2e7837d87596",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "1ed92b94-944d-4581-81ae-8b297d57eebe": {
+      "type": "model",
+      "name": "BRep_8",
+      "mesh": "d06299c5-1078-4021-8b52-41fcbc3b01ee",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    },
+    "ed89b64d-1f3f-4443-b8c3-e57930a29deb": {
+      "type": "model",
+      "name": "BRep_9",
+      "mesh": "786407a5-6ee8-458f-a35a-17b4f10d6d1e",
+      "is_visible": true,
+      "is_locked": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_euler": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "light_channels": [
+        0
+      ],
+      "receive_decal": true
+    }
+  },
+  "meshes": {
+    "d08d0279-1058-4001-9e95-38bc19495bef": {
+      "type": "mesh",
+      "name": "BRep_1",
+      "materials": [
+        "ddad0e5e-c942-45eb-9d54-3cdb9ebb199c"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/3621d0fd-9971-4af4-9dcf-dea879918a1f.glb"
+    },
+    "c9defec8-e16e-4a27-a4cc-3be8c6affb04": {
+      "type": "mesh",
+      "name": "BRep_10",
+      "materials": [
+        "1f808eea-94a0-4a94-ba27-59c5123b911a"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/af43d89a-eb15-4cfb-b7cd-7167c8dfd51b.glb"
+    },
+    "e6640589-c07b-4807-a7ff-580b8a549fc1": {
+      "type": "mesh",
+      "name": "BRep_11",
+      "materials": [
+        "d5cd0562-fee8-44ea-8950-0dd79acfbe89"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/a3d0fb2b-737a-418f-b516-04b109af9470.glb"
+    },
+    "3b4a3f45-b966-4f84-9dbf-8d1e0678db83": {
+      "type": "mesh",
+      "name": "BRep_12",
+      "materials": [
+        "ffaa93fb-09d0-413e-9272-f8980e8fe804"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/df3961e8-76ea-4e54-9d55-92bbd20c2c06.glb"
+    },
+    "1fdd1236-7885-4f51-b492-f1d24ba103fd": {
+      "type": "mesh",
+      "name": "BRep_2",
+      "materials": [
+        "d5cd0562-fee8-44ea-8950-0dd79acfbe89"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/bc5834b3-f4e8-419a-87e2-9bcdde7ad6e9.glb"
+    },
+    "912bdeff-146e-471a-9a46-73b7e3c3ac07": {
+      "type": "mesh",
+      "name": "BRep_3",
+      "materials": [
+        "0bcc0483-707e-475f-8fda-f90df819d6b0"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/9970e386-e5d2-4a88-b256-c6388c239b14.glb"
+    },
+    "38b4f1d6-445d-44c3-be8c-47f64b0eb390": {
+      "type": "mesh",
+      "name": "BRep_4",
+      "materials": [
+        "ddad0e5e-c942-45eb-9d54-3cdb9ebb199c"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/2f4e8183-cd77-447c-a10a-0f44b488c67e.glb"
+    },
+    "bbff03d6-7f1b-4bdc-991f-2db16e1de679": {
+      "type": "mesh",
+      "name": "BRep_5",
+      "materials": [
+        "0bcc0483-707e-475f-8fda-f90df819d6b0"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/7a55d7b8-b62d-4093-8693-b45db85615a5.glb"
+    },
+    "58286f8e-2f13-4ec8-bdd8-0ae7eefd7870": {
+      "type": "mesh",
+      "name": "BRep_6",
+      "materials": [
+        "d5cd0562-fee8-44ea-8950-0dd79acfbe89"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/135cee3e-4aa3-43aa-ba37-31afdcdc94aa.glb"
+    },
+    "1544df51-837d-4f90-ba35-2e7837d87596": {
+      "type": "mesh",
+      "name": "BRep_7",
+      "materials": [
+        "1f808eea-94a0-4a94-ba27-59c5123b911a"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/2485106a-2a03-45cb-b478-2e3b17da0185.glb"
+    },
+    "d06299c5-1078-4021-8b52-41fcbc3b01ee": {
+      "type": "mesh",
+      "name": "BRep_8",
+      "materials": [
+        "1f808eea-94a0-4a94-ba27-59c5123b911a"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/c605ae63-ed76-4c21-a606-9a374edd54e5.glb"
+    },
+    "786407a5-6ee8-458f-a35a-17b4f10d6d1e": {
+      "type": "mesh",
+      "name": "BRep_9",
+      "materials": [
+        "1f808eea-94a0-4a94-ba27-59c5123b911a"
+      ],
+      "url": "customer_asset/991d4af0-c01d-4655-9551-d902924d86ac/models/2a8cdcb0-72cc-49e0-ba35-ddab4b9e26b7.glb"
+    }
+  },
+  "materials": {
+    "ddad0e5e-c942-45eb-9d54-3cdb9ebb199c": {
+      "type": "material",
+      "name": "Color #b0b0b0ff",
+      "master": "M_Opaque_Master",
+      "tri_planar_rotation_xyz": [
+        0,
+        0,
+        0
+      ],
+      "tri_planar_pivot_xyz": [
+        0,
+        0,
+        0
+      ],
+      "base_color_rgb": [
+        0.694,
+        0.694,
+        0.694
+      ],
+      "normal_intensity_scalar": 1,
+      "roughness_min_scalar": 0.5,
+      "roughness_max_scalar": 0.5,
+      "u_v_offset_u_scalar": 0,
+      "u_v_offset_v_scalar": 0,
+      "u_v_tile_u_scalar": 1,
+      "u_v_tile_v_scalar": 1,
+      "clear_coat_amount_scalar": 0.8,
+      "clear_coat_roughness_scalar": 0.15,
+      "dust_intensity_scalar": 0.1,
+      "fingerprints_intensity_scalar": 0.35,
+      "stains_intensity_scalar": 0.2,
+      "mask_intensity_scalar": 1,
+      "opacity_intensity_scalar": 1,
+      "anisotropy_scalar": 0.5,
+      "aniso_mip_bias_scalar": 0,
+      "roughness_tex": "",
+      "normal_tex": "",
+      "basecolor_tex": "",
+      "mask_tex": "",
+      "anisotropy_tex": ""
+    },
+    "1f808eea-94a0-4a94-ba27-59c5123b911a": {
+      "type": "material",
+      "name": "Color #ff9900ff",
+      "master": "M_Opaque_Master",
+      "tri_planar_rotation_xyz": [
+        0,
+        0,
+        0
+      ],
+      "tri_planar_pivot_xyz": [
+        0,
+        0,
+        0
+      ],
+      "base_color_rgb": [
+        1,
+        0.6,
+        0
+      ],
+      "normal_intensity_scalar": 1,
+      "roughness_min_scalar": 0.5,
+      "roughness_max_scalar": 0.5,
+      "u_v_offset_u_scalar": 0,
+      "u_v_offset_v_scalar": 0,
+      "u_v_tile_u_scalar": 1,
+      "u_v_tile_v_scalar": 1,
+      "clear_coat_amount_scalar": 0.8,
+      "clear_coat_roughness_scalar": 0.15,
+      "dust_intensity_scalar": 0.1,
+      "fingerprints_intensity_scalar": 0.35,
+      "stains_intensity_scalar": 0.2,
+      "mask_intensity_scalar": 1,
+      "opacity_intensity_scalar": 1,
+      "anisotropy_scalar": 0.5,
+      "aniso_mip_bias_scalar": 0,
+      "roughness_tex": "",
+      "normal_tex": "",
+      "basecolor_tex": "",
+      "mask_tex": "",
+      "anisotropy_tex": ""
+    },
+    "d5cd0562-fee8-44ea-8950-0dd79acfbe89": {
+      "type": "material",
+      "name": "Color #006666ff",
+      "master": "M_Opaque_Master",
+      "tri_planar_rotation_xyz": [
+        0,
+        0,
+        0
+      ],
+      "tri_planar_pivot_xyz": [
+        0,
+        0,
+        0
+      ],
+      "base_color_rgb": [
+        0,
+        0.4,
+        0.4
+      ],
+      "normal_intensity_scalar": 1,
+      "roughness_min_scalar": 0.5,
+      "roughness_max_scalar": 0.5,
+      "u_v_offset_u_scalar": 0,
+      "u_v_offset_v_scalar": 0,
+      "u_v_tile_u_scalar": 1,
+      "u_v_tile_v_scalar": 1,
+      "clear_coat_amount_scalar": 0.8,
+      "clear_coat_roughness_scalar": 0.15,
+      "dust_intensity_scalar": 0.1,
+      "fingerprints_intensity_scalar": 0.35,
+      "stains_intensity_scalar": 0.2,
+      "mask_intensity_scalar": 1,
+      "opacity_intensity_scalar": 1,
+      "anisotropy_scalar": 0.5,
+      "aniso_mip_bias_scalar": 0,
+      "roughness_tex": "",
+      "normal_tex": "",
+      "basecolor_tex": "",
+      "mask_tex": "",
+      "anisotropy_tex": ""
+    },
+    "ffaa93fb-09d0-413e-9272-f8980e8fe804": {
+      "type": "material",
+      "name": "Color #ff0000ff",
+      "master": "M_Opaque_Master",
+      "tri_planar_rotation_xyz": [
+        0,
+        0,
+        0
+      ],
+      "tri_planar_pivot_xyz": [
+        0,
+        0,
+        0
+      ],
+      "base_color_rgb": [
+        1,
+        0,
+        0
+      ],
+      "normal_intensity_scalar": 1,
+      "roughness_min_scalar": 0.5,
+      "roughness_max_scalar": 0.5,
+      "u_v_offset_u_scalar": 0,
+      "u_v_offset_v_scalar": 0,
+      "u_v_tile_u_scalar": 1,
+      "u_v_tile_v_scalar": 1,
+      "clear_coat_amount_scalar": 0.8,
+      "clear_coat_roughness_scalar": 0.15,
+      "dust_intensity_scalar": 0.1,
+      "fingerprints_intensity_scalar": 0.35,
+      "stains_intensity_scalar": 0.2,
+      "mask_intensity_scalar": 1,
+      "opacity_intensity_scalar": 1,
+      "anisotropy_scalar": 0.5,
+      "aniso_mip_bias_scalar": 0,
+      "roughness_tex": "",
+      "normal_tex": "",
+      "basecolor_tex": "",
+      "mask_tex": "",
+      "anisotropy_tex": ""
+    },
+    "0bcc0483-707e-475f-8fda-f90df819d6b0": {
+      "type": "material",
+      "name": "Color #ffffffff",
+      "master": "M_Opaque_Master",
+      "tri_planar_rotation_xyz": [
+        0,
+        0,
+        0
+      ],
+      "tri_planar_pivot_xyz": [
+        0,
+        0,
+        0
+      ],
+      "base_color_rgb": [
+        1,
+        1,
+        1
+      ],
+      "normal_intensity_scalar": 1,
+      "roughness_min_scalar": 0.5,
+      "roughness_max_scalar": 0.5,
+      "u_v_offset_u_scalar": 0,
+      "u_v_offset_v_scalar": 0,
+      "u_v_tile_u_scalar": 1,
+      "u_v_tile_v_scalar": 1,
+      "clear_coat_amount_scalar": 0.8,
+      "clear_coat_roughness_scalar": 0.15,
+      "dust_intensity_scalar": 0.1,
+      "fingerprints_intensity_scalar": 0.35,
+      "stains_intensity_scalar": 0.2,
+      "mask_intensity_scalar": 1,
+      "opacity_intensity_scalar": 1,
+      "anisotropy_scalar": 0.5,
+      "aniso_mip_bias_scalar": 0,
+      "roughness_tex": "",
+      "normal_tex": "",
+      "basecolor_tex": "",
+      "mask_tex": "",
+      "anisotropy_tex": ""
+    }
+  },
+  "views": {
+    "da2d345a-50bb-429c-9856-862f701cdf50": {
+      "name": "细节1",
+      "active_camera": "e032efa5-d11c-44cb-a80c-b2f6466f3649",
+      "active_environment": "8cac51c5-9ea1-4d42-82a6-1627e25f91a5",
+      "material_group_states": {},
+      "light_group_visibility": {
+        "1b7a392a-f56d-4e5f-b81d-a2fc17131872": true
+      },
+      "model_group_visibility": {
+        "7a0c17c7-e6fd-42be-8606-47db0bc1cdee": true,
+        "cfd40322-c0fd-460a-90de-602bbebbe1c9": true
+      },
+      "decal_group_visibility": {},
+      "update_time": 1749525248708
+    },
+    "381ef7ec-d869-476f-9d63-c4e6816ffd65": {
+      "name": "产品1",
+      "active_camera": "122f166b-777a-4716-b9ad-3696a16ba048",
+      "active_environment": "8cac51c5-9ea1-4d42-82a6-1627e25f91a5",
+      "material_group_states": {},
+      "light_group_visibility": {
+        "1b7a392a-f56d-4e5f-b81d-a2fc17131872": true
+      },
+      "model_group_visibility": {
+        "7a0c17c7-e6fd-42be-8606-47db0bc1cdee": true,
+        "cfd40322-c0fd-460a-90de-602bbebbe1c9": true
+      },
+      "decal_group_visibility": {},
+      "update_time": 1749524845974
+    },
+    "6757f8dc-2ee6-4902-bfe1-ea7be055a9a0": {
+      "name": "左侧1",
+      "active_camera": "00dd6fdb-3567-459a-a43d-45315c9cddbb",
+      "active_environment": "8cac51c5-9ea1-4d42-82a6-1627e25f91a5",
+      "material_group_states": {},
+      "light_group_visibility": {
+        "1b7a392a-f56d-4e5f-b81d-a2fc17131872": true
+      },
+      "model_group_visibility": {
+        "7a0c17c7-e6fd-42be-8606-47db0bc1cdee": true,
+        "cfd40322-c0fd-460a-90de-602bbebbe1c9": true
+      },
+      "decal_group_visibility": {},
+      "update_time": 1749524873799
+    },
+    "6177a922-b7ac-44af-a07a-20c176f6eec2": {
+      "name": "正视图1",
+      "active_camera": "2bf6afb9-1f57-41f7-bdb8-406604842f17",
+      "active_environment": "8cac51c5-9ea1-4d42-82a6-1627e25f91a5",
+      "material_group_states": {},
+      "light_group_visibility": {
+        "1b7a392a-f56d-4e5f-b81d-a2fc17131872": true
+      },
+      "model_group_visibility": {
+        "7a0c17c7-e6fd-42be-8606-47db0bc1cdee": true,
+        "cfd40322-c0fd-460a-90de-602bbebbe1c9": true
+      },
+      "decal_group_visibility": {},
+      "update_time": 1749524914569
+    },
+    "7f2f0162-3d55-46f1-a48a-9b243dfc883a": {
+      "name": "右侧1",
+      "active_camera": "9d535b38-4d80-4861-9d04-d0f93ec93a33",
+      "active_environment": "8cac51c5-9ea1-4d42-82a6-1627e25f91a5",
+      "material_group_states": {},
+      "light_group_visibility": {
+        "1b7a392a-f56d-4e5f-b81d-a2fc17131872": true
+      },
+      "model_group_visibility": {
+        "7a0c17c7-e6fd-42be-8606-47db0bc1cdee": true,
+        "cfd40322-c0fd-460a-90de-602bbebbe1c9": true
+      },
+      "decal_group_visibility": {},
+      "update_time": 1749524935733
+    }
+  },
+  "environments": {
+    "8cac51c5-9ea1-4d42-82a6-1627e25f91a5": {
+      "name": "白背景",
+      "lights": {
+        "00000000-0000-0000-0000-000000000000": {
+          "children": []
+        }
+      },
+      "settings": {
+        "hdri_brightness": 100,
+        "skylight_intensity": 0,
+        "hdri_contrast": 1,
+        "hdri_resolution": 128,
+        "hdri_angle": 0,
+        "use_sun_light": false,
+        "sun_light_brightness": 1,
+        "sun_height": 0,
+        "sun_direction": 0,
+        "background_type": "white",
+        "image": ""
+      }
+    }
+  },
+  "scene_settings": {
+    "active_camera": "00000000-0000-0000-0000-000000000000",
+    "active_environment": "8cac51c5-9ea1-4d42-82a6-1627e25f91a5",
+    "mouse_settings": {
+      "smoothness": 0.4
+    }
+  }
+}

@@ -13,7 +13,7 @@ import { Environment, loadHDR, parseHDR, type EquirectData } from './environment
 import { ENVIRONMENT_PRESETS, MODEL_PRESETS, environmentUrl } from './presets';
 import {
   createMaterialSpheres, isHDRFile, loadModelFromFiles, loadModelFromURL, loadModelFromSource,
-  isModelFile, type LoadedModel, type PathedFile
+  convertHint, isConvertibleModelFile, isModelFile, type LoadedModel, type PathedFile
 } from './loadModel';
 import { MATERIAL_BASE, TEXTURE_KEYS, type MaterialValues, type TextureKey } from './materialParams';
 import type { MapPlan } from './materialx';
@@ -320,6 +320,8 @@ export class ViewerEngine {
       }
     }
     if (!files.some((f) => isModelFile(f.path))) {
+      const convertible = files.find((f) => isConvertibleModelFile(f.path));
+      if (convertible) return showToast(convertHint(convertible.path), 'error');
       if (!hdr) showToast(MATERIALX_IMPORT ? 'Drop a .glb, a .gltf with its files, an .hdr environment, or a MaterialX .mtlx or .zip'
         : 'Drop a .glb, a .gltf with its files, or an .hdr environment', 'error');
       return;

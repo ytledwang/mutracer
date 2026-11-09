@@ -4,7 +4,7 @@ import { inspect, parseBytes, type Resolver } from '../../tools/pbrt/source';
 import { buildScene } from '../../tools/pbrt/scene';
 import { checkPbrtMemory, confirmPbrtImport } from '../src/engine/pbrtBudget';
 import { useViewer } from '../src/store';
-import { isModelFile } from '../src/engine/droppedFiles';
+import { convertHint, isConvertibleModelFile, isModelFile } from '../src/engine/droppedFiles';
 vi.hoisted(() => vi.stubGlobal('location', { search: '', hash: '' }));
 const buffer = (text: string) => new TextEncoder().encode(text).buffer;
 describe('PBRT import bounds and compressed sources', () => {
@@ -25,6 +25,12 @@ describe('PBRT import bounds and compressed sources', () => {
     const report = await inspect('main.pbrt', resolver);
     expect(requests).toEqual(['main.pbrt']); expect(report.coverage.shapes).toEqual({ curve: 'skipped', plymesh: 'supported' });
     expect(checkPbrtMemory(report)).toBe(report.totalBytes * 8);
+  });
+  it('flags FBX and STEP as convert-first, not directly loadable', () => {
+    for (const n of ['a.fbx', 'B.STP', 'c.step']) { expect(isConvertibleModelFile(n)).toBe(true); expect(isModelFile(n)).toBe(false); }
+    expect(isConvertibleModelFile('a.glb')).toBe(false);
+    expect(convertHint('dir/a.fbx')).toContain('convert_fbx_to_glb.sh');
+    expect(convertHint('x.STEP')).toContain('convert_stp_to_glb.sh');
   });
   it('rejects unknown size and accepts the bounded small-scene path', () => {
     expect(() => checkPbrtMemory({ totalBytes: 20, unknownSizes: 1 })).toThrow('unknown');

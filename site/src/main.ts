@@ -1,5 +1,5 @@
 import {
-  HANDOFF_HASH, isHDRFile, isModelFile, readDroppedItems, stashFiles, toPathedFiles, type PathedFile
+  HANDOFF_HASH, convertHint, isConvertibleModelFile, isHDRFile, isModelFile, readDroppedItems, stashFiles, toPathedFiles, type PathedFile
 } from '../../viewer/src/engine/droppedFiles';
 import { MODEL_PRESETS } from '../../viewer/src/engine/presets';
 import './style.css';
@@ -39,7 +39,8 @@ function showError(message: string) {
 
 async function open(files: PathedFile[]) {
   if (!files.some((f) => isModelFile(f.path) || isHDRFile(f.path))) {
-    showError('No .glb, .gltf or .hdr file found.');
+    const convertible = files.find((f) => isConvertibleModelFile(f.path));
+    showError(convertible ? convertHint(convertible.path) : 'No .glb, .gltf or .hdr file found.');
     return;
   }
   drop.dataset.busy = '';

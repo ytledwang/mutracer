@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "models": {
+    "00000000-0000-0000-0000-000000000000": { "type": "root", "name": "model_root", "children": ["aaaaaaaa-0000-4000-8000-000000000001", "aaaaaaaa-0000-4000-8000-000000000002"] },
+    "aaaaaaaa-0000-4000-8000-000000000001": { "type": "group", "name": "room", "is_visible": true, "position": [0, 0, 0], "rotation_euler": [0, 0, 0], "scale": [1, 1, 1], "children": ["aaaaaaaa-0000-4000-8000-000000000003", "aaaaaaaa-0000-4000-8000-000000000010"] },
+    "aaaaaaaa-0000-4000-8000-000000000002": { "type": "group", "name": "light_rig", "is_visible": true, "position": [0, 0, 3], "rotation_euler": [0, 0, 0], "scale": [1, 1, 1], "children": [] },
+    "aaaaaaaa-0000-4000-8000-000000000003": { "type": "model", "name": "floor", "mesh": "bbbbbbbb-0000-4000-8000-000000000001", "is_visible": true, "position": [0, 0, 0], "rotation_euler": [0, 0, 0], "scale": [1, 1, 1] },
+    "aaaaaaaa-0000-4000-8000-000000000010": { "type": "group", "name": "PLACEHOLDER", "is_visible": true, "position": [1.5, -0.5, 0], "rotation_euler": [0, 0, 90], "scale": [2, 2, 2], "children": ["aaaaaaaa-0000-4000-8000-000000000011"] },
+    "aaaaaaaa-0000-4000-8000-000000000011": { "type": "group", "name": "placeholder_inner", "children": ["aaaaaaaa-0000-4000-8000-000000000012"] },
+    "aaaaaaaa-0000-4000-8000-000000000012": { "type": "model", "name": "placeholder_box", "mesh": "bbbbbbbb-0000-4000-8000-000000000002" }
+  },
+  "meshes": {
+    "bbbbbbbb-0000-4000-8000-000000000001": { "type": "mesh", "name": "floor", "materials": ["cccccccc-0000-4000-8000-000000000001"], "url": "tpl/models/floor.glb" },
+    "bbbbbbbb-0000-4000-8000-000000000002": { "type": "mesh", "name": "box", "materials": [], "url": "tpl/models/box.glb" }
+  },
+  "materials": { "cccccccc-0000-4000-8000-000000000001": { "type": "material", "name": "floor_mat", "base_color_rgb": [0.6, 0.6, 0.6] } },
+  "textures": { "dddddddd-0000-4000-8000-000000000001": { "type": "texture", "name": "tpl_tex", "urls": "tpl/textures/a.png" } },
+  "decals": { "00000000-0000-0000-0000-000000000000": { "type": "root", "name": "decal_root", "children": ["eeeeeeee-0000-4000-8000-000000000001"] }, "eeeeeeee-0000-4000-8000-000000000001": { "type": "decal", "name": "tpl_decal" } },
+  "lights": { "00000000-0000-0000-0000-000000000000": { "type": "root", "name": "light_root", "children": [] } },
+  "cameras": { "00000000-0000-0000-0000-000000000000": { "type": "free", "name": "camera_root", "children": [] } },
+  "environments": { "ffffffff-0000-4000-8000-000000000001": { "name": "env" } },
+  "views": { "99999999-0000-4000-8000-000000000001": { "name": "Front", "model_group_visibility": { "aaaaaaaa-0000-4000-8000-000000000001": true, "aaaaaaaa-0000-4000-8000-000000000010": true } } },
+  "scene_settings": { "active_camera": "00000000-0000-0000-0000-000000000000" }
+}

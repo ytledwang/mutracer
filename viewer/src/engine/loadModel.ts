@@ -9,7 +9,7 @@ import { fetchWithProgress } from './fetchWithProgress';
 import type { PathedFile } from './droppedFiles';
 import { loadModelLighting, modelEnvironmentPaths, type ModelLighting } from './modelLighting';
 
-export { isHDRFile, isModelFile, readDroppedItems, toPathedFiles, type PathedFile } from './droppedFiles';
+export { convertHint, isConvertibleModelFile, isHDRFile, isModelFile, readDroppedItems, toPathedFiles, type PathedFile } from './droppedFiles';
 
 export interface LoadedModel {
   name: string;

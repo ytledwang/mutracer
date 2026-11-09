@@ -1,0 +1,21 @@
+{
+  "models": {
+    "00000000-0000-0000-0000-000000000000": { "type": "root", "name": "model_root", "children": ["11111111-0000-4000-8000-000000000001"] },
+    "11111111-0000-4000-8000-000000000001": { "type": "group", "name": "product", "is_visible": true, "position": [0, 0, 0], "rotation_euler": [0, 0, 0], "scale": [1, 1, 1], "children": ["11111111-0000-4000-8000-000000000002", "11111111-0000-4000-8000-000000000003"] },
+    "11111111-0000-4000-8000-000000000002": { "type": "model", "name": "body", "mesh": "22222222-0000-4000-8000-000000000001", "is_visible": true, "position": [0, 0, 0], "rotation_euler": [0, 0, 0], "scale": [1, 1, 1] },
+    "11111111-0000-4000-8000-000000000003": { "type": "group", "name": "door", "children": ["11111111-0000-4000-8000-000000000004"] },
+    "11111111-0000-4000-8000-000000000004": { "type": "model", "name": "handle", "mesh": "22222222-0000-4000-8000-000000000002" }
+  },
+  "meshes": {
+    "22222222-0000-4000-8000-000000000001": { "type": "mesh", "name": "body", "materials": ["33333333-0000-4000-8000-000000000001"], "url": "customer_asset/prod/models/body.glb" },
+    "22222222-0000-4000-8000-000000000002": { "type": "mesh", "name": "handle", "materials": ["33333333-0000-4000-8000-000000000001"], "url": "customer_asset/prod/models/handle.glb" }
+  },
+  "materials": { "33333333-0000-4000-8000-000000000001": { "type": "material", "name": "steel", "base_color_rgb": [0.8, 0.8, 0.8] } },
+  "textures": { "44444444-0000-4000-8000-000000000001": { "type": "texture", "name": "prod_tex", "urls": "customer_asset/prod/textures/n.png" } },
+  "decals": { "00000000-0000-0000-0000-000000000000": { "type": "root", "name": "decal_root", "children": ["55555555-0000-4000-8000-000000000001"] }, "55555555-0000-4000-8000-000000000001": { "type": "decal", "name": "prod_decal" } },
+  "lights": { "00000000-0000-0000-0000-000000000000": { "type": "root", "name": "light_root", "children": [] } },
+  "cameras": { "00000000-0000-0000-0000-000000000000": { "type": "free", "name": "camera_root", "children": [] } },
+  "views": {},
+  "environments": {},
+  "scene_settings": {}
+}

@@ -15,7 +15,7 @@ not promise identical rendered pixels between devices or backends.
 | [ ] Scene | Search objects or materials and expand nested groups and meshes; select a material child to open its editor. Select an object from the tree or viewport; selection reveals its ancestors. Hide/show a mesh and a group. Select an authored camera. |
 | [ ] Navigation | Drag to orbit, right-drag to pan, scroll to zoom, **F** to fit. Moving an authored camera continues in Orbit. |
 | [ ] History | Undo/redo material, visibility, lighting and render edits; one continuous drag is one step. Reset all restores defaults. On Web, it also restores the example's render choices and initial camera, or fits the model when no camera is provided. |
-| [ ] Panels | **1–4** opens Lighting, Material, Camera, Render respectively. **[**, **]** toggle scene/inspector; click the active rail tab to close it. **H** hides the interface. Text input must not trigger shortcuts. |
+| [ ] Panels | **1–5** opens Lighting, Material, Camera, Render, 场景模板 respectively. **[**, **]** toggle scene/inspector; click the active rail tab to close it. **H** hides the interface. Text input must not trigger shortcuts. |
 | [ ] Playback | **Space** plays/pauses animation when present, otherwise pauses/resumes rendering. Choose another clip and seek the timeline. |
 | [ ] Render dock | Change sample target, viewport resolution and denoising; pause/resume and inspect sample progress, elapsed time and completion. **D** toggles denoising. |
 | [ ] Export | **E** opens a preview; save the displayed viewport PNG. Render Viewport/1080p/2K/4K/Square PNG with a separate sample budget, denoising and optional transparency. Cancel an export and continue using the original image. |
