@@ -8,13 +8,16 @@ import {
   THREESync, type DisplaySettings,
   fromTHREECamera,
 } from '@meimu/mutracer';
-import { VIEWER_AOVS, DEFAULT_SETTINGS, autoGroundedSkybox, renderResolutionScale, resetSettings, setSettings, setUi, useViewer, showToast, writeHash, type RenderPhase, type Settings, type TreeNode } from '../store';
+import { VIEWER_AOVS, DEFAULT_SETTINGS, autoGroundedSkybox, clearFusionScene, renderResolutionScale, resetSettings, setSettings, setUi, setViewMode, useViewer, showToast, writeHash, type RenderPhase, type Settings, type TreeNode, type ViewMode } from '../store';
 import { Environment, loadHDR, parseHDR, type EquirectData } from './environment';
 import { ENVIRONMENT_PRESETS, MODEL_PRESETS, environmentUrl } from './presets';
 import {
   createMaterialSpheres, isHDRFile, loadModelFromFiles, loadModelFromURL, loadModelFromSource,
   convertHint, isConvertibleModelFile, isModelFile, type LoadedModel, type PathedFile
 } from './loadModel';
+import { applySceneView, findCameraIndex, loadSceneDocument, type LoadedSceneDocument } from './loadSceneJson';
+import type { SceneDocument } from './sceneJson';
+import { contractSummary } from './importContract';
 import { MATERIAL_BASE, TEXTURE_KEYS, type MaterialValues, type TextureKey } from './materialParams';
 import type { MapPlan } from './materialx';
 import { isMaterialXFile } from './droppedFiles';
@@ -143,9 +146,17 @@ export class ViewerEngine {
   private manualFocus: { x: number; y: number } | null = null;
   private disposed = false;
   private removeUpscale?: () => void;
-  private readonly upscalePass = createEasuPass({albedoDetail: true});
+  private readonly upscalePass = createEasuPass({albedoDetail: false});
   private readonly unsubscribe: () => void;
   private readonly resizeObserver: ResizeObserver;
+  /** F2 realtime raster overlay (separate WebGL canvas; path tracer keeps its own). */
+  private realtimeCanvas: HTMLCanvasElement | null = null;
+  private realtimeRenderer: THREE.WebGLRenderer | null = null;
+  private readonly realtimeFill = new THREE.HemisphereLight(0xffffff, 0x444455, 1.1);
+  private readonly realtimeKey = new THREE.DirectionalLight(0xffffff, 1.4);
+  private loadedScene: LoadedSceneDocument | null = null;
+  private viewMode: ViewMode = get().viewMode;
+  private orbitLog: number[] | null = null;
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -160,6 +171,12 @@ export class ViewerEngine {
     this.scene.add(this.modelGroup);
     this.studioRig.name = 'Studio lights';
     this.scene.add(this.studioRig);
+    this.realtimeFill.name = 'Realtime fill';
+    this.realtimeKey.name = 'Realtime key';
+    this.realtimeKey.position.set(3, 5, 2);
+    this.realtimeFill.visible = false;
+    this.realtimeKey.visible = false;
+    this.scene.add(this.realtimeFill, this.realtimeKey);
     this.scene.environment = this.environment.texture;
     const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x808080, roughness: 1 });
     groundMaterial.userData.mutracerShadowCatcher = true;
@@ -206,6 +223,7 @@ export class ViewerEngine {
         this.applySettings(state.settings, before);
         this.scheduleCameraSave();
       }
+      if (state.viewMode !== prev.viewMode) this.applyViewMode(state.viewMode);
       if (state.focusArea.x !== prev.focusArea.x || state.focusArea.y !== prev.focusArea.y) this.requestAutofocus();
     });
 
@@ -240,10 +258,58 @@ export class ViewerEngine {
     this.canvas.removeEventListener('pointerup', this.onPointerUp);
     this.controls.dispose();
     this.clearModel();
+    this.disposeRealtime();
     this.loop.dispose(); this.sync.dispose(); this.viewSync.dispose();
     this.environment.dispose();
     this.studioAmbient.dispose();
     this.engine.dispose();
+  }
+
+  /** Attach the F2 realtime overlay canvas (same size / stacking as the path-tracer canvas). */
+  attachRealtimeCanvas(canvas: HTMLCanvasElement) {
+    this.disposeRealtime();
+    this.realtimeCanvas = canvas;
+    this.realtimeRenderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
+    this.realtimeRenderer.outputColorSpace = THREE.SRGBColorSpace;
+    // Match viewer AgX for realtime / quality preview; final Blender stays Standard.
+    this.realtimeRenderer.toneMapping = THREE.AgXToneMapping;
+    this.realtimeRenderer.toneMappingExposure = this.settings.exposure;
+    this.realtimeRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.realtimeRenderer.setClearColor(new THREE.Color(this.settings.backgroundColor), 1);
+    this.applyViewMode(this.viewMode);
+  }
+
+  private disposeRealtime() {
+    this.realtimeRenderer?.dispose();
+    this.realtimeRenderer = null;
+    this.realtimeCanvas = null;
+  }
+
+  /** Public F2 mode switch used by the mode bar (inherits camera / visibility / materials). */
+  setViewMode(mode: ViewMode) {
+    setViewMode(mode);
+  }
+
+  private applyViewMode(mode: ViewMode) {
+    this.viewMode = mode;
+    const realtime = mode === 'realtime';
+    // Keep the path-tracer canvas as the OrbitControls hit target; the realtime
+    // overlay is visual-only (pointer-events: none) so camera/materials stay shared.
+    if (this.realtimeCanvas) {
+      this.realtimeCanvas.style.visibility = realtime ? 'visible' : 'hidden';
+      this.realtimeCanvas.style.pointerEvents = 'none';
+    }
+    this.canvas.style.visibility = 'visible';
+    this.canvas.style.opacity = realtime ? '0' : '1';
+    this.canvas.style.pointerEvents = 'auto';
+    if (!realtime) {
+      // Resync the same Three scene into the path tracer without reloading assets.
+      this.loop.removeSync(this.sync); this.sync.dispose();
+      this.sync = this.createSync(); this.loop.addSync(this.sync);
+      this.loop.removeSync(this.viewSync); this.loop.addSync(this.viewSync);
+      this.awaitingFirstSample = true;
+    }
+    this.needsResize = true;
   }
 
   // ---------------------------------------------------------------- loading
@@ -301,6 +367,93 @@ export class ViewerEngine {
     if (isHDRFile(url.split('?')[0])) return this.loadEnvironmentFromURL(url);
     return this.load(url.split('/').pop() || url, (progress, signal) => loadModelFromURL(url, progress, signal, this.modelBackend),
       { presetId: null, credit: null, sourceUrl: url });
+  }
+
+  /**
+   * F2 plan A: load a read-only merged scene.json + asset map into the existing viewer.
+   * Stays in 实时查看; enables 高质量预览 / 提交渲染 after a template apply.
+   */
+  async loadSceneJsonDocument(document: SceneDocument, opts: { templateApplied?: boolean } = {}) {
+    clearFusionScene();
+    const ok = await this.load(document.name, (progress, signal) => loadSceneDocument(document, progress, signal),
+      { presetId: null, credit: null, sourceUrl: null }, undefined, false);
+    if (!ok) return false;
+    const loaded = this.loadedScene;
+    const preferred = document.preferredViewId
+      ?? loaded?.sceneViews.find((v) => /front|正视/i.test(v.name))?.id
+      ?? loaded?.sceneViews[0]?.id
+      ?? null;
+    if (preferred) this.applyFusionView(preferred);
+    set({
+      viewMode: 'realtime',
+      fusionTemplateApplied: opts.templateApplied !== false,
+      fusionScene: {
+        scene: loaded?.sceneDocument.scene ?? document.scene,
+        assetMap: document.assetMap,
+        viewId: preferred,
+        name: document.name,
+      },
+      fusionViews: loaded?.sceneViews ?? [],
+      fusionViewId: preferred,
+    });
+    this.applyViewMode('realtime');
+    if (loaded?.hiddenMissing) {
+      showToast(`官方厨房壳等 ${loaded.hiddenMissing} 个缺失 mesh 已隐藏（本轮只验状态同步，不是完整厨房光感）`, 'warning');
+    }
+    showToast('已套模板：当前为实时查看，可切高质量预览或提交渲染', 'success');
+    return true;
+  }
+
+  /**
+   * Realtime raster lights follow the view camera (stage scenes are Z-up, so fixed
+   * Y-up lights lit the fridge from behind): hemisphere sky along camera-up, key light
+   * from above / front-right of the camera aimed at the orbit target.
+   */
+  private placeRealtimeLights(cam: THREE.Camera) {
+    cam.updateMatrixWorld();
+    const q = cam.getWorldQuaternion(new THREE.Quaternion());
+    const up = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+    const right = new THREE.Vector3(1, 0, 0).applyQuaternion(q);
+    const target = this.controls.target.clone();
+    const camPos = cam.getWorldPosition(new THREE.Vector3());
+    const dist = Math.max(0.1, camPos.distanceTo(target));
+    this.realtimeFill.position.copy(up);
+    this.realtimeFill.intensity = REALTIME_LIGHTS.fill;
+    this.realtimeFill.color.setRGB(1, 1, 1);
+    this.realtimeFill.groundColor.setRGB(REALTIME_LIGHTS.ground, REALTIME_LIGHTS.ground, REALTIME_LIGHTS.ground);
+    this.realtimeKey.intensity = REALTIME_LIGHTS.key;
+    this.realtimeKey.position.copy(camPos).addScaledVector(up, dist * REALTIME_LIGHTS.keyUp).addScaledVector(right, dist * REALTIME_LIGHTS.keyRight);
+    this.realtimeKey.target.position.copy(target);
+    this.realtimeKey.target.updateMatrixWorld();
+    this.realtimeFill.updateMatrixWorld();
+    this.realtimeKey.updateMatrixWorld();
+  }
+
+  /**
+   * Realtime backdrop: a fusion scene follows 提交渲染 (blender_inner.py background_type,
+   * default "white" camera-ray backdrop); other models keep the viewer background color.
+   */
+  private realtimeBackground(): THREE.Color {
+    const fusion = get().fusionScene;
+    if (!this.loadedScene || !fusion) return new THREE.Color(this.settings.backgroundColor);
+    const scene = this.loadedScene.sceneDocument.scene;
+    const view = fusion.viewId ? scene.views?.[fusion.viewId] : undefined;
+    const env = view?.active_environment ? (scene.environments?.[view.active_environment] as { settings?: { background_type?: string } } | undefined) : undefined;
+    const type = env?.settings?.background_type ?? 'white';
+    return type === 'white' ? new THREE.Color(1, 1, 1) : new THREE.Color(0.95, 0.95, 0.95);
+  }
+
+  /** Switch a stage view (正视图 / 特写) while keeping the same loaded scene state. */
+  applyFusionView(viewId: string) {
+    if (!this.loadedScene) return;
+    const { camera } = applySceneView(this.loadedScene, viewId);
+    const index = findCameraIndex(this.modelCameras, camera);
+    if (index >= 0) setSettings({ cameraIndex: index }, { record: false });
+    set({
+      fusionViewId: viewId,
+      fusionScene: get().fusionScene ? { ...get().fusionScene!, viewId } : null,
+      tree: this.model ? [this.buildTree(this.model.root, this.model.name)] : get().tree,
+    });
   }
 
   async loadFiles(files: PathedFile[]) {
@@ -415,6 +568,16 @@ export class ViewerEngine {
     });
     this.awaitingFirstSample = true;
     if (model.pbrt?.warnings.length) showToast(`${model.pbrt.warnings.length} PBRT import warnings`, 'warning', [{ label: 'Details', onClick: () => setUi({ right: true, tab: 'environment' }) }]);
+    if (model.contract) {
+      const summary = contractSummary(model.contract);
+      if (summary) {
+        const tone = model.contract.errors.length ? 'error' : 'warning';
+        console.info('[import-contract]', summary, model.contract);
+        showToast(summary, tone);
+      } else {
+        console.info('[import-contract] ok', model.contract);
+      }
+    }
     writeHash(this.settings, meta.presetId);
     this.saveCamera();
     if (persist) {
@@ -427,6 +590,8 @@ export class ViewerEngine {
   private setModel(model: LoadedModel, edits: PendingEdits | null = null) {
     this.clearModel();
     this.model = model;
+    this.loadedScene = 'sceneDocument' in model ? model as LoadedSceneDocument : null;
+    if (!this.loadedScene) clearFusionScene();
     if (model.lighting?.available) this.modelEnvironment = new Environment(model.lighting.environment ?? {
       width: 1, height: 1, data: new Float32Array([0, 0, 0, 1])
     });
@@ -534,6 +699,7 @@ export class ViewerEngine {
   private clearModel() {
     this.pickRequest++;
     this.pickObjects.clear(); this.pickMaterials.clear();
+    this.loadedScene = null;
     this.modelEnvironment?.dispose();
     this.modelEnvironment = null;
     if (!this.model) return;
@@ -779,14 +945,15 @@ export class ViewerEngine {
   private configureUpscale(s: Settings = this.settings) {
     const r = this.final;
     // The pass also serves the reduced-resolution preview when the final render is full size;
-    // it copies images that already match the canvas. Detail AOVs are traced only for a reduced final.
+    // it copies images that already match the canvas.
     const enabled = !this.exporting && this.engine.backend === 'webgpu' && s.displayUpscale && s.output === 'final';
-    const detail = enabled && r.resolutionScale < 1;
-    r.aovs = detail ? ['depth','diffuseColor','specularColor'] : VIEWER_AOVS.filter(kind => kind === s.output);
-    r.aovResolution = detail ? 'display' : 'render';
+    // Do not request display-resolution reflectance AOVs (diffuseColor / specularColor / depth-at-display).
+    // That path sets pipeline override AOV_REFLECTANCE on ShaderModule "Ray Trace", which does not
+    // declare the constant and fails quality preview at spp=0. EASU still upscales without albedoDetail.
+    r.aovs = VIEWER_AOVS.filter(kind => kind === s.output);
+    r.aovResolution = 'render';
     this.removeUpscale?.();this.removeUpscale = undefined;
     if (enabled) {
-      // Preview uses EASU alone: it has no display-resolution reflectance AOVs.
       this.removeUpscale = this.engine.display.addPostProcess(this.upscalePass, {outputSize: (_, canvas) => canvas});
     } else this.upscalePass.dispose();
   }
@@ -1603,6 +1770,12 @@ export class ViewerEngine {
       const width = aspect ? Math.min(frame.clientWidth, frame.clientHeight * aspect) : frame.clientWidth;
       const height = aspect ? width / aspect : frame.clientHeight;
       this.canvas.style.width = `${width}px`; this.canvas.style.height = `${height}px`; this.canvas.style.margin = 'auto';
+      // Realtime overlay must share the path-tracer canvas frame, or its camera aspect is wrong.
+      if (this.realtimeCanvas) {
+        this.realtimeCanvas.style.width = this.canvas.style.width;
+        this.realtimeCanvas.style.height = this.canvas.style.height;
+        this.realtimeCanvas.style.margin = 'auto';
+      }
     }
     const width = Math.max(1, Math.round(this.canvas.clientWidth * dpr));
     const height = Math.max(1, Math.round(this.canvas.clientHeight * dpr));
@@ -1634,6 +1807,61 @@ export class ViewerEngine {
       this.updateSelectionRect();
       return;
     }
+
+    // F2 实时查看：raster the same Three scene; do not advance path-tracer accumulation.
+    if (this.viewMode === 'realtime' && this.realtimeRenderer && this.realtimeCanvas) {
+      this.controls.update();
+      const cam = this.activeCamera();
+      setAspect(cam, this.viewAspect());
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.max(1, Math.round(this.realtimeCanvas.clientWidth * dpr));
+      const h = Math.max(1, Math.round(this.realtimeCanvas.clientHeight * dpr));
+      if (this.realtimeCanvas.width !== w || this.realtimeCanvas.height !== h) {
+        this.realtimeRenderer.setSize(w, h, false);
+      }
+      this.realtimeRenderer.toneMappingExposure = this.settings.exposure;
+      // 'standard' mirrors Blender Standard (plain sRGB OETF, no filmic curve); default stays AgX.
+      this.realtimeRenderer.toneMapping = REALTIME_LIGHTS.tone === 'standard' ? THREE.NoToneMapping : THREE.AgXToneMapping;
+      const realtimeBg = this.realtimeBackground();
+      this.realtimeRenderer.setClearColor(realtimeBg, 1);
+      // Avoid PMREM/envMap cubeUV fragment paths (CUBEUV_TEXEL_HEIGHT int/float) that leave a black canvas.
+      // Path tracer keeps scene.environment for AgX quality preview after we restore it.
+      const prevEnv = this.scene.environment;
+      const prevBg = this.scene.background;
+      this.scene.environment = null;
+      this.scene.background = realtimeBg;
+      this.scene.traverse((obj) => {
+        const mesh = obj as THREE.Mesh;
+        if (!mesh.isMesh) return;
+        for (const mat of toArray(mesh.material)) {
+          const std = mat as THREE.MeshStandardMaterial;
+          if (std && 'envMap' in std && std.envMap) {
+            std.envMap = null;
+            std.needsUpdate = true;
+          }
+        }
+      });
+      this.placeRealtimeLights(cam);
+      this.realtimeFill.visible = true;
+      this.realtimeKey.visible = true;
+      const t0 = performance.now();
+      this.realtimeRenderer.render(this.scene, cam);
+      if (this.orbitLog) this.orbitLog.push(performance.now() - t0);
+      this.realtimeFill.visible = false;
+      this.realtimeKey.visible = false;
+      // material.envMap stays cleared so MeshStandard/Physical keep the no-PMREM program.
+      this.scene.environment = prevEnv;
+      this.scene.background = prevBg;
+      this.publishLens(cam);
+      if (this.awaitingFirstSample) {
+        this.awaitingFirstSample = false;
+        set({ loading: null });
+      }
+      this.publishStats('finished', now, false);
+      this.updateSelectionRect();
+      return;
+    }
+
     const phase = this.loop.tick();
     this.publishLens(this.activeCamera());
     const shown = phase === 'previewing' ? this.preview : this.final;
@@ -1689,6 +1917,95 @@ export class ViewerEngine {
     });
   }
 
+  /** Dev / F2 acceptance: camera, material assignments, visible mesh counts. */
+  f2Snapshot() {
+    const cam = this.activeCamera();
+    const position = new THREE.Vector3();
+    cam.getWorldPosition(position);
+    const target = this.controls.target.clone();
+    const fov = 'fov' in cam ? (cam as THREE.PerspectiveCamera).fov : null;
+    const aspect = 'aspect' in cam ? (cam as THREE.PerspectiveCamera).aspect : null;
+    const materials: { mesh: string; material: string }[] = [];
+    let meshCount = 0;
+    let visibleMeshCount = 0;
+    const box = new THREE.Box3();
+    cam.updateMatrixWorld(true);
+    const frustum = new THREE.Frustum().setFromProjectionMatrix(
+      new THREE.Matrix4().multiplyMatrices(cam.projectionMatrix, cam.matrixWorldInverse),
+    );
+    let inView = 0;
+    this.modelGroup.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      if (!mesh.isMesh) return;
+      meshCount++;
+      if (!isVisible(mesh)) return;
+      visibleMeshCount++;
+      const meshBox = new THREE.Box3().setFromObject(mesh);
+      if (!meshBox.isEmpty()) {
+        box.union(meshBox);
+        if (frustum.intersectsBox(meshBox)) inView++;
+      }
+      for (const mat of toArray(mesh.material)) {
+        materials.push({ mesh: mesh.name || mesh.uuid, material: (mat as THREE.Material).name || '' });
+      }
+    });
+    const center = box.isEmpty() ? [0, 0, 0] : box.getCenter(new THREE.Vector3()).toArray();
+    const radius = box.isEmpty() ? 0 : box.getBoundingSphere(new THREE.Sphere()).radius;
+    return {
+      camera: {
+        name: cam.name,
+        index: get().settings.cameraIndex,
+        position: position.toArray(),
+        target: target.toArray(),
+        fov,
+        aspect,
+      },
+      materials,
+      meshCount,
+      visibleMeshCount,
+      inView: inView > 0,
+      inViewCount: inView,
+      bounds: { center, radius, empty: box.isEmpty() },
+    };
+  }
+
+  f2FindMaterial(name: string): { materialId: string; objectId: string } | null {
+    let found: { materialId: string; objectId: string } | null = null;
+    this.modelGroup.traverse((obj) => {
+      if (found) return;
+      const mesh = obj as THREE.Mesh;
+      if (!mesh.isMesh) return;
+      for (const mat of toArray(mesh.material)) {
+        if ((mat as THREE.Material).name === name) {
+          found = { materialId: (mat as THREE.Material).uuid, objectId: mesh.uuid };
+          return;
+        }
+      }
+    });
+    return found;
+  }
+
+  async f2OrbitTiming(durationMs = 2500) {
+    const prevAuto = this.controls.autoRotate;
+    this.orbitLog = [];
+    this.controls.autoRotate = true;
+    this.beginOrbit();
+    if (get().paused) set({ paused: false });
+    await new Promise((resolve) => setTimeout(resolve, durationMs));
+    const frames = this.orbitLog ?? [];
+    this.orbitLog = null;
+    this.controls.autoRotate = prevAuto;
+    const avg = frames.length ? frames.reduce((a, b) => a + b, 0) / frames.length : 0;
+    const min = frames.length ? Math.min(...frames) : 0;
+    const max = frames.length ? Math.max(...frames) : 0;
+    return {
+      ok: frames.length > 0,
+      frames: frames.length,
+      frameMs: frames,
+      fps: { avg: avg ? 1000 / avg : 0, min: max ? 1000 / max : 0, max: min ? 1000 / min : 0 },
+    };
+  }
+
 }
 
 const toArray = <T>(value: T | T[]): T[] => (Array.isArray(value) ? value : [value]);
@@ -1728,6 +2045,11 @@ declare global {
 window.mutracerViewer = { code: () => current?.code() ?? null, agentMarkdown: () => current?.agentMarkdown() ?? null };
 
 /** Sets the frame aspect, keeping an orthographic camera's height and center. */
+/** Realtime raster light levels, calibrated against 提交渲染 Standard (rt_final_align_check.py). */
+export const REALTIME_LIGHTS: { fill: number; ground: number; key: number; keyUp: number; keyRight: number; tone: 'agx' | 'standard' } = {
+  fill: 0.75, ground: 0.5, key: 2.0, keyUp: 0.6, keyRight: 0.35, tone: 'agx',
+};
+
 function setAspect(camera: ViewCamera, aspect: number) {
   if (isOrthographic(camera)) {
     const halfWidth = ((camera.top - camera.bottom) / 2) * aspect;
@@ -1736,6 +2058,10 @@ function setAspect(camera: ViewCamera, aspect: number) {
     camera.right = centerX + halfWidth;
   } else {
     camera.aspect = aspect;
+    const hfov = camera.userData?.horizontalFov;
+    if (typeof hfov === 'number' && hfov > 0 && aspect > 0) {
+      camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(hfov) / 2) / aspect));
+    }
   }
   camera.updateProjectionMatrix();
 }

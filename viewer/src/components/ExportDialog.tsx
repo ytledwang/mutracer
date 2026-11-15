@@ -60,7 +60,7 @@ export function ExportDialog() {
     <ModalOverlay className="scrim" isOpen={open} onOpenChange={(v) => !v && close()} isDismissable={!busy}>
       <Modal className="dialog">
         <Dialog aria-label="Export image">
-          <Heading slot="title" className="dialog__title">Export image
+          <Heading slot="title" className="dialog__title">导出图像
             <button className="icon-btn icon-btn--bare sm" aria-label="Close" onClick={close}><X size={14} /></button>
           </Heading>
           <div className="preview" data-checker={transparent || undefined}><canvas ref={preview} /></div>
@@ -94,7 +94,7 @@ export function ExportDialog() {
           {!validSize && <p className="hint hint--warn">Use whole numbers from 1 to {maxDimension}.</p>}
           <Scrub label="Samples" value={samples} min={16} max={16384} log disabled={busy} onChange={setSamples} />
           <Switch label="Denoise" checked={denoise} disabled={busy} onChange={(v) => setSettings({ denoise: v })}>
-            <span className="field-label">Denoise</span>
+            <span className="field-label">降噪</span>
           </Switch>
           <Switch label="Transparent background" checked={transparent} disabled={busy} onChange={setTransparent}>
             <span className="field-label">Transparent background</span>

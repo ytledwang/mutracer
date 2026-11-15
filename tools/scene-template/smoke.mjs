@@ -45,7 +45,23 @@ for (const c of cases) {
   // key 合并
   for (const f of ['materials', 'textures', 'meshes']) for (const k of [...Object.keys(tpl[f] ?? {}), ...Object.keys(prod[f] ?? {})]) assert.ok(k in out[f], `${c.name}: ${f}.${k} 丢失`);
   assert.deepEqual(out.decals[R].children, [...tpl.decals[R].children, ...prod.decals[R].children]);
-  // 其余顶层字段取自模板
-  for (const f of ['lights', 'cameras', 'environments', 'views', 'scene_settings']) assert.deepEqual(out[f], tpl[f], `${c.name}: ${f} 应取自模板`);
+  // 灯光 / 环境 / scene_settings 仍取自模板
+  for (const f of ['lights', 'environments', 'scene_settings']) assert.deepEqual(out[f], tpl[f], `${c.name}: ${f} 应取自模板`);
+  // F2：产品相机保留；模板视图 remap replaceId → newRoot；产品视图并入
+  for (const camId of Object.keys(prod.cameras ?? {})) assert.ok(camId in out.cameras, `${c.name}: 产品相机 ${camId} 丢失`);
+  for (const camId of Object.keys(tpl.cameras ?? {})) assert.ok(camId in out.cameras, `${c.name}: 模板相机 ${camId} 丢失`);
+  for (const [vid, view] of Object.entries(tpl.views ?? {})) {
+    assert.ok(vid in out.views, `${c.name}: 模板视图 ${vid} 丢失`);
+    const vis = out.views[vid].model_group_visibility ?? {};
+    assert.ok(!(c.replaceId in vis), `${c.name}: views 仍引用 replaceId`);
+    if (c.replaceId in (view.model_group_visibility ?? {})) {
+      assert.ok(newId in vis, `${c.name}: views 未 remap 到新根`);
+      assert.equal(vis[newId], view.model_group_visibility[c.replaceId]);
+    }
+  }
+  for (const vid of Object.keys(prod.views ?? {})) {
+    if (vid in (tpl.views ?? {})) continue;
+    assert.ok(vid in out.views, `${c.name}: 产品视图 ${vid} 未并入`);
+  }
   console.error(`ok ${c.name}: models=${Object.keys(out.models).length} newRoot=${newId} -> ${c.out}`);
 }

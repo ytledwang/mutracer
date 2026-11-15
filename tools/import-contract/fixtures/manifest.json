@@ -1,0 +1,20 @@
+{
+  "good": "/Users/wangjianzheng/Project/git/mutracer/tools/import-contract/fixtures/good-named-pivot.glb",
+  "source": "synthetic-named-pivot",
+  "note": "Synthetic fridge-like product authored for F1. Official kitchen shell RF_Kitchen_0302_Scene (ccdaa114-…) is not local and was not used. Living Room was not used. Local fridge poc-out GLBs had no Pivot nodes.",
+  "placeholder_id": "f1-named-pivot-placeholder",
+  "expected_pivots": [
+    "Door_Pivot",
+    "Crisper_Pivot"
+  ],
+  "expected_materials": [
+    "Fridge_White",
+    "Crisper_Plastic",
+    "Handle_Brass",
+    "Fridge_Glass"
+  ],
+  "expected_cameras": [
+    "Cam_Front",
+    "Cam_Close"
+  ]
+}

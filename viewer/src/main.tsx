@@ -6,4 +6,7 @@ import './styles/app.css';
 // renderer on the same canvas.
 createRoot(document.getElementById('root')!).render(<App />);
 
-if (import.meta.env.DEV) void import('./dev/thumbnails');
+if (import.meta.env.DEV) {
+  void import('./dev/thumbnails');
+  void import('./dev/f2Probe');
+}

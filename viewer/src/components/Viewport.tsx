@@ -9,17 +9,21 @@ import { DebugOverlay } from './DebugOverlay';
 import { StatusBar } from './StatusBar';
 import { OIDNLoadingStatus } from './OIDNLoadingStatus';
 import { CameraControls } from './ViewControls';
+import { ViewModeBar } from './ViewModeBar';
 import { Select } from './ui/controls';
 
 export function Viewport() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const realtimeRef = useRef<HTMLCanvasElement>(null);
   const [dragging, setDragging] = useState(false);
   const picking = useViewer((s) => s.pickingFocus);
   const hidden = useViewer((s) => s.ui.hidden);
   const inspectorOpen = useViewer((s) => s.ui.right);
+  const viewMode = useViewer((s) => s.viewMode);
 
   useEffect(() => {
     const engine = new ViewerEngine(canvasRef.current!);
+    if (realtimeRef.current) engine.attachRealtimeCanvas(realtimeRef.current);
     setEngine(engine);
     if (location.hash.slice(1).split('&').includes(HANDOFF_HASH)) {
       // Files dropped on the home page (the hash is rewritten after the first settings change).
@@ -54,23 +58,37 @@ export function Viewport() {
         if (files.length) void getEngine()?.loadFiles(files);
       }}
     >
-      <canvas ref={canvasRef} className="viewport__canvas" aria-label="Path traced view. Drag to orbit, right-drag to pan, scroll to zoom, click to select." />
+      <canvas
+        ref={canvasRef}
+        className="viewport__canvas"
+        data-view-mode="qualityPreview"
+        aria-hidden={viewMode !== 'qualityPreview' || undefined}
+        aria-label="高质量预览（路径追踪）。拖拽旋转，右键平移，滚轮缩放，点击选择。"
+      />
+      <canvas
+        ref={realtimeRef}
+        className="viewport__canvas viewport__canvas--realtime"
+        data-view-mode="realtime"
+        aria-hidden={viewMode !== 'realtime' || undefined}
+        aria-label="实时查看（光栅）。拖拽旋转，右键平移，滚轮缩放，点击选择。"
+      />
       {!hidden && (
         <>
           <SelectionBox />
           <FocusFrame />
           <DebugOverlay />
           <div className="viewport-bottom">
+            <ViewModeBar />
             <OIDNLoadingStatus />
             <Credit />
             <AnimationBar />
             <div className="viewport-footer">
               <StatusBar />
               <CameraControls />
-              <button className="btn panel-toggle" aria-label={inspectorOpen ? 'Hide inspector' : 'Show inspector'} aria-expanded={inspectorOpen}
+              <button className="btn panel-toggle" aria-label={inspectorOpen ? '隐藏检查器' : '显示检查器'} aria-expanded={inspectorOpen}
                 onClick={() => setUi({ right: !inspectorOpen })}>
                 {inspectorOpen ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
-                <span className="panel-toggle__label"><b>{inspectorOpen ? 'Hide' : 'Show'}</b><small>Panel</small></span>
+                <span className="panel-toggle__label"><b>{inspectorOpen ? '隐藏' : '显示'}</b><small>面板</small></span>
               </button>
             </div>
           </div>
@@ -79,7 +97,7 @@ export function Viewport() {
       <LoadingCard />
       {dragging && (
         <div className="drop-layer">
-          <div><Upload size={28} />Drop to open<small>.glb · .gltf · .pbrt with its files · .fbx · .stp · .step (convert to .glb first) · folder · .hdr{MATERIALX_IMPORT && ' · MaterialX .mtlx or .zip'}</small></div>
+          <div><Upload size={28} />拖入打开<small>.glb · .gltf · .pbrt 及其依赖 · .fbx · .stp · .step（须先转为 .glb）· 文件夹 · HDRI{MATERIALX_IMPORT && ' · MaterialX .mtlx 或 .zip'}</small></div>
         </div>
       )}
     </section>

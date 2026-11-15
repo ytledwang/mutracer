@@ -18,8 +18,8 @@ describe('viewport camera controls', () => {
       cameras
     });
     const markup = renderToStaticMarkup(createElement(CameraControls));
-    expect(markup).toContain('aria-label="Fit to model"');
-    expect(markup).toContain('title="Fit to model (F)"');
-    expect(markup.includes('aria-label="Camera"')).toBe(cameras.length > 0);
+    expect(markup).toContain('aria-label="适配模型"');
+    expect(markup).toContain('title="适配模型 (F)"');
+    expect(markup.includes('aria-label="相机"')).toBe(cameras.length > 0);
   });
 });

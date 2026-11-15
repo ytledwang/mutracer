@@ -21,3 +21,15 @@ Which input formats reach a MuTracer render today. Reproduce with
 2. Run a real (non-cube) STEP part; decide mm → m scaling.
 3. Make `blender` resolvable for `tools/cloud-relay.py` on macOS (PATH or `BLENDER` variable), and add gmsh to the relay host.
 4. Make `mutracer-render` defaults work for glTF Y-up scenes, or document `--camera-mode lookat` in the cloud-service README.
+
+## F1 import contract
+
+Official export preset and validation live in [`tools/import-contract/`](../../tools/import-contract/README.md).
+`convert_fbx_to_glb.sh` and `convert_stp_to_glb.sh` now export through that preset and run `validate_glb.py`.
+
+- Good fixture `tools/import-contract/fixtures/good-named-pivot.glb` (named materials, `Door_Pivot` / `Crisper_Pivot`, cameras): validate exit 0. Names still present after a Draco re-export.
+- Bad fixture `fixtures/bad-flattened-palette.glb` (stripped names, flattened pivots, `PaletteMaterial001`): validate exit 1.
+- STP `fixtures/box.step` is no longer a silent success: convert exits 1 and writes `out/box-stp.rejected.glb`. Missing materials are errors; missing mm→m is an explicit warning. Selling a real STP material/unit conversion is still an open gap.
+- The official kitchen shell is still not local; the good fixture is a small synthetic product, not Living Room.
+
+Evidence: [`docs/prd/evidence/fusion/f1/`](../prd/evidence/fusion/f1/). Viewer toast path: `importContract.ts` via `loadModel.ts` / `ViewerEngine` (tests in `viewer/tests/importContract.test.ts`).

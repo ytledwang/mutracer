@@ -25,8 +25,8 @@ export function MaterialPanel() {
     return (
       <div className="empty-panel">
         <MousePointerClick size={22} />
-        <strong>No material selected</strong>
-        <span>Click an object in the viewport or pick a material in the scene tree.</span>
+        <strong>未选择材质</strong>
+        <span>在视口中点选物体，或在场景树中按名称选择材质。</span>
       </div>
     );
   }

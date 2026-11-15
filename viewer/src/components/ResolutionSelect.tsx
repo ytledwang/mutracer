@@ -19,14 +19,14 @@ export function ResolutionSelect({ prefix }: { prefix?: string }) {
   return (
     <>
     <Select
-      label="Output aspect ratio"
-      prefix="Aspect"
+      label="输出画幅比"
+      prefix="画幅"
       value={String(aspect)}
-      options={[{ value: 'null', label: 'Viewport' }, ...[...new Set([1, 4/3, 16/9, ...(aspect ? [aspect] : [])])].map(value => ({ value: String(value), label: value.toFixed(3) }))]}
+      options={[{ value: 'null', label: '视口' }, ...[...new Set([1, 4/3, 16/9, ...(aspect ? [aspect] : [])])].map(value => ({ value: String(value), label: value.toFixed(3) }))]}
       onChange={value => setSettings({ outputAspect: value === 'null' ? null : Number(value) })}
     />
     <Select
-      label="Render resolution"
+      label="渲染分辨率"
       prefix={prefix}
       value={height === null ? String(scale) : `${height}p`}
       options={[

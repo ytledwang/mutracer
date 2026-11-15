@@ -61,3 +61,9 @@ Fixtures (`fixtures/`): `sample.fbx` (533 KB, copied from a my-stage-hk backup a
 Results: `out/sample-fbx.glb` (486,928 bytes, glTF v2, 25 meshes, 10 materials) and `out/box-stp.glb` (12,360 bytes, 1 mesh, no material). Neither GLB was rendered or opened in a browser.
 
 Limits: units are not converted (STEP is mm, glTF m); gmsh output has no material; FBX animation and skinning are whatever Blender's glTF exporter keeps; `tools/cloud-relay.py` (ssh) was not run.
+
+## F1 contract
+
+Converters now use `tools/import-contract/export_glb_preset.py` and run `validate_glb.py` afterwards.
+`smoke.sh` step 3 (STL cube) and step 5 (STEP cube) are expected to *fail* the contract (no materials; STEP also warns that mm was not converted to m) and still count as a pass of the smoke if that failure is reported. Step 6 checks the good/bad fixtures under `tools/import-contract/fixtures/`.
+STP failures are moved to `out/*.rejected.glb` so a bad file is not left in the success path. `sample.fbx` remains private and must not be committed.

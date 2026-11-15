@@ -7,7 +7,7 @@
 //
 // 与可影的差异仅限于：不读写 Supabase、不修改入参（先 structuredClone）、
 // 对可影会产生 undefined 崩溃或静默失败的输入抛出明确错误。
-// 可影已知缺口（meshes.url 不改写、views.model_group_visibility 不 remap）保持原样，见 README。
+// F2 允许补三处：meshes[*].url 改写、views remap、保留产品相机（不重写合并语义）。
 
 import { randomUUID } from 'node:crypto';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -17,6 +17,74 @@ import { fileURLToPath } from 'node:url';
 export const ROOT_ENTITY_ID = '00000000-0000-0000-0000-000000000000';
 
 const isContainer = (entity) => entity?.type === 'group' || entity?.type === 'root';
+
+/** Absolute-looking mesh URLs that CreateSingle would leave alone. */
+const ABSOLUTE_URL = /^(?:https?:|\/\/|\/|customer_asset\/|official_asset\/)/i;
+
+/**
+ * Infer a product data_bucket_url for relative mesh URLs (CreateSingle-style prefix).
+ * Prefer an explicit bucket, then scene_settings.data_bucket_url, then a shared customer_asset/… prefix.
+ */
+export function inferProductBucket(singleSceneData, explicitBucket) {
+  if (explicitBucket) return String(explicitBucket).replace(/\/$/, '');
+  const fromSettings = singleSceneData?.scene_settings?.data_bucket_url;
+  if (fromSettings) return String(fromSettings).replace(/\/$/, '');
+  const prefixes = new Set();
+  for (const mesh of Object.values(singleSceneData?.meshes ?? {})) {
+    const url = mesh?.url;
+    if (typeof url !== 'string' || !url.includes('/')) continue;
+    const parts = url.split('/');
+    if (parts[0] === 'customer_asset' || parts[0] === 'official_asset') {
+      if (parts.length >= 3) prefixes.add(parts.slice(0, 2).join('/'));
+    }
+  }
+  return prefixes.size === 1 ? [...prefixes][0] : undefined;
+}
+
+/** Rewrite relative product mesh URLs to `<bucket>/<url>` (CreateSingle parity). */
+export function rewriteMeshUrls(meshes, bucket) {
+  if (!bucket || !meshes) return 0;
+  const prefix = String(bucket).replace(/\/$/, '');
+  let rewritten = 0;
+  for (const mesh of Object.values(meshes)) {
+    if (!mesh || typeof mesh.url !== 'string' || !mesh.url) continue;
+    if (ABSOLUTE_URL.test(mesh.url) || mesh.url.startsWith(`${prefix}/`)) continue;
+    mesh.url = `${prefix}/${mesh.url.replace(/^\//, '')}`;
+    rewritten++;
+  }
+  return rewritten;
+}
+
+/** Remap replaceId → newModelId inside a visibility / state map. */
+export function remapIdMap(map, replaceId, newModelId) {
+  if (!map || typeof map !== 'object') return map;
+  if (!(replaceId in map)) return map;
+  const next = { ...map };
+  if (!(newModelId in next)) next[newModelId] = next[replaceId];
+  delete next[replaceId];
+  return next;
+}
+
+function remapViewRefs(views, replaceId, newModelId) {
+  if (!views) return;
+  for (const view of Object.values(views)) {
+    if (!view || typeof view !== 'object') continue;
+    if (view.model_group_visibility) {
+      view.model_group_visibility = remapIdMap(view.model_group_visibility, replaceId, newModelId);
+    }
+  }
+}
+
+/** Apply duplicateModel idMapping to a product visibility map (ROOT → new root). */
+function remapVisibilityWithMapping(map, idMapping, newModelId) {
+  if (!map || typeof map !== 'object') return map;
+  const next = {};
+  for (const [id, visible] of Object.entries(map)) {
+    if (id === ROOT_ENTITY_ID) next[newModelId] = visible;
+    else next[idMapping[id] ?? id] = visible;
+  }
+  return next;
+}
 
 /**
  * 等价于可影 duplicateModel(json, modelId)：对 modelId 子树（沿 children 递归）
@@ -56,9 +124,10 @@ export function duplicateModel(json, modelId, newId = randomUUID) {
  * @param {object} p.singleSceneData   单品 Scene JSON
  * @param {string} p.replaceId         模板中占位 group 的 id（template.replace_id）
  * @param {() => string} [p.newId]     uuid 生成器（测试可注入，默认 crypto.randomUUID）
- * @returns {{ scene: object, newModelId: string, replaceIdParent: string|undefined }}
+ * @param {string} [p.productBucket]   产品 data_bucket_url；缺省时尝试推断
+ * @returns {{ scene: object, newModelId: string, replaceIdParent: string|undefined, idMapping: Record<string,string> }}
  */
-export function mergeSceneTemplate({ sceneTemplateData, singleSceneData, replaceId, newId = randomUUID }) {
+export function mergeSceneTemplate({ sceneTemplateData, singleSceneData, replaceId, newId = randomUUID, productBucket }) {
   if (!replaceId) throw new Error('缺少 replaceId（可影对此直接 onCreateError）');
   if (!sceneTemplateData?.models) throw new Error('sceneTemplateData.models 缺失');
   if (!singleSceneData?.models?.[ROOT_ENTITY_ID]) throw new Error('singleSceneData.models[ROOT] 缺失');
@@ -66,6 +135,11 @@ export function mergeSceneTemplate({ sceneTemplateData, singleSceneData, replace
   // 不污染调用方数据（可影的数据是刚 fetch 的临时对象，这里等价于一份拷贝）
   const tpl = structuredClone(sceneTemplateData);
   const single = structuredClone(singleSceneData);
+  // duplicateModel 会改写 models；相机 / 视图 / mesh URL 改写仍以产品原稿为准
+  const productCameras = structuredClone(single.cameras ?? {});
+  const productViews = structuredClone(single.views ?? {});
+  const bucket = inferProductBucket(single, productBucket);
+  rewriteMeshUrls(single.meshes, bucket);
 
   const replacedGroup = tpl.models[replaceId];
   if (!replacedGroup) throw new Error(`模板 models 中不存在 replaceId=${replaceId}`);
@@ -78,7 +152,7 @@ export function mergeSceneTemplate({ sceneTemplateData, singleSceneData, replace
   };
 
   // 2) duplicateModel：整棵单品子树换新 uuid，根改为 group
-  const { modelData, newModelId } = duplicateModel(single, ROOT_ENTITY_ID, newId);
+  const { modelData, newModelId, idMapping } = duplicateModel(single, ROOT_ENTITY_ID, newId);
   modelData.models[newModelId].type = 'group';
 
   // 3) 递归删除模板中 replaceId 及其后代
@@ -103,7 +177,7 @@ export function mergeSceneTemplate({ sceneTemplateData, singleSceneData, replace
     throw new Error(`模板中找不到 children 含 replaceId=${replaceId} 的父节点`);
   }
 
-  // 5) 按 key 合并；decals 的 ROOT.children 为两侧拼接；其余顶层字段（lights/cameras/environments/views/scene_settings…）整体取自模板
+  // 5) 按 key 合并；decals 的 ROOT.children 为两侧拼接；灯光 / 环境 / scene_settings 仍取自模板
   const tplDecalRoot = tpl.decals?.[ROOT_ENTITY_ID];
   const prodDecalRoot = modelData.decals?.[ROOT_ENTITY_ID];
   const scene = {
@@ -120,13 +194,35 @@ export function mergeSceneTemplate({ sceneTemplateData, singleSceneData, replace
       },
     },
     meshes: { ...tpl.meshes, ...modelData.meshes },
+    // F2：保留产品相机，供切正视图 / 特写；模板相机仍在
+    cameras: { ...tpl.cameras, ...productCameras },
   };
-  return { scene, newModelId, replaceIdParent };
-}
 
+  // F2：views 的 model_group_visibility 把 replaceId remap 到新根
+  remapViewRefs(scene.views, replaceId, newModelId);
+
+  // F2：并入产品视图（id 不冲突时），可见性表按 duplicate 映射改写
+  for (const [viewId, view] of Object.entries(productViews)) {
+    if (!view || scene.views?.[viewId]) continue;
+    const next = structuredClone(view);
+    if (next.model_group_visibility) {
+      next.model_group_visibility = remapVisibilityWithMapping(next.model_group_visibility, idMapping, newModelId);
+    }
+    scene.views = scene.views ?? {};
+    scene.views[viewId] = next;
+  }
+
+  return { scene, newModelId, replaceIdParent, idMapping };
+}
 function parseArgs(argv) {
   const opts = {};
-  const keys = { '--template': 'template', '--product': 'product', '--replace-id': 'replaceId', '--out': 'out' };
+  const keys = {
+    '--template': 'template',
+    '--product': 'product',
+    '--replace-id': 'replaceId',
+    '--out': 'out',
+    '--product-bucket': 'productBucket',
+  };
   for (let i = 0; i < argv.length; i++) {
     const k = keys[argv[i]];
     if (argv[i] === '-h' || argv[i] === '--help') opts.help = true;
@@ -138,7 +234,7 @@ function parseArgs(argv) {
 
 function main() {
   const usage =
-    'node merge_scene_template.mjs --template <tpl.json> --product <product.json> --replace-id <uuid> --out <out.json>';
+    'node merge_scene_template.mjs --template <tpl.json> --product <product.json> --replace-id <uuid> --out <out.json> [--product-bucket <url>]';
   let opts;
   try {
     opts = parseArgs(process.argv.slice(2));
@@ -157,11 +253,12 @@ function main() {
       sceneTemplateData,
       singleSceneData,
       replaceId: opts.replaceId,
+      productBucket: opts.productBucket,
     });
     mkdirSync(dirname(resolve(opts.out)), { recursive: true });
     writeFileSync(opts.out, JSON.stringify(scene));
     console.error(
-      `merged: newModelId=${newModelId} parent=${replaceIdParent} models=${Object.keys(scene.models).length} -> ${opts.out}`,
+      `merged: newModelId=${newModelId} parent=${replaceIdParent} models=${Object.keys(scene.models).length} cameras=${Object.keys(scene.cameras ?? {}).length} views=${Object.keys(scene.views ?? {}).length} -> ${opts.out}`,
     );
   } catch (e) {
     console.error(`merge 失败: ${e.message}`);

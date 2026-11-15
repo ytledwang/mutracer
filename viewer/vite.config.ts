@@ -3,6 +3,7 @@ import path from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { shaderFormattingPlugin } from '../scripts/shader-formatting.mjs';
+import { f2DevApi } from './src/dev/f2DevApi';
 
 const repoRoot = path.resolve(__dirname, '..');
 const weightsDir = path.join(repoRoot, 'oidn/weights');
@@ -61,7 +62,7 @@ export default defineConfig({
   root: __dirname,
   publicDir: path.join(repoRoot, 'site/public'),
   base: './',
-  plugins: [react(), shaderFormattingPlugin(), oidnWeights(), thumbnailWriter()],
+  plugins: [react(), shaderFormattingPlugin(), oidnWeights(), thumbnailWriter(), f2DevApi(repoRoot)],
   resolve: {
     alias: [
       { find: /^@meimu\/mutracer\/oidn$/, replacement: path.join(repoRoot, 'src/oidn.ts') },

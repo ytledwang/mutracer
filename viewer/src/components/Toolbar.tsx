@@ -49,14 +49,14 @@ export function Toolbar({ mobile }: { mobile: boolean }) {
           </svg>
         </a>
         <HelpButton />
-        {!mobile && <button className="btn" aria-label="Show code" title="Show code" onClick={() => setUi({ codeOpen: true })}>
-          <Code2 size={15} /><span className="hide-xs">Code</span>
+        {!mobile && <button className="btn" aria-label="显示代码" title="显示代码" onClick={() => setUi({ codeOpen: true })}>
+          <Code2 size={15} /><span className="hide-xs">代码</span>
         </button>}
         {mobile && <MobileActionsMenu />}
-        <button className="btn btn--primary" aria-label="Export image" onClick={() => setUi({ exportOpen: true })}>
-          <Download size={15} /><span className="hide-xs">Export</span>
+        <button className="btn btn--primary" aria-label="导出图像" onClick={() => setUi({ exportOpen: true })}>
+          <Download size={15} /><span className="hide-xs">导出</span>
         </button>
-        <button className="icon-btn icon-btn--bare sm hide-m" aria-label="Toggle inspector" title="Toggle inspector (])"
+        <button className="icon-btn icon-btn--bare sm hide-m" aria-label="切换检查器" title="切换检查器 (])"
           aria-pressed={ui.right} onClick={() => setUi({ right: !ui.right })}><PanelRight size={15} /></button>
       </div>
     </header>
@@ -67,10 +67,10 @@ function HistoryButtons() {
   const history = useViewer((s) => s.history);
   return (
     <div className="history-btns">
-      <button className="icon-btn icon-btn--bare sm" aria-label="Undo" disabled={!history.undo} onClick={undo}
-        title={history.undo ? `Undo ${history.undo} (⌘Z)` : 'Undo (⌘Z)'}><Undo2 size={15} /></button>
-      <button className="icon-btn icon-btn--bare sm" aria-label="Redo" disabled={!history.redo} onClick={redo}
-        title={history.redo ? `Redo ${history.redo} (⇧⌘Z)` : 'Redo (⇧⌘Z)'}><Redo2 size={15} /></button>
+      <button className="icon-btn icon-btn--bare sm" aria-label="撤销" disabled={!history.undo} onClick={undo}
+        title={history.undo ? `撤销 ${history.undo} (⌘Z)` : '撤销 (⌘Z)'}><Undo2 size={15} /></button>
+      <button className="icon-btn icon-btn--bare sm" aria-label="重做" disabled={!history.redo} onClick={redo}
+        title={history.redo ? `重做 ${history.redo} (⇧⌘Z)` : '重做 (⇧⌘Z)'}><Redo2 size={15} /></button>
     </div>
   );
 }
@@ -79,7 +79,7 @@ function ResetButton() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button className="icon-btn icon-btn--bare sm" aria-label="Reset all" title="Reset all"
+      <button className="icon-btn icon-btn--bare sm" aria-label="全部重置" title="全部重置"
         onClick={() => setOpen(true)}><RotateCcw size={15} /></button>
       <ResetDialog open={open} onOpenChange={setOpen} />
     </>
@@ -91,14 +91,14 @@ function MobileActionsMenu() {
   return (
     <>
       <MenuTrigger>
-        <Button className="icon-btn" aria-label="More actions"><MoreHorizontal size={18} /></Button>
+        <Button className="icon-btn" aria-label="更多操作"><MoreHorizontal size={18} /></Button>
         <Popover className="popover menu" offset={8} placement="bottom end" style={{ width: 220 }}>
-          <Menu className="menu-list" aria-label="More actions" onAction={(key) => {
+          <Menu className="menu-list" aria-label="更多操作" onAction={(key) => {
             if (key === 'code') setUi({ codeOpen: true });
             if (key === 'reset') setResetOpen(true);
           }}>
-            <MenuItem id="code" className="menu-item"><Code2 size={15} />Show code</MenuItem>
-            <MenuItem id="reset" className="menu-item"><RotateCcw size={15} />Reset all…</MenuItem>
+            <MenuItem id="code" className="menu-item"><Code2 size={15} />显示代码</MenuItem>
+            <MenuItem id="reset" className="menu-item"><RotateCcw size={15} />全部重置…</MenuItem>
           </Menu>
         </Popover>
       </MenuTrigger>
@@ -111,14 +111,14 @@ function ResetDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (ope
   return (
     <ModalOverlay className="scrim" isOpen={open} onOpenChange={onOpenChange} isDismissable>
       <Modal className="dialog">
-        <Dialog role="alertdialog" aria-label="Reset all">
+        <Dialog role="alertdialog" aria-label="全部重置">
           {({ close }) => (
             <>
-              <Heading slot="title" className="dialog__title">Reset all?</Heading>
-              <p className="hint">Lighting, render settings, materials and object visibility return to their defaults, and the camera frames the model again. You can undo this, except for the camera.</p>
+              <Heading slot="title" className="dialog__title">全部重置？</Heading>
+              <p className="hint">灯光、渲染设置、材质和物体显隐将恢复默认，相机会重新框住模型。此操作可撤销，但相机除外。</p>
               <div className="actions">
-                <button type="button" className="btn" autoFocus onClick={close}>Cancel</button>
-                <button type="button" className="btn btn--danger" onClick={() => { getEngine()?.resetAll(); close(); }}>Reset all</button>
+                <button type="button" className="btn" autoFocus onClick={close}>取消</button>
+                <button type="button" className="btn btn--danger" onClick={() => { getEngine()?.resetAll(); close(); }}>全部重置</button>
               </div>
             </>
           )}
@@ -137,21 +137,21 @@ function OpenMenu() {
   return (
     <>
       <MenuTrigger>
-        <Button className="btn" aria-label="Open"><Upload size={15} /><span className="hide-xs">Open</span><ChevronDown size={13} className="chev" /></Button>
+        <Button className="btn" aria-label="打开"><Upload size={15} /><span className="hide-xs">打开</span><ChevronDown size={13} className="chev" /></Button>
         <Popover className="popover menu" offset={8} style={{ width: 250 }}>
-          <Menu className="menu-list" aria-label="Open" onAction={(key) => {
+          <Menu className="menu-list" aria-label="打开" onAction={(key) => {
             if (key === 'files') files.current?.click();
             if (key === 'folder') folder.current?.click();
             if (key === 'hdr') hdr.current?.click();
             if (key === 'url') setUrlOpen(true);
           }}>
-            <MenuItem id="files" className="menu-item"><FileUp size={15} />Open files…<kbd>⌘O</kbd></MenuItem>
-            <MenuItem id="folder" className="menu-item"><Folder size={15} />Open folder…<kbd /></MenuItem>
-            <MenuItem id="url" className="menu-item"><Link size={15} />Open from URL…<kbd /></MenuItem>
+            <MenuItem id="files" className="menu-item"><FileUp size={15} />打开文件…<kbd>⌘O</kbd></MenuItem>
+            <MenuItem id="folder" className="menu-item"><Folder size={15} />打开文件夹…<kbd /></MenuItem>
+            <MenuItem id="url" className="menu-item"><Link size={15} />从 URL 打开…<kbd /></MenuItem>
             <Separator className="menu-sep" />
-            <MenuItem id="hdr" className="menu-item"><Globe size={15} />Load environment (.hdr)…<kbd /></MenuItem>
+            <MenuItem id="hdr" className="menu-item"><Globe size={15} />加载环境 (HDRI)…<kbd /></MenuItem>
           </Menu>
-          <div className="menu-note">Or drop files anywhere on the viewport.</div>
+          <div className="menu-note">也可将文件拖到视口任意位置。</div>
         </Popover>
       </MenuTrigger>
       <input ref={files} id="open-files" type="file" hidden multiple accept=".glb,.gltf,.fbx,.stp,.step,.pbrt,.gz,.ply,.bin,.png,.jpg,.jpeg,.webp,.ktx2,.hdr,.exr,.tga,.tif,.tiff,.spd" onChange={(e) => { onFiles(e.currentTarget.files); e.currentTarget.value = ''; }} />
@@ -167,7 +167,7 @@ function UrlDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open:
   return (
     <ModalOverlay className="scrim" isOpen={open} onOpenChange={onOpenChange} isDismissable>
       <Modal className="dialog">
-        <Dialog aria-label="Open from URL">
+        <Dialog aria-label="从 URL 打开">
           {({ close }) => (
             <form onSubmit={(e) => {
               e.preventDefault();
@@ -175,14 +175,14 @@ function UrlDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open:
               void getEngine()?.loadUrl(url.trim());
               close();
             }}>
-              <Heading slot="title" className="dialog__title">Open from URL
+              <Heading slot="title" className="dialog__title">从 URL 打开
                 <button type="button" className="icon-btn icon-btn--bare sm" aria-label="Close" onClick={close}><X size={14} /></button>
               </Heading>
               <input className="text-input" autoFocus placeholder="https://…/scene.pbrt, model.glb or environment.hdr" value={url} onChange={(e) => setUrl(e.currentTarget.value)} />
               <p className="hint">The server must allow cross-origin requests. .gltf and .pbrt files load resources relative to the scene URL.</p>
               <div className="actions">
                 <button type="button" className="btn" onClick={close}>Cancel</button>
-                <button type="submit" className="btn btn--primary" disabled={!url.trim()}>Open</button>
+                <button type="submit" className="btn btn--primary" disabled={!url.trim()}>打开</button>
               </div>
             </form>
           )}
@@ -198,45 +198,45 @@ function BackendMenu({ name, adapter }: { name: string | null; adapter: string }
     <MenuTrigger>
       <Button className="backend-pill hide-m" aria-label="Rendering backend">
         <i className="dot" data-tone={webgl ? 'warn' : name ? 'ok' : 'idle'} />
-        <b>{name ?? 'Starting'}</b>{adapter && <span className="adapter">· {adapter}</span>}
+        <b>{name ?? '启动中'}</b>{adapter && <span className="adapter">· {adapter}</span>}
       </Button>
       <Popover className="popover menu" offset={8} placement="bottom end" style={{ width: 260 }}>
-        <Menu className="menu-list" aria-label="Backend" onAction={(key) => {
+        <Menu className="menu-list" aria-label="渲染后端" onAction={(key) => {
           const url = new URL(location.href);
           if (key === 'webgl') url.searchParams.set('webgl', '');
           else url.searchParams.delete('webgl');
           location.href = url.toString();
         }}>
-          <MenuItem id="webgpu" className="menu-item">WebGPU<kbd>{!webgl && name ? 'active' : ''}</kbd></MenuItem>
-          <MenuItem id="webgl" className="menu-item">WebGL 2 fallback<kbd>{webgl ? 'active' : ''}</kbd></MenuItem>
+          <MenuItem id="webgpu" className="menu-item">WebGPU<kbd>{!webgl && name ? '当前' : ''}</kbd></MenuItem>
+          <MenuItem id="webgl" className="menu-item">WebGL 2 回退<kbd>{webgl ? '当前' : ''}</kbd></MenuItem>
         </Menu>
-        <div className="menu-note">Switching reloads the page. OIDN and auto exposure need WebGPU.</div>
+        <div className="menu-note">切换后会重新加载页面。OIDN 与自动曝光需要 WebGPU。</div>
       </Popover>
     </MenuTrigger>
   );
 }
 
 const SHORTCUTS: [string, string][] = [
-  ['Drag / right-drag / scroll', 'Orbit / pan / zoom'],
-  ['Click', 'Select object'],
-  ['F', 'Fit to model'],
-  ['Space', 'Play or pause'],
-  ['D', 'Toggle denoiser'],
-  ['E', 'Export image'],
-  ['1 – 4', 'Inspector tabs'],
-  ['[  ]', 'Scene / inspector panels'],
-  ['H', 'Hide interface'],
-  ['⌘Z  ⇧⌘Z', 'Undo / redo material, lighting and render edits'],
-  ['⌘O', 'Open files']
+  ['拖拽 / 右键拖拽 / 滚轮', '旋转 / 平移 / 缩放'],
+  ['单击', '选择物体'],
+  ['F', '适配模型'],
+  ['Space', '播放或暂停'],
+  ['D', '开关降噪'],
+  ['E', '导出图像'],
+  ['1 – 4', '检查器页签'],
+  ['[  ]', '场景 / 检查器面板'],
+  ['H', '隐藏界面'],
+  ['⌘Z  ⇧⌘Z', '撤销 / 重做材质、灯光和渲染编辑'],
+  ['⌘O', '打开文件']
 ];
 
 function HelpButton() {
   return (
     <DialogTrigger>
-      <Button className="icon-btn icon-btn--bare hide-m" aria-label="Keyboard shortcuts"><HelpCircle size={16} /></Button>
+      <Button className="icon-btn icon-btn--bare hide-m" aria-label="键盘快捷键"><HelpCircle size={16} /></Button>
       <Popover className="popover" offset={8} placement="bottom end">
-        <Dialog aria-label="Keyboard shortcuts" className="shortcuts">
-          <h4>Shortcuts</h4>
+        <Dialog aria-label="键盘快捷键" className="shortcuts">
+          <h4>快捷键</h4>
           <dl>{SHORTCUTS.map(([k, v]) => <div key={k}><dt><kbd>{k}</kbd></dt><dd>{v}</dd></div>)}</dl>
         </Dialog>
       </Popover>

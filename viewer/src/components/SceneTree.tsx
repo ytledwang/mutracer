@@ -109,20 +109,20 @@ export function SceneTree() {
   };
 
   return (
-    <section className="panel scene-panel" aria-label="Scene">
+    <section className="panel scene-panel" aria-label="场景">
       <div className="panel-head">
-        <h2>Scene</h2>
+        <h2>场景</h2>
         {model && <span className="count" title={model.name}>{model.name}</span>}
       </div>
       <label className="search">
         <Search size={13} />
-        <input placeholder="Search objects" value={query} onChange={(e) => setQuery(e.currentTarget.value)} />
-        {query ? <button className="icon-btn icon-btn--bare xs" aria-label="Clear search" onClick={() => setQuery('')}><X size={12} /></button> : <kbd>/</kbd>}
+        <input placeholder="搜索对象" value={query} onChange={(e) => setQuery(e.currentTarget.value)} />
+        {query ? <button className="icon-btn icon-btn--bare xs" aria-label="清除搜索" onClick={() => setQuery('')}><X size={12} /></button> : <kbd>/</kbd>}
       </label>
-      <div ref={treeRef} className="tree" role="tree" aria-label="Scene objects" tabIndex={0}
+      <div ref={treeRef} className="tree" role="tree" aria-label="场景对象" tabIndex={0}
         aria-activedescendant={activeRow && rows.indexOf(activeRow) >= window.start && rows.indexOf(activeRow) < window.end ? rowId(activeRow.key) : undefined}
         onKeyDown={onKeyDown} onScroll={(e) => setViewport({ top: e.currentTarget.scrollTop, height: e.currentTarget.clientHeight })}>
-        {rows.length === 0 && <div className="tree-empty">{query ? 'No matching objects' : 'Nothing loaded yet'}</div>}
+        {rows.length === 0 && <div className="tree-empty">{query ? '没有匹配的对象' : '尚未加载对象'}</div>}
         <div className="tree-space" role="presentation" style={{ height: rows.length * TREE_ROW_HEIGHT }}>
           {rows.slice(window.start, window.end).map((row, offset) => {
             const { node, depth, material } = row;

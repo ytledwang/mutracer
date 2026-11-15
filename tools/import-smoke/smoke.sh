@@ -32,7 +32,7 @@ else
   echo "gmsh NOT FOUND -> step 5 is skipped (set GMSH_PYTHON to a venv with 'pip install gmsh')"
 fi
 
-echo "== 3. STL -> GLB via Blender (same bpy calls as cloud-relay.py)"
+echo "== 3. STL -> GLB via official preset + contract check"
 cat > "$OUT/cube.stl" <<'S'
 solid cube
 facet normal 0 0 -1
@@ -121,17 +121,55 @@ endloop
 endfacet
 endsolid cube
 S
+PRESET="$ROOT/tools/import-contract/export_glb_preset.py"
+VALIDATE="$ROOT/tools/import-contract/validate_glb.py"
 rm -f "$OUT/cube.glb"
-"$BLENDER" --background --python-expr "import bpy; bpy.ops.wm.read_factory_settings(use_empty=True); bpy.ops.wm.stl_import(filepath=r'$OUT/cube.stl'); bpy.ops.export_scene.gltf(filepath=r'$OUT/cube.glb', export_format='GLB')" >"$OUT/blender-stl.log" 2>&1
-head -c 4 "$OUT/cube.glb" | grep -q glTF && echo "cube.glb OK ($(wc -c <"$OUT/cube.glb") bytes)"
+"$BLENDER" --background --python "$PRESET" -- --input "$OUT/cube.stl" --output "$OUT/cube.glb" --importer stl >"$OUT/blender-stl.log" 2>&1
+head -c 4 "$OUT/cube.glb" | grep -q glTF && echo "cube.glb wrote $(wc -c <"$OUT/cube.glb") bytes"
+set +e
+python3 "$VALIDATE" "$OUT/cube.glb"
+cube_status=$?
+set -e
+if [ "$cube_status" -eq 0 ]; then
+  echo "FAIL: cube.glb has no materials but contract exited 0" >&2
+  exit 1
+fi
+echo "OK: cube.glb contract rejected as expected (exit $cube_status)"
 
 HERE="$ROOT/tools/import-smoke"
-echo "== 4. FBX -> GLB (fixtures/sample.fbx)"
+echo "== 4. FBX -> GLB (fixtures/sample.fbx) via official preset + validate"
 BLENDER="$BLENDER" "$HERE/convert_fbx_to_glb.sh" "$HERE/fixtures/sample.fbx" "$OUT/sample-fbx.glb"
 
-echo "== 5. STEP -> STL -> GLB (fixtures/box.step)"
+echo "== 5. STEP -> STL -> GLB (fixtures/box.step); contract must not silently accept a bad file"
 if command -v gmsh >/dev/null || "${GMSH_PYTHON:-python3}" -c "import gmsh" 2>/dev/null; then
+  rm -f "$OUT/box-stp.glb" "$OUT/box-stp.rejected.glb"
+  set +e
   BLENDER="$BLENDER" "$HERE/convert_stp_to_glb.sh" "$HERE/fixtures/box.step" "$OUT/box-stp.glb"
+  stp_status=$?
+  set -e
+  if [ "$stp_status" -eq 0 ]; then
+    echo "FAIL: STP convert exited 0 on a material-less, unscaled mm cube" >&2
+    exit 1
+  fi
+  if [ ! -f "$OUT/box-stp.rejected.glb" ]; then
+    echo "FAIL: expected $OUT/box-stp.rejected.glb after contract failure" >&2
+    exit 1
+  fi
+  echo "OK: STP contract rejected box.step (exit $stp_status), wrote box-stp.rejected.glb"
 else
   echo "SKIPPED: no gmsh"
 fi
+
+echo "== 6. import-contract fixtures: good PASS, bad FAIL"
+GOOD="$ROOT/tools/import-contract/fixtures/good-named-pivot.glb"
+BAD="$ROOT/tools/import-contract/fixtures/bad-flattened-palette.glb"
+python3 "$VALIDATE" "$GOOD" --require-pivot --require-camera --expect-pivot Door_Pivot --placeholder f1-named-pivot-placeholder
+set +e
+python3 "$VALIDATE" "$BAD" --require-pivot --expect-pivot Door_Pivot --placeholder f1-named-pivot-placeholder
+bad_status=$?
+set -e
+if [ "$bad_status" -eq 0 ]; then
+  echo "FAIL: bad fixture was accepted" >&2
+  exit 1
+fi
+echo "OK: bad fixture rejected (exit $bad_status)"

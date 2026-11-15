@@ -8,6 +8,7 @@ import * as meshopt from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import { fetchWithProgress } from './fetchWithProgress';
 import type { PathedFile } from './droppedFiles';
 import { loadModelLighting, modelEnvironmentPaths, type ModelLighting } from './modelLighting';
+import { checkGltfJson, type ContractReport } from './importContract';
 
 export { convertHint, isConvertibleModelFile, isHDRFile, isModelFile, readDroppedItems, toPathedFiles, type PathedFile } from './droppedFiles';
 
@@ -19,6 +20,8 @@ export interface LoadedModel {
   pbrt?: { settings: Converted['settings']; warnings: Warning[] };
   /** Original files, including external buffers/textures, for reloads from OPFS. */
   source?: ModelSource;
+  /** Import-contract report for glTF/GLB (missing for PBRT). */
+  contract?: ContractReport;
   /** Releases blob URLs created for local files. */
   revoke(): void;
 }
@@ -59,16 +62,22 @@ export async function loadModelFromURL(url: string, onProgress: LoadProgress, si
 
 /** Fetch every external resource before entering the parse stage. Cached files
  * are reused, and optional environment failures become lighting warnings. */
+
+/** Read the JSON document of a .glb or .gltf ArrayBuffer. */
+export function readGltfJson(buffer: ArrayBuffer): unknown {
+  let jsonBytes = new Uint8Array(buffer);
+  if (buffer.byteLength >= 20 && new DataView(buffer).getUint32(0, true) === 0x46546c67) {
+    jsonBytes = new Uint8Array(buffer, 20, new DataView(buffer).getUint32(12, true));
+  }
+  return JSON.parse(new TextDecoder().decode(jsonBytes));
+}
+
 async function downloadModelResources(source: ModelSource, buffer: ArrayBuffer, onProgress: LoadProgress, signal?: AbortSignal) {
   const failures = new Map<string, unknown>(), buffers = new Map<string, ArrayBuffer>();
   if (!source.base) return {failures, buffers};
   const { files, mainPath } = source;
   // glTF/GLB resources can be external even when the main file is binary.
-  let jsonBytes = new Uint8Array(buffer);
-  if (buffer.byteLength >= 20 && new DataView(buffer).getUint32(0, true) === 0x46546c67) {
-    jsonBytes = new Uint8Array(buffer, 20, new DataView(buffer).getUint32(12, true));
-  }
-  const json = JSON.parse(new TextDecoder().decode(jsonBytes));
+  const json = readGltfJson(buffer) as { buffers?: { uri?: string; byteLength?: number }[]; images?: { uri?: string; byteLength?: number }[]; extras?: Record<string, unknown> };
   const bufferUrls = new Set<string>((json.buffers ?? []).flatMap((resource: {uri?: string}) =>
     resource.uri && !resource.uri.startsWith('data:') ? [new URL(resource.uri, mainPath).href] : []));
   const urls = new Map<string, boolean>();
@@ -187,12 +196,19 @@ async function parseModelSource(source: ModelSource, onProgress: LoadProgress, s
       throw new Error('Include the environment map with the dropped folder');
     });
     signal?.throwIfAborted();
+    let contract: ContractReport | undefined;
+    try {
+      contract = checkGltfJson(readGltfJson(buffer) as Parameters<typeof checkGltfJson>[0]);
+    } catch (error) {
+      console.warn('[import-contract] could not inspect glTF JSON', error);
+    }
     return {
       name: main.file.name,
       root: gltf.scene,
       animations: gltf.animations,
       lighting,
       source,
+      contract,
       revoke: () => created.forEach((url) => URL.revokeObjectURL(url))
     };
   } catch (error) {

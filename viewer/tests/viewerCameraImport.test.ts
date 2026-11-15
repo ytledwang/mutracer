@@ -439,14 +439,16 @@ describe('initial link and preset precedence',()=>{
 });
 
 describe('display upscale policy',()=>{
- it.each(['webgpu','webgl'])('enables display AOVs only for reduced beauty on %s',backend=>{
+ it.each(['webgpu','webgl'])('attaches EASU on %s without reflectance AOVs (AOV_REFLECTANCE is missing from Ray Trace)',backend=>{
   const remove=vi.fn(), add=vi.fn(()=>remove),dispose=vi.fn();
   const viewer=Object.assign(Object.create(ViewerEngine.prototype),{
    engine:{backend,display:{addPostProcess:add}},final:{resolutionScale:.5},
    settings:{...DEFAULT_SETTINGS},upscalePass:Object.assign(vi.fn(),{dispose})
   });
   viewer.configureUpscale();
-  expect(viewer.final.aovs).toEqual(backend==='webgpu'?['depth','diffuseColor','specularColor']:[]);
+  // Reflectance AOVs crash quality preview (override AOV_REFLECTANCE not in ShaderModule "Ray Trace").
+  expect(viewer.final.aovs).toEqual([]);
+  expect(viewer.final.aovResolution).toBe('render');
   expect(add).toHaveBeenCalledTimes(backend==='webgpu'?1:0);
   viewer.settings.displayUpscale=false;viewer.configureUpscale();
   expect(viewer.final.aovs).toEqual([]);expect(dispose).toHaveBeenCalled();

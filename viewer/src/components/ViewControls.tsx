@@ -28,14 +28,26 @@ export function ViewControls() {
 export function CameraControls() {
   const cameras = useViewer((s) => s.cameras);
   const cameraIndex = useViewer((s) => s.settings.cameraIndex);
+  const fusionViews = useViewer((s) => s.fusionViews);
+  const fusionViewId = useViewer((s) => s.fusionViewId);
   return (
     <div className="float camera-controls" role="group" aria-label="Camera controls">
+      {fusionViews.length > 0 && fusionViewId && <div className="viewport-camera">
+        <Select
+          label="机位"
+          prefix="机位"
+          value={fusionViewId}
+          placement="top"
+          options={fusionViews.map((v) => ({ value: v.id, label: v.name }))}
+          onChange={(id) => getEngine()?.applyFusionView(id)}
+        />
+      </div>}
       {cameras.length > 0 && <div className="viewport-camera">
-        <Select label="Camera" prefix="Camera" value={String(cameraIndex)} placement="top"
-          options={[{ value: '-1', label: 'Orbit' }, ...cameras.map((name, i) => ({ value: String(i), label: name }))]}
+        <Select label="相机" prefix="相机" value={String(cameraIndex)} placement="top"
+          options={[{ value: '-1', label: '轨道' }, ...cameras.map((name, i) => ({ value: String(i), label: name }))]}
           onChange={(v) => setSettings({ cameraIndex: Number(v) })} />
       </div>}
-      <button className="icon-btn icon-btn--bare" title="Fit to model (F)" aria-label="Fit to model"
+      <button className="icon-btn icon-btn--bare" title="适配模型 (F)" aria-label="适配模型"
         onClick={() => getEngine()?.fit()}><Maximize size={16} /></button>
     </div>
   );

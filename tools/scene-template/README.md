@@ -51,10 +51,12 @@ node tools/scene-template/smoke.mjs
 
 `real` 组的模板是备份里的「冰箱-厨房场景」样例导入场景，不是 `template` 表里的 `RF_Kitchen_0302_Scene`（该桶文件不在本地备份中），但占位 group 结构相同。其占位变换为单位变换，所以平移/旋转继承只由 synthetic 组（非单位变换）覆盖。
 
-## TODO（可影已知缺口，本轮保持原样，见 `docs/technical/scene-template-fusion-scout.md` §2.3）
+## F2 已补（合并薄层，不进 viewer）
 
-- `meshes[*].url` 不改写：可影 `CreateSingle` 会改写为 `<data_bucket_url>/<url>`，`CreateScene` 没有。产品 mesh 的相对 URL 合并后可能解析不到。
-- `views[*].model_group_visibility` 不 remap：指向已删 `replaceId` 的条目会悬空，新根 id 不在任何视图里。
-- 产品自带的相机、灯光、环境被丢弃，是否有意待可影确认。
+- `meshes[*].url`：相对路径按 CreateSingle 语义加产品 `data_bucket_url` / `--product-bucket` / 可推断前缀。
+- `views[*].model_group_visibility`：`replaceId` remap 到新根；产品视图在 id 不冲突时并入。
+- 产品相机并入结果（模板相机保留），供 F2 切正视图 / 特写。灯光 / 环境 / `scene_settings` 仍取自模板。
 
-以上应由可影确认修法后同步到这里。
+## 仍待可影确认
+
+- 产品灯光 / 环境是否应进入合并结果（本层仍丢弃，与可影 CreateScene 一致）。

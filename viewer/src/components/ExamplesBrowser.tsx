@@ -16,19 +16,19 @@ export function ExamplesMenu({ mobile }: { mobile: boolean }) {
           setUi({ right: true, textureBrowser: false });
           requestAnimationFrame(() => document.querySelector<HTMLButtonElement>('#examples-panel button')?.focus());
         }}>
-        <Sparkles size={15} /><span className="hide-xs">Examples</span><Pin size={13} />
+        <Sparkles size={15} /><span className="hide-xs">示例</span><Pin size={13} />
       </Button>
     );
   }
   return (
     <DialogTrigger isOpen={ui.examplesOpen} onOpenChange={(examplesOpen) => setUi({ examplesOpen })}>
       <Button id="examples-trigger" className="btn" aria-label="Examples">
-        <Sparkles size={15} /><span className="hide-xs">Examples</span><ChevronDown size={13} className="chev" />
+        <Sparkles size={15} /><span className="hide-xs">示例</span><ChevronDown size={13} className="chev" />
       </Button>
       <Popover className="popover examples" offset={8}>
         <Dialog aria-label="Examples">
           <div className="examples-head">
-            <Heading slot="title">Examples</Heading>
+            <Heading slot="title">示例</Heading>
             {!mobile && <button className="icon-btn icon-btn--bare sm" aria-label="Pin to right panel" title="Pin to right panel"
               onClick={() => setUi({ examplesPinned: true, examplesOpen: false, right: true, textureBrowser: false })}>
               <Pin size={15} />
@@ -48,7 +48,7 @@ export function ExamplesPanel() {
     <section id="examples-panel" className="panel examples-panel" aria-label="Examples">
       <div className="insp-head">
         <span className="badge"><Sparkles size={16} /></span>
-        <div className="copy"><strong>Examples</strong></div>
+        <div className="copy"><strong>示例</strong></div>
         <button ref={unpin} className="icon-btn icon-btn--bare sm" aria-label="Unpin examples" title="Unpin examples"
           onClick={() => setUi({ examplesPinned: false, examplesOpen: true })}><PinOff size={15} /></button>
         <button className="icon-btn icon-btn--bare sm" aria-label="Close examples" title="Close examples"

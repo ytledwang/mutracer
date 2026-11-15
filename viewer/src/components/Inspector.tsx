@@ -8,10 +8,10 @@ import { SceneTemplatePanel } from './SceneTemplatePanel';
 import { SceneTree } from './SceneTree';
 
 export const TABS: { id: InspectorTab; label: string; Icon: typeof Globe }[] = [
-  { id: 'environment', label: 'Lighting', Icon: Globe },
-  { id: 'material', label: 'Material', Icon: Palette },
-  { id: 'camera', label: 'Camera', Icon: Camera },
-  { id: 'render', label: 'Render', Icon: Aperture },
+  { id: 'environment', label: '灯光', Icon: Globe },
+  { id: 'material', label: '材质', Icon: Palette },
+  { id: 'camera', label: '相机', Icon: Camera },
+  { id: 'render', label: '渲染', Icon: Aperture },
   { id: 'scene-templates', label: '场景模板', Icon: Layers }
 ];
 
@@ -29,9 +29,9 @@ export function Inspector({ mobile }: { mobile: boolean }) {
     const tab = ui.mobileTab;
     const Panel = tab === 'scene' ? null : PANELS[tab];
     return (
-      <section className="panel inspector inspector--sheet" aria-label="Inspector">
+      <section className="panel inspector inspector--sheet" aria-label="检查器">
         <div className="sheet-tabs" role="tablist">
-          {[{ id: 'scene' as const, label: 'Scene' }, ...TABS].map((t) => (
+          {[{ id: 'scene' as const, label: '场景' }, ...TABS].map((t) => (
             <button key={t.id} role="tab" aria-selected={tab === t.id} data-on={tab === t.id || undefined}
               onClick={() => setUi({ mobileTab: t.id })}>{t.label}</button>
           ))}
@@ -57,7 +57,7 @@ export function InspectorRail() {
   const tab = useViewer((s) => s.ui.tab);
   const open = useViewer((s) => s.ui.right);
   return (
-    <nav className="panel rail" role="tablist" aria-label="Inspector" aria-orientation="vertical">
+    <nav className="panel rail" role="tablist" aria-label="检查器" aria-orientation="vertical">
       {TABS.map(({ id, label, Icon }, i) => (
         <button key={id} role="tab" aria-selected={tab === id} data-on={(open && tab === id) || undefined} title={`${label} (${i + 1})`}
           onClick={() => setUi(tab === id && open ? { right: false } : { tab: id, right: true })}>

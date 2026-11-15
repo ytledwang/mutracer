@@ -222,6 +222,11 @@ kbd { font: 10.5px var(--cv-mono); color: var(--cv-text-4); }
 /* ---------- Viewport ---------- */
 .viewport { position: relative; overflow: hidden; background: var(--cv-workspace); container-type: inline-size; }
 .viewport__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+.viewport__canvas--realtime { z-index: 1; pointer-events: none; }
+.view-mode-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; padding: 6px 8px; }
+.view-mode-bar .seg { flex: 0 1 auto; }
+.tpl-row[data-unavailable] .tpl-badge,
+.tpl-badge[data-blocked] { color: var(--cv-warning); }
 .viewport-bottom { position: absolute; inset: auto 12px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; }
 .viewport-bottom > * { pointer-events: auto; }
 .viewport-bottom > .float, .viewport-bottom > .credit, .viewport-footer > .float { position: static; translate: none; }

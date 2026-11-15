@@ -7,8 +7,12 @@ import { STUDIO_PRESETS } from './engine/studio';
 import { DEFAULT_SKY_TIME, SKY_TIME_RANGE } from './engine/sky';
 import { historyLabels, onHistoryChange, pushHistory, type HistoryItem } from './history';
 import { readURLSettings, URL_SETTINGS_FIELDS } from './urlSettings';
+import type { AssetMap, SceneViewInfo, StageScene, ViewMode } from './engine/sceneJson';
 
 export const VIEWER_AOVS: AovKind[] = ['depth', 'position', 'roughness', 'diffuseAlbedo', 'specularAlbedo', 'id', 'motion'];
+
+/** F2 viewing mode — not the path-tracer interactive `previewEnabled` flag. */
+export type { ViewMode };
 
 export type EnvResolution = '1k' | '2k' | '4k';
 
@@ -88,6 +92,10 @@ export interface Settings {
   aovPositionScale: number;
   aovMotionScale: number;
   aovIdComponent: AovIdComponent;
+  /**
+   * Path-tracer interactive low-resolution preview while orbiting.
+   * Not the F2「实时查看」mode — see {@link ViewerState.viewMode}.
+   */
   previewEnabled: boolean;
   previewMaxResolutionScale: number;
 
@@ -273,6 +281,14 @@ export type InspectorTab = 'environment' | 'material' | 'camera' | 'render' | 's
 
 export type ToastTone = 'info' | 'success' | 'warning' | 'error';
 
+/** Payload shared by realtime / quality preview / 提交渲染 (Blender final). */
+export interface FusionScenePayload {
+  scene: StageScene;
+  assetMap: AssetMap;
+  viewId: string | null;
+  name: string;
+}
+
 export interface ViewerState {
   settings: Settings;
   stats: Stats;
@@ -299,6 +315,17 @@ export interface ViewerState {
   focusArea: FocusAreaState;
   lens: LensInfo;
   paused: boolean;
+  /**
+   * F2: 实时查看 (raster) vs 高质量预览 (path tracer).
+   * Independent of settings.previewEnabled (interactive PT preview).
+   */
+  viewMode: ViewMode;
+  /** True after a template merge has been applied into the viewport. */
+  fusionTemplateApplied: boolean;
+  /** Current merged/adapted scene for 提交渲染; null when only a plain GLB is open. */
+  fusionScene: FusionScenePayload | null;
+  fusionViews: SceneViewInfo[];
+  fusionViewId: string | null;
   ui: {
     tab: InspectorTab; left: boolean; right: boolean; hidden: boolean; focusFrame: boolean;
     /** Viewport debug overlay expanded. */
@@ -420,6 +447,11 @@ export const useViewer = create<ViewerState>(() => ({
   focusArea: { x: 0.5, y: 0.5, status: 'idle', attempt: 0 },
   lens: { focalLength: 0, guessedMetersPerUnit: 1 },
   paused: false,
+  viewMode: 'realtime',
+  fusionTemplateApplied: false,
+  fusionScene: null,
+  fusionViews: [],
+  fusionViewId: null,
   ui: {
     tab: storedUi.tab ?? 'material',
     left: storedUi.left ?? true,
@@ -526,6 +558,20 @@ export function renderResolutionScale(s: Pick<Settings, 'resolutionScale' | 'res
 let toastId = 0;
 export function showToast(message: string, tone: ToastTone = 'info', actions?: NonNullable<ViewerState['toast']>['actions']) {
   useViewer.setState({ toast: { id: ++toastId, message, tone, actions } });
+}
+
+/** Switch F2 view mode without touching `previewEnabled`. */
+export function setViewMode(viewMode: ViewMode) {
+  useViewer.setState({ viewMode });
+}
+
+export function clearFusionScene() {
+  useViewer.setState({
+    fusionTemplateApplied: false,
+    fusionScene: null,
+    fusionViews: [],
+    fusionViewId: null,
+  });
 }
 
 useViewer.subscribe((state, prev) => {
