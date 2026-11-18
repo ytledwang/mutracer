@@ -1,0 +1,1 @@
+只改 tools/dual-track/README.md。已实现：--views / --all-views、--preview-bounces 默认 8、--preview-spp 默认 32、--denoise 默认 1、--oidn-library 透传、多视角输出在 stem 后追加 -<view前8位>。请把这些写进 README（用法示例 + 默认参数），不要改其他文件，不要 git commit/push。完成后用中文一句话确认。

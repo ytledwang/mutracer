@@ -1,0 +1,13 @@
+START 2026-11-09 14:48:54 +0800 materials-override
+frosted override: mesh=37120001-2d7e-4fb7-bafa-f65eb3d87604 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=37120001-2d7e-4fb7-bafa-f65eb3d87604 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=8166b002-033f-49f9-9baf-c5cc0931aa8f material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=8166b002-033f-49f9-9baf-c5cc0931aa8f material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=3b52785c-707f-4992-a2e5-c990f192cf24 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+rendered 512x512 32 spp -> /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-materials-local.png
+real 16.10
+user 5.60
+sys 5.41
+END 2026-11-09 14:49:11 +0800 exit=0
+-rw-r--r--@ 1 wangjianzheng  staff  217661 Nov  9 14:49 /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-materials-local.png
+/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-materials-local.png: PNG image data, 512 x 512, 8-bit/color RGBA, non-interlaced

@@ -1,0 +1,25 @@
+{
+ "2aa0": {
+  "mae": 14.3752,
+  "mae_fg": 62.356,
+  "ssim": 0.918421,
+  "d_lum_fg": 59.5489,
+  "fg_lum_ren": 192.05,
+  "fg_lum_gold": 132.51,
+  "note": "engine+candela; lights 0.6/0.5cd became visible (+5.3 lum vs r8); env-dominated product already over-bright"
+ },
+ "pillow": {
+  "mae": 9.5758,
+  "mae_fg": 26.5859,
+  "ssim": 0.943842,
+  "d_lum_fg": 26.731,
+  "fg_lum_ren": 255.0,
+  "fg_lum_gold": 228.27,
+  "note": "engine+candela; noise-identical to r8 (lights negligible) => env-path invariance control PASS"
+ },
+ "legacy_lights_probe_2aa0": {
+  "mae": 21.44221,
+  "d_lum_fg": 65.947,
+  "note": "legacy energies + engine display: light path x147.6 with untransformed energies => far over; proves engine display boosts whole light path, env stays locked by k_new"
+ }
+}

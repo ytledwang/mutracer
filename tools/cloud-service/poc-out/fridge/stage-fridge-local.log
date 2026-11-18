@@ -1,0 +1,8 @@
+START 2026-11-09 14:38:51 +0800 brightness=1
+rendered 512x512 32 spp -> /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-local.png
+real 2.36
+user 0.76
+sys 0.51
+END 2026-11-09 14:38:53 +0800 exit=0
+-rw-r--r--@ 1 wangjianzheng  staff  201198 Nov  9 14:38 /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-local.png
+/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-local.png: PNG image data, 512 x 512, 8-bit/color RGBA, non-interlaced

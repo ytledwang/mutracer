@@ -1,0 +1,4 @@
+[B] k_new=0.0210129603  k_new*s_new=2.5833333333 == k_old*s_old=2.5833333333
+[C] 329c mae_fg=19.7564 <= 22.3068 OK
+[C] stove fg_lum=126.8227 >= 40.0 OK（r11=19.45，金样 80.33）
+RESULT PASS failures=0

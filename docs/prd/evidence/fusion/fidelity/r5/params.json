@@ -1,0 +1,43 @@
+{
+ "status": "NOT_IMPROVED_STOPPED_AFTER_2",
+ "rounds": [
+  "params-R1-filmic-k1.json",
+  "params-R2-filmic-k0223-rot.json"
+ ],
+ "changed_files": {
+  "tools/dual-track/blender/blender_inner.py": {
+   "before": "f767d7ef5ef25a2ec14cf40ee3a55ec081742c6078d6e778b5fb34794db05a42",
+   "after": "9ba254656e29469bf33bc47248cd3ab16ba0aee5fe862c272ca411866d4c9436"
+  },
+  "tools/dual-track/blender/run_blender_final.py": {
+   "before": "fd92cc935980dbba78fb2b8b0b095035e6192d1aa997c2c98991a9cc3899ed97",
+   "after": "ffe2f0f949820167813099116e10abdc71298739fe161b39638ca24cab4d150f"
+  },
+  "tools/dual-track/blender/ue_filmic.py": {
+   "new": "2156c51b15f924da36f3bfd500f31fb2ca2c1e0127d986f093632a5bb056e459"
+  },
+  "tools/fusion-checks/fidelity_r4_check.py": {
+   "after": "615f8145ff8307c8b27330f6995eea1e8c2d357050b20d3dbc962f77852153fc",
+   "change": "added --inner-sha and --evidence-dir options"
+  },
+  "new_tools": [
+   "tools/fusion-checks/default_identity_probe.py",
+   "tools/fusion-checks/fidelity_r5_sweep.py",
+   "tools/fusion-checks/test_ue_filmic.py"
+  ]
+ },
+ "backups": "~/mutracer-scratch/bak/r5/ (blender_inner.py, run_blender_final.py originals; *.step1 after first edit; fidelity_r4_check.py.pre-r5)",
+ "new_opt_in_flags": {
+  "--tonemap ue-filmic": "linear EXR + UE order exposure->WB->saturation->contrast@0.18->pow(1/gamma)->gain/offset->ACES fitted->sRGB; white backdrop composited via alpha",
+  "--fallback-light 0": "skip the 200 W soft_fill when the scene has no lights",
+  "--linear-out PATH": "keep the linear EXR (tonemap mode only)",
+  "--hdri-angle scene|DEG": "rotate HDRI about Z"
+ },
+ "default": "no flags -> Standard + display_post, scene state and post output identical to pre-r5 code",
+ "comparison": "comparison-gold-r2-best.png",
+ "comparison_sha256_hex": "bf0e2860a766f7dba2e2cba6224428e2798084b70c1ae4ce005cb03be8b0b24c",
+ "replace_id": "ccdaa114-cdb7-4ef5-af26-022938a780d5",
+ "m2_id_not_used": "c83a2f4a-0a3d-4494-8da9-37e6ca6943a7",
+ "no_new_pulls": true,
+ "viewer_files_touched": false
+}

@@ -1,0 +1,18 @@
+ERROR [node.unnamed] node[0] has a mesh/camera but no name
+ERROR [node.unnamed] node[1] has a mesh/camera but no name
+ERROR [node.unnamed] node[2] has a mesh/camera but no name
+ERROR [node.unnamed] node[4] has a mesh/camera but no name
+ERROR [node.unnamed] node[6] has a mesh/camera but no name
+ERROR [node.unnamed] node[8] has a mesh/camera but no name
+ERROR [node.unnamed] node[9] has a mesh/camera but no name
+WARN [mesh.unnamed] mesh[0] has no name
+WARN [mesh.unnamed] mesh[1] has no name
+WARN [mesh.unnamed] mesh[2] has no name
+WARN [mesh.unnamed] mesh[3] has no name
+WARN [mesh.unnamed] mesh[4] has no name
+ERROR [material.palette] material[0] name 'PaletteMaterial001' looks like a palette merge
+ERROR [pivot.missing] no node name contains 'Pivot'
+ERROR [pivot.expected] expected pivot node 'Door_Pivot' was not found
+ERROR [placeholder.missing] placeholder / replace_id 'f1-named-pivot-placeholder' was not found
+RESULT FAIL errors=11 warnings=5 file=/Users/wangjianzheng/Project/git/mutracer/tools/import-contract/fixtures/bad-flattened-palette.glb
+EXIT:1

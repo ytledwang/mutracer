@@ -1,0 +1,49 @@
+{
+ "round": "r8-00ac0cff",
+ "task_id": "00ac0cff-eb58-4d82-9578-97a8f732e1bb",
+ "name": "灶机-单品-5镜头 - 样例导入_05162215",
+ "product": "灶机",
+ "view": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+ "view_name": "前视图",
+ "scene": "docs/prd/evidence/fusion/fidelity/r8/scene-00ac0cff-preview.json",
+ "env": {
+  "name": "白背景",
+  "background_type": "white",
+  "hdri_brightness": 100,
+  "skylight_intensity": 0,
+  "hdri_angle": 0,
+  "image": "official_asset/template/Product_ZJG_5cam/textures/White.exr"
+ },
+ "lights": "13 lights in 3 groups (area+point; powers from task, Candelas -> Cycles Watts). Only view in the task (前视图). skylight_intensity=0 so locked k=3.1 does not add env light.",
+ "camera_post": {
+  "exposure": 1,
+  "gamma": 1,
+  "contrast": 1.1,
+  "saturation": 1.2,
+  "temperature": 6500
+ },
+ "fov": 35,
+ "expected_hdri_angle": -90.0,
+ "k_source": "locked_r7_R1",
+ "spp": "256",
+ "width": "1920",
+ "height": "1080",
+ "denoise": "1",
+ "flags": {
+  "env-mode": "ue",
+  "material-mode": "stage",
+  "tonemap": "ue55",
+  "fallback-light": "0",
+  "skylight-scale": "3.1",
+  "white-sky-scale": "0",
+  "light-units": "candela",
+  "hdri-angle": "-90"
+ },
+ "extra_cli": "--env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --hdri-angle -90 --skylight-scale 3.1 --white-sky-scale 0 --light-units candela",
+ "asset_map": "docs/prd/evidence/fusion/fidelity/r8/assets.json",
+ "note": "locked-rule replay, no k/angle/post retune. official template Product_ZJG_5cam assets pulled by explicit GET. Not the kitchen replace_id.",
+ "blender_inner_sha256": "ed8ef353833b26ec53a910ace5ea8a17e56a034e85ac3a9832cc66d20d0ba565",
+ "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/00ac0cff-front-1920.png",
+ "gold_full": "docs/prd/evidence/fusion/fidelity/r8/golds/00ac0cff-front-raw.png",
+ "replace_id": null
+}

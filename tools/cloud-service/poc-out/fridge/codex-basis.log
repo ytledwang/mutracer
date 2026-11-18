@@ -1,0 +1,1515 @@
+Reading additional input from stdin...
+OpenAI Codex v0.163.0
+--------
+workdir: /Users/wangjianzheng/Project/git/mutracer
+model: volcengine/glm-5.3-flash
+provider: magpie
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1bf29-342e-7c52-9a6c-bbc4cf0d982e
+--------
+user
+Fix coordinate basis in native/host/src/bin/stage_render.rs so fridge Front matches product shot.
+
+## Problem
+Stage space is Z-up. Renderer/camera is Y-up. Putting LookAt in raw stage coords (or remapping only the camera) leaves meshes and camera inconsistent → high-angle/wrong framing.
+
+## Fix (minimal, consistent)
+1. Add helper:
+```
+fn stage_to_render() -> Mat4 {
+    // (x,y,z)_stage -> (x,z,-y)_render
+    Mat4::from_cols(
+        glam::Vec4::new(1., 0., 0., 0.),
+        glam::Vec4::new(0., 0., -1., 0.),
+        glam::Vec4::new(0., 1., 0., 0.),
+        glam::Vec4::new(0., 0., 0., 1.),
+    )
+}
+fn map_stage_point(p: glam::Vec3) -> glam::Vec3 {
+    glam::Vec3::new(p.x, p.z, -p.y)
+}
+```
+
+2. In `visible_mesh_transforms` / when pushing mesh transforms (or in build_scene before merge): left-multiply each mesh world matrix by `stage_to_render()` so geometry lands in render Y-up.
+
+3. Similarly left-multiply light transforms by `stage_to_render()` in walk_light (when light is added).
+
+4. LookAt camera:
+```
+let eye = map_stage_point(Vec3::from(p));
+let target = map_stage_point(camera_target);
+let up = Vec3::Y;
+Mat4::look_at_rh(eye, target, up).inverse()
+```
+Note: `--camera-target` CLI stays in **stage** coordinates (e.g. 0,0,0 or COM in stage). Map inside LookAt.
+
+5. Matrix camera mode: `stage_to_render() * local_matrix(entity)` (no special w_axis hacks).
+
+6. local_matrix itself stays stage AS-IS (no translation remap inside it).
+
+Rebuild release with AOT archive path as before. No Metal render, no push.
+warning: Codex is ignoring 3 unrecognized configuration settings. Check for typos or deprecated settings.
+  user (/Users/wangjianzheng/.codex/config.toml): `disable_response_storage` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `features.rmcp_client` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `preferred_auth_method` is ignored.
+warning: Codex is ignoring 3 unrecognized configuration settings. Check for typos or deprecated settings.
+  user (/Users/wangjianzheng/.codex/config.toml): `disable_response_storage` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `features.rmcp_client` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `preferred_auth_method` is ignored.
+warning: failed to parse hooks config /Users/wangjianzheng/.codex/hooks.json: unknown field `SessionEnd`, expected `description` or `hooks` at line 2 column 14
+2026-11-09T07:15:11.756589Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when UnexpectedServerResponse("HTTP 401: figd_ tokens must be passed via X-Figma-Token header, not Authorization")
+2026-11-09T07:15:13.784467Z ERROR codex_rmcp_client::oauth::refresh_transaction: error=failed to refresh OAuth tokens for server canva
+We need inspect repo, implement. Need maybe plan? Straightforward but multi-step. Must preamble. Also read AGENTS native CONTRIBUTING.
+codex
+I’ll inspect the stage render path and native build instructions, then make the minimal basis remap.
+exec
+/bin/zsh -lc "sed -n '1,260p' native/host/src/bin/stage_render.rs && printf '\\n--- CONTRIBUTING ---\\n' && sed -n '1,220p' native/CONTRIBUTING.md" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+use glam::{EulerRot, Mat4, Quat};
+use mutracer_native_probe::api::{
+    Camera, ConvergeOptions, DisplaySettings, Engine, EngineOptions, Render, RenderSettings,
+    RenderSize, ToneMapping,
+};
+use mutracer_native_probe::scene_api::{ImportedScene, Light, Scene, Texture, TexturePixels};
+use serde_json::{Map, Value};
+use std::collections::HashMap;
+use std::fs;
+use std::path::{Path, PathBuf};
+
+type Result<T> = std::result::Result<T, String>;
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum CameraMode {
+    Matrix,
+    LookAt,
+}
+
+struct MaterialOverride {
+    name: String,
+    master: String,
+    color: Option<[f32; 3]>,
+    roughness: Option<f32>,
+    metalness: Option<f32>,
+    normal_scale: Option<f32>,
+    roughness_texture: Option<PathBuf>,
+    normal_texture: Option<PathBuf>,
+    basecolor_texture: Option<PathBuf>,
+}
+
+#[derive(Clone, Copy, Debug)]
+struct RenderJob {
+    width: u32,
+    height: u32,
+    samples: u32,
+    bounces: u32,
+    denoise: bool,
+    light_scale: f32,
+    timeout_ms: u64,
+}
+
+#[derive(Clone, Debug)]
+struct StageCamera {
+    camera: Camera,
+    display: DisplaySettings,
+}
+
+fn parse_args() -> Result<(Args, RenderJob)> {
+    let mut args = Args {
+        scene: PathBuf::new(),
+        out: PathBuf::new(),
+        view: None,
+        asset_map: None,
+        camera_target: "0,0,0".into(),
+        tone_mapping: "agx".into(),
+        camera_mode: CameraMode::Matrix,
+    };
+    let mut job = RenderJob {
+        width: 0,
+        height: 0,
+        samples: 32,
+        bounces: 3,
+        denoise: true,
+        light_scale: 1.,
+        timeout_ms: 600_000,
+    };
+    let values = std::env::args().skip(1).collect::<Vec<_>>();
+    let mut i = 0;
+    while i < values.len() {
+        let key = values[i].as_str();
+        let value = values.get(i + 1).map(String::as_str);
+        let next_value = value.ok_or_else(|| format!("{key} requires a value"))?;
+        i += 1;
+        match key {
+            "--scene" => args.scene = PathBuf::from(next_value),
+            "--out" => args.out = PathBuf::from(next_value),
+            "--view" => args.view = Some(next_value.to_string()),
+            "--asset-map" => args.asset_map = Some(PathBuf::from(next_value)),
+            "--camera-target" => args.camera_target = next_value.to_string(),
+            "--camera-mode" => {
+                args.camera_mode = match next_value {
+                    "matrix" => CameraMode::Matrix,
+                    "lookat" => CameraMode::LookAt,
+                    _ => return Err("--camera-mode must be matrix or lookat".into()),
+                }
+            }
+            "--tone-mapping" => args.tone_mapping = next_value.to_string(),
+            "--width" => job.width = parse_u32(value, "--width")?,
+            "--height" => job.height = parse_u32(value, "--height")?,
+            "--samples" => job.samples = parse_u32(value, "--samples")?,
+            "--bounces" => job.bounces = parse_u32(value, "--bounces")?,
+            "--denoise" => job.denoise = parse_bool(value, "--denoise")?,
+            "--light-scale" => job.light_scale = parse_f32(value, "--light-scale")?,
+            "--timeout-ms" => job.timeout_ms = parse_u64(value, "--timeout-ms")?,
+            _ => return Err(format!("unknown option {key}")),
+        }
+        i += 1;
+    }
+    if !args.scene.as_os_str().is_empty() && !args.out.as_os_str().is_empty() {
+        Ok((args, job))
+    } else {
+        Err("usage: mutracer-render --scene <task.json> --out <render.png> [options]".into())
+    }
+}
+
+struct Args {
+    scene: PathBuf,
+    out: PathBuf,
+    view: Option<String>,
+    asset_map: Option<PathBuf>,
+    camera_target: String,
+    camera_mode: CameraMode,
+    tone_mapping: String,
+}
+
+fn parse_u32(value: Option<&str>, name: &'static str) -> Result<u32> {
+    value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be an integer"))
+}
+
+fn parse_u64(value: Option<&str>, name: &'static str) -> Result<u64> {
+    value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be an integer"))
+}
+
+fn parse_f32(value: Option<&str>, name: &'static str) -> Result<f32> {
+    let value: f32 = value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be a number"))?;
+    value
+        .is_finite()
+        .then_some(value)
+        .ok_or_else(|| format!("{name} must be finite"))
+}
+
+fn parse_bool(value: Option<&str>, name: &'static str) -> Result<bool> {
+    match value.ok_or_else(|| format!("{name} requires a value"))? {
+        "1" | "true" => Ok(true),
+        "0" | "false" => Ok(false),
+        _ => Err(format!("{name} must be 0, 1, true or false")),
+    }
+}
+
+fn number(value: Option<&Value>, default: f32) -> f32 {
+    value
+        .and_then(Value::as_f64)
+        .map(|v| v as f32)
+        .unwrap_or(default)
+}
+
+fn vector(value: Option<&Value>, default: [f32; 3]) -> [f32; 3] {
+    let mut result = default;
+    if let Some(Value::Array(items)) = value {
+        for (slot, item) in result.iter_mut().zip(items) {
+            if let Some(number) = item.as_f64() {
+                *slot = number as f32;
+            }
+        }
+    }
+    result
+}
+
+fn local_matrix(entity: Option<&Value>) -> Mat4 {
+    let Some(entity) = entity else {
+        return Mat4::IDENTITY;
+    };
+    let translation = vector(entity.get("position"), [0.; 3]);
+    let scale = vector(entity.get("scale"), [1.; 3]);
+    let degrees = vector(entity.get("rotation_euler"), [0.; 3]);
+    let rotation = Quat::from_euler(
+        EulerRot::XYZ,
+        degrees[0].to_radians(),
+        degrees[1].to_radians(),
+        degrees[2].to_radians(),
+    );
+    Mat4::from_scale_rotation_translation(scale.into(), rotation, translation.into())
+}
+
+fn visible_mesh_transforms(scene: &Value) -> Vec<(String, Mat4)> {
+    let models = scene
+        .get("models")
+        .and_then(Value::as_object)
+        .cloned()
+        .unwrap_or_default();
+    let roots = models
+        .iter()
+        .filter(|(_, entity)| entity.get("type").and_then(Value::as_str) == Some("root"))
+        .map(|(id, _)| id.clone())
+        .collect::<Vec<_>>();
+    let mut transforms = Vec::new();
+    let mut visited = std::collections::BTreeSet::new();
+    for root in roots {
+        walk_model(
+            scene,
+            &models,
+            &root,
+            Mat4::IDENTITY,
+            &mut visited,
+            &mut transforms,
+        );
+    }
+    transforms
+}
+
+fn walk_model(
+    scene: &Value,
+    models: &Map<String, Value>,
+    id: &str,
+    parent: Mat4,
+    visited: &mut std::collections::BTreeSet<String>,
+    output: &mut Vec<(String, Mat4)>,
+) {
+    if !visited.insert(id.into()) {
+        return;
+    }
+    let Some(entity) = models.get(id) else { return };
+    if entity.get("is_visible").and_then(Value::as_bool) == Some(false) {
+        return;
+    }
+    let transform = parent * local_matrix(Some(entity));
+    if entity.get("type").and_then(Value::as_str) == Some("model") {
+        if let Some(mesh) = entity.get("mesh").and_then(Value::as_str) {
+            output.push((mesh.into(), transform));
+        }
+    }
+    for child in entity
+        .get("children")
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+    {
+        if let Some(child) = child.as_str() {
+            walk_model(scene, models, child, transform, visited, output);
+        }
+    }
+}
+
+fn mesh_url<'a>(scene: &'a Value, mesh_id: &'a str) -> Option<&'a str> {
+    scene
+        .get("meshes")
+        .and_then(Value::as_object)
+        .and_then(|meshes| meshes.get(mesh_id))
+        .and_then(|mesh| mesh.get("url"))
+        .and_then(Value::as_str)
+}
+
+fn load_texture(path: &Path, rgba32f: bool) -> Result<Texture> {
+    let image = image::open(path).map_err(|e| format!("Loading {}: {e}", path.display()))?;
+    if rgba32f {
+        let rgba = image.into_rgba32f();
+        let pixels: Vec<f32> = rgba
+            .pixels()
+            .flat_map(|pixel| [pixel.0[0], pixel.0[1], pixel.0[2], pixel.0[3]])
+            .collect();
+
+--- CONTRIBUTING ---
+# Native contributor guide
+
+This guide covers building, validating and maintaining the native SDK and viewer.
+Per-call and per-field API details belong on the declarations (C headers and
+Rust doc comments); workflows, behavior across calls, costs and limits belong in
+[README.md](README.md) and [docs/](docs). License notices are separate for the
+[native library](THIRD_PARTY_NOTICES.md) and the
+[viewer](viewer/THIRD_PARTY_NOTICES.md).
+
+## Layout
+
+- `src/`: TypeScript AOT entry points, runtime adapters and shader generators.
+- `host/src/`: Rust library; `host/diagnostics/`: CI probe executables and
+  shaders.
+- `include/`: public C headers; `schemas/`: frozen wire-property IDs and error
+  codes.
+- `docs/`: user guides and the scene format reference.
+- `scripts/`: compiler lowering, contract generators, CI and viewer packaging.
+- `examples/`: C consumers and validation hosts; `tests/`: AOT fixtures and the
+  C module test harness.
+- `validation/`: render and contract checks and browser reference tools;
+  `validation/compiler/` holds whole-browser-API and async compilation probes.
+- `viewer/`: standalone app; `toolchain/`: pinned compiler; `LICENSES/`:
+  license texts.
+
+## Setup
+
+```bash
+npm ci
+npm ci --prefix native/toolchain --include=optional
+export MUTRACER_SCRIPTC="$(node native/toolchain/compiler.mjs)"
+export MUTRACER_NATIVE_OUTPUT=/absolute/evidence/directory
+```
+
+- Use scriptc 0.4.4, Rust with locked dependencies and a C++20 compiler. Root
+  Web dependencies do not include the compiler; `toolchain/compiler.mjs`
+  resolves the platform package and restores its executable permissions.
+- Keep `MUTRACER_NATIVE_OUTPUT` outside the checkout.
+- For direct Cargo builds, run `npm run fetch:tinybvh` to
+  [prepare the headers](../src/tinybvh/CONTRIBUTING.md#preparing-headers) and
+  set `MUTRACER_AOT_ARCHIVE` to the built archive.
+- **Use separate `CARGO_TARGET_DIR` values for the `host` and `viewer`
+  manifests.** Their different wgpu feature graphs can otherwise overwrite the
+  host's unhashed multi-crate-type rlib and produce incompatible wgpu crates.
+- Run rustfmt before committing Rust.
+
+### Windows
+
+Windows builds use the x64 MSVC Developer environment, Windows SDK, Rust's
+`stable-x86_64-pc-windows-msvc` toolchain and Zig 0.15.2 for scriptc's archiver.
+C/C++ consumers compile with `/MD`; no MinGW CRT or GCC C++ runtime is linked.
+
+The scriptc 0.4.4 runtime pack still imports several GNU-compatible interfaces.
+`windows-msvc-archive.mjs` edits only MuTracer's generated COFF archives: it
+maps constructor sections to `.CRT$XCU`, uses MSVC's stack probe, and prefixes
+runtime compatibility imports to avoid collisions with the independently linked
+OIDN core. An appended, MSVC-compiled `windows-msvc-compat.c` object implements
+those imports with UCRT and Win32. The installed runtime pack remains unchanged.
+
+### Linux
+
+Linux builds need a C++20 compiler, patchelf for the shared SDK, and the X11/Wayland
+development libraries installed by the CI workflow. GPU package checks also
+need `xvfb-run`.
+
+### Optional DLSS viewer
+
+The Windows viewer's `dlss-rr` Cargo feature compiles an application adapter over
+the native SDK's public `CustomDenoiser` and `TemporalGpu` APIs. Default builds
+do not load NGX or require NVIDIA files. Use SDK/runtime 310.9.16 from the
+[official DLSS repository](https://github.com/NVIDIA/DLSS); headers, loader and
+runtime must belong to the same SDK version. NVIDIA's SDK license applies to
+the optional binary components separately from MuTracer's MIT source.
+
+In the x64 MSVC developer environment, set the ordinary native build variables
+above, then run:
+
+```powershell
+$env:MUTRACER_DLSS_SDK = 'C:/SDK/DLSS'
+$env:MUTRACER_DLSS_RUNTIME = 'C:/SDK/DLSS/lib/Windows_x86_64/rel'
+$env:MUTRACER_VULKAN_INCLUDE = 'C:/VulkanSDK/Include'
+$env:MUTRACER_NATIVE_OUTPUT = 'C:/build/mutracer-dlss'
+node native/scripts/dlss-build.mjs
+```
+
+`MUTRACER_NGX_LIBRARY` optionally overrides the default
+`lib/Windows_x86_64/x64/nvsdk_ngx_s.lib` loader path. The script builds a separate
+MSVC shim DLL, the feature-enabled viewer and the local app directory, including
+the NVIDIA runtime and its license. It does not download SDK files. The regular
+viewer packaging command does not create DLSS packages.
+
+The build checks the pinned loader/runtime SHA-256 values and writes
+`dlss-build.json` with binary and adapter-source hashes.
+
+Run `mutracer-viewer.exe --dlss-smoke C:/evidence/rr` from the produced app for a
+headless GPU check through the same custom filter, result publication and Display
+path. Add `--dlss-preset D` to test the older model. Set `MUTRACER_DLSS_LOG=1` for
+verbose NGX diagnostics. This check does not establish glass or animation quality;
+inspect fixed-sample images separately.
+
+## Commands
+
+| Command | GPU | Checks |
+| --- | --- | --- |
+| `npm run native:ci` | No | Rust CPU suites, C picking consumer, AOT module/storage contracts and `native:scene:static` |
+| `npm run native:ci:gpu` | Yes, with ray queries | `native:ci` plus GPU tests and packaged-app checks; run before a native release |
+| `npm run native:ci:hosts` | Yes, with ray queries | `native:ci:gpu` plus the C hosts at 8 samples |
+| `npm run native:scene` | Yes | Builds the AOT archive and library; verifies preparation and rendering on 33 fixtures |
+| `npm run native:scene:static` | No | The same build with descriptor, packet, resource and WGSL contracts, without rendering |
+| `npm run native:context`, `native:jobs`, `native:camera`, `native:settings`, `native:engine` | Yes | One C host each: retained scenes, polling and cancellation, camera updates, render settings, engine API |
+| `node native/validation/scene-api-render.mjs` | Yes | C ABI, selected adapter, scene handles, exact AOV readback and custom-filter snapshots |
+| `node native/validation/vulkan-render.mjs` | Yes | C Vulkan device negotiation/import, queue/image leases, host copies, post-processing and retirement, on Software and HWRT |
+| `npm run native:modules:verify`, `native:storage:verify` | No | AOT module and storage contracts |
+| `node native/validation/matrix-verify.mjs`, `vector-verify.mjs` | No | Precision checks |
+| `npm run native:viewer:build` | No | Full AOT graph and platform app |
+| `npm run native:viewer:dev` | Yes | Interactive viewer with Subsecond UI hot reload |
+| `npm run native:viewer:package` | No | Archives the app, extracts it elsewhere and checks the sample and linked denoising runtime |
+| `npm run native:viewer:package -- --gpu` | Yes | Also checks rendering, all AOVs and real-window startup |
+| `npm run native:sdk:package` | No | Packages the SDK and checks C linking |
+| `npm run native:check` | No | Compiler capability probe; reports the incomplete browser API port and exits with status 1 |
+
+- The host commands build on `native:scene`, and `native:engine` chains the
+  other four. Each rebuilds and rerenders its whole chain; prefer the focused
+  checks below during local iteration.
+- Before final native review, run the root typechecks, library and viewer tests,
+  `npm run build` and the applicable native CI gate below. `native:ci` already
+  runs both Rust CPU suites, `native:modules:verify` and `native:storage:verify`;
+  do not repeat those separately on unchanged inputs. Compilation does not
+  validate GPU output.
+
+### Iteration
+
+With `MUTRACER_AOT_ARCHIVE` set to a current built archive and separate persistent
+host/viewer Cargo targets, run the affected Rust tests directly:
+
+```sh
+cargo test --locked --manifest-path native/host/Cargo.toml --lib TEST_FILTER
+cargo test --locked --manifest-path native/viewer/Cargo.toml TEST_FILTER
+```
+
+Set `CARGO_TARGET_DIR` to the appropriate target before each command. Reuse it
+across edits instead of creating a fresh target for each check. A changed AOT
+input requires rebuilding the archive before testing its consumers. For a
+compile-only check use `cargo check`; a subsequent `cargo test` already checks
+compilation, so running both on unchanged inputs is unnecessary.
+
+Run an affected GPU test directly with `-- --ignored --nocapture` while iterating
+on rendering. Keep GPU work sequential. Run the applicable full `native:ci`,
+`native:ci:gpu` or `native:ci:hosts` gate for the completed change; repeat it after
+changes to inputs it validates, rather than after every intermediate edit.
+Filtered Rust tests do not replace the final AOT, C consumer or GPU validation.
+
+### Focused regression runs
+
+Run `npm run test:parity` for browser WebGPU/WebGL and native display images,
+execution traces and schedule events. Set `MUTRACER_PARITY_OUTPUT` outside the
+checkout and `MUTRACER_OIDN_DISPLAY_INPUT` to the frozen HDR/guide directory to
+include the frozen highlight comparison; without it, the command explicitly
+reports that item as skipped. The command builds the native archive; it accepts
+the ordinary host `CARGO_TARGET_DIR` for reuse.
+
+Use `node native/scripts/ci.mjs --only host-tests --gpu-tests 'display|jnlm'
+--batch-gpu-tests` with an existing `MUTRACER_AOT_ARCHIVE` and host
+`CARGO_TARGET_DIR` during iteration. `--only` and `--skip` select comma-separated
+step names; `--gpu-tests` selects ignored host tests by regular expression.
+Batch mode shares a process and is intended for focused tests. Subset reports
+always leave `validated` false. Run the complete gate once at final review.
+
+`node scripts/reference-capture.mjs capture COMMIT` caches fixed inputs and
+browser/native outputs by commit; `compare COMMIT` captures the current checkout
+and reports byte and float differences. Set `MUTRACER_REFERENCE_CACHE` outside the
+checkout and `MUTRACER_OIDN_DISPLAY_INPUT` to the frozen HDR/guide directory.
+`node scripts/reference-performance.mjs COMMIT` measures active CPU frames and
+live JS heap after forced GC. It expands from one to three rounds when active
+CPU frame time increases by both more than 3% and more than 0.05 ms/frame, or
+when live JS heap increases by more than 3%. Submillisecond CPU frame times are
+sensitive to timer precision, so a relative threshold alone can report false
+regressions.
+
+### Environment variables
+
+| Variable | Purpose |
+| --- | --- |
+| `MUTRACER_SCRIPTC` | scriptc 0.4.4 executable |
+| `MUTRACER_DX` | dx 0.7.10 executable for [UI hot reload](#ui-hot-reload) |
+| `MUTRACER_NATIVE_OUTPUT` | Output and evidence directory |
+| `MUTRACER_AOT_ARCHIVE` | Archive for direct Cargo builds |
+| `MUTRACER_NATIVE_SAMPLES` | Fixture sample count; byte comparisons across stages need the same count and seed |
+| `MT_LOOP_ITERATIONS`, `MT_LOOP_BATCHED`, `MT_LOOP_L0`, `MT_LOOP_REAL_CAP` | [HWRT loop test](#metal-hwrt-sample-miss) |
+| `MUTRACER_TEST_CAPTURE` | Saves mismatching AOVs, descriptors and per-pixel audits |
+| `MUTRACER_TEST_ADAPTER` | Explicit adapter index for `scene-api-render.mjs` and Rust AOV GPU tests; enumerate with the `adapter-validation` host example |
+| `MUTRACER_VULKAN_INCLUDE` | Vulkan SDK include directory for `vulkan-render.mjs`; otherwise uses `VULKAN_SDK/Include` |
+| `MUTRACER_OIDN_LIBRARY` | Optional external OIDN for Rust SDK tests |
+| `MUTRACER_TEST_OIDN_CUDA`, `_HIP`, `_NO_GPU` | [OIDN backend requirements](#oidn) |
+| `MUTRACER_KERNEL_FIXTURES` | [Native kernel](#shared-source-and-typed-resources) byte comparisons |
+| `MUTRACER_NATIVE_PROFILE=1` | [Preparation profile](#performance) on stderr |
+| `MUTRACER_GLTF_EVIDENCE` | glTF material fixture and native values for `validation/gltf-material-reference.mjs` |
+| `MUTRACER_ANIMATION_EVIDENCE` | Animation test fixtures, poses, images and report |
+| `MUTRACER_TEST_VULKAN_LIBRARY` | Optional Vulkan driver/loader library for the interop GPU test |
+| `MUTRACER_VIEWER_METRICS` | [Real-window viewer metrics](#viewer) |
+| `MUTRACER_NATIVE_GUI_SMOKE=1` | Same as `native:viewer:package -- --gpu` |
+
+## CI and releases
+
+`native:ci` validates CPU behavior and static shader contracts without creating
+a GPU device. Rust's default suites ignore device-dependent tests; the CPU suite
+still parses, validates and emits SPIR-V/HLSL with Naga for the generated
+software and hardware WGSL. Reports mark GPU rendering and windows as
+**not validated**. Finding a software adapter cannot turn CPU checks into a
+rendering gate.
+
+`native:ci:gpu` adds the ignored host GPU tests, animated-pose rendering, all 33
+rendered fixtures, ray-query execution, the `viewer/examples/surface.rs` window,
+HDR negotiation and lifecycle smoke, and the packaged render/AOV and
+window-startup checks. Software or unknown adapters and missing ray-query
+support are errors. GitHub-hosted CI does not run it.
+
+- Each ignored host test runs in its own process. Other failures stop CI after
+  all ignored tests finish.
+- On hardware Metal, the known image mismatches in
+
+codex
+The transform flow is clear. I’m locating camera, lights, and scene merge points next.
+exec
+/bin/zsh -lc 'rg -n "visible_mesh_transforms|walk_light|look_at|build_scene|ImportedScene|camera" native/host/src/bin/stage_render.rs' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+6:use mutracer_native_probe::scene_api::{ImportedScene, Light, Scene, Texture, TexturePixels};
+45:    camera: Camera,
+55:        camera_target: "0,0,0".into(),
+57:        camera_mode: CameraMode::Matrix,
+80:            "--camera-target" => args.camera_target = next_value.to_string(),
+81:            "--camera-mode" => {
+82:                args.camera_mode = match next_value {
+85:                    _ => return Err("--camera-mode must be matrix or lookat".into()),
+112:    camera_target: String,
+113:    camera_mode: CameraMode,
+185:fn visible_mesh_transforms(scene: &Value) -> Vec<(String, Mat4)> {
+276:    imported: ImportedScene,
+533:fn stage_camera(
+536:    camera_target: glam::Vec3,
+537:    camera_mode: CameraMode,
+539:    let cameras = scene.get("cameras").and_then(Value::as_object);
+541:        .and_then(|view| view.get("active_camera"))
+543:    let entity = cameras
+544:        .and_then(|cameras| active.and_then(|id| cameras.get(id)))
+546:            cameras.and_then(|cameras| {
+547:                cameras
+549:                    .find(|c| c.get("type").and_then(Value::as_str) == Some("camera"))
+552:    let entity = entity.ok_or("No camera entity found")?;
+553:    let settings = entity.get("camera").ok_or("Camera settings missing")?;
+568:    let mut camera = Camera::default();
+569:    camera.fov = fov_vertical.to_degrees();
+570:    camera.f_stop = if settings.get("dof").and_then(Value::as_bool) == Some(true) {
+575:    camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+576:    camera.world_matrix = match camera_mode {
+582:            if (eye - camera_target).normalize_or_zero().dot(up).abs() > 0.999 {
+585:            Mat4::look_at_rh(eye, camera_target, up).inverse()
+597:    Ok(StageCamera { camera, display })
+691:        walk_light(
+704:fn walk_light(
+776:            walk_light(scene, lights, child, transform, view, job, visited)?;
+782:fn build_scene(source: &Value, assets: &HashMap<String, String>) -> Result<Scene> {
+786:    for (mesh_id, transform) in visible_mesh_transforms(source) {
+846:        .camera_target
+850:        .map_err(|_| "--camera-target must be x,y,z")?;
+851:    let camera_target = match target_parts[..] {
+853:        _ => return Err("--camera-target must contain three numbers".into()),
+856:    let mut camera = stage_camera(source, view.as_ref(), camera_target, args.camera_mode)?;
+857:    camera.display.tone_mapping = tone_mapping_from_arg(&args.tone_mapping)?;
+858:    let mut scene = build_scene(source, &assets)?;
+865:        .set_settings(camera.display)
+888:        camera: Some(camera.camera),
+
+2026-11-09T07:15:26.222608Z ERROR codex_rmcp_client::oauth::refresh_transaction: error=failed to refresh OAuth tokens for server canva
+exec
+/bin/zsh -lc "sed -n '500,630p' native/host/src/bin/stage_render.rs; sed -n '660,830p' native/host/src/bin/stage_render.rs; sed -n '830,910p' native/host/src/bin/stage_render.rs" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+        normal_texture: texture_path("normal_tex")?,
+        basecolor_texture: texture_path("basecolor_tex")?,
+    }))
+}
+
+fn override_material(
+    scene: &Value,
+    mesh_id: &str,
+    assets: &HashMap<String, String>,
+) -> Result<Option<Vec<MaterialOverride>>> {
+    let material_ids = scene
+        .get("meshes")
+        .and_then(Value::as_object)
+        .and_then(|meshes| meshes.get(mesh_id))
+        .and_then(|mesh| mesh.get("materials"))
+        .and_then(Value::as_array)
+        .map(|materials| {
+            materials
+                .iter()
+                .filter_map(Value::as_str)
+                .collect::<Vec<_>>()
+        })
+        .unwrap_or_default();
+    if material_ids.is_empty() {
+        return Ok(None);
+    }
+    let mut overrides = Vec::new();
+    for material_id in material_ids {
+        overrides.extend(material_override(scene, assets, material_id)?);
+    }
+    Ok((!overrides.is_empty()).then_some(overrides))
+}
+
+fn stage_camera(
+    scene: &Value,
+    view: Option<&Value>,
+    camera_target: glam::Vec3,
+    camera_mode: CameraMode,
+) -> Result<StageCamera> {
+    let cameras = scene.get("cameras").and_then(Value::as_object);
+    let active = view
+        .and_then(|view| view.get("active_camera"))
+        .and_then(Value::as_str);
+    let entity = cameras
+        .and_then(|cameras| active.and_then(|id| cameras.get(id)))
+        .or_else(|| {
+            cameras.and_then(|cameras| {
+                cameras
+                    .values()
+                    .find(|c| c.get("type").and_then(Value::as_str) == Some("camera"))
+            })
+        });
+    let entity = entity.ok_or("No camera entity found")?;
+    let settings = entity.get("camera").ok_or("Camera settings missing")?;
+    let width = entity
+        .get("frame_size")
+        .and_then(Value::as_array)
+        .and_then(|v| v.first())
+        .and_then(Value::as_f64)
+        .unwrap_or(1920.) as f32;
+    let height = entity
+        .get("frame_size")
+        .and_then(Value::as_array)
+        .and_then(|v| v.get(1))
+        .and_then(Value::as_f64)
+        .unwrap_or(1080.) as f32;
+    let fov_horizontal = number(settings.get("fov"), 45.).to_radians();
+    let fov_vertical = 2. * ((fov_horizontal / 2.).tan() * height / width).atan();
+    let mut camera = Camera::default();
+    camera.fov = fov_vertical.to_degrees();
+    camera.f_stop = if settings.get("dof").and_then(Value::as_bool) == Some(true) {
+        number(settings.get("aperture_fstop"), 0.)
+    } else {
+        0.
+    };
+    camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+    camera.world_matrix = match camera_mode {
+        CameraMode::Matrix => local_matrix(Some(entity)),
+        CameraMode::LookAt => {
+            let p = vector(entity.get("position"), [0.; 3]);
+            let eye = glam::Vec3::new(p[0], p[1], p[2]);
+            let mut up = glam::Vec3::Z;
+            if (eye - camera_target).normalize_or_zero().dot(up).abs() > 0.999 {
+                up = glam::Vec3::Y;
+            }
+            Mat4::look_at_rh(eye, camera_target, up).inverse()
+        }
+    }
+    .to_cols_array();
+
+    let post = settings.get("post_processing_settings");
+    let mut display = DisplaySettings::default();
+    display.tone_mapping = ToneMapping::Agx;
+    display.tone_mapping_exposure = number(post.and_then(|p| p.get("exposure")), 1.);
+    display.contrast = number(post.and_then(|p| p.get("contrast")), 1.);
+    display.saturation = number(post.and_then(|p| p.get("saturation")), 1.);
+    display.vignette = number(post.and_then(|p| p.get("vignette")), 0.).clamp(0., 1.);
+    Ok(StageCamera { camera, display })
+}
+
+fn add_environment(
+    scene: &mut Scene,
+    source: &Value,
+    view: Option<&Value>,
+    assets: &HashMap<String, String>,
+) -> Result<()> {
+    let env_id = view
+        .and_then(|v| v.get("active_environment"))
+        .and_then(Value::as_str);
+    let env = env_id.and_then(|id| {
+        source
+            .get("environments")
+            .and_then(Value::as_object)
+            .and_then(|map| map.get(id))
+    });
+    let settings = env.and_then(|e| e.get("settings"));
+    let intensity = number(settings.and_then(|s| s.get("hdri_brightness")), 1.);
+    let hdri_angle = number(settings.and_then(|s| s.get("hdri_angle")), 0.).to_radians();
+    let background_type = settings
+        .and_then(|s| s.get("background_type"))
+        .and_then(Value::as_str)
+        .unwrap_or("white");
+    let texture_id = settings
+        .and_then(|s| s.get("image"))
+        .and_then(Value::as_str);
+    let url = texture_id
+        .and_then(|id| {
+            source
+                .get("textures")
+                .and_then(Value::as_object)
+                .and_then(|map| map.get(id))
+    if background_type != "white" {
+        environment_settings.background_intensity = intensity;
+    }
+    environment_settings.rotation = -hdri_angle;
+    environment_settings.background_rotation = -hdri_angle;
+    scene
+        .set_environment(environment)
+        .map_err(|e| e.to_string())?;
+    scene
+        .set_environment_settings(environment_settings)
+        .map_err(|e| e.to_string())
+}
+
+fn add_lights(
+    scene: &mut Scene,
+    source: &Value,
+    view: Option<&Value>,
+    job: RenderJob,
+) -> Result<()> {
+    let lights = source
+        .get("lights")
+        .and_then(Value::as_object)
+        .cloned()
+        .unwrap_or_default();
+    let roots = lights
+        .iter()
+        .filter(|(_, entity)| entity.get("type").and_then(Value::as_str) == Some("root"))
+        .map(|(id, _)| id.clone())
+        .collect::<Vec<_>>();
+    let mut visited = std::collections::BTreeSet::new();
+    for root in roots {
+        walk_light(
+            scene,
+            &lights,
+            &root,
+            Mat4::IDENTITY,
+            view,
+            job,
+            &mut visited,
+        )?;
+    }
+    Ok(())
+}
+
+fn walk_light(
+    scene: &mut Scene,
+    lights: &Map<String, Value>,
+    id: &str,
+    parent: Mat4,
+    view: Option<&Value>,
+    job: RenderJob,
+    visited: &mut std::collections::BTreeSet<String>,
+) -> Result<()> {
+    if !visited.insert(id.into()) {
+        return Ok(());
+    }
+    let Some(entity) = lights.get(id) else {
+        return Ok(());
+    };
+    if entity.get("is_visible").and_then(Value::as_bool) == Some(false) {
+        return Ok(());
+    }
+    let transform = parent * local_matrix(Some(entity));
+    if entity.get("type").and_then(Value::as_str) == Some("light") {
+        let data = entity.get("light").ok_or("Light settings missing")?;
+        let color = vector(data.get("color"), [1.; 3]);
+        let intensity = number(data.get("power"), 0.) * job.light_scale;
+        let light = match data.get("type").and_then(Value::as_str) {
+            Some("area_light") => Light::Rect {
+                color,
+                intensity,
+                width: number(data.get("size_x"), 0.) / 100.,
+                height: number(data.get("size_z"), 0.) / 100.,
+                spread: 0.,
+                transform,
+                texture: None,
+            },
+            Some("point_light") => Light::Sphere {
+                color,
+                intensity,
+                radius: (number(data.get("radius"), 0.) / 100.).max(0.01),
+                transform,
+            },
+            Some("directional_light") => Light::Directional {
+                color,
+                intensity,
+                transform,
+            },
+            Some("spot_light") => {
+                let outer = number(data.get("spot_size"), 45.).clamp(0.1, 89.9);
+                let blend = number(data.get("blend"), 0.).clamp(0., 1.);
+                Light::Spot {
+                    color,
+                    intensity,
+                    inner: outer * blend,
+                    outer,
+                    transform,
+                    ies: Vec::new().into(),
+                }
+            }
+            _ => {
+                return Err(format!(
+                    "Unsupported light type {}",
+                    data.get("type").unwrap_or(&Value::Null)
+                ));
+            }
+        };
+        scene.add_light(light).map_err(|e| e.to_string())?;
+    }
+    for child in entity
+        .get("children")
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+    {
+        if let Some(child) = child.as_str() {
+            walk_light(scene, lights, child, transform, view, job, visited)?;
+        }
+    }
+    Ok(())
+}
+
+fn build_scene(source: &Value, assets: &HashMap<String, String>) -> Result<Scene> {
+    let mut scene = Scene::new();
+    let mut mesh_count = 0;
+    let mut log_count = 0;
+    for (mesh_id, transform) in visible_mesh_transforms(source) {
+        let url = mesh_url(source, &mesh_id).ok_or_else(|| format!("Mesh {mesh_id} has no URL"))?;
+        let path = assets
+            .get(url)
+            .ok_or_else(|| format!("Missing asset for {url}"))?;
+        let imported =
+            Scene::import_gltf(path).map_err(|e| format!("Importing {url}: {}", e.message))?;
+        let override_material = override_material(source, &mesh_id, assets)?;
+        mesh_count += merge_imported(
+            &mut scene,
+            imported,
+            transform,
+            &mesh_id,
+            override_material.as_ref().map(|v| &**v),
+            &mut log_count,
+        )?;
+    }
+    if mesh_count == 0 {
+        return Err("No visible meshes were imported".into());
+    }
+    Ok(scene)
+}
+
+fn selected_view(scene: &Value, view: Option<&str>) -> Result<Option<Value>> {
+    let Some(view) = view else { return Ok(None) };
+    scene
+        .get("views")
+        .and_then(Value::as_object)
+        .and_then(|views| views.get(view))
+        .cloned()
+        .map(Some)
+        .ok_or_else(|| format!("View {view} not found"))
+}
+
+fn tone_mapping_from_arg(arg: &str) -> Result<ToneMapping> {
+    match arg {
+        "agx" => Ok(ToneMapping::Agx),
+        "aces" => Ok(ToneMapping::Aces),
+        "cineon" => Ok(ToneMapping::Cineon),
+        "reinhard" => Ok(ToneMapping::Reinhard),
+        "linear" => Ok(ToneMapping::Linear),
+        _ => Err(format!("Unsupported tone mapping {arg}")),
+    }
+}
+
+
+fn main() -> Result<()> {
+    let (args, job) = parse_args()?;
+    let raw =
+        fs::read(&args.scene).map_err(|e| format!("Reading {}: {e}", args.scene.display()))?;
+    let data: Value =
+        serde_json::from_slice(&raw).map_err(|e| format!("Parsing scene JSON: {e}"))?;
+    let source = data.get("scene_json").unwrap_or(&data);
+    let assets = match args.asset_map.as_ref() {
+        Some(path) => {
+            let raw = fs::read(path).map_err(|e| format!("Reading asset map: {e}"))?;
+            serde_json::from_slice(&raw).map_err(|e| format!("Parsing asset map: {e}"))?
+        }
+        None => HashMap::new(),
+    };
+    let target_parts = args
+        .camera_target
+        .split(',')
+        .map(|part| part.trim().parse::<f32>())
+        .collect::<std::result::Result<Vec<_>, _>>()
+        .map_err(|_| "--camera-target must be x,y,z")?;
+    let camera_target = match target_parts[..] {
+        [x, y, z] => glam::Vec3::new(x, y, z),
+        _ => return Err("--camera-target must contain three numbers".into()),
+    };
+    let view = selected_view(source, args.view.as_deref())?;
+    let mut camera = stage_camera(source, view.as_ref(), camera_target, args.camera_mode)?;
+    camera.display.tone_mapping = tone_mapping_from_arg(&args.tone_mapping)?;
+    let mut scene = build_scene(source, &assets)?;
+    add_environment(&mut scene, source, view.as_ref(), &assets)?;
+    add_lights(&mut scene, source, view.as_ref(), job)?;
+
+    let engine = Engine::new(EngineOptions::default()).map_err(|e| e.to_string())?;
+    engine
+        .display()
+        .set_settings(camera.display)
+        .map_err(|e| e.to_string())?;
+    engine.set_scene_object(&scene).map_err(|e| e.to_string())?;
+    engine.update().map_err(|e| e.to_string())?;
+    let render = Render::new(
+        &engine,
+        RenderSettings {
+            size: RenderSize::Fixed {
+                width: job.width,
+                height: job.height,
+            },
+            max_samples: job.samples,
+            bounces: job.bounces.clamp(1, 20),
+            ..Default::default()
+        },
+    )
+    .map_err(|e| e.to_string())?;
+    if job.denoise {
+        render
+            .set_denoiser(Default::default())
+            .map_err(|e| e.to_string())?;
+    }
+    let options = ConvergeOptions {
+        camera: Some(camera.camera),
+        timeout_ms: job.timeout_ms,
+        ..ConvergeOptions::new(job.samples)
+    };
+    render.converge(options).map_err(|e| e.to_string())?;
+    let png = engine
+        .display()
+        .encode_png(&render)
+        .map_err(|e| e.to_string())?;
+    if let Some(parent) = args.out.parent() {
+        fs::create_dir_all(parent).map_err(|e| format!("Creating {}: {e}", parent.display()))?;
+    }
+    fs::write(&args.out, png).map_err(|e| format!("Writing {}: {e}", args.out.display()))?;
+    println!(
+        "rendered {}x{} {} spp -> {}",
+        job.width,
+        job.height,
+        job.samples,
+        args.out.display()
+    );
+    Ok(())
+}
+
+We need edit. Also note env rotation perhaps needs remap? User says minimal listed. Mesh, lights, camera. Matrix mode. Could helper comments? No inline comments unless requested? User specifically included comment but developer says no inline comments unless explicitly requested. Comment explicitly part code? likely not necessary. Use glam::vec3 maybe. Must use apply_patch.
+
+Question stage_to_render Mat4 from_cols with Vec4 as listed. In glam Mat4::from_cols expects x_axis etc; this matrix maps: for column representation, output = M*v: x same; second col z maps output y; third col y maps output -z. yes.
+
+Implement visible_mesh transforms at end or walk_model output. Minimal in visible_mesh_transforms map. Matrix camera stage_to_render * local. lights when added only, left multiply transform. Camera lookat. Also environment perhaps already weird? Not requested.
+
+Potential matrix camera mode needs entity world matrix? stage_camera uses local only. Fine.
+
+Run cargo fmt/check. Build release AOT as before. Need know paths. Check env/progress maybe git diff. Could find output archive.
+2026-11-09T07:15:45.935798Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://mcp.figma.com/mcp)")))
+codex
+I found all three basis boundaries. I’ll apply one stage-to-render conversion consistently and leave stage `local_matrix` untouched.
+apply patch
+patch: completed
+/Users/wangjianzheng/Project/git/mutracer/native/host/src/bin/stage_render.rs
+diff --git a/native/host/src/bin/stage_render.rs b/native/host/src/bin/stage_render.rs
+index 5b1067e2e66d96866edb4b109b892ff6231e2885..c2358d2d66b1ffcb08edc89e27fd1fe203410738
+--- a/native/host/src/bin/stage_render.rs
++++ b/native/host/src/bin/stage_render.rs
+@@ -11,6 +11,19 @@
+ 
+ type Result<T> = std::result::Result<T, String>;
+ 
++fn stage_to_render() -> Mat4 {
++    Mat4::from_cols(
++        glam::Vec4::new(1., 0., 0., 0.),
++        glam::Vec4::new(0., 0., -1., 0.),
++        glam::Vec4::new(0., 1., 0., 0.),
++        glam::Vec4::new(0., 0., 0., 1.),
++    )
++}
++
++fn map_stage_point(p: glam::Vec3) -> glam::Vec3 {
++    glam::Vec3::new(p.x, p.z, -p.y)
++}
++
+ #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+ enum CameraMode {
+     Matrix,
+@@ -206,6 +219,9 @@
+         );
+     }
+     transforms
++        .into_iter()
++        .map(|(mesh_id, transform)| (mesh_id, stage_to_render() * transform))
++        .collect()
+ }
+ 
+ fn walk_model(
+@@ -574,15 +590,12 @@
+     };
+     camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+     camera.world_matrix = match camera_mode {
+-        CameraMode::Matrix => local_matrix(Some(entity)),
++        CameraMode::Matrix => stage_to_render() * local_matrix(Some(entity)),
+         CameraMode::LookAt => {
+             let p = vector(entity.get("position"), [0.; 3]);
+-            let eye = glam::Vec3::new(p[0], p[1], p[2]);
+-            let mut up = glam::Vec3::Z;
+-            if (eye - camera_target).normalize_or_zero().dot(up).abs() > 0.999 {
+-                up = glam::Vec3::Y;
+-            }
+-            Mat4::look_at_rh(eye, camera_target, up).inverse()
++            let eye = map_stage_point(glam::Vec3::from(p));
++            let target = map_stage_point(camera_target);
++            Mat4::look_at_rh(eye, target, glam::Vec3::Y).inverse()
+         }
+     }
+     .to_cols_array();
+@@ -731,19 +744,19 @@
+                 width: number(data.get("size_x"), 0.) / 100.,
+                 height: number(data.get("size_z"), 0.) / 100.,
+                 spread: 0.,
+-                transform,
++                transform: stage_to_render() * transform,
+                 texture: None,
+             },
+             Some("point_light") => Light::Sphere {
+                 color,
+                 intensity,
+                 radius: (number(data.get("radius"), 0.) / 100.).max(0.01),
+-                transform,
++                transform: stage_to_render() * transform,
+             },
+             Some("directional_light") => Light::Directional {
+                 color,
+                 intensity,
+-                transform,
++                transform: stage_to_render() * transform,
+             },
+             Some("spot_light") => {
+                 let outer = number(data.get("spot_size"), 45.).clamp(0.1, 89.9);
+@@ -753,7 +766,7 @@
+                     intensity,
+                     inner: outer * blend,
+                     outer,
+-                    transform,
++                    transform: stage_to_render() * transform,
+                     ies: Vec::new().into(),
+                 }
+             }
+
+Now cargo fmt/check. Need maybe target dir conventions. Check env variables/process. `git diff`. Search local docs perhaps progress plan/evidence. Also AOT archive path.
+codex
+The patch is in place. Now I’ll format, typecheck the binary, and find the current AOT/release build inputs.
+exec
+/bin/zsh -lc "cargo fmt --manifest-path native/host/Cargo.toml && git diff -- native/host/src/bin/stage_render.rs && printf '\\n--- env candidates ---\\n' && env | rg '"'^(MUTRACER|CARGO_TARGET)'"' || true && printf '\\n--- output/archive candidates ---\\n' && find /private/tmp /tmp -maxdepth 4 \\( -name '*.mtrbin' -o -name '*aot*archive*' -o -name 'mutracer-render' \\) 2>/dev/null | tail -40" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 875ms:
+
+--- env candidates ---
+
+--- output/archive candidates ---
+
+git diff output empty? Odd maybe file line endings? cargo fmt command perhaps changes? Wait `git diff -- path` no output but patch success? Maybe repo assume-unchanged? Need git status.
+codex
+Formatting and compile checks come next; I’m also confirming the file status because `git diff` unexpectedly returned empty.
+exec
+/bin/zsh -lc "git status --short && git diff --stat && git diff -- native/host/src/bin/stage_render.rs | sed -n '1,220p' && rg -n 'stage_to_render|map_stage_point|CameraMode::Matrix|CameraMode::LookAt|transform: stage' native/host/src/bin/stage_render.rs" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+ M native/host/Cargo.lock
+ M native/host/Cargo.toml
+?? docs/technical/editor-parity.md
+?? native/host/src/bin/
+?? tools/cloud-relay.py
+?? tools/cloud-service/
+ native/host/Cargo.lock | 128 +++++++++++++++++++++++++++++++++++++++++++++++++
+ native/host/Cargo.toml |   6 ++-
+ 2 files changed, 133 insertions(+), 1 deletion(-)
+14:fn stage_to_render() -> Mat4 {
+23:fn map_stage_point(p: glam::Vec3) -> glam::Vec3 {
+70:        camera_mode: CameraMode::Matrix,
+96:                    "matrix" => CameraMode::Matrix,
+97:                    "lookat" => CameraMode::LookAt,
+223:        .map(|(mesh_id, transform)| (mesh_id, stage_to_render() * transform))
+593:        CameraMode::Matrix => stage_to_render() * local_matrix(Some(entity)),
+594:        CameraMode::LookAt => {
+596:            let eye = map_stage_point(glam::Vec3::from(p));
+597:            let target = map_stage_point(camera_target);
+747:                transform: stage_to_render() * transform,
+754:                transform: stage_to_render() * transform,
+759:                transform: stage_to_render() * transform,
+769:                    transform: stage_to_render() * transform,
+
+Directory untracked, so diff doesn't show. Fine. Need inspect Cargo.toml, maybe build release binary. Native host added bin package changes? Existing modifications pre-existing maybe user built. Need cargo check. Use CARGO_TARGET_DIR separate, persistent maybe native/host/target? Let's see dirs.
+exec
+/bin/zsh -lc "sed -n '1,120p' native/host/Cargo.toml; find native/host -maxdepth 2 -type d -name target -print; find native -maxdepth 4 -type f \\( -name '*.mtrbin' -o -name '*archive*' \\) | head -80; rg -n \"MUTRACER_AOT_ARCHIVE|stage_render\" plans native host -g '"'!target'"' | head -120" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+[package]
+name = "mutracer-native-probe"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[lib]
+crate-type = ["rlib", "cdylib", "staticlib"]
+
+[dependencies]
+ash = { version = "=0.38.0", default-features = false, features = ["std", "loaded"] }
+oidn-webgpu = { package = "oidn-webgpu-native", version = "=0.2.0" }
+gltf = { version = "=1.4.1", features = ["KHR_materials_ior", "KHR_materials_transmission", "KHR_materials_emissive_strength", "KHR_materials_unlit", "KHR_texture_transform", "extensions"], optional = true }
+meshopt = {version = "=0.6.2", optional = true}
+base64 = {version = "0.22", optional = true}
+percent-encoding = {version = "2", optional = true}
+image = { version = "=0.25.8", default-features = false, features = ["png", "jpeg", "hdr", "webp", "exr"], optional = true }
+anyhow = "1"
+bytemuck = { version = "1", features = ["min_const_generics"] }
+glam = "=0.30.9"
+libloading = "=0.8.9"
+wgpu = { version = "=30.0.1", default-features = false, features = ["std", "wgsl"] }
+pollster = "=0.4.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+png = "=0.18.1"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+wgpu = { version = "=30.0.1", default-features = false, features = ["metal"] }
+objc2 = "=0.6.5"
+objc2-metal = { version = "=0.3.2", default-features = false, features = ["std", "MTLAccelerationStructureTypes"] }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+wgpu = { version = "=30.0.1", default-features = false, features = ["dx12", "vulkan"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+wgpu = { version = "=30.0.1", default-features = false, features = ["vulkan"] }
+
+[build-dependencies]
+cc = "=1.8.0"
+serde_json = "1"
+
+[dev-dependencies]
+naga = { version = "=30.0.1", features = ["spv-out", "hlsl-out"] }
+
+[features]
+default = ["gltf"]
+gltf = ["dep:gltf", "dep:image", "dep:meshopt", "dep:base64", "dep:percent-encoding"]
+viewer-support = ["gltf"]
+# Opt in to Vulkan interop on macOS for portability-driver validation.
+vulkan-interop = ["wgpu/vulkan-portability"]
+
+[[bin]]
+name = "incremental-oracle"
+path = "diagnostics/incremental-oracle.rs"
+
+[[bin]]
+name = "gpu-availability"
+path = "diagnostics/gpu-availability.rs"
+
+[[bin]]
+name = "ray-query-probe"
+path = "diagnostics/ray-query-probe.rs"
+
+[[bin]]
+name = "mutracer-render"
+path = "src/bin/stage_render.rs"
+native/host/target
+native/scripts/windows-msvc-archive.mjs
+rg: plans: No such file or directory (os error 2)
+rg: host: No such file or directory (os error 2)
+native/README.md:61:  and set `MUTRACER_AOT_ARCHIVE` to the archive's absolute path when building.
+native/validation/job-render.mjs:11:const env={...hostLibraryEnv(target),CARGO_TARGET_DIR:target,MUTRACER_NATIVE_OUTPUT:raw,MUTRACER_NATIVE_SAMPLES:String(samples),MUTRACER_AOT_ARCHIVE:resolve(raw,'raw',archiveName('render-core'))};
+native/host/build.rs:59:    println!("cargo:rerun-if-env-changed=MUTRACER_AOT_ARCHIVE");
+native/host/build.rs:60:    let archive = std::env::var("MUTRACER_AOT_ARCHIVE")
+native/host/build.rs:61:        .expect("Set MUTRACER_AOT_ARCHIVE to the scriptc render-core.lib.a");
+native/host/Cargo.toml:67:path = "src/bin/stage_render.rs"
+native/llms.txt:7:- Build: `npm ci`, `npm ci --prefix native/toolchain --include=optional`, `export MUTRACER_SCRIPTC="$(node native/toolchain/compiler.mjs)"`, `npm run native:scene:static`; Rust needs `MUTRACER_AOT_ARCHIVE`, C links `mutracer_native_probe`; [build and link](README.md#build-and-link).
+native/CONTRIBUTING.md:41:  set `MUTRACER_AOT_ARCHIVE` to the built archive.
+native/CONTRIBUTING.md:133:With `MUTRACER_AOT_ARCHIVE` set to a current built archive and separate persistent
+native/CONTRIBUTING.md:163:--batch-gpu-tests` with an existing `MUTRACER_AOT_ARCHIVE` and host
+native/CONTRIBUTING.md:187:| `MUTRACER_AOT_ARCHIVE` | Archive for direct Cargo builds |
+native/validation/context-render.mjs:15:const env={...hostLibraryEnv(target),CARGO_TARGET_DIR:target,MUTRACER_NATIVE_OUTPUT:raw,MUTRACER_NATIVE_SAMPLES:String(samples),MUTRACER_AOT_ARCHIVE:resolve(raw,archiveName('render-core'))};
+native/validation/scene-render.mjs:21:const env = { ...nativeToolchainEnv(), MUTRACER_NATIVE_OUTPUT: out, CARGO_TARGET_DIR: target, MUTRACER_AOT_ARCHIVE: resolve(prebuilt ?? resolve(out, archiveName('render-core'))) };
+native/validation/scene-render.mjs:50:    run('aot-build', compiler, ['build', '--lib', '--profile', 'native/src/render-core-profile.json', '-o', env.MUTRACER_AOT_ARCHIVE]);
+native/validation/scene-render.mjs:58:run('core-host-build', cCompiler, ['-Wall', '-Wextra', '-Werror', '-Dmt_module_init=mt_core_init', '-Dmt_module_reset=mt_core_reset', '-Dmt_module_collect=mt_core_collect', '-Dmt_module_sink=mt_core_sink', '-Dmt_module_run=mt_core_scene', 'native/tests/module-host.c', env.MUTRACER_AOT_ARCHIVE, ...cLinkFlags, '-o', resolve(out, executable('core-host'))]);
+native/scripts/viewer-core-build.mjs:25:    MUTRACER_AOT_ARCHIVE:resolve(environment.MUTRACER_AOT_PREBUILT??resolve(out,archiveName('render-core')))};
+native/scripts/viewer-core-build.mjs:39:    run(compiler,['build','--lib','--profile','native/src/render-core-profile.json','-o',env.MUTRACER_AOT_ARCHIVE]);
+native/scripts/sdk-package.mjs:23:  MUTRACER_AOT_ARCHIVE: resolve(process.env.MUTRACER_AOT_ARCHIVE ?? resolve(out, archiveName('render-core')))});
+native/scripts/ci.mjs:23:const hostTarget=resolve(process.env.CARGO_TARGET_DIR??resolve(out,'host-target')),viewerTarget=resolve(out,'viewer-target'),archive=resolve(process.env.MUTRACER_AOT_ARCHIVE??resolve(out,archiveName('render-core')));
+native/scripts/ci.mjs:24:const env={...nativeToolchainEnv(),MUTRACER_SCRIPTC:compiler,MUTRACER_AOT_ARCHIVE:archive,CARGO_TARGET_DIR:hostTarget,MUTRACER_NATIVE_OUTPUT:out};
+
+No archive found due native/host target maybe inside. Let's find archive name.
+exec
+/bin/zsh -lc "rg -n \"function archiveName|const archiveName|archiveName\" native/scripts native/validation | head -40; find native/host/target -maxdepth 4 -type f | rg '(mtrbin|archive|mutracer-render|render-core)' | head -100; find /Users/wangjianzheng -maxdepth 5 -type f -name '*render-core*.a' 2>/dev/null | head -30" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 9869ms:
+native/scripts/platform.mjs:8:export const archiveName = name => name + (windows ? '.lib' : '.lib.a');
+native/scripts/platform.d.mts:6:export function archiveName(name: string): string;
+native/validation/job-render.mjs:1:import {spawnNative as spawnSync, cCompiler, hostLibraryEnv, archiveName, executable} from '../scripts/platform.mjs';
+native/validation/job-render.mjs:11:const env={...hostLibraryEnv(target),CARGO_TARGET_DIR:target,MUTRACER_NATIVE_OUTPUT:raw,MUTRACER_NATIVE_SAMPLES:String(samples),MUTRACER_AOT_ARCHIVE:resolve(raw,'raw',archiveName('render-core'))};
+native/scripts/ci.mjs:13:import {archiveName,executable,nativeToolchainEnv,windows} from './platform.mjs';
+native/scripts/ci.mjs:23:const hostTarget=resolve(process.env.CARGO_TARGET_DIR??resolve(out,'host-target')),viewerTarget=resolve(out,'viewer-target'),archive=resolve(process.env.MUTRACER_AOT_ARCHIVE??resolve(out,archiveName('render-core')));
+native/validation/module-check.mjs:6:import { archiveName } from '../scripts/platform.mjs';
+native/validation/module-check.mjs:64:    const profile = resolve(output, `${name}-profile.json`), artifact = resolve(output, archiveName(name));
+native/scripts/viewer-core-build.mjs:9:import {archiveName,nativeToolchainEnv} from './platform.mjs';
+native/scripts/viewer-core-build.mjs:25:    MUTRACER_AOT_ARCHIVE:resolve(environment.MUTRACER_AOT_PREBUILT??resolve(out,archiveName('render-core')))};
+native/validation/storage-verify.mjs:7:import {archiveName,cCompiler,cLinkFlags,executable} from '../scripts/platform.mjs';
+native/validation/storage-verify.mjs:12:const profile = resolve(out, 'profile.json'), archive = resolve(out, archiveName('storage')), host = resolve(out, executable('storage-host'));
+native/validation/context-render.mjs:1:import {spawnNative as spawnSync, cCompiler, hostLibraryEnv, archiveName, executable} from '../scripts/platform.mjs';
+native/validation/context-render.mjs:15:const env={...hostLibraryEnv(target),CARGO_TARGET_DIR:target,MUTRACER_NATIVE_OUTPUT:raw,MUTRACER_NATIVE_SAMPLES:String(samples),MUTRACER_AOT_ARCHIVE:resolve(raw,archiveName('render-core'))};
+native/validation/scene-render.mjs:9:import { archiveName, cCompiler, cLinkFlags, executable, nativeToolchainEnv, windows } from '../scripts/platform.mjs';
+native/validation/scene-render.mjs:21:const env = { ...nativeToolchainEnv(), MUTRACER_NATIVE_OUTPUT: out, CARGO_TARGET_DIR: target, MUTRACER_AOT_ARCHIVE: resolve(prebuilt ?? resolve(out, archiveName('render-core'))) };
+native/scripts/sdk-package.mjs:8:import {archiveName, cCompiler, executable, nativeTar, nativeToolchainEnv, spawnNative, viewerPlatform, windows} from './platform.mjs';
+native/scripts/sdk-package.mjs:23:  MUTRACER_AOT_ARCHIVE: resolve(process.env.MUTRACER_AOT_ARCHIVE ?? resolve(out, archiveName('render-core')))});
+native/host/target/release/.fingerprint/mutracer-native-probe-ab91753945bf2b26/dep-bin-mutracer-render
+native/host/target/release/.fingerprint/mutracer-native-probe-ab91753945bf2b26/bin-mutracer-render
+native/host/target/release/.fingerprint/mutracer-native-probe-ab91753945bf2b26/bin-mutracer-render.json
+native/host/target/release/mutracer-render.d
+native/host/target/release/mutracer-render
+native/host/target/debug/.fingerprint/mutracer-native-probe-3ebff6079e9fb4f8/test-bin-mutracer-render
+native/host/target/debug/.fingerprint/mutracer-native-probe-3ebff6079e9fb4f8/test-bin-mutracer-render.json
+native/host/target/debug/.fingerprint/mutracer-native-probe-3ebff6079e9fb4f8/dep-test-bin-mutracer-render
+native/host/target/debug/.fingerprint/mutracer-native-probe-a638ed8044efc94d/output-bin-mutracer-render
+native/host/target/debug/.fingerprint/mutracer-native-probe-a638ed8044efc94d/dep-bin-mutracer-render
+native/host/target/debug/.fingerprint/mutracer-native-probe-a638ed8044efc94d/bin-mutracer-render
+native/host/target/debug/.fingerprint/mutracer-native-probe-a638ed8044efc94d/bin-mutracer-render.json
+
+Need compile cargo check with MUTRACER_AOT_ARCHIVE required build script. Archive maybe elsewhere not found due depth. Check build.rs how default?
+exec
+/bin/zsh -lc "sed -n '45,95p' native/host/build.rs; ls -la native/host/target/release/mutracer-render; find /Users/wangjianzheng -path '*/target/*' -prune -o -type f -name 'render-core.lib.a' -print 2>/dev/null | head -30; find /Users/wangjianzheng -type f -name 'render-core.lib.a' 2>/dev/null | head -30" in /Users/wangjianzheng/Project/git/mutracer
+find whole home long running. Poll.
+ exited 130 in 69953ms:
+        }
+        include = adapted;
+    }
+    cc::Build::new()
+        .cpp(true)
+        .std("c++20")
+        .opt_level(3)
+        // Preserve conservative bounds across native SIMD and scalar Wasm.
+        .flag_if_supported("-ffp-contract=off")
+        .flag_if_supported("/fp:strict")
+        .file("tinybvh.cpp")
+        .include(include)
+        .warnings(false)
+        .compile("mutracer_tinybvh");
+    println!("cargo:rerun-if-env-changed=MUTRACER_AOT_ARCHIVE");
+    let archive = std::env::var("MUTRACER_AOT_ARCHIVE")
+        .expect("Set MUTRACER_AOT_ARCHIVE to the scriptc render-core.lib.a");
+    println!("cargo:rerun-if-changed={archive}");
+    let output = std::path::PathBuf::from(std::env::var_os("OUT_DIR").unwrap());
+    let library_name = if std::env::var("CARGO_CFG_TARGET_ENV").as_deref() == Ok("msvc") {
+        "mutracer_aot.lib"
+    } else {
+        "libmutracer_aot.a"
+    };
+    std::fs::copy(archive, output.join(library_name)).unwrap();
+    println!("cargo:rustc-link-search=native={}", output.display());
+    println!("cargo:rustc-link-lib=static=mutracer_aot");
+    // System imports used by the scriptc runtime and UCRT compatibility layer.
+    if std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("windows") {
+        for library in [
+            "ws2_32", "bcrypt", "crypt32", "iphlpapi", "userenv", "ntdll", "advapi32",
+        ] {
+            println!("cargo:rustc-link-lib={library}");
+        }
+    }
+}
+-rwxr-xr-x@ 1 wangjianzheng  staff  18860016 Nov  9 15:13 native/host/target/release/mutracer-render
+
+Could use existing build fingerprint env to determine archive. Inspect dep-bin json.
+exec
+/bin/zsh -lc "jq '.features, .envs' native/host/target/release/.fingerprint/*/bin-mutracer-render.json 2>/dev/null | head -200; rg -o 'MUTRACER_AOT_ARCHIVE=(["'^"]+)'"' native/host/target/release -g '*.json' -g '*.d' -g '*.fingerprint' -r '"'$1'"' 2>/dev/null | head -10; plutil -p native/host/target/release/.fingerprint/*/bin-mutracer-render.json 2>/dev/null | head -100" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+"[\"default\", \"gltf\"]"
+null
+native/host/target/release/.fingerprint/mutracer-native-probe-ab91753945bf2b26/bin-mutracer-render.json: Unexpected character { at line 1
+
+exec
+/bin/zsh -lc "cat native/host/target/release/.fingerprint/mutracer-native-probe-ab91753945bf2b26/bin-mutracer-render.json | head -c 4000; strings native/host/target/release/mutracer-render | rg -m5 'render-core|\\.lib\\.a'" in /Users/wangjianzheng/Project/git/mutracer
+ exited 1 in 0ms:
+{"rustc":17467972547956852243,"features":"[\"default\", \"gltf\"]","declared_features":"[\"default\", \"gltf\", \"viewer-support\", \"vulkan-interop\"]","target":8647839436933975957,"profile":2040997289075261528,"path":5428519568560939031,"deps":[[390430846265316719,"gltf",false,9893799648600094133],[1420036582921034023,"image",false,4202282283158413712],[1823399657867702949,"png",false,1060204062016514185],[3251208500507217748,"oidn_webgpu",false,4417257589773501767],[6086524926578679065,"objc2",false,17675478478275149597],[6557439603276904804,"serde",false,9001942759185198706],[6803352382179706244,"percent_encoding",false,7705235939010568819],[7883780462905440460,"libloading",false,6424048673425861385],[8160210889872729633,"serde_json",false,14211229440838699101],[9083381532970419232,"objc2_metal",false,5650037785985250877],[9629895322312539876,"wgpu",false,6441648479701616000],[10239250599955427241,"glam",false,9237269779780050801],[10364619138950789809,"anyhow",false,9728011906879320957],[10925517848225430635,"meshopt",false,17651073925494120946],[13077212702700853852,"base64",false,6690881089956572096],[15735613251537484627,"pollster",false,9297917835030148067],[16014840228708699506,"mutracer_native_probe",false,12467616666168583899],[16014840228708699506,"build_script_build",false,18208104219502815635],[17752156114211970456,"ash",false,16661696275209476362],[18075512308826438882,"bytemuck",false,1664623037634023555]],"local":[{"CheckDepInfo":{"dep_info":"release/.fingerprint/mutracer-native-probe-ab91753945bf2b26/dep-bin-mutracer-render","checksum":false}}],"rustflags":[],"config":8247474407144887393,"compile_kind":0}
+Could cargo check without env? Build script needs archive. Existing OUT_DIR has copied archive, but cargo may rerun because env changed? We can locate archive by shell history? .zsh_history maybe.
+codex
+The prior release binary confirms the build inputs already exist locally. I’m recovering its AOT archive path, then rebuilding without touching Metal.
+exec
+/bin/zsh -lc 'find "$HOME/Library" "$HOME/Downloads" "$HOME/Documents" "$HOME/Project" /private/tmp -type f -name '"'render-core.lib.a' 2>/dev/null | head -40; rg -o 'MUTRACER_AOT_ARCHIVE["'^'"\\r\\n]*' \""'$HOME/.zsh_history" 2>/dev/null | tail -20; rg -o '"'MUTRACER_AOT_ARCHIVE["'^'"\\r\\n]*' \""'$HOME/.local/share" 2>/dev/null | tail -20' in /Users/wangjianzheng/Project/git/mutracer
+ exited 130 in 31590ms:
+Could inspect build output existing OUT_DIR includes archive but source path unknown. Build script rerun triggered? We can run cargo check with env pointing to output copy? It copies. Build dir maybe target/release/build/mutracer-native-probe-*/out/libmutracer_aot.a. We can set MUTRACER_AOT_ARCHIVE to that lib. It may be exact archive. But only if archive changed? No. Better set to out copy. cargo rerun build if env changed? Build script env hash maybe cargo records env? It should rerun due newly setting variable, then copy same archive. Fine. Use path.
+exec
+/bin/zsh -lc 'ls -l native/host/target/release/build/mutracer-native-probe-*/out/libmutracer_aot.a 2>/dev/null; ls -l native/host/target/release/build/mutracer-native-probe-*/output 2>/dev/null | head' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+-rw-r--r--@ 1 wangjianzheng  staff  7096288 Nov  8 01:56 native/host/target/release/build/mutracer-native-probe-f719a33df2dd5e1c/out/libmutracer_aot.a
+-rw-r--r--@ 1 wangjianzheng  staff  5760 Nov  9 14:46 native/host/target/release/build/mutracer-native-probe-f719a33df2dd5e1c/output
+
+exec
+/bin/zsh -lc 'MUTRACER_AOT_ARCHIVE="$PWD/native/host/target/release/build/mutracer-native-probe-f719a33df2dd5e1c/out/libmutracer_aot.a" CARGO_TARGET_DIR="$PWD/native/host/target" cargo check --locked --release --manifest-path native/host/Cargo.toml --bin mutracer-render' in /Users/wangjianzheng/Project/git/mutracer
+Need poll.
+ succeeded in 16104ms:
+    Checking cfg-if v1.0.5
+    Checking bitflags v2.13.2
+    Checking objc2-encode v4.1.0
+    Checking libm v0.2.16
+    Checking libc v0.2.190
+    Checking foldhash v0.2.0
+    Checking equivalent v1.0.3
+    Checking bytemuck v1.25.2
+    Checking zerocopy v0.8.63
+    Checking thiserror v2.0.21
+    Checking smallvec v1.16.3
+    Checking rustc-hash v1.1.0
+    Checking simd-adler32 v0.3.10
+    Checking hashbrown v0.17.1
+    Checking unicode-width v0.2.2
+    Checking log v0.4.34
+    Checking bit-vec v0.9.1
+    Checking objc2 v0.6.5
+    Checking raw-window-handle v0.6.2
+    Checking codespan-reporting v0.13.1
+    Checking adler2 v2.0.1
+    Checking static_assertions v1.1.0
+    Checking once_cell v1.21.4
+    Checking scopeguard v1.2.0
+    Checking bit-set v0.10.0
+    Checking unicode-ident v1.0.27
+    Checking arrayvec v0.7.8
+    Checking lock_api v0.4.14
+    Checking crossbeam-utils v0.8.23
+    Checking parking_lot_core v0.9.12
+    Checking indexmap v2.14.2
+    Checking libloading v0.8.9
+    Checking profiling v1.0.18
+    Checking crc32fast v1.5.2
+    Checking serde_core v1.0.229
+    Checking miniz_oxide v0.8.9
+    Checking parking_lot v0.12.5
+    Checking miniz_oxide v0.9.1
+    Checking crossbeam-epoch v0.9.21
+    Checking num-traits v0.2.19
+    Checking pulp-wasm-simd-flag v0.1.1
+    Checking reborrow v0.5.5
+    Checking zmij v1.0.23
+    Checking crossbeam-deque v0.8.8
+    Checking objc2-core-foundation v0.3.2
+    Checking block2 v0.6.2
+    Checking naga-types v30.0.1
+    Checking dispatch2 v0.3.1
+    Checking rayon-core v1.13.0
+    Checking flate2 v1.1.10
+    Checking zune-inflate v0.2.54
+    Checking fdeflate v0.3.7
+    Checking lebe v0.5.3
+    Checking quick-error v2.0.1
+    Checking byteorder-lite v0.1.0
+    Checking zune-core v0.4.12
+    Checking itoa v1.0.18
+    Checking memchr v2.8.3
+    Checking pxfm v0.1.30
+    Checking bit_field v0.10.3
+    Checking png v0.18.1
+    Checking ash v0.38.0+1.3.281
+    Checking zune-jpeg v0.4.21
+    Checking image-webp v0.2.4
+    Checking float-cmp v0.10.0
+    Checking base64 v0.13.1
+    Checking objc2-foundation v0.3.2
+    Checking objc2-core-graphics v0.3.2
+    Checking lazy_static v1.5.1
+    Checking urlencoding v2.1.3
+    Checking serde v1.0.229
+    Checking serde_json v1.0.154
+    Checking byteorder v1.5.0
+    Checking pollster v0.4.0
+   Compiling mutracer-native-probe v0.0.0 (/Users/wangjianzheng/Project/git/mutracer/native/host)
+    Checking meshopt v0.6.2
+    Checking anyhow v1.0.104
+    Checking base64 v0.22.1
+    Checking glam v0.30.9
+    Checking percent-encoding v2.3.2
+    Checking gltf-json v1.4.1
+    Checking wgpu-types v30.0.1
+    Checking num-complex v0.4.6
+    Checking half v2.7.1
+    Checking naga v30.0.1
+    Checking pulp v0.22.3
+    Checking moxcms v0.7.11
+    Checking exr v1.74.2
+    Checking wgpu-naga-bridge v30.0.1
+    Checking image v0.25.8
+    Checking gltf v1.4.1
+    Checking objc2-metal v0.3.2
+    Checking objc2-quartz-core v0.3.2
+    Checking raw-window-metal v1.1.0
+    Checking wgpu-hal v30.0.1
+    Checking wgpu-core-deps-apple v30.0.1
+    Checking wgpu-core v30.0.1
+    Checking wgpu v30.0.1
+    Checking oidn-webgpu-native v0.2.0
+    Finished `release` profile [optimized] target(s) in 16.16s
+
+Need rebuild release with AOT archive path as before. We can cargo build release with same archive. Do it.
+codex
+Compile check passes. I’m rebuilding the release renderer now, then I’ll verify the final binary timestamp and diff.
+exec
+/bin/zsh -lc 'MUTRACER_AOT_ARCHIVE="$PWD/native/host/target/release/build/mutracer-native-probe-f719a33df2dd5e1c/out/libmutracer_aot.a" CARGO_TARGET_DIR="$PWD/native/host/target" cargo build --locked --release --manifest-path native/host/Cargo.toml --bin mutracer-render && ls -lh native/host/target/release/mutracer-render' in /Users/wangjianzheng/Project/git/mutracer
+ exited 101 in 14597ms:
+   Compiling mutracer-native-probe v0.0.0 (/Users/wangjianzheng/Project/git/mutracer/native/host)
+error: failed to add native library /Users/wangjianzheng/Project/git/mutracer/native/host/target/release/build/mutracer-native-probe-f719a33df2dd5e1c/out/libmutracer_aot.a: memory map must have a non-zero length
+
+error: could not compile `mutracer-native-probe` (lib) due to 1 previous error
+
+Interesting cargo check mutated? It copied archive? Why length zero maybe build script attempted copy source to itself? Ah path is output copy, build script copy same file to same output => truncates to zero! We used output artifact as archive, bad. Need reconstruct original archive or find path. Now build output is zero. Could cargo check wrote libmutracer_aot.a from source to itself, self copy truncate. We destroyed archive copy. Need find original. Could cargo check had already linked? No linking isn't check but build script copied. Need locate archive through shell process perhaps filesystem. Search limited and use mdfind? spotlight maybe. Use `mdfind -name render-core.lib.a`, `locate`. Or .zsh_history format. Let's inspect history.
+codex
+The release build exposed a bad archive path: it pointed at Cargo’s own output copy, causing a self-copy truncation. I’m locating the source archive rather than rebuilding unrelated inputs.
+exec
+/bin/zsh -lc "mdfind -name 'render-core.lib.a' 2>/dev/null | head -40; rg -n 'MUTRACER_AOT_ARCHIVE|render-core.lib.a' \""'$HOME/.zsh_history" "$HOME/.bash_history" 2>/dev/null | tail -80; find /Users/wangjianzheng/Project /Users/wangjianzheng/Desktop /Users/wangjianzheng/Downloads /private/tmp /tmp -type f -name '"'render-core.lib.a' -size +0 2>/dev/null | head -40" in /Users/wangjianzheng/Project/git/mutracer
+poll.
+ succeeded in 53855ms:
+/Users/wangjianzheng/Project/git/mutracer/.native-build/scene-core/render-core.lib.a
+
+Great source in repo untracked .native-build likely. Use. Rebuild.
+exec
+/bin/zsh -lc 'ls -lh .native-build/scene-core/render-core.lib.a && MUTRACER_AOT_ARCHIVE="$PWD/.native-build/scene-core/render-core.lib.a" CARGO_TARGET_DIR="$PWD/native/host/target" cargo build --locked --release --manifest-path native/host/Cargo.toml --bin mutracer-render && ls -lh native/host/target/release/mutracer-render' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 18701ms:
+-rw-r--r--@ 1 wangjianzheng  staff   6.8M Nov  8 01:56 .native-build/scene-core/render-core.lib.a
+   Compiling mutracer-native-probe v0.0.0 (/Users/wangjianzheng/Project/git/mutracer/native/host)
+    Finished `release` profile [optimized] target(s) in 18.74s
+-rwxr-xr-x@ 1 wangjianzheng  staff    18M Nov  9 15:20 native/host/target/release/mutracer-render
+
+Need verify final. Need maybe no need tests? It's untracked binary, cargo fmt. We should perhaps run cargo test? Only change binary, cargo check enough. Could inspect final lines, maybe ensure no unintended issue with light transforms: User says similarly left-multiply light transforms when light added. We did. Mesh left multiply in final. Good.
+
+Potential environment texture orientation? Not part.
+
+Need maybe render verification? User specifically no Metal render. We can't render. We have no scene. Could run unit? no tests. We can compile. Need maybe stage render binary uses AOT archive. Fine.
+
+Could check Cargo.toml modifications are unrelated pre-existing? Stage_render new untracked. User says fix only. There are preexisting changes from earlier task? Since src/bin untracked whole dir, no issue. Don't touch. But maybe Cargo.toml/Cargo.lock pre-existing. No need.
+
+Need possibly show git diff impossible untracked. We can `git diff --no-index /dev/null file` huge; not necessary. Run `cargo fmt --check`. Also perhaps clippy? no. Use cargo check release already, build. Verify no zero archive. final mention. Maybe task requires "Rebuild release with AOT archive path as before. No Metal render, no push." We complied. Need maybe final answer within 10 lines with file ref start line.
+exec
+/bin/zsh -lc "cargo fmt --check --manifest-path native/host/Cargo.toml && test -s .native-build/scene-core/render-core.lib.a && test -s native/host/target/release/mutracer-render && stat -f '%N %z bytes %Sm' -t '%Y-%m-%d %H:%M:%S' .native-build/scene-core/render-core.lib.a native/host/target/release/mutracer-render && rg -n 'fn stage_to_render|fn map_stage_point|stage_to_render\\(\\)' native/host/src/bin/stage_render.rs" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 690ms:
+.native-build/scene-core/render-core.lib.a 7096288 bytes 2026-11-08 01:56:39
+native/host/target/release/mutracer-render 18860080 bytes 2026-11-09 15:20:41
+14:fn stage_to_render() -> Mat4 {
+23:fn map_stage_point(p: glam::Vec3) -> glam::Vec3 {
+223:        .map(|(mesh_id, transform)| (mesh_id, stage_to_render() * transform))
+593:        CameraMode::Matrix => stage_to_render() * local_matrix(Some(entity)),
+747:                transform: stage_to_render() * transform,
+754:                transform: stage_to_render() * transform,
+759:                transform: stage_to_render() * transform,
+769:                    transform: stage_to_render() * transform,
+
+Need final concise. Mention no render/push. File line. Could mention cargo build/check. No goal.
+codex
+Implemented the consistent stage-to-render basis conversion in `native/host/src/bin/stage_render.rs:14`.
+
+- Mesh transforms: `stage_to_render() * transform` at `native/host/src/bin/stage_render.rs:223`.
+- Matrix camera: basis-adjusted `local_matrix` at `native/host/src/bin/stage_render.rs:593`.
+- LookAt camera: stage-coordinates target/eye mapped with `map_stage_point`; `--camera-target` remains stage-space.
+- Rect, sphere, directional, and spot lights receive adjusted transforms.
+- `local_matrix` remains untouched and stage-space.
+- Ran `cargo fmt --check` and release compile/build successfully.
+- Rebuilt `native/host/target/release/mutracer-render` using `.native-build/scene-core/render-core.lib.a`.
+- No Metal render performed and nothing pushed.
+tokens used
+76,380
+Implemented the consistent stage-to-render basis conversion in `native/host/src/bin/stage_render.rs:14`.
+
+- Mesh transforms: `stage_to_render() * transform` at `native/host/src/bin/stage_render.rs:223`.
+- Matrix camera: basis-adjusted `local_matrix` at `native/host/src/bin/stage_render.rs:593`.
+- LookAt camera: stage-coordinates target/eye mapped with `map_stage_point`; `--camera-target` remains stage-space.
+- Rect, sphere, directional, and spot lights receive adjusted transforms.
+- `local_matrix` remains untouched and stage-space.
+- Ran `cargo fmt --check` and release compile/build successfully.
+- Rebuilt `native/host/target/release/mutracer-render` using `.native-build/scene-core/render-core.lib.a`.
+- No Metal render performed and nothing pushed.

@@ -1,0 +1,37 @@
+MuTracer POC — 可影真实冰箱 本机+云端出图
+时间: 2026-11-09 Asia/Shanghai
+
+找到的冰箱:
+- 名称: 冰箱体.fbx-[单品渲染]
+- scene/my_asset: 1d0db88a-5a8b-441a-a9f4-b70c2b26fe3a
+- render_task 例: 2aa0b2f5-f10a-4ad2-af4d-944b2398cb36（succeed）
+- view: Front (298cfe60-923d-44fb-a0d1-f2206b9a48e1)
+- camera: 858db55c-ec03-4fa6-9ec4-948a6df1ea33
+- 几何: customer_asset bff45e68（冰箱体 386 GLB）+ 38c97cce（开门体 50 GLB）；关门体 fd26af6d is_visible=false 未拉
+- 资产映射: 446 文件（GLB 436 + 贴图/HDRI 等 10）；stage-stack 目录形态已解包为扁平文件
+
+本机:
+- 512x512 samples=32 bounces=3 denoise=1
+- 耗时 ~2.36s（brightness=1 重渲）
+- PNG: tools/cloud-service/poc-out/fridge/stage-fridge-local.png (201198 bytes)
+- log: stage-fridge-local.log
+
+云端:
+- SSH 内网 POST（公网 :8787 仍不可达）
+- job 9eb3298e3bbc49309958dba183b11eea status=succeed（~12s，含 ~210MB payload 写盘）
+- PNG: stage-fridge-cloud-9eb3298e3bbc49309958dba183b11eea.png (201198 bytes，与本机一致)
+- 早先过曝试跑 job 63de30f4… 可忽略
+
+材质齐不齐:
+- 场景引用 official_asset 贴图 6 张 + HDRI 16.exr + 可选 brown_photostudio：本机 asset-map 均已命中
+- 3 个材质槽挂了 roughness/normal/mask（Metal_Frosted* / Plastic_Coated）；其余多靠 base_color_rgb / Haier_CMF
+- 缺口: mutracer-render/stage_render 目前只吃 GLB 内嵌材质，不覆写 scene.materials → 成片仍偏「白模/灰模」，贴图文件虽在 map 里但未绑定到表面
+- missing_assets=53（主要是不可见「冰箱关门体」fd26af6d 的 50 个 GLB，不影响 Front 开门预览）；missing_visible≈0
+
+异常备注:
+- Front.active_environment 原指向缺失 id ab403659…，已改到唯一存在的 e73ef7d9…（16.exr）
+- 原 hdri_brightness=100 被 stage_render 当 intensity 直接用 → 全白过曝；POC 已 patch 为 1.0
+- background_type=hdri（正常）；可影 preview.png 在 backup/解包里偏黑/不可用对照（150KB 但像素统计近黑）
+
+残余缺口一句:
+- 端到端已通；下一步要把 scene.materials（含 Haier_CMF/base_color 与 official_asset 贴图槽）接到 stage_render，否则「上材质」只停在资产齐、画面仍白模。

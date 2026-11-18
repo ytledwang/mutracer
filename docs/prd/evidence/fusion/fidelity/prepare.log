@@ -1,0 +1,10 @@
+scene_source=/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/m2-preview-scene.json
+view=1c4a3883-8668-4c16-a10e-0b7c24272279 (Front, chosen because it frames the whole fridge and matches fridge-ref-front-329c)
+active_environment {'hdri_brightness': 0.8, 'skylight_intensity': 1, 'hdri_contrast': 1, 'hdri_resolution': 128, 'hdri_angle': 0, 'use_sun_light': True, 'sun_light_brightness': 1, 'sun_height': -29.351051462363685, 'sun_direction': -21.637074770213484, 'background_type': 'hdri', 'image': '54efdccd-f0c0-4d1f-b12c-63fd401b3904'} -> hooked to 6cc50ba2-fb40-47a1-9147-2859b7a0e75f BP_LightStudio
+previous view env="see m2-preview: empty for 1c4a3883"
+texture 54efdccd-f0c0-4d1f-b12c-63fd401b3904 was name=White urls=official_asset/template/RF_Scene_Kitchen_2cam/textures/White.exr
+texture now name=brown_photostudio_02_2k urls=official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr
+hdri_path=/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/assets/official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr bytes=5161529
+background_type=white (camera rays: white studio; other rays: HDRI lighting)
+reference_src=/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c.png bytes=10219862
+reference_origin=Already on this machine at tools/cloud-service/poc-out/fridge/ref/; used as the official-style Front gold reference in the fridge POC (arch-run-summary.md --ref fridge-ref-front-329c-1024.png; 8K white-studio product render of the same fridge). Not downloaded this turn; official COS bucket was not pulled.

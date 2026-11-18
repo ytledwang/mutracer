@@ -1,0 +1,25 @@
+# Fridge parity vs 可影 Front (task/view 329c / 298c)
+
+## 原图来源
+- Front 官方成片: ref/fridge-ref-front-329c.png (+1024 thumb)
+- scene preview: ref/fridge-ref-preview.png / fridge-ref-scene-preview.png
+- task 2aa0 另一视图: ref/fridge-ref-task-2aa0-view3c69.png
+- 已 CopyToBox: /workspace/mutracer-poc/fridge-ref-*.png
+
+## 差距原因 Top3
+1. 相机：可影 Front 为 Z-up 站立产品正视（pos≈[-0.04,-5.92,0.97], FOV35, rotZ≈90）；mutracer 相机默认 -Z + Y-up，直接吃 matrix 会空镜。现用 lookat→COM(0.018,-0.102,0.801)。basis=none 在本机可渲，云端 GPU 报 invertible affine；云端改 stage2y。取景仍偏「俯/开着门的展平感」，未达到官方 16:9 直立产品构图（官方 content aspect≈0.65）。
+2. 材质：已按 mesh.materials[] 多套覆写（不再只 materials[0]）；门体 Metal_Frosted(_Reflective)+箱体/内饰 Plastic_Coated；CAD solid_* 高饱和 remap 灰塑。但官方门外壳偏 charcoal、内饰玻璃/CMF(01珍珠米/06极光紫等) 语义未完整对齐，成片仍偏灰白粘土+弱金属。
+3. 灯光/曝光：Front env background_type=white + HDRI light（brightness 试到 0.85）；面光已导入。对比官方仍缺门缝/金属高光与暗门板层次（本机 std≈20 vs 官方≈42；云端 stage2y std≈101 但构图更偏顶视）。
+
+## 改动
+- stage_render.rs: scene.materials 多 index 覆写；白底；CAD solid 中和；Haier_CMF roughness 默认；--basis stage2y|none；--camera-mode lookat|matrix；默认 lookat+none
+- worker.py: 透传 camera_mode/basis
+- 本机+云端均重编 mutracer-render；未 push
+
+## 成片路径
+- 本机: tools/cloud-service/poc-out/fridge/stage-fridge-parity-local.png (960x540, 64spp, lookat COM, basis=none)
+- 云端: job 324902f82f834517b177c8ba6e1e60c8 succeed → stage-fridge-parity-cloud-324902f82f834517b177c8ba6e1e60c8.png (960x540, 64spp, lookat COM, basis=stage2y)
+- Box: /workspace/mutracer-poc/stage-fridge-parity-local.png , stage-fridge-parity-cloud-324902f82f834517b177c8ba6e1e60c8.png , fridge-ref-*
+
+## 相对原图还差一句
+直立 Front 构图与门板 charcoal/玻璃 CMF 仍明显不如可影成片，需先钉死 matrix/rot_conv 相机（或 UE 欧拉→mutracer）再补门壳色与 HDRI 对比。

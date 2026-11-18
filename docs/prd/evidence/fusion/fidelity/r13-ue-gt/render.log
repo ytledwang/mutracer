@@ -1,0 +1,97 @@
+[assets] 7 scene URLs absent from asset map; skipping
+21:03:18 | INFO: Data are loaded, start creating Blender stuff
+21:03:18 | INFO: Blender create Mesh node zhongjian_tiezhi
+21:03:18 | INFO: glTF import finished in 0.00s
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py:451: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+21:03:18 | INFO: Data are loaded, start creating Blender stuff
+21:03:18 | INFO: Blender create Mesh node dike
+21:03:19 | INFO: glTF import finished in 0.45s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zaojuqian
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zaojumian
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zaomianxia
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuocetiezhi
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbiananniu_001
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbiananniu_23
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbiananniu_19
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbiananniu_24
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbiananniu_28
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbiananniu_3
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobiananniu_28
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuocetiezhi
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobiananniu_1
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobiananniu_8
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobiananniu_11
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobiananniu_22
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobiananniu_27
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobiananniu_28
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobianzaomian_5
+21:03:19 | INFO: glTF import finished in 0.00s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node zuobianzaomian_9
+21:03:19 | INFO: glTF import finished in 0.07s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbinzaomian_12
+21:03:19 | INFO: glTF import finished in 0.01s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbinzaomian_13
+21:03:19 | INFO: glTF import finished in 0.06s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbinzaomian_26
+21:03:19 | INFO: glTF import finished in 0.05s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbinzaomian_7
+21:03:19 | INFO: glTF import finished in 0.13s
+21:03:19 | INFO: Data are loaded, start creating Blender stuff
+21:03:19 | INFO: Blender create Mesh node youbinzaomian_18
+21:03:19 | INFO: glTF import finished in 0.04s
+[color] view_transform=Standard
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py:736: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+[env] hdri rotation z=-90.0
+[env] ue bg=white skylight=0.0*0.0557867256 white_sky=0.0*100.0 cam_strength=1.0 mirror=False lights=candela display=engine
+[gpu] METAL: 1
+00:09.874  render           | Saved: '/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r13-ue-gt/render-00ac0cff-front-r13.png.linear.exr'
+[tonemap] ue-filmic exposure_ev=1.0 film_transparent=True
+[done] /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r13-ue-gt/render-00ac0cff-front-r13.png
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit
+/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r13-ue-gt/render-00ac0cff-front-r13.png

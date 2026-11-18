@@ -1,0 +1,606 @@
+Reading additional input from stdin...
+OpenAI Codex v0.163.0
+--------
+workdir: /Users/wangjianzheng/Project/git/mutracer
+model: volcengine/glm-5.3-flash
+provider: magpie
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1bf23-b3a3-7a72-8b84-fd006055e30c
+--------
+user
+Fix native/host/src/bin/stage_render.rs only.
+
+Bug: local_matrix currently remaps translation to (x,-z,y) for ALL entities (meshes/lights/cameras). That breaks model orientation (fridge appears top-down) because rotation axes are not remapped.
+
+Required:
+1. Revert local_matrix translation to use position AS-IS (no x,-z,y remap). Keep scale + EulerRot::XYZ as now.
+2. Camera LookAt mode: keep remapping eye = (x, -z, y) when reading camera position (only camera path).
+3. Camera Matrix mode: build from unremapped local_matrix(entity) without overwriting w_axis with remapped translation; OR if matrix mode needs remap, document - for now prefer: matrix = local_matrix as-is (stage space), since meshes are stage space again.
+4. Rebuild release mutracer-render with MUTRACER_AOT_ARCHIVE=/Users/wangjianzheng/Project/git/mutracer/.native-build/scene-core/render-core.lib.a
+5. Do not run Metal render. No push.
+
+White background + multi-material overrides stay.
+warning: Codex is ignoring 3 unrecognized configuration settings. Check for typos or deprecated settings.
+  user (/Users/wangjianzheng/.codex/config.toml): `disable_response_storage` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `features.rmcp_client` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `preferred_auth_method` is ignored.
+warning: Codex is ignoring 3 unrecognized configuration settings. Check for typos or deprecated settings.
+  user (/Users/wangjianzheng/.codex/config.toml): `disable_response_storage` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `features.rmcp_client` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `preferred_auth_method` is ignored.
+warning: failed to parse hooks config /Users/wangjianzheng/.codex/hooks.json: unknown field `SessionEnd`, expected `description` or `hooks` at line 2 column 14
+We need modify only native/host/src/bin/stage_render.rs, rebuild. Need inspect file. Plan perhaps simple, but build. Preamble.
+2026-11-09T07:09:15.249755Z ERROR codex_rmcp_client::oauth::refresh_transaction: error=failed to refresh OAuth tokens for server canva
+codex
+I’ll inspect the coordinate handling in `stage_render.rs`, apply the targeted fix, then rebuild the release binary with the specified AOT archive.
+exec
+/bin/zsh -lc "sed -n '1,260p' native/host/src/bin/stage_render.rs" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+use glam::{EulerRot, Mat4, Quat};
+use mutracer_native_probe::api::{
+    Camera, ConvergeOptions, DisplaySettings, Engine, EngineOptions, Render, RenderSettings,
+    RenderSize, ToneMapping,
+};
+use mutracer_native_probe::scene_api::{ImportedScene, Light, Scene, Texture, TexturePixels};
+use serde_json::{Map, Value};
+use std::collections::HashMap;
+use std::fs;
+use std::path::{Path, PathBuf};
+
+type Result<T> = std::result::Result<T, String>;
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum CameraMode {
+    Matrix,
+    LookAt,
+}
+
+struct MaterialOverride {
+    name: String,
+    master: String,
+    color: Option<[f32; 3]>,
+    roughness: Option<f32>,
+    metalness: Option<f32>,
+    normal_scale: Option<f32>,
+    roughness_texture: Option<PathBuf>,
+    normal_texture: Option<PathBuf>,
+    basecolor_texture: Option<PathBuf>,
+}
+
+#[derive(Clone, Copy, Debug)]
+struct RenderJob {
+    width: u32,
+    height: u32,
+    samples: u32,
+    bounces: u32,
+    denoise: bool,
+    light_scale: f32,
+    timeout_ms: u64,
+}
+
+#[derive(Clone, Debug)]
+struct StageCamera {
+    camera: Camera,
+    display: DisplaySettings,
+}
+
+fn parse_args() -> Result<(Args, RenderJob)> {
+    let mut args = Args {
+        scene: PathBuf::new(),
+        out: PathBuf::new(),
+        view: None,
+        asset_map: None,
+        camera_target: "0,0,0".into(),
+        tone_mapping: "agx".into(),
+        camera_mode: CameraMode::Matrix,
+    };
+    let mut job = RenderJob {
+        width: 0,
+        height: 0,
+        samples: 32,
+        bounces: 3,
+        denoise: true,
+        light_scale: 1.,
+        timeout_ms: 600_000,
+    };
+    let values = std::env::args().skip(1).collect::<Vec<_>>();
+    let mut i = 0;
+    while i < values.len() {
+        let key = values[i].as_str();
+        let value = values.get(i + 1).map(String::as_str);
+        let next_value = value.ok_or_else(|| format!("{key} requires a value"))?;
+        i += 1;
+        match key {
+            "--scene" => args.scene = PathBuf::from(next_value),
+            "--out" => args.out = PathBuf::from(next_value),
+            "--view" => args.view = Some(next_value.to_string()),
+            "--asset-map" => args.asset_map = Some(PathBuf::from(next_value)),
+            "--camera-target" => args.camera_target = next_value.to_string(),
+            "--camera-mode" => {
+                args.camera_mode = match next_value {
+                    "matrix" => CameraMode::Matrix,
+                    "lookat" => CameraMode::LookAt,
+                    _ => return Err("--camera-mode must be matrix or lookat".into()),
+                }
+            }
+            "--tone-mapping" => args.tone_mapping = next_value.to_string(),
+            "--width" => job.width = parse_u32(value, "--width")?,
+            "--height" => job.height = parse_u32(value, "--height")?,
+            "--samples" => job.samples = parse_u32(value, "--samples")?,
+            "--bounces" => job.bounces = parse_u32(value, "--bounces")?,
+            "--denoise" => job.denoise = parse_bool(value, "--denoise")?,
+            "--light-scale" => job.light_scale = parse_f32(value, "--light-scale")?,
+            "--timeout-ms" => job.timeout_ms = parse_u64(value, "--timeout-ms")?,
+            _ => return Err(format!("unknown option {key}")),
+        }
+        i += 1;
+    }
+    if !args.scene.as_os_str().is_empty() && !args.out.as_os_str().is_empty() {
+        Ok((args, job))
+    } else {
+        Err("usage: mutracer-render --scene <task.json> --out <render.png> [options]".into())
+    }
+}
+
+struct Args {
+    scene: PathBuf,
+    out: PathBuf,
+    view: Option<String>,
+    asset_map: Option<PathBuf>,
+    camera_target: String,
+    camera_mode: CameraMode,
+    tone_mapping: String,
+}
+
+fn parse_u32(value: Option<&str>, name: &'static str) -> Result<u32> {
+    value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be an integer"))
+}
+
+fn parse_u64(value: Option<&str>, name: &'static str) -> Result<u64> {
+    value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be an integer"))
+}
+
+fn parse_f32(value: Option<&str>, name: &'static str) -> Result<f32> {
+    let value: f32 = value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be a number"))?;
+    value
+        .is_finite()
+        .then_some(value)
+        .ok_or_else(|| format!("{name} must be finite"))
+}
+
+fn parse_bool(value: Option<&str>, name: &'static str) -> Result<bool> {
+    match value.ok_or_else(|| format!("{name} requires a value"))? {
+        "1" | "true" => Ok(true),
+        "0" | "false" => Ok(false),
+        _ => Err(format!("{name} must be 0, 1, true or false")),
+    }
+}
+
+fn number(value: Option<&Value>, default: f32) -> f32 {
+    value
+        .and_then(Value::as_f64)
+        .map(|v| v as f32)
+        .unwrap_or(default)
+}
+
+fn vector(value: Option<&Value>, default: [f32; 3]) -> [f32; 3] {
+    let mut result = default;
+    if let Some(Value::Array(items)) = value {
+        for (slot, item) in result.iter_mut().zip(items) {
+            if let Some(number) = item.as_f64() {
+                *slot = number as f32;
+            }
+        }
+    }
+    result
+}
+
+fn local_matrix(entity: Option<&Value>) -> Mat4 {
+    let Some(entity) = entity else {
+        return Mat4::IDENTITY;
+    };
+    let source_translation = vector(entity.get("position"), [0.; 3]);
+    let translation = [
+        source_translation[0],
+        -source_translation[2],
+        source_translation[1],
+    ];
+    let scale = vector(entity.get("scale"), [1.; 3]);
+    let degrees = vector(entity.get("rotation_euler"), [0.; 3]);
+    let rotation = Quat::from_euler(
+        EulerRot::XYZ,
+        degrees[0].to_radians(),
+        degrees[1].to_radians(),
+        degrees[2].to_radians(),
+    );
+    Mat4::from_scale_rotation_translation(scale.into(), rotation, translation.into())
+}
+
+fn visible_mesh_transforms(scene: &Value) -> Vec<(String, Mat4)> {
+    let models = scene
+        .get("models")
+        .and_then(Value::as_object)
+        .cloned()
+        .unwrap_or_default();
+    let roots = models
+        .iter()
+        .filter(|(_, entity)| entity.get("type").and_then(Value::as_str) == Some("root"))
+        .map(|(id, _)| id.clone())
+        .collect::<Vec<_>>();
+    let mut transforms = Vec::new();
+    let mut visited = std::collections::BTreeSet::new();
+    for root in roots {
+        walk_model(
+            scene,
+            &models,
+            &root,
+            Mat4::IDENTITY,
+            &mut visited,
+            &mut transforms,
+        );
+    }
+    transforms
+}
+
+fn walk_model(
+    scene: &Value,
+    models: &Map<String, Value>,
+    id: &str,
+    parent: Mat4,
+    visited: &mut std::collections::BTreeSet<String>,
+    output: &mut Vec<(String, Mat4)>,
+) {
+    if !visited.insert(id.into()) {
+        return;
+    }
+    let Some(entity) = models.get(id) else { return };
+    if entity.get("is_visible").and_then(Value::as_bool) == Some(false) {
+        return;
+    }
+    let transform = parent * local_matrix(Some(entity));
+    if entity.get("type").and_then(Value::as_str) == Some("model") {
+        if let Some(mesh) = entity.get("mesh").and_then(Value::as_str) {
+            output.push((mesh.into(), transform));
+        }
+    }
+    for child in entity
+        .get("children")
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+    {
+        if let Some(child) = child.as_str() {
+            walk_model(scene, models, child, transform, visited, output);
+        }
+    }
+}
+
+fn mesh_url<'a>(scene: &'a Value, mesh_id: &'a str) -> Option<&'a str> {
+    scene
+        .get("meshes")
+        .and_then(Value::as_object)
+        .and_then(|meshes| meshes.get(mesh_id))
+        .and_then(|mesh| mesh.get("url"))
+        .and_then(Value::as_str)
+}
+
+fn load_texture(path: &Path, rgba32f: bool) -> Result<Texture> {
+    let image = image::open(path).map_err(|e| format!("Loading {}: {e}", path.display()))?;
+    if rgba32f {
+
+exec
+/bin/zsh -lc 'rg -n "local_matrix|LookAt|w_axis|camera" native/host/src/bin/stage_render.rs' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+17:    LookAt,
+45:    camera: Camera,
+55:        camera_target: "0,0,0".into(),
+57:        camera_mode: CameraMode::Matrix,
+80:            "--camera-target" => args.camera_target = next_value.to_string(),
+81:            "--camera-mode" => {
+82:                args.camera_mode = match next_value {
+84:                    "lookat" => CameraMode::LookAt,
+85:                    _ => return Err("--camera-mode must be matrix or lookat".into()),
+112:    camera_target: String,
+113:    camera_mode: CameraMode,
+169:fn local_matrix(entity: Option<&Value>) -> Mat4 {
+231:    let transform = parent * local_matrix(Some(entity));
+538:fn stage_camera(
+541:    camera_target: glam::Vec3,
+542:    camera_mode: CameraMode,
+544:    let cameras = scene.get("cameras").and_then(Value::as_object);
+546:        .and_then(|view| view.get("active_camera"))
+548:    let entity = cameras
+549:        .and_then(|cameras| active.and_then(|id| cameras.get(id)))
+551:            cameras.and_then(|cameras| {
+552:                cameras
+554:                    .find(|c| c.get("type").and_then(Value::as_str) == Some("camera"))
+557:    let entity = entity.ok_or("No camera entity found")?;
+558:    let settings = entity.get("camera").ok_or("Camera settings missing")?;
+573:    let mut camera = Camera::default();
+574:    camera.fov = fov_vertical.to_degrees();
+575:    camera.f_stop = if settings.get("dof").and_then(Value::as_bool) == Some(true) {
+580:    camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+581:    camera.world_matrix = match camera_mode {
+583:            let mut matrix = local_matrix(Some(entity));
+585:            matrix.w_axis = glam::Vec3::new(p[0], -p[2], p[1]).extend(1.);
+588:        CameraMode::LookAt => {
+595:            Mat4::look_at_rh(eye, camera_target, up).inverse()
+607:    Ok(StageCamera { camera, display })
+732:    let transform = parent * local_matrix(Some(entity));
+856:        .camera_target
+860:        .map_err(|_| "--camera-target must be x,y,z")?;
+861:    let camera_target = match target_parts[..] {
+863:        _ => return Err("--camera-target must contain three numbers".into()),
+866:    let mut camera = stage_camera(source, view.as_ref(), camera_target, args.camera_mode)?;
+867:    camera.display.tone_mapping = tone_mapping_from_arg(&args.tone_mapping)?;
+875:        .set_settings(camera.display)
+898:        camera: Some(camera.camera),
+
+exec
+/bin/zsh -lc "sed -n '520,615p' native/host/src/bin/stage_render.rs; sed -n '700,755p' native/host/src/bin/stage_render.rs" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+        .and_then(Value::as_array)
+        .map(|materials| {
+            materials
+                .iter()
+                .filter_map(Value::as_str)
+                .collect::<Vec<_>>()
+        })
+        .unwrap_or_default();
+    if material_ids.is_empty() {
+        return Ok(None);
+    }
+    let mut overrides = Vec::new();
+    for material_id in material_ids {
+        overrides.extend(material_override(scene, assets, material_id)?);
+    }
+    Ok((!overrides.is_empty()).then_some(overrides))
+}
+
+fn stage_camera(
+    scene: &Value,
+    view: Option<&Value>,
+    camera_target: glam::Vec3,
+    camera_mode: CameraMode,
+) -> Result<StageCamera> {
+    let cameras = scene.get("cameras").and_then(Value::as_object);
+    let active = view
+        .and_then(|view| view.get("active_camera"))
+        .and_then(Value::as_str);
+    let entity = cameras
+        .and_then(|cameras| active.and_then(|id| cameras.get(id)))
+        .or_else(|| {
+            cameras.and_then(|cameras| {
+                cameras
+                    .values()
+                    .find(|c| c.get("type").and_then(Value::as_str) == Some("camera"))
+            })
+        });
+    let entity = entity.ok_or("No camera entity found")?;
+    let settings = entity.get("camera").ok_or("Camera settings missing")?;
+    let width = entity
+        .get("frame_size")
+        .and_then(Value::as_array)
+        .and_then(|v| v.first())
+        .and_then(Value::as_f64)
+        .unwrap_or(1920.) as f32;
+    let height = entity
+        .get("frame_size")
+        .and_then(Value::as_array)
+        .and_then(|v| v.get(1))
+        .and_then(Value::as_f64)
+        .unwrap_or(1080.) as f32;
+    let fov_horizontal = number(settings.get("fov"), 45.).to_radians();
+    let fov_vertical = 2. * ((fov_horizontal / 2.).tan() * height / width).atan();
+    let mut camera = Camera::default();
+    camera.fov = fov_vertical.to_degrees();
+    camera.f_stop = if settings.get("dof").and_then(Value::as_bool) == Some(true) {
+        number(settings.get("aperture_fstop"), 0.)
+    } else {
+        0.
+    };
+    camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+    camera.world_matrix = match camera_mode {
+        CameraMode::Matrix => {
+            let mut matrix = local_matrix(Some(entity));
+            let p = vector(entity.get("position"), [0.; 3]);
+            matrix.w_axis = glam::Vec3::new(p[0], -p[2], p[1]).extend(1.);
+            matrix
+        }
+        CameraMode::LookAt => {
+            let p = vector(entity.get("position"), [0.; 3]);
+            let eye = glam::Vec3::new(p[0], -p[2], p[1]);
+            let mut up = glam::Vec3::Y;
+            if eye.normalize_or_zero().dot(up).abs() > 0.999 {
+                up = glam::Vec3::Z;
+            }
+            Mat4::look_at_rh(eye, camera_target, up).inverse()
+        }
+    }
+    .to_cols_array();
+
+    let post = settings.get("post_processing_settings");
+    let mut display = DisplaySettings::default();
+    display.tone_mapping = ToneMapping::Agx;
+    display.tone_mapping_exposure = number(post.and_then(|p| p.get("exposure")), 1.);
+    display.contrast = number(post.and_then(|p| p.get("contrast")), 1.);
+    display.saturation = number(post.and_then(|p| p.get("saturation")), 1.);
+    display.vignette = number(post.and_then(|p| p.get("vignette")), 0.).clamp(0., 1.);
+    Ok(StageCamera { camera, display })
+}
+
+fn add_environment(
+    scene: &mut Scene,
+    source: &Value,
+    view: Option<&Value>,
+    assets: &HashMap<String, String>,
+) -> Result<()> {
+    for root in roots {
+        walk_light(
+            scene,
+            &lights,
+            &root,
+            Mat4::IDENTITY,
+            view,
+            job,
+            &mut visited,
+        )?;
+    }
+    Ok(())
+}
+
+fn walk_light(
+    scene: &mut Scene,
+    lights: &Map<String, Value>,
+    id: &str,
+    parent: Mat4,
+    view: Option<&Value>,
+    job: RenderJob,
+    visited: &mut std::collections::BTreeSet<String>,
+) -> Result<()> {
+    if !visited.insert(id.into()) {
+        return Ok(());
+    }
+    let Some(entity) = lights.get(id) else {
+        return Ok(());
+    };
+    if entity.get("is_visible").and_then(Value::as_bool) == Some(false) {
+        return Ok(());
+    }
+    let transform = parent * local_matrix(Some(entity));
+    if entity.get("type").and_then(Value::as_str) == Some("light") {
+        let data = entity.get("light").ok_or("Light settings missing")?;
+        let color = vector(data.get("color"), [1.; 3]);
+        let intensity = number(data.get("power"), 0.) * job.light_scale;
+        let light = match data.get("type").and_then(Value::as_str) {
+            Some("area_light") => Light::Rect {
+                color,
+                intensity,
+                width: number(data.get("size_x"), 0.) / 100.,
+                height: number(data.get("size_z"), 0.) / 100.,
+                spread: 0.,
+                transform,
+                texture: None,
+            },
+            Some("point_light") => Light::Sphere {
+                color,
+                intensity,
+                radius: (number(data.get("radius"), 0.) / 100.).max(0.01),
+                transform,
+            },
+            Some("directional_light") => Light::Directional {
+                color,
+                intensity,
+
+Apply.
+codex
+The camera paths are isolated. I’m reverting the shared entity transform to stage-space identity, while preserving the explicit camera LookAt remap and removing the Matrix-mode translation overwrite.
+apply patch
+patch: completed
+/Users/wangjianzheng/Project/git/mutracer/native/host/src/bin/stage_render.rs
+diff --git a/native/host/src/bin/stage_render.rs b/native/host/src/bin/stage_render.rs
+index 5ba8eff6ece7fe4b6ce0e453313aac0e1892ad56..806c4ed6e3b87cc5ce3487399842d47fba3b08f9
+--- a/native/host/src/bin/stage_render.rs
++++ b/native/host/src/bin/stage_render.rs
+@@ -170,12 +170,7 @@
+     let Some(entity) = entity else {
+         return Mat4::IDENTITY;
+     };
+-    let source_translation = vector(entity.get("position"), [0.; 3]);
+-    let translation = [
+-        source_translation[0],
+-        -source_translation[2],
+-        source_translation[1],
+-    ];
++    let translation = vector(entity.get("position"), [0.; 3]);
+     let scale = vector(entity.get("scale"), [1.; 3]);
+     let degrees = vector(entity.get("rotation_euler"), [0.; 3]);
+     let rotation = Quat::from_euler(
+@@ -579,12 +574,7 @@
+     };
+     camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+     camera.world_matrix = match camera_mode {
+-        CameraMode::Matrix => {
+-            let mut matrix = local_matrix(Some(entity));
+-            let p = vector(entity.get("position"), [0.; 3]);
+-            matrix.w_axis = glam::Vec3::new(p[0], -p[2], p[1]).extend(1.);
+-            matrix
+-        }
++        CameraMode::Matrix => local_matrix(Some(entity)),
+         CameraMode::LookAt => {
+             let p = vector(entity.get("position"), [0.; 3]);
+             let eye = glam::Vec3::new(p[0], -p[2], p[1]);
+
+Now build release with env. Need know command. native CONTRIBUTING perhaps cargo build. User explicitly rebuild release mutracer-render. Locate binary. Run cargo build --release --bin mutracer-render env. Ensure only file changed.
+codex
+The code change is in place. Next I’m rebuilding `mutracer-render` in release mode using the frozen AOT archive.
+exec
+/bin/zsh -lc 'MUTRACER_AOT_ARCHIVE=/Users/wangjianzheng/Project/git/mutracer/.native-build/scene-core/render-core.lib.a cargo build --release --bin mutracer-render' in /Users/wangjianzheng/Project/git/mutracer/native
+ exited 101 in 0ms:
+error: could not find `Cargo.toml` in `/Users/wangjianzheng/Project/git/mutracer/native` or any parent directory
+
+Native host likely native/host. Build there.
+codex
+The Rust workspace lives under `native/host`, not `native`. I’m rerunning the same release build from that directory.
+exec
+/bin/zsh -lc 'MUTRACER_AOT_ARCHIVE=/Users/wangjianzheng/Project/git/mutracer/.native-build/scene-core/render-core.lib.a cargo build --release --bin mutracer-render' in /Users/wangjianzheng/Project/git/mutracer/native/host
+ succeeded in 2697ms:
+   Compiling mutracer-native-probe v0.0.0 (/Users/wangjianzheng/Project/git/mutracer/native/host)
+    Finished `release` profile [optimized] target(s) in 2.79s
+
+Need poll.
+2026-11-09T07:09:40.618709Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://mcp.figma.com/mcp)")))
+Need verify diff, binary path/timestamp maybe cargo build. Also requirement only file modified. git diff.
+codex
+Release build succeeded. I’m doing a final diff and artifact check, without rendering.
+exec
+/bin/zsh -lc 'git diff -- native/host/src/bin/stage_render.rs && git status --short && ls -l native/host/target/release/mutracer-render' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+ M native/host/Cargo.lock
+ M native/host/Cargo.toml
+?? docs/technical/editor-parity.md
+?? native/host/src/bin/
+?? tools/cloud-relay.py
+?? tools/cloud-service/
+-rwxr-xr-x@ 1 wangjianzheng  staff  18860016 Nov  9 15:09 native/host/target/release/mutracer-render
+
+Interesting git status existing untracked etc. Only our change in untracked bin, cannot diff. Cargo.lock/toml preexisting. Fine. Need maybe git diff --no-index? User asked only. Build succeeded. Could inspect file lines. Ensure current. We need final concise, mention build artifact. Maybe no tests. Need line references. Get lines.
+exec
+/bin/zsh -lc 'rg -n "let translation|CameraMode::Matrix|CameraMode::LookAt" native/host/src/bin/stage_render.rs' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+57:        camera_mode: CameraMode::Matrix,
+83:                    "matrix" => CameraMode::Matrix,
+84:                    "lookat" => CameraMode::LookAt,
+173:    let translation = vector(entity.get("position"), [0.; 3]);
+577:        CameraMode::Matrix => local_matrix(Some(entity)),
+578:        CameraMode::LookAt => {
+
+codex
+Fixed in `native/host/src/bin/stage_render.rs:173`:
+
+- Entity transforms now use positions as-is, preserving scale and `EulerRot::XYZ`.
+- Camera Matrix mode uses `local_matrix` without overwriting `w_axis`.
+- Camera LookAt mode still remaps `(x, -z, y)`.
+- Rebuilt `native/host/target/release/mutracer-render` with `MUTRACER_AOT_ARCHIVE=/Users/wangjianzheng/Project/git/mutracer/.native-build/scene-core/render-core.lib.a`.
+- Did not run Metal render or push.
+tokens used
+52,910
+Fixed in `native/host/src/bin/stage_render.rs:173`:
+
+- Entity transforms now use positions as-is, preserving scale and `EulerRot::XYZ`.
+- Camera Matrix mode uses `local_matrix` without overwriting `w_axis`.
+- Camera LookAt mode still remaps `(x, -z, y)`.
+- Rebuilt `native/host/target/release/mutracer-render` with `MUTRACER_AOT_ARCHIVE=/Users/wangjianzheng/Project/git/mutracer/.native-build/scene-core/render-core.lib.a`.
+- Did not run Metal render or push.

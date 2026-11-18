@@ -1,0 +1,20 @@
+{
+  "task_id": "0cb6bd41-3c9c-41da-b8e3-38112026f11a",
+  "task_name": "Leader欧近一体烟机场景渲染0605白.fbx-[单品渲染] - 副本_06131428",
+  "view_id": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+  "view_name": "Front",
+  "active_camera": "858db55c-ec03-4fa6-9ec4-948a6df1ea33",
+  "n_meshes_total": 25,
+  "n_visible_mesh_ids": 20,
+  "n_invisible_mesh_ids": 0,
+  "assets_mapped": 26,
+  "missing_mesh_urls": [],
+  "n_missing": 0,
+  "skipped_invisible_urls": [],
+  "env_url": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr",
+  "env_missing": null,
+  "hit_rate_visible_meshes": 1.25,
+  "scene_path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/stage-real-scene_snapshot.json",
+  "assets_path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/stage-real-assets.json",
+  "env_local_path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/hdri/brown_photostudio_02_2k.exr"
+}

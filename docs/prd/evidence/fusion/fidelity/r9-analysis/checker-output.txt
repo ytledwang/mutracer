@@ -1,0 +1,7 @@
+PASS: r9 analysis artifacts present and internally consistent
+look_down_deg=30.0
+gold_bbox={'x0': 72, 'x1': 1846, 'y0': 311, 'y1': 846, 'w': 1775, 'h': 536}
+r8_bbox={'x0': 73, 'x1': 1845, 'y0': 370, 'y1': 845, 'w': 1773, 'h': 476}
+RectLight24_delta_m=6.593389
+total_cycles_W_mapped=0.532339
+status PASS

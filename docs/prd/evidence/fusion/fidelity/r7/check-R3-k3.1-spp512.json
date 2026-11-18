@@ -1,0 +1,27 @@
+{
+ "candidate": "docs/prd/evidence/fusion/fidelity/r7/render-R3-k3.1-spp512.png",
+ "baseline_r2": {
+  "mae": 12.7765,
+  "mae_fg": 34.4164,
+  "ssim": 0.921622
+ },
+ "metrics": {
+  "mae": 5.0456,
+  "mae_fg": 19.8067,
+  "ssim": 0.960461,
+  "d_lum_fg": 2.464
+ },
+ "best_previous": {
+  "mae": 5.0454,
+  "mae_fg": 19.8068,
+  "ssim": 0.960352,
+  "d_lum_fg": 2.477
+ },
+ "must_beat": {
+  "mae": 5.0454,
+  "mae_fg": 19.8068,
+  "ssim": 0.960352
+ },
+ "status": "NOT_IMPROVED",
+ "reason": "diff vs gold not reduced: {'mae': 5.0456, 'mae_fg': 19.8067, 'ssim': 0.960461, 'd_lum_fg': 2.464} vs {'mae': 5.0454, 'mae_fg': 19.8068, 'ssim': 0.960352}"
+}

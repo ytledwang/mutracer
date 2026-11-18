@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2/f2-realtime-after-template-canvas-r2.png",
+    "width": 768,
+    "height": 832,
+    "mean": 232.54344177246094,
+    "lum_mean": 232.54342651367188,
+    "lum_std": 50.44095230102539,
+    "lum_median": 255.0,
+    "foreground_ratio": 1.0,
+    "unique_lum_bins": 32,
+    "row_std": 31.16037940979004,
+    "col_std": 24.389163970947266,
+    "sha256": "92b7cca8bb67bd1afe9bb93ab1b72ffeca0643c8d6bc4705590e75fcfb005fd0",
+    "visible": true
+  }
+]

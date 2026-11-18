@@ -1,0 +1,103 @@
+{
+  "regions": {
+    "door_edge_left": {
+      "final_rgb": [
+        1.6,
+        1.7,
+        1.9
+      ],
+      "ref_rgb": [
+        57.6,
+        53.3,
+        53.1
+      ],
+      "abs_delta": [
+        56.0,
+        51.6,
+        51.2
+      ],
+      "abs_delta_mean": 52.9
+    },
+    "door_edge_right": {
+      "final_rgb": [
+        38.2,
+        38.3,
+        39.0
+      ],
+      "ref_rgb": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "abs_delta": [
+        38.1,
+        38.2,
+        38.9
+      ],
+      "abs_delta_mean": 38.4
+    },
+    "drawer_upper_left": {
+      "final_rgb": [
+        217.2,
+        217.3,
+        216.9
+      ],
+      "ref_rgb": [
+        236.2,
+        235.8,
+        234.9
+      ],
+      "abs_delta": [
+        19.0,
+        18.5,
+        18.0
+      ],
+      "abs_delta_mean": 18.5
+    },
+    "drawer_bottom": {
+      "final_rgb": [
+        217.9,
+        218.0,
+        217.5
+      ],
+      "ref_rgb": [
+        232.2,
+        231.7,
+        230.6
+      ],
+      "abs_delta": [
+        14.4,
+        13.7,
+        13.1
+      ],
+      "abs_delta_mean": 13.7
+    },
+    "body_mid_band": {
+      "final_rgb": [
+        127.2,
+        125.9,
+        123.8
+      ],
+      "ref_rgb": [
+        148.7,
+        144.1,
+        141.0
+      ],
+      "abs_delta": [
+        21.5,
+        18.1,
+        17.2
+      ],
+      "abs_delta_mean": 18.9
+    }
+  },
+  "silhouette_iou_mask_final_vs_ref": 0.758657170480833,
+  "brightness_std": {
+    "preview": 43.95640369408526,
+    "final": 51.77147012668624,
+    "ref": 43.171281495281974
+  },
+  "silhouette_iou_preview_vs_ref": 0.6255560085321374,
+  "silhouette_iou_final_vs_ref": 0.6720871243649723,
+  "threshold": 16
+}

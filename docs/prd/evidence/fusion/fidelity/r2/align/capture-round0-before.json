@@ -1,0 +1,34 @@
+{
+  "file": "docs/prd/evidence/fusion/fidelity/r2/align/realtime-round0-before.png",
+  "box": {
+    "x": 268,
+    "y": 265,
+    "width": 928,
+    "height": 522
+  },
+  "camera": {
+    "name": "Front",
+    "index": 3,
+    "position": [
+      -0.044187347352404156,
+      -5.275117341991916,
+      -0.022844557140491273
+    ],
+    "target": [
+      5.551115123125783e-17,
+      0.4693341005431462,
+      0
+    ],
+    "fov": 35,
+    "aspect": 1.7777777777777777
+  },
+  "viewId": "1c4a3883-8668-4c16-a10e-0b7c24272279",
+  "viewMode": "realtime",
+  "applied": {
+    "ok": true,
+    "replaceId": "c83a2f4a-0a3d-4494-8da9-37e6ca6943a7",
+    "preferredViewId": "1c4a3883-8668-4c16-a10e-0b7c24272279",
+    "note": "官方壳 RF_Kitchen_0302 / ccdaa114 不在本机；厨房 mesh 已隐藏。"
+  },
+  "errors": []
+}

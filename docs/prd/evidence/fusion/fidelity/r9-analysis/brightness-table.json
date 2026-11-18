@@ -1,0 +1,223 @@
+{
+  "locked_flags": "--env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --skylight-scale 3.1 --white-sky-scale 0 --light-units candela; hdri-angle=task.hdri_angle-90",
+  "k": 3.1,
+  "k_source": "empirical r7 R1 on 329c (env 4, sky 0.35, no lights, ev 0.8); not a derived unit conversion",
+  "ue55_post": "doc-sourced: 2^ev/1.2 then AP1 grading then blue correction 0.6 then UE filmic (slope 0.88, toe 0.55, shoulder 0.26, white clip 0.04) then sRGB. Same path on all 5; not re-verified vs engine source this pass.",
+  "white_path": "MuTracer --white-sky-scale 0: camera rays see white via alpha; lighting is EXR * skylight * 3.1. UE SetEnvironmentSettings white: skybox mesh VISIBLE with /Game/Blueprints/Assets/White.White and HDRI_Brightness (stove=100); SkyLight visible, intensity=skylight_intensity (stove=0), cubemap=settings.image.",
+  "rows": [
+    {
+      "task": "329c202e",
+      "product": "冰箱体",
+      "view": "Front 298cfe60",
+      "env_name": "4",
+      "background_type": "white",
+      "hdri": "4.exr",
+      "hdri_brightness": 10,
+      "skylight_intensity": 0.35,
+      "k_applied": 3.1,
+      "skylight_times_k": 1.085,
+      "hdri_angle_task": 182.9,
+      "hdri_angle_applied": 92.9,
+      "white_sky_scale": 0,
+      "light_count_visible": 0,
+      "light_hierarchy_depth": null,
+      "lights_raw": [],
+      "candela_mapped_W_total": 0.0,
+      "ev": 0.8,
+      "ev_linear_2_pow_ev": 1.7411,
+      "gamma": 0.9,
+      "contrast": 1.2,
+      "saturation": 0.8,
+      "mae": 5.0454,
+      "mae_fg": 19.8068,
+      "ssim": 0.960352,
+      "d_lum_fg": 2.477,
+      "visual": "close (calibration case)",
+      "brightness_role": "k=3.1 was fitted here: sky 0.35, no lights, ev 0.8, env 4"
+    },
+    {
+      "task": "2aa0b2f5",
+      "product": "冰箱体",
+      "view": "3c697acc",
+      "env_name": "16",
+      "background_type": "hdri",
+      "hdri": "16.exr",
+      "hdri_brightness": 100,
+      "skylight_intensity": 0.35,
+      "k_applied": 3.1,
+      "skylight_times_k": 1.085,
+      "hdri_angle_task": 10.2,
+      "hdri_angle_applied": -79.8,
+      "white_sky_scale": 0,
+      "light_count_visible": 2,
+      "light_hierarchy_depth": 1,
+      "lights_raw": [
+        {
+          "name": "面光源",
+          "type": "area_light",
+          "power": 0.5,
+          "size_cm": [
+            64,
+            233.87
+          ]
+        },
+        {
+          "name": "面光源",
+          "type": "area_light",
+          "power": 0.6,
+          "size_cm": [
+            64,
+            64
+          ]
+        }
+      ],
+      "candela_mapped_W_total": 0.00506,
+      "ev": 1.089,
+      "ev_linear_2_pow_ev": 2.1273,
+      "gamma": 0.742,
+      "contrast": 1.29,
+      "saturation": 0.8,
+      "mae": 19.4896,
+      "mae_fg": 57.4812,
+      "ssim": 0.924056,
+      "d_lum_fg": 54.235,
+      "visual": "too bright",
+      "brightness_role": "same sky 0.35*k=3.1 as 329c but env 16 + ev 1.089 + 2 lights; k does not transfer across environments"
+    },
+    {
+      "task": "2425a469",
+      "product": "枕头",
+      "view": "Front 298cfe60",
+      "env_name": "布朗摄影工作室",
+      "background_type": "white",
+      "hdri": "brown_photostudio_02_2k.exr",
+      "hdri_brightness": 100,
+      "skylight_intensity": 1.0,
+      "k_applied": 3.1,
+      "skylight_times_k": 3.1,
+      "hdri_angle_task": 0,
+      "hdri_angle_applied": -90.0,
+      "white_sky_scale": 0,
+      "light_count_visible": 2,
+      "light_hierarchy_depth": 1,
+      "lights_raw": [
+        {
+          "name": "面光源",
+          "type": "area_light",
+          "power": 0.1,
+          "size_cm": [
+            64,
+            64
+          ]
+        },
+        {
+          "name": "面光源-复制",
+          "type": "area_light",
+          "power": 2.5,
+          "size_cm": [
+            88.71,
+            137.1
+          ]
+        }
+      ],
+      "candela_mapped_W_total": 0.011959,
+      "ev": 2.056,
+      "ev_linear_2_pow_ev": 4.1583,
+      "gamma": 0.9,
+      "contrast": 1.202,
+      "saturation": 0.8,
+      "mae": 9.5753,
+      "mae_fg": 26.5857,
+      "ssim": 0.943861,
+      "d_lum_fg": 26.731,
+      "visual": "clipped to white",
+      "brightness_role": "sky 1.0*3.1 and ev 2.056 (2^2.056≈4.158) on white fabric; lights mapped only ~0.012 W if candela photometry holds"
+    },
+    {
+      "task": "00ac0cff",
+      "product": "灶机",
+      "view": "前视图 3c8d747b",
+      "env_name": "白背景",
+      "background_type": "white",
+      "hdri": "official_asset/template/Product_ZJG_5cam/textures/White.exr",
+      "hdri_brightness": 100,
+      "skylight_intensity": 0,
+      "k_applied": 3.1,
+      "skylight_times_k": 0.0,
+      "hdri_angle_task": 0,
+      "hdri_angle_applied": -90.0,
+      "white_sky_scale": 0,
+      "light_count_visible": 13,
+      "light_hierarchy_depth": 2,
+      "lights_raw": "13 lights in 3 identity groups; see lights.json",
+      "candela_mapped_W_total": 0.532339,
+      "ev": 1.0,
+      "ev_linear_2_pow_ev": 2.0,
+      "gamma": 1.0,
+      "contrast": 1.1,
+      "saturation": 1.2,
+      "mae": 32.3524,
+      "mae_fg": 87.6523,
+      "ssim": 0.645989,
+      "d_lum_fg": -61.025,
+      "visual": "too dark; silhouette width matches, top unlit, left grate missing",
+      "brightness_role": "skylight 0 and white-sky-scale 0 => no env light; only 13 lights, misplaced by parent-compose bug, mapped total ~0.532 W"
+    },
+    {
+      "task": "55cc8c05",
+      "product": "烟机",
+      "view": "Front 298cfe60",
+      "env_name": "布朗摄影工作室",
+      "background_type": "white",
+      "hdri": "brown_photostudio_02_2k.exr",
+      "hdri_brightness": 1,
+      "skylight_intensity": 0.7,
+      "k_applied": 3.1,
+      "skylight_times_k": 2.17,
+      "hdri_angle_task": 63.9,
+      "hdri_angle_applied": -26.1,
+      "white_sky_scale": 0,
+      "light_count_visible": 5,
+      "light_hierarchy_depth": 1,
+      "lights_raw": [
+        {
+          "name": "面光源",
+          "type": "area_light",
+          "power": 0.5
+        },
+        {
+          "name": "直射光",
+          "type": "directional_light",
+          "power": 1
+        },
+        {
+          "name": "面光源-复制",
+          "type": "area_light",
+          "power": 1
+        },
+        {
+          "name": "面光源-复制",
+          "type": "area_light",
+          "power": 1
+        },
+        {
+          "name": "面光源",
+          "type": "area_light",
+          "power": 0.3
+        }
+      ],
+      "candela_mapped_W_total": 1.012879,
+      "ev": 0.363,
+      "ev_linear_2_pow_ev": 1.2861,
+      "gamma": 0.766,
+      "contrast": 1.169,
+      "saturation": 0.903,
+      "mae": 12.0891,
+      "mae_fg": 39.8915,
+      "ssim": 0.948577,
+      "d_lum_fg": 28.073,
+      "visual": "silhouette close, too bright, decals missing",
+      "brightness_role": "sky 0.7*3.1 with ev 0.363; k again applied outside the calibration sky 0.35"
+    }
+  ]
+}

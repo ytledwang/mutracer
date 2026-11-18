@@ -1,0 +1,67 @@
+{
+  "camera": {
+    "view_id": "1c4a3883-8668-4c16-a10e-0b7c24272279",
+    "name": "Front",
+    "why": "Frames the whole fridge with doors open and matches the local 可影 1.0 Front reference fridge-ref-front-329c. 新视图-3 (ab38eaf9) is a tight door-gap close-up and was not used."
+  },
+  "common_params": {
+    "spp": 128,
+    "denoise": 1,
+    "width": 1920,
+    "height": 1080,
+    "hdri": "brown_photostudio_02_2k.exr",
+    "hdri_path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/assets/official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr",
+    "scene": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/scene-override.json",
+    "asset_map": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-assets.json",
+    "engine": "Blender 5.1.1 Cycles METAL",
+    "submit_path": "tools/dual-track/blender/run_blender_final.py -> blender_inner.py",
+    "background": "white studio for camera rays; HDRI on non-camera rays",
+    "default_view_transform_unchanged": "Standard"
+  },
+  "renders": [
+    {
+      "png": "render-Front-1c4a3883-standard-spp128-1920x1080.png",
+      "log": "render-Front-1c4a3883-standard-spp128-1920x1080.log",
+      "sha256": "render-Front-1c4a3883-standard-spp128-1920x1080.png.sha256",
+      "view_transform": "Standard",
+      "wall_clock_s": 40.8,
+      "blender_render_s": 39.87,
+      "start": "2026-11-11 16:33:15 +0800 (Asia/Shanghai)",
+      "end": "2026-11-11 16:33:55 +0800 (Asia/Shanghai)",
+      "exit": 0,
+      "sha256_hex": "31a8b172c6fee2f6a3f86915200aaa475bf60c0b6f3698b77e7132b19c03fe62"
+    },
+    {
+      "png": "render-Front-1c4a3883-agx-spp128-1920x1080.png",
+      "log": "render-Front-1c4a3883-agx-spp128-1920x1080.log",
+      "sha256": "render-Front-1c4a3883-agx-spp128-1920x1080.png.sha256",
+      "view_transform": "AgX",
+      "note": "override only; blender_inner.py default remains Standard",
+      "wall_clock_s": 38.44,
+      "blender_render_s": 37.834,
+      "start": "2026-11-11 16:34:53 +0800 (Asia/Shanghai)",
+      "end": "2026-11-11 16:35:31 +0800 (Asia/Shanghai)",
+      "exit": 0,
+      "sha256_hex": "c007635cdd11e15a5a30223a94228f306184f53ca893cc8143d129ae0d880db4"
+    }
+  ],
+  "reference": {
+    "png": "reference-fridge-ref-front-329c.png",
+    "preview": "reference-fridge-ref-front-329c-1024.png",
+    "origin": "Already on this Mac mini at tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c.png (and -1024.png). Used as the Front gold reference in the fridge POC (arch-run-summary.md --ref). 8K white-studio product render of the same fridge. Copied into this folder this turn; official COS bucket was not pulled and nothing was downloaded.",
+    "sha256_hex": "d81538fb4d1fc14f6e07744ab27c4f4dcb700dd3da650f70fdfdb65079a5bd35",
+    "preview_sha256_hex": "e117b59af9d2d46b23eb183744910dfe6a69790a4fc2e8baadd887468b912481"
+  },
+  "comparison": "comparison-ref-standard-agx.png",
+  "comparison_sha256_hex": "d7899cc10710dac5c289f1062a3e046f4c00777455e71adf56260f95258b1589",
+  "conclusion": "周五 demo 的偏灰主要来自参数（spp 4、无降噪、640×360，且 Front 未挂上环境所以没有 HDRI），把采样提到 spp 128 并开降噪、输出 1920×1080、挂上本机 brown_photostudio_02_2k 后，Standard 已明显去噪提亮、白棚贴近 1.0 参照，但内胆和抽屉仍缺少 1.0 的暖色层次与材质细节，AgX 反而把纯白底压成浅灰，剩余差距主要在材质/光照还原（含 105 张官方壳贴图缺失）而非再堆采样或改色彩管理。",
+  "demo_baseline": {
+    "png": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/final-Front-1c4a3883.png",
+    "spp": 4,
+    "denoise": 0,
+    "width": 640,
+    "height": 360,
+    "hdri": "none (view 1c4a3883 had empty active_environment; texture White.exr from official kitchen shell was not in the asset map)",
+    "blender_render_s": 24.486
+  }
+}

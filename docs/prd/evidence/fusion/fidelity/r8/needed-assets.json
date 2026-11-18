@@ -1,0 +1,459 @@
+{
+ "host": "http://10.160.9.143:8000",
+ "n_needed": 61,
+ "n_fetched": 61,
+ "n_already_local": 0,
+ "n_failed": 0,
+ "customer_allowlist": [
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/06a71876-4c39-4d66-a66a-b13cb52e7bc3.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/098c71d1-71cd-486f-973b-4b92ec8cf975.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/0de1de51-9bbf-47b5-9ce1-28927161171f.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/1ca27801-9cd2-46dc-99e4-0d33073b6509.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4366169a-edaf-4839-93e5-d302d6b201a9.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4f082bb7-97ec-43b6-b2e2-da6207233e4f.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/5046f278-5d82-45c0-a2eb-0eb94c749f91.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/5f2253e4-da24-4881-aade-a0483f8c3349.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/63618d12-bf67-4cb2-904d-fbde9f9a172a.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/65751d9b-fccb-4671-92a9-e87a487dca02.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/7558620e-b608-4cf2-9c1e-a3429d976b7f.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/75d8bb48-1ec6-4176-98f9-b1c3bb4e5914.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/8839ce32-fe87-42d9-91dc-9e0c2afa6ab6.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/9089c078-5877-4a4d-8c24-63810f0f5ec6.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/960905e7-19c7-470c-a1ca-a9d441dd780c.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/af75fb13-155e-4987-ba86-a652a5451f66.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/c4f5e7b7-0a79-4164-a4e7-9b8396e0d17b.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/cc189264-edfd-4687-8be5-44021ff9df47.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/ce56a775-1491-4f56-990d-106a5037e05e.glb",
+  "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/df719308-14ee-4ba0-b148-2b30d40275f4.glb",
+  "customer_asset/1420cf60-cf8a-4445-94a6-a6f6fb1c00f9/models/b2257a9a-761f-4522-ae54-3ff96a848cae.glb"
+ ],
+ "results": [
+  {
+   "key": "customer_asset/1420cf60-cf8a-4445-94a6-a6f6fb1c00f9/models/b2257a9a-761f-4522-ae54-3ff96a848cae.glb",
+   "status": "OK",
+   "bytes": 42034812,
+   "sha256": "f43be93d96dfe42881af1bcb0d7f563b5c6456f0246b5b0ab8b0ab074af8d6cd",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/1420cf60-cf8a-4445-94a6-a6f6fb1c00f9/models/b2257a9a-761f-4522-ae54-3ff96a848cae.glb"
+  },
+  {
+   "key": "official_asset/material/3143c322-4a04-4e5e-8ac1-22449517e438/textures/T_HerringboneChecker_BC.png",
+   "status": "OK",
+   "bytes": 1279480,
+   "sha256": "083ced70b2883555fbc79f7008af1cdccc1a9775738f117653dda0d323bdee2f",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/material/3143c322-4a04-4e5e-8ac1-22449517e438/textures/T_HerringboneChecker_BC.png"
+  },
+  {
+   "key": "official_asset/material/3143c322-4a04-4e5e-8ac1-22449517e438/textures/T_HerringboneChecker_N.png",
+   "status": "OK",
+   "bytes": 7049157,
+   "sha256": "da7caa9b544989cde21db9f9aecb4eb12d2d3236980a485a350f8bf8d953fdba",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/material/3143c322-4a04-4e5e-8ac1-22449517e438/textures/T_HerringboneChecker_N.png"
+  },
+  {
+   "key": "official_asset/material/3143c322-4a04-4e5e-8ac1-22449517e438/textures/T_HerringboneChecker_R.png",
+   "status": "OK",
+   "bytes": 864965,
+   "sha256": "7c51e1701a7c281d077079c2fb4c3d3346a1bf6cdd9ab5d7e20a081edef93930",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/material/3143c322-4a04-4e5e-8ac1-22449517e438/textures/T_HerringboneChecker_R.png"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/dike.glb",
+   "status": "OK",
+   "bytes": 22674348,
+   "sha256": "85ec8ea6c2c577aa11a695907ad74146bdf925b0be6400fe1422764c7a55553c",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/dike.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/xianshi.glb",
+   "status": "OK",
+   "bytes": 1736,
+   "sha256": "6025916b6e6c5754b6fcb83bfe61fccbffe8cf53cd90d7f34b2dae25932dd5fb",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/xianshi.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_001.glb",
+   "status": "OK",
+   "bytes": 38464,
+   "sha256": "4f7eeb705001daa1c6f8c2a7247505c8410a4460f0df09ad2778ae9a3a722ef0",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbiananniu_001.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_003.glb",
+   "status": "OK",
+   "bytes": 11604,
+   "sha256": "86e83c8a382c3a7a44e7580427dcb38ca36647137093d467e6799c4a52e4d09e",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbiananniu_003.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_19.glb",
+   "status": "OK",
+   "bytes": 173496,
+   "sha256": "03432f49692c5ce9fa561bc80b007f8282da18d21b70c93833b8917b39c3e510",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbiananniu_19.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_23.glb",
+   "status": "OK",
+   "bytes": 9136,
+   "sha256": "9056be7a6fe604d5317f4c05d6fefd4ec31552a1103b64ab70cfa817b0ea0aba",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbiananniu_23.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_24.glb",
+   "status": "OK",
+   "bytes": 505732,
+   "sha256": "aceb73cb05a5b67d0dfbc1428da6fc77471ea521fe2cd8f30c440620ea111d19",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbiananniu_24.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_28.glb",
+   "status": "OK",
+   "bytes": 213624,
+   "sha256": "00f08b0b01ef1e268a0bb192c9327120d4238087fb921108967ad9c71ed4f67c",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbiananniu_28.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_3.glb",
+   "status": "OK",
+   "bytes": 204124,
+   "sha256": "4d3357a2cc6061c5426ca4652074a9036311d72744902ac4afd67ab6c93c9748",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbiananniu_3.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_12.glb",
+   "status": "OK",
+   "bytes": 336720,
+   "sha256": "740e51a3b49b596697489ff1bce9c1cca65eccfdee42502b7ae743ee37a6454b",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbinzaomian_12.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_13.glb",
+   "status": "OK",
+   "bytes": 3079156,
+   "sha256": "8fe07cf13f7c73629aa8a6643ffd5efc145b3a6ecbad9aa7d5dc7c275d3592f5",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbinzaomian_13.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_18.glb",
+   "status": "OK",
+   "bytes": 1793132,
+   "sha256": "0169876fab6faddbdfe39ca47ccef4d04fc553b679aa9d7b8611481f8fbd209b",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbinzaomian_18.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_26.glb",
+   "status": "OK",
+   "bytes": 2584864,
+   "sha256": "cd009d217ed38048059caba9d843367e546f8e0fa988cf575f9c4ad6fcb00e24",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbinzaomian_26.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_7.glb",
+   "status": "OK",
+   "bytes": 6666236,
+   "sha256": "675b36d67bceafdd8eaf6cab0f71a0c05a3be1bf4075f508f4db80d9790a834f",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youbinzaomian_7.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/youcetiezhi.glb",
+   "status": "OK",
+   "bytes": 1768,
+   "sha256": "1de3c6350dd7c0f743916487a6486f20fa5641eb8ef3fbf1d86b7445f574a8ed",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/youcetiezhi.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zaojumian.glb",
+   "status": "OK",
+   "bytes": 289656,
+   "sha256": "efa8e6fcc4c760cad08967f30ed489f0c701931766c824e2bc2bf4535dc548b0",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zaojumian.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zaojuqian.glb",
+   "status": "OK",
+   "bytes": 75840,
+   "sha256": "95977ef380ac4553c9f2a62c7042bb0db22de127017cdd2687a027fd98bb7ee3",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zaojuqian.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zaomianxia.glb",
+   "status": "OK",
+   "bytes": 368720,
+   "sha256": "8d1c2bc039e4b400f3eb46dbdddd68d627f43849ae4f1d085472236ec0718da3",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zaomianxia.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_1.glb",
+   "status": "OK",
+   "bytes": 9232,
+   "sha256": "379541e8d36fd380a81ee78e6ba3db836e5be3cf78810aa544922eeba7b32e79",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuobiananniu_1.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_11.glb",
+   "status": "OK",
+   "bytes": 174024,
+   "sha256": "a4717079ef1c575eb62c378b753127d5b2125b129f4a2c82afe6de7a076cc315",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuobiananniu_11.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_22.glb",
+   "status": "OK",
+   "bytes": 507076,
+   "sha256": "36724ab099c92ff10999361735fd383a5aaa1f7e0e9f2459bb594e9b02b52d8e",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuobiananniu_22.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_27.glb",
+   "status": "OK",
+   "bytes": 213808,
+   "sha256": "55aa39d70dc5a6478fe6c67e4b1e454d3c448442a0690a041f35ad0b4ecda185",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuobiananniu_27.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_28.glb",
+   "status": "OK",
+   "bytes": 11604,
+   "sha256": "86e83c8a382c3a7a44e7580427dcb38ca36647137093d467e6799c4a52e4d09e",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuobiananniu_28.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_8.glb",
+   "status": "OK",
+   "bytes": 204172,
+   "sha256": "2e7fe5c938b0db61e36024cb9d2ac1d21f0608a98d9a4707167559041be3f6a8",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuobiananniu_8.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_5.glb",
+   "status": "OK",
+   "bytes": 129360,
+   "sha256": "78af56d8087b1d06b96ff840bdb6eb7a09422a4aa547ab40cafde36b3287c157",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_5.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_9.glb",
+   "status": "OK",
+   "bytes": 3083572,
+   "sha256": "b6be1b52ef231de6681b3fb18ffee524508121cc243e39a8c6f7f278de94cc93",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_9.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/models/zuocetiezhi.glb",
+   "status": "OK",
+   "bytes": 1768,
+   "sha256": "1de3c6350dd7c0f743916487a6486f20fa5641eb8ef3fbf1d86b7445f574a8ed",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/models/zuocetiezhi.glb"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Lines_N.exr",
+   "status": "OK",
+   "bytes": 1401562,
+   "sha256": "ec3cd6fe9e28d019816ee0c8671cbc03c0f8b66ae4ab6013654116c716eec7ce",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Lines_N.exr"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Lines_R.exr",
+   "status": "OK",
+   "bytes": 642220,
+   "sha256": "96aad45673585dd098a25d39c55d8c6068dda94e98b436c045028cdcf97ca937",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Lines_R.exr"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Wear03_R.exr",
+   "status": "OK",
+   "bytes": 1357375,
+   "sha256": "f304ad5e77bb39b7528596448e1d8b1465e351e8b8708fdd95587378a8b03e7b",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Wear03_R.exr"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/T_Metal_Painted_R.png",
+   "status": "OK",
+   "bytes": 687622,
+   "sha256": "debb939230f0b425d295fbc483e3e1e4002191e6e247789db1cfc46ff0f32262",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/T_Metal_Painted_R.png"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/T_White_Color.png",
+   "status": "OK",
+   "bytes": 68,
+   "sha256": "d696c23294fd32e66ba90f76d8080d3820bfec006c87e33f061f03df3cc680d1",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/T_White_Color.png"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/White.exr",
+   "status": "OK",
+   "bytes": 2781,
+   "sha256": "394ec4379433c2bf8ece2e20da9f9af14ebe265eb87d12ca6310d6ea7cb957b4",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/White.exr"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/XYJHW10x_diff.png",
+   "status": "OK",
+   "bytes": 3304782,
+   "sha256": "1e744beec5aba8c70d06af172ff6feff509ad99f5d7756ce3b1649daab49167b",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/XYJHW10x_diff.png"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/ZT_UI_A.png",
+   "status": "OK",
+   "bytes": 1726083,
+   "sha256": "2eb3c6d92a19a357a454fb0a181ec93d7e820545f13cd865ba69af64c7ca52c6",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/ZT_UI_A.png"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/ZY_1.png",
+   "status": "OK",
+   "bytes": 105189,
+   "sha256": "9d85c1fa72d19ddf2bf5f027b8b21d1f8a16682b0681b99b229ffd5b9d62e68f",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/ZY_1.png"
+  },
+  {
+   "key": "official_asset/template/Product_ZJG_5cam/textures/ZY_1__Mask.png",
+   "status": "OK",
+   "bytes": 41866,
+   "sha256": "42f8c6972398b573935a5a2524b596d1377366c812526a641510e67a0794fad0",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/official_asset/template/Product_ZJG_5cam/textures/ZY_1__Mask.png"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/06a71876-4c39-4d66-a66a-b13cb52e7bc3.glb",
+   "status": "OK",
+   "bytes": 10224,
+   "sha256": "dd37b8c57c0ebfde6c91fc43d6ab9d37dd5583df97946c64933705deb5985b50",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/06a71876-4c39-4d66-a66a-b13cb52e7bc3.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/098c71d1-71cd-486f-973b-4b92ec8cf975.glb",
+   "status": "OK",
+   "bytes": 32036,
+   "sha256": "145cd981731c457d7d1da23a0ff2853e3e089b2e13f257bad497d74817f21cd1",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/098c71d1-71cd-486f-973b-4b92ec8cf975.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/0de1de51-9bbf-47b5-9ce1-28927161171f.glb",
+   "status": "OK",
+   "bytes": 5992,
+   "sha256": "08b9e5deda2e3b50eaa6c17baf927e2b6537a8952a82825db5ea92ada72c6014",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/0de1de51-9bbf-47b5-9ce1-28927161171f.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/1ca27801-9cd2-46dc-99e4-0d33073b6509.glb",
+   "status": "OK",
+   "bytes": 11044,
+   "sha256": "fc5bc71c4a81ea8827d25b7172b3ff4dd2077246c218f7fdb6deadd75d87399a",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/1ca27801-9cd2-46dc-99e4-0d33073b6509.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4366169a-edaf-4839-93e5-d302d6b201a9.glb",
+   "status": "OK",
+   "bytes": 31388,
+   "sha256": "541155b7248ca1587d6547e772e65321c42735629ec2fe0b3db8b9b71dcb1128",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4366169a-edaf-4839-93e5-d302d6b201a9.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4f082bb7-97ec-43b6-b2e2-da6207233e4f.glb",
+   "status": "OK",
+   "bytes": 27868,
+   "sha256": "db8b168112cecb6341cd79c29e80715a3c4d870aed280bf39d7d4d45d2ac71bf",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4f082bb7-97ec-43b6-b2e2-da6207233e4f.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/5046f278-5d82-45c0-a2eb-0eb94c749f91.glb",
+   "status": "OK",
+   "bytes": 10648,
+   "sha256": "f8dd442ed5a10f2c026a6d915637dc17f1914b87fc1911150765ce8f533c9867",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/5046f278-5d82-45c0-a2eb-0eb94c749f91.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/5f2253e4-da24-4881-aade-a0483f8c3349.glb",
+   "status": "OK",
+   "bytes": 9804,
+   "sha256": "ff9f82264024ed1ff0fd153695745730df08693472fdfdb444b2b9b91c4db477",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/5f2253e4-da24-4881-aade-a0483f8c3349.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/63618d12-bf67-4cb2-904d-fbde9f9a172a.glb",
+   "status": "OK",
+   "bytes": 10224,
+   "sha256": "5b4ff4646217f6a361037e49a41fd5768fe3ef68367cfc369c28631aeac3136a",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/63618d12-bf67-4cb2-904d-fbde9f9a172a.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/65751d9b-fccb-4671-92a9-e87a487dca02.glb",
+   "status": "OK",
+   "bytes": 5852,
+   "sha256": "6c834812fe78f6067ab84c91bf1291b07c62204817ed6f817684094369bce764",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/65751d9b-fccb-4671-92a9-e87a487dca02.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/7558620e-b608-4cf2-9c1e-a3429d976b7f.glb",
+   "status": "OK",
+   "bytes": 32852,
+   "sha256": "fe0172c81ccbe2e288f0e4349281975bae2a0b209ac4581a9bd8d60de3c98312",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/7558620e-b608-4cf2-9c1e-a3429d976b7f.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/75d8bb48-1ec6-4176-98f9-b1c3bb4e5914.glb",
+   "status": "OK",
+   "bytes": 27712,
+   "sha256": "337342157f04536cf6681d5374528e3a49506ce7ff87e3903788c33f17b687e7",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/75d8bb48-1ec6-4176-98f9-b1c3bb4e5914.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/8839ce32-fe87-42d9-91dc-9e0c2afa6ab6.glb",
+   "status": "OK",
+   "bytes": 11044,
+   "sha256": "f7dc7d69cf0e3973cdd3f2382f411e5e19b22572f972e3475b20ad0071c35257",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/8839ce32-fe87-42d9-91dc-9e0c2afa6ab6.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/9089c078-5877-4a4d-8c24-63810f0f5ec6.glb",
+   "status": "OK",
+   "bytes": 10544,
+   "sha256": "b1e154aa968b73edf0ca776ad40564bf9fd8ca6e0b921870fdfba2a97d70f1e3",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/9089c078-5877-4a4d-8c24-63810f0f5ec6.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/960905e7-19c7-470c-a1ca-a9d441dd780c.glb",
+   "status": "OK",
+   "bytes": 8600,
+   "sha256": "d7cbb8019cda95cf1c66f267e887515e0e9931c4bcfcf360950242a86ef3ec41",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/960905e7-19c7-470c-a1ca-a9d441dd780c.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/af75fb13-155e-4987-ba86-a652a5451f66.glb",
+   "status": "OK",
+   "bytes": 5988,
+   "sha256": "f993cd1ccb7a1e1c6b162632d9d111f9531b75565b9a941add7c0f6f165d3d01",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/af75fb13-155e-4987-ba86-a652a5451f66.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/c4f5e7b7-0a79-4164-a4e7-9b8396e0d17b.glb",
+   "status": "OK",
+   "bytes": 29764,
+   "sha256": "8184f4d460ebcf9dc6554e45ec42d20901bb7512e600b663e95589cce8a9818a",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/c4f5e7b7-0a79-4164-a4e7-9b8396e0d17b.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/cc189264-edfd-4687-8be5-44021ff9df47.glb",
+   "status": "OK",
+   "bytes": 46520,
+   "sha256": "8ebca4ec990b3a3c2d10e8512cad4e2d5ce09fa4d886017feb36ba616d596797",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/cc189264-edfd-4687-8be5-44021ff9df47.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/ce56a775-1491-4f56-990d-106a5037e05e.glb",
+   "status": "OK",
+   "bytes": 35124,
+   "sha256": "79db3c40e0eea1faf7f2e4be0a8e1ef6bc5f951b27ef67dcc570be0ea3d69976",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/ce56a775-1491-4f56-990d-106a5037e05e.glb"
+  },
+  {
+   "key": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/df719308-14ee-4ba0-b148-2b30d40275f4.glb",
+   "status": "OK",
+   "bytes": 137524,
+   "sha256": "4fcf1544becde7609e9400ae5516a57f841ad4e10476273357a6c2d50c85b0cf",
+   "path": "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/r8-assets/customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/df719308-14ee-4ba0-b148-2b30d40275f4.glb"
+  }
+ ]
+}

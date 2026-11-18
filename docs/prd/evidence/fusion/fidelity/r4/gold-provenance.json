@@ -1,0 +1,42 @@
+{
+ "gold_png": "tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c.png (7680x4320, sha256 d81538fb...5bd35)",
+ "gold_task": "render_task 329c202e-e89a-48c0-aa04-59a360510cbd, '冰箱体.fbx-[单品渲染]_06251729', created 2025-06-25 17:29 (Asia/Shanghai), file_id 1d0db88a, status succeed",
+ "source": "my-stage-hk/local-stack/backup/20261024-202722/tables/render_task.json (local, read-only); copy: gold-render-task-329c202e-render_data.json",
+ "renderer": "1.0 cloud UE render (render_settings: aa_spatial_samples 1024, max_bounces 32, denoise true, output_scale 4, png, views_in_task 298cfe60 @7680x4320). No tonemapper/view-transform field in task -> UE post-process default (filmic tonemapper) applies; Stage only sends camera post_processing_settings.",
+ "camera_858db55c_post_in_gold": {
+  "exposure": 0.8,
+  "gamma": 0.9,
+  "contrast": 1.2,
+  "saturation": 0.8,
+  "temperature": 6500,
+  "gain": 1,
+  "offset": 0
+ },
+ "camera_858db55c_post_in_current_product_scene_used_by_r2": {
+  "exposure": 0.8,
+  "gamma": 0.823,
+  "contrast": 1.266,
+  "saturation": 0.8
+ },
+ "environment_in_gold": {
+  "id": "ab403659",
+  "name": "4",
+  "image": "official_asset/environment/8ffebd47.../textures/4.exr (local, sha256 4204d394...3b1e, solid-angle mean lum 0.904)",
+  "hdri_brightness": 10,
+  "skylight_intensity": 0.35,
+  "background_type": "white",
+  "hdri_angle": 182.9
+ },
+ "environment_in_r2": {
+  "id": "env-16-official-gold (synthesized)",
+  "image": "16.exr (mean lum 0.715)",
+  "hdri_brightness": 0.8,
+  "skylight_intensity": 1,
+  "background_type": "white"
+ },
+ "lights_in_gold": "none (light_root has no children)",
+ "lights_in_r2": "32 RF_Kitchen_0302 RectLights + kitchen shell geometry (81 extra models)",
+ "materials": "121/126 identical to r3; 5 edited after the gold: 05玉墨银 x2 base 0.165->0.83/0.86, Plastic_Rough 0.21->0.61, Plastic_Coated base/roughness_max, Metal_Frosted wear masks",
+ "other_task_2aa0b2f5": "fridge-ref-task-2aa0-view3c69.png is a different view (3c697acc, camera c621bb75, gamma 0.742/contrast 1.29/exposure 1.089, env 16 brightness 100 background hdri); not the Front gold",
+ "blender_side": "blender_inner white mode: camera rays white 1.0; other rays skylight*0.28 + HDRI*hdri_brightness*0.12; post exposure->view_settings.exposure; display-domain contrast about 0.5 then x**gamma (UE applies contrast about 0.18 linear and pow(1/gamma) before its filmic tonemapper)"
+}

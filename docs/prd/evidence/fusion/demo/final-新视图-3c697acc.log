@@ -1,0 +1,1315 @@
+[assets] 105 scene URLs absent from asset map; skipping
+15:10:37 | INFO: Data are loaded, start creating Blender stuff
+15:10:37 | INFO: Blender create Mesh node shape
+15:10:37 | INFO: glTF import finished in 0.02s
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py:376: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+15:10:37 | INFO: Data are loaded, start creating Blender stuff
+15:10:37 | INFO: Blender create Mesh node shape.001
+15:10:38 | INFO: glTF import finished in 0.22s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.002
+15:10:38 | INFO: glTF import finished in 0.00s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.003
+15:10:38 | INFO: glTF import finished in 0.00s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.004
+15:10:38 | INFO: glTF import finished in 0.06s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.005
+15:10:38 | INFO: glTF import finished in 0.03s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.006
+15:10:38 | INFO: glTF import finished in 0.01s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.007
+15:10:38 | INFO: glTF import finished in 0.03s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.008
+15:10:38 | INFO: glTF import finished in 0.01s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.009
+15:10:38 | INFO: glTF import finished in 0.47s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.010
+15:10:38 | INFO: glTF import finished in 0.00s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.012
+15:10:38 | INFO: glTF import finished in 0.11s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.013
+15:10:38 | INFO: glTF import finished in 0.00s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.014
+15:10:38 | INFO: glTF import finished in 0.01s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.015
+15:10:38 | INFO: glTF import finished in 0.01s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.016
+15:10:38 | INFO: glTF import finished in 0.01s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.017
+15:10:38 | INFO: glTF import finished in 0.02s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.018
+15:10:38 | INFO: glTF import finished in 0.07s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.019
+15:10:38 | INFO: glTF import finished in 0.00s
+15:10:38 | INFO: Data are loaded, start creating Blender stuff
+15:10:38 | INFO: Blender create Mesh node shape.020
+15:10:39 | INFO: glTF import finished in 0.06s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.021
+15:10:39 | INFO: glTF import finished in 0.00s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.022
+15:10:39 | INFO: glTF import finished in 0.08s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.023
+15:10:39 | INFO: glTF import finished in 0.03s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.024
+15:10:39 | INFO: glTF import finished in 0.00s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.026
+15:10:39 | INFO: glTF import finished in 0.00s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.027
+15:10:39 | INFO: glTF import finished in 0.03s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.028
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.029
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.030
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.031
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.032
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.033
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.034
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.035
+15:10:39 | INFO: glTF import finished in 0.00s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.036
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.037
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.038
+15:10:39 | INFO: glTF import finished in 0.00s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.039
+15:10:39 | INFO: glTF import finished in 0.02s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.040
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.041
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.042
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.043
+15:10:39 | INFO: glTF import finished in 0.02s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.044
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.045
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.046
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.047
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.048
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.049
+15:10:39 | INFO: glTF import finished in 0.00s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.050
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.051
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.052
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.053
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.054
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.055
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.056
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.057
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.058
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.059
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.060
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.061
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.062
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.063
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.064
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.065
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.066
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.067
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.068
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.070
+15:10:39 | INFO: glTF import finished in 0.04s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.071
+15:10:39 | INFO: glTF import finished in 0.01s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.072
+15:10:39 | INFO: glTF import finished in 0.00s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.073
+15:10:39 | INFO: glTF import finished in 0.08s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.074
+15:10:39 | INFO: glTF import finished in 0.09s
+15:10:39 | INFO: Data are loaded, start creating Blender stuff
+15:10:39 | INFO: Blender create Mesh node shape.075
+15:10:39 | INFO: glTF import finished in 0.00s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.076
+15:10:40 | INFO: glTF import finished in 0.00s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.077
+15:10:40 | INFO: glTF import finished in 0.00s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.078
+15:10:40 | INFO: glTF import finished in 0.00s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.079
+15:10:40 | INFO: glTF import finished in 0.03s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.080
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.081
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.082
+15:10:40 | INFO: glTF import finished in 0.08s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.083
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.084
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.085
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.086
+15:10:40 | INFO: glTF import finished in 0.08s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.087
+15:10:40 | INFO: glTF import finished in 0.13s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.088
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.089
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.090
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.091
+15:10:40 | INFO: glTF import finished in 0.00s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.092
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.093
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.094
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.095
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.096
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.097
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.098
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.099
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.100
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.101
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.102
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.103
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.104
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.105
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.106
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.107
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.108
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.109
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.110
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.111
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.112
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.113
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.114
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.115
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.116
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.117
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.118
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.119
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.120
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.121
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.122
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.123
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.124
+15:10:40 | INFO: glTF import finished in 0.01s
+15:10:40 | INFO: Data are loaded, start creating Blender stuff
+15:10:40 | INFO: Blender create Mesh node shape.125
+15:10:41 | INFO: glTF import finished in 0.03s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.126
+15:10:41 | INFO: glTF import finished in 0.03s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.127
+15:10:41 | INFO: glTF import finished in 0.03s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.128
+15:10:41 | INFO: glTF import finished in 0.05s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.129
+15:10:41 | INFO: glTF import finished in 0.04s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.130
+15:10:41 | INFO: glTF import finished in 0.03s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.131
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.132
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.133
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.134
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.135
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.136
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.137
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.138
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.139
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.140
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.141
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.142
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.143
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.144
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.145
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.146
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.147
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.148
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.149
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.150
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.151
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.152
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.153
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.154
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.155
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.156
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.157
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.158
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.159
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.160
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.161
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.162
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.163
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.164
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:41 | INFO: Data are loaded, start creating Blender stuff
+15:10:41 | INFO: Blender create Mesh node shape.165
+15:10:41 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.166
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.167
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.168
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.169
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.170
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.171
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.172
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.173
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.174
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.175
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.176
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.177
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.178
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.179
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.180
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.181
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.182
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.183
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.184
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.185
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.186
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.187
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.188
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.189
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.190
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.191
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.192
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.193
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.194
+15:10:42 | INFO: glTF import finished in 0.01s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.195
+15:10:42 | INFO: glTF import finished in 0.02s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.196
+15:10:42 | INFO: glTF import finished in 0.02s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.197
+15:10:42 | INFO: glTF import finished in 0.02s
+15:10:42 | INFO: Data are loaded, start creating Blender stuff
+15:10:42 | INFO: Blender create Mesh node shape.198
+15:10:42 | INFO: glTF import finished in 0.06s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.199
+15:10:43 | INFO: glTF import finished in 0.02s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.200
+15:10:43 | INFO: glTF import finished in 0.10s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.201
+15:10:43 | INFO: glTF import finished in 0.08s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.202
+15:10:43 | INFO: glTF import finished in 0.01s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.203
+15:10:43 | INFO: glTF import finished in 0.02s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.204
+15:10:43 | INFO: glTF import finished in 0.03s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.205
+15:10:43 | INFO: glTF import finished in 0.01s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.206
+15:10:43 | INFO: glTF import finished in 0.05s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.207
+15:10:43 | INFO: glTF import finished in 0.06s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.208
+15:10:43 | INFO: glTF import finished in 0.08s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.209
+15:10:43 | INFO: glTF import finished in 0.06s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.210
+15:10:43 | INFO: glTF import finished in 0.06s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.211
+15:10:43 | INFO: glTF import finished in 0.02s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.212
+15:10:43 | INFO: glTF import finished in 0.02s
+15:10:43 | INFO: Data are loaded, start creating Blender stuff
+15:10:43 | INFO: Blender create Mesh node shape.213
+15:10:43 | INFO: glTF import finished in 0.09s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.214
+15:10:44 | INFO: glTF import finished in 0.02s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.215
+15:10:44 | INFO: glTF import finished in 0.04s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.216
+15:10:44 | INFO: glTF import finished in 0.03s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.217
+15:10:44 | INFO: glTF import finished in 0.03s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.218
+15:10:44 | INFO: glTF import finished in 0.01s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.219
+15:10:44 | INFO: glTF import finished in 0.06s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.220
+15:10:44 | INFO: glTF import finished in 0.02s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.221
+15:10:44 | INFO: glTF import finished in 0.01s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.222
+15:10:44 | INFO: glTF import finished in 0.02s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.223
+15:10:44 | INFO: glTF import finished in 0.02s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.224
+15:10:44 | INFO: glTF import finished in 0.03s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.225
+15:10:44 | INFO: glTF import finished in 0.11s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.226
+15:10:44 | INFO: glTF import finished in 0.04s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.227
+15:10:44 | INFO: glTF import finished in 0.04s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.228
+15:10:44 | INFO: glTF import finished in 0.02s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.229
+15:10:44 | INFO: glTF import finished in 0.06s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.230
+15:10:44 | INFO: glTF import finished in 0.04s
+15:10:44 | INFO: Data are loaded, start creating Blender stuff
+15:10:44 | INFO: Blender create Mesh node shape.231
+15:10:45 | INFO: glTF import finished in 0.06s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.232
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.233
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.234
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.235
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.236
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.237
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.238
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.239
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.240
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.241
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.242
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.243
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.244
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.245
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.246
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.247
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.248
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.249
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.250
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.251
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.252
+15:10:45 | INFO: glTF import finished in 0.02s
+15:10:45 | INFO: Data are loaded, start creating Blender stuff
+15:10:45 | INFO: Blender create Mesh node shape.253
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.254
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.255
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.256
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.257
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.258
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.259
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.260
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.261
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.262
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.263
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.264
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.265
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.266
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.267
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.268
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.269
+15:10:46 | INFO: glTF import finished in 0.03s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.270
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.271
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.272
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:46 | INFO: Data are loaded, start creating Blender stuff
+15:10:46 | INFO: Blender create Mesh node shape.273
+15:10:46 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.274
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.275
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.276
+15:10:47 | INFO: glTF import finished in 0.04s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.277
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.278
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.279
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.280
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.281
+15:10:47 | INFO: glTF import finished in 0.04s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.282
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.283
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.284
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.285
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.286
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.287
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.288
+15:10:47 | INFO: glTF import finished in 0.03s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.289
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.290
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.291
+15:10:47 | INFO: glTF import finished in 0.02s
+15:10:47 | INFO: Data are loaded, start creating Blender stuff
+15:10:47 | INFO: Blender create Mesh node shape.292
+15:10:47 | INFO: glTF import finished in 0.03s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.293
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.294
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.295
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.296
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.297
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.298
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.299
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.300
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.301
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.302
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.303
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.304
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.305
+15:10:48 | INFO: glTF import finished in 0.03s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.306
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.307
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.308
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.309
+15:10:48 | INFO: glTF import finished in 0.03s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.310
+15:10:48 | INFO: glTF import finished in 0.02s
+15:10:48 | INFO: Data are loaded, start creating Blender stuff
+15:10:48 | INFO: Blender create Mesh node shape.311
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.312
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.313
+15:10:49 | INFO: glTF import finished in 0.03s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.314
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.315
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.316
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.317
+15:10:49 | INFO: glTF import finished in 0.03s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.318
+15:10:49 | INFO: glTF import finished in 0.03s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.319
+15:10:49 | INFO: glTF import finished in 0.03s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.320
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.321
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.322
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.323
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.324
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.325
+15:10:49 | INFO: glTF import finished in 0.03s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.326
+15:10:49 | INFO: glTF import finished in 0.02s
+15:10:49 | INFO: Data are loaded, start creating Blender stuff
+15:10:49 | INFO: Blender create Mesh node shape.327
+15:10:49 | INFO: glTF import finished in 0.03s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.328
+15:10:50 | INFO: glTF import finished in 0.03s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.329
+15:10:50 | INFO: glTF import finished in 0.02s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.330
+15:10:50 | INFO: glTF import finished in 0.02s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.331
+15:10:50 | INFO: glTF import finished in 0.02s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.332
+15:10:50 | INFO: glTF import finished in 0.03s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.333
+15:10:50 | INFO: glTF import finished in 0.03s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.334
+15:10:50 | INFO: glTF import finished in 0.03s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.335
+15:10:50 | INFO: glTF import finished in 0.03s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.336
+15:10:50 | INFO: glTF import finished in 0.03s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.337
+15:10:50 | INFO: glTF import finished in 0.02s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.338
+15:10:50 | INFO: glTF import finished in 0.03s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.339
+15:10:50 | INFO: glTF import finished in 0.02s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.340
+15:10:50 | INFO: glTF import finished in 0.02s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.341
+15:10:50 | INFO: glTF import finished in 0.02s
+15:10:50 | INFO: Data are loaded, start creating Blender stuff
+15:10:50 | INFO: Blender create Mesh node shape.342
+15:10:50 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.343
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.344
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.345
+15:10:51 | INFO: glTF import finished in 0.02s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.346
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.347
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.348
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.349
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.350
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.363
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.364
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.365
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.366
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.367
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.368
+15:10:51 | INFO: glTF import finished in 0.03s
+15:10:51 | INFO: Data are loaded, start creating Blender stuff
+15:10:51 | INFO: Blender create Mesh node shape.369
+15:10:52 | INFO: glTF import finished in 0.04s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.370
+15:10:52 | INFO: glTF import finished in 0.04s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.371
+15:10:52 | INFO: glTF import finished in 0.03s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.372
+15:10:52 | INFO: glTF import finished in 0.03s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.373
+15:10:52 | INFO: glTF import finished in 0.03s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.374
+15:10:52 | INFO: glTF import finished in 0.03s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.375
+15:10:52 | INFO: glTF import finished in 0.03s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.376
+15:10:52 | INFO: glTF import finished in 0.03s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.377
+15:10:52 | INFO: glTF import finished in 0.04s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.378
+15:10:52 | INFO: glTF import finished in 0.04s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.379
+15:10:52 | INFO: glTF import finished in 0.07s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.380
+15:10:52 | INFO: glTF import finished in 0.03s
+15:10:52 | INFO: Data are loaded, start creating Blender stuff
+15:10:52 | INFO: Blender create Mesh node shape.381
+15:10:52 | INFO: glTF import finished in 0.06s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.382
+15:10:53 | INFO: glTF import finished in 0.03s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.383
+15:10:53 | INFO: glTF import finished in 0.03s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.385
+15:10:53 | INFO: glTF import finished in 0.08s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.386
+15:10:53 | INFO: glTF import finished in 0.07s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.387
+15:10:53 | INFO: glTF import finished in 0.03s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.388
+15:10:53 | INFO: glTF import finished in 0.06s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.389
+15:10:53 | INFO: glTF import finished in 0.03s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.390
+15:10:53 | INFO: glTF import finished in 0.08s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.391
+15:10:53 | INFO: glTF import finished in 0.03s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.392
+15:10:53 | INFO: glTF import finished in 0.04s
+15:10:53 | INFO: Data are loaded, start creating Blender stuff
+15:10:53 | INFO: Blender create Mesh node shape.393
+15:10:53 | INFO: glTF import finished in 0.07s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.394
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.395
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.396
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.397
+15:10:54 | INFO: glTF import finished in 0.05s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.398
+15:10:54 | INFO: glTF import finished in 0.05s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.399
+15:10:54 | INFO: glTF import finished in 0.07s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.351
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.352
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.353
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.354
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.355
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:54 | INFO: Data are loaded, start creating Blender stuff
+15:10:54 | INFO: Blender create Mesh node shape.356
+15:10:54 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.357
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.358
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.359
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.360
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.361
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.400
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.401
+15:10:55 | INFO: glTF import finished in 0.04s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.402
+15:10:55 | INFO: glTF import finished in 0.05s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.403
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.404
+15:10:55 | INFO: glTF import finished in 0.06s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.405
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:55 | INFO: Data are loaded, start creating Blender stuff
+15:10:55 | INFO: Blender create Mesh node shape.407
+15:10:55 | INFO: glTF import finished in 0.03s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.408
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.409
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.410
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.411
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.412
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.413
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.414
+15:10:56 | INFO: glTF import finished in 0.07s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.415
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.416
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.417
+15:10:56 | INFO: glTF import finished in 0.04s
+15:10:56 | INFO: Data are loaded, start creating Blender stuff
+15:10:56 | INFO: Blender create Mesh node shape.418
+15:10:57 | INFO: glTF import finished in 0.11s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.419
+15:10:57 | INFO: glTF import finished in 0.04s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.420
+15:10:57 | INFO: glTF import finished in 0.04s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.421
+15:10:57 | INFO: glTF import finished in 0.04s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.422
+15:10:57 | INFO: glTF import finished in 0.04s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.423
+15:10:57 | INFO: glTF import finished in 0.03s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.424
+15:10:57 | INFO: glTF import finished in 0.08s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.425
+15:10:57 | INFO: glTF import finished in 0.09s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.426
+15:10:57 | INFO: glTF import finished in 0.09s
+15:10:57 | INFO: Data are loaded, start creating Blender stuff
+15:10:57 | INFO: Blender create Mesh node shape.427
+15:10:57 | INFO: glTF import finished in 0.04s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.429
+15:10:58 | INFO: glTF import finished in 0.04s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.430
+15:10:58 | INFO: glTF import finished in 0.04s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.431
+15:10:58 | INFO: glTF import finished in 0.04s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.432
+15:10:58 | INFO: glTF import finished in 0.04s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.433
+15:10:58 | INFO: glTF import finished in 0.07s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.434
+15:10:58 | INFO: glTF import finished in 0.12s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.435
+15:10:58 | INFO: glTF import finished in 0.04s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.436
+15:10:58 | INFO: glTF import finished in 0.04s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.437
+15:10:58 | INFO: glTF import finished in 0.03s
+15:10:58 | INFO: Data are loaded, start creating Blender stuff
+15:10:58 | INFO: Blender create Mesh node shape.448
+15:10:59 | INFO: glTF import finished in 0.05s
+15:10:59 | INFO: Data are loaded, start creating Blender stuff
+15:10:59 | INFO: Blender create Mesh node shape.449
+15:10:59 | INFO: glTF import finished in 0.03s
+15:10:59 | INFO: Data are loaded, start creating Blender stuff
+15:10:59 | INFO: Blender create Mesh node shape.383
+15:10:59 | INFO: glTF import finished in 0.04s
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py:613: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+[gpu] METAL: 1
+00:23.443  render           | Saved: '/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/final-新视图-3c697acc.png.raw.png'
+[done] /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/final-新视图-3c697acc.png
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit
+/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/final-新视图-3c697acc.png
+command=["python3", "/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/run_blender_final.py", "--scene", "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/m2-preview-scene.json", "--asset-map", "/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-assets.json", "--view", "3c697acc-1228-4e46-ba54-77eb7bb87cfb", "--out", "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/final-\u65b0\u89c6\u56fe-3c697acc.png", "--width", "640", "--height", "360", "--spp", "4", "--denoise", "0"]

@@ -1,0 +1,4 @@
+79208d20f67cb0880767aeb68222764ee5fe97abd4e5b57012f4bd1b0660b246  docs/prd/evidence/fusion/fidelity/r2/align/realtime-round3-camlights.png
+3e06d4124a37b9717555178c897caa18e8a472435384ddfc1dcacaf22342bae1  docs/prd/evidence/fusion/fidelity/r2/align/side-round3-camlights.png
+31a8b172c6fee2f6a3f86915200aaa475bf60c0b6f3698b77e7132b19c03fe62  docs/prd/evidence/fusion/fidelity/render-Front-1c4a3883-standard-spp128-1920x1080.png
+c578b16f1faf88479fbfd9435a78c8c91c6d6930627e4e12d51955aaaf5fc58a  rt-vs-final-before-after.png

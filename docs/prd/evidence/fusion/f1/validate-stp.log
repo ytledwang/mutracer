@@ -1,0 +1,7 @@
+ERROR [material.missing] mesh[0] primitive[0] has no material
+ERROR [material.none] file has meshes but no materials
+WARN [units.no_conversion] source units are mm and no unit scale was applied (glTF is meters); mm→m conversion is a known gap, not a silent success
+RESULT FAIL errors=2 warnings=1 file=/Users/wangjianzheng/Project/git/mutracer/tools/import-smoke/out/box-stp.glb
+contract failed (exit 1); moved output to /Users/wangjianzheng/Project/git/mutracer/tools/import-smoke/out/box-stp.rejected.glb
+STP gap: this path has no materials from gmsh and does not convert mm→m. That is a known gap, not a silent success.
+EXIT:1

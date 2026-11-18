@@ -1,0 +1,1318 @@
+Reading additional input from stdin...
+OpenAI Codex v0.163.0
+--------
+workdir: /Users/wangjianzheng/Project/git/mutracer
+model: volcengine/glm-5.3-flash
+provider: magpie
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1bf38-30a4-7292-bfc6-b5214af4f5d8
+--------
+user
+In native/host/src/bin/stage_render.rs:
+
+Add CLI `--basis stage2y|none` (default `stage2y`).
+- `stage2y`: current behavior (stage_to_render on meshes/lights/matrix cam; LookAt uses map_stage_point + up=Y)
+- `none`: identity basis — do NOT multiply stage_to_render on meshes/lights/matrix; LookAt uses raw stage eye/target with up = Vec3::Z (Z-up lookat)
+
+Keep all material overrides. Rebuild release with
+MUTRACER_AOT_ARCHIVE=$PWD/.native-build/scene-core/render-core.lib.a
+CARGO_TARGET_DIR=$PWD/native/host/target
+cargo build --locked --release --manifest-path native/host/Cargo.toml --bin mutracer-render
+No push/Metal.
+warning: Codex is ignoring 3 unrecognized configuration settings. Check for typos or deprecated settings.
+  user (/Users/wangjianzheng/.codex/config.toml): `disable_response_storage` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `features.rmcp_client` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `preferred_auth_method` is ignored.
+warning: Codex is ignoring 3 unrecognized configuration settings. Check for typos or deprecated settings.
+  user (/Users/wangjianzheng/.codex/config.toml): `disable_response_storage` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `features.rmcp_client` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `preferred_auth_method` is ignored.
+warning: failed to parse hooks config /Users/wangjianzheng/.codex/hooks.json: unknown field `SessionEnd`, expected `description` or `hooks` at line 2 column 14
+2026-11-09T07:31:36.043287Z ERROR codex_rmcp_client::oauth::refresh_transaction: error=failed to refresh OAuth tokens for server canva
+We need modify. Need inspect. Must preamble. Also plan perhaps straightforward but multiple. Need use tools.
+codex
+I’ll inspect the stage render path, then patch the basis switch and build.
+exec
+/bin/zsh -lc "rg -n \"stage_to_render|LookAt|look_at|basis|map_stage_point\" native/host/src/bin/stage_render.rs native/host/src -g '*.rs'" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+native/host/src/bin/stage_render.rs:17:fn stage_to_render() -> Mat4 {
+native/host/src/bin/stage_render.rs:26:fn map_stage_point(p: glam::Vec3) -> glam::Vec3 {
+native/host/src/bin/stage_render.rs:33:    LookAt,
+native/host/src/bin/stage_render.rs:106:                    "lookat" => CameraMode::LookAt,
+native/host/src/bin/stage_render.rs:232:        .map(|(mesh_id, transform)| (mesh_id, stage_to_render() * transform))
+native/host/src/bin/stage_render.rs:625:        CameraMode::Matrix => stage_to_render() * local_matrix(Some(entity)),
+native/host/src/bin/stage_render.rs:626:        CameraMode::LookAt => {
+native/host/src/bin/stage_render.rs:628:            let eye = map_stage_point(glam::Vec3::from(p));
+native/host/src/bin/stage_render.rs:629:            let target = map_stage_point(camera_target);
+native/host/src/bin/stage_render.rs:630:            Mat4::look_at_rh(eye, target, glam::Vec3::Y).inverse()
+native/host/src/bin/stage_render.rs:779:                transform: stage_to_render() * transform,
+native/host/src/bin/stage_render.rs:786:                transform: stage_to_render() * transform,
+native/host/src/bin/stage_render.rs:791:                transform: stage_to_render() * transform,
+native/host/src/bin/stage_render.rs:801:                    transform: stage_to_render() * transform,
+native/host/src/bin/stage_render.rs:17:fn stage_to_render() -> Mat4 {
+native/host/src/bin/stage_render.rs:26:fn map_stage_point(p: glam::Vec3) -> glam::Vec3 {
+native/host/src/bin/stage_render.rs:33:    LookAt,
+native/host/src/bin/stage_render.rs:106:                    "lookat" => CameraMode::LookAt,
+native/host/src/bin/stage_render.rs:232:        .map(|(mesh_id, transform)| (mesh_id, stage_to_render() * transform))
+native/host/src/bin/stage_render.rs:625:        CameraMode::Matrix => stage_to_render() * local_matrix(Some(entity)),
+native/host/src/bin/stage_render.rs:626:        CameraMode::LookAt => {
+native/host/src/bin/stage_render.rs:628:            let eye = map_stage_point(glam::Vec3::from(p));
+native/host/src/bin/stage_render.rs:629:            let target = map_stage_point(camera_target);
+native/host/src/bin/stage_render.rs:630:            Mat4::look_at_rh(eye, target, glam::Vec3::Y).inverse()
+native/host/src/bin/stage_render.rs:779:                transform: stage_to_render() * transform,
+native/host/src/bin/stage_render.rs:786:                transform: stage_to_render() * transform,
+native/host/src/bin/stage_render.rs:791:                transform: stage_to_render() * transform,
+native/host/src/bin/stage_render.rs:801:                    transform: stage_to_render() * transform,
+native/host/src/api/aov_tests.rs:51:                glam::Affine3A::look_at_rh(eye, glam::Vec3::ZERO, glam::Vec3::Y).inverse(),
+native/host/src/api/caustics_tests.rs:52:    camera.world_matrix = Mat4::look_at_rh(Vec3::new(0., 2.5, 0.), Vec3::ZERO, Vec3::NEG_Z)
+native/host/src/api/caustics_tests.rs:163:    camera.world_matrix = Mat4::look_at_rh(Vec3::new(0., 0.75, 3.), Vec3::ZERO, Vec3::Y)
+
+Need inspect whole file relevant CLI parsing and structure.
+exec
+/bin/zsh -lc 'sed -n 1,150p native/host/src/bin/stage_render.rs && sed -n 200,260p native/host/src/bin/stage_render.rs && sed -n 590,650p native/host/src/bin/stage_render.rs && sed -n 730,830p native/host/src/bin/stage_render.rs' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+use glam::{EulerRot, Mat4, Quat};
+use mutracer_native_probe::api::{
+    Camera, ConvergeOptions, DisplaySettings, Engine, EngineOptions, Render, RenderSettings,
+    RenderSize, ToneMapping,
+};
+use mutracer_native_probe::scene_api::{ImportedScene, Light, Scene, Texture, TexturePixels};
+use serde_json::{Map, Value};
+use std::collections::HashMap;
+use std::fs;
+use std::path::{Path, PathBuf};
+use std::sync::atomic::{AtomicUsize, Ordering};
+
+type Result<T> = std::result::Result<T, String>;
+
+static CAD_OVERRIDE_LOGGED: AtomicUsize = AtomicUsize::new(0);
+
+fn stage_to_render() -> Mat4 {
+    Mat4::from_cols(
+        glam::Vec4::new(1., 0., 0., 0.),
+        glam::Vec4::new(0., 0., -1., 0.),
+        glam::Vec4::new(0., 1., 0., 0.),
+        glam::Vec4::new(0., 0., 0., 1.),
+    )
+}
+
+fn map_stage_point(p: glam::Vec3) -> glam::Vec3 {
+    glam::Vec3::new(p.x, p.z, -p.y)
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum CameraMode {
+    Matrix,
+    LookAt,
+}
+
+struct MaterialOverride {
+    name: String,
+    master: String,
+    color: Option<[f32; 3]>,
+    roughness: Option<f32>,
+    metalness: Option<f32>,
+    normal_scale: Option<f32>,
+    roughness_texture: Option<PathBuf>,
+    normal_texture: Option<PathBuf>,
+    basecolor_texture: Option<PathBuf>,
+}
+
+fn is_cad_debug_name(name: &str) -> bool {
+    name.starts_with("solid_")
+        || ((3..=8).contains(&name.len()) && name.chars().all(|char| char.is_ascii_hexdigit()))
+        || (!name.is_empty() && name.chars().all(|char| char.is_ascii_digit()))
+}
+
+#[derive(Clone, Copy, Debug)]
+struct RenderJob {
+    width: u32,
+    height: u32,
+    samples: u32,
+    bounces: u32,
+    denoise: bool,
+    light_scale: f32,
+    timeout_ms: u64,
+}
+
+#[derive(Clone, Debug)]
+struct StageCamera {
+    camera: Camera,
+    display: DisplaySettings,
+}
+
+fn parse_args() -> Result<(Args, RenderJob)> {
+    let mut args = Args {
+        scene: PathBuf::new(),
+        out: PathBuf::new(),
+        view: None,
+        asset_map: None,
+        camera_target: "0,0,0".into(),
+        tone_mapping: "agx".into(),
+        camera_mode: CameraMode::Matrix,
+    };
+    let mut job = RenderJob {
+        width: 0,
+        height: 0,
+        samples: 32,
+        bounces: 3,
+        denoise: true,
+        light_scale: 1.,
+        timeout_ms: 600_000,
+    };
+    let values = std::env::args().skip(1).collect::<Vec<_>>();
+    let mut i = 0;
+    while i < values.len() {
+        let key = values[i].as_str();
+        let value = values.get(i + 1).map(String::as_str);
+        let next_value = value.ok_or_else(|| format!("{key} requires a value"))?;
+        i += 1;
+        match key {
+            "--scene" => args.scene = PathBuf::from(next_value),
+            "--out" => args.out = PathBuf::from(next_value),
+            "--view" => args.view = Some(next_value.to_string()),
+            "--asset-map" => args.asset_map = Some(PathBuf::from(next_value)),
+            "--camera-target" => args.camera_target = next_value.to_string(),
+            "--camera-mode" => {
+                args.camera_mode = match next_value {
+                    "matrix" => CameraMode::Matrix,
+                    "lookat" => CameraMode::LookAt,
+                    _ => return Err("--camera-mode must be matrix or lookat".into()),
+                }
+            }
+            "--tone-mapping" => args.tone_mapping = next_value.to_string(),
+            "--width" => job.width = parse_u32(value, "--width")?,
+            "--height" => job.height = parse_u32(value, "--height")?,
+            "--samples" => job.samples = parse_u32(value, "--samples")?,
+            "--bounces" => job.bounces = parse_u32(value, "--bounces")?,
+            "--denoise" => job.denoise = parse_bool(value, "--denoise")?,
+            "--light-scale" => job.light_scale = parse_f32(value, "--light-scale")?,
+            "--timeout-ms" => job.timeout_ms = parse_u64(value, "--timeout-ms")?,
+            _ => return Err(format!("unknown option {key}")),
+        }
+        i += 1;
+    }
+    if !args.scene.as_os_str().is_empty() && !args.out.as_os_str().is_empty() {
+        Ok((args, job))
+    } else {
+        Err("usage: mutracer-render --scene <task.json> --out <render.png> [options]".into())
+    }
+}
+
+struct Args {
+    scene: PathBuf,
+    out: PathBuf,
+    view: Option<String>,
+    asset_map: Option<PathBuf>,
+    camera_target: String,
+    camera_mode: CameraMode,
+    tone_mapping: String,
+}
+
+fn parse_u32(value: Option<&str>, name: &'static str) -> Result<u32> {
+    value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be an integer"))
+}
+
+fn parse_u64(value: Option<&str>, name: &'static str) -> Result<u64> {
+    value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be an integer"))
+        degrees[0].to_radians(),
+        degrees[1].to_radians(),
+        degrees[2].to_radians(),
+    );
+    Mat4::from_scale_rotation_translation(scale.into(), rotation, translation.into())
+}
+
+fn visible_mesh_transforms(scene: &Value) -> Vec<(String, Mat4)> {
+    let models = scene
+        .get("models")
+        .and_then(Value::as_object)
+        .cloned()
+        .unwrap_or_default();
+    let roots = models
+        .iter()
+        .filter(|(_, entity)| entity.get("type").and_then(Value::as_str) == Some("root"))
+        .map(|(id, _)| id.clone())
+        .collect::<Vec<_>>();
+    let mut transforms = Vec::new();
+    let mut visited = std::collections::BTreeSet::new();
+    for root in roots {
+        walk_model(
+            scene,
+            &models,
+            &root,
+            Mat4::IDENTITY,
+            &mut visited,
+            &mut transforms,
+        );
+    }
+    transforms
+        .into_iter()
+        .map(|(mesh_id, transform)| (mesh_id, stage_to_render() * transform))
+        .collect()
+}
+
+fn walk_model(
+    scene: &Value,
+    models: &Map<String, Value>,
+    id: &str,
+    parent: Mat4,
+    visited: &mut std::collections::BTreeSet<String>,
+    output: &mut Vec<(String, Mat4)>,
+) {
+    if !visited.insert(id.into()) {
+        return;
+    }
+    let Some(entity) = models.get(id) else { return };
+    if entity.get("is_visible").and_then(Value::as_bool) == Some(false) {
+        return;
+    }
+    let transform = parent * local_matrix(Some(entity));
+    if entity.get("type").and_then(Value::as_str) == Some("model") {
+        if let Some(mesh) = entity.get("mesh").and_then(Value::as_str) {
+            output.push((mesh.into(), transform));
+        }
+    }
+    for child in entity
+        .get("children")
+        .and_then(Value::as_array)
+        .into_iter()
+        .and_then(Value::as_str);
+    let entity = cameras
+        .and_then(|cameras| active.and_then(|id| cameras.get(id)))
+        .or_else(|| {
+            cameras.and_then(|cameras| {
+                cameras
+                    .values()
+                    .find(|c| c.get("type").and_then(Value::as_str) == Some("camera"))
+            })
+        });
+    let entity = entity.ok_or("No camera entity found")?;
+    let settings = entity.get("camera").ok_or("Camera settings missing")?;
+    let width = entity
+        .get("frame_size")
+        .and_then(Value::as_array)
+        .and_then(|v| v.first())
+        .and_then(Value::as_f64)
+        .unwrap_or(1920.) as f32;
+    let height = entity
+        .get("frame_size")
+        .and_then(Value::as_array)
+        .and_then(|v| v.get(1))
+        .and_then(Value::as_f64)
+        .unwrap_or(1080.) as f32;
+    let fov_horizontal = number(settings.get("fov"), 45.).to_radians();
+    let fov_vertical = 2. * ((fov_horizontal / 2.).tan() * height / width).atan();
+    let mut camera = Camera::default();
+    camera.fov = fov_vertical.to_degrees();
+    camera.f_stop = if settings.get("dof").and_then(Value::as_bool) == Some(true) {
+        number(settings.get("aperture_fstop"), 0.)
+    } else {
+        0.
+    };
+    camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+    camera.world_matrix = match camera_mode {
+        CameraMode::Matrix => stage_to_render() * local_matrix(Some(entity)),
+        CameraMode::LookAt => {
+            let p = vector(entity.get("position"), [0.; 3]);
+            let eye = map_stage_point(glam::Vec3::from(p));
+            let target = map_stage_point(camera_target);
+            Mat4::look_at_rh(eye, target, glam::Vec3::Y).inverse()
+        }
+    }
+    .to_cols_array();
+
+    let post = settings.get("post_processing_settings");
+    let mut display = DisplaySettings::default();
+    display.tone_mapping = ToneMapping::Agx;
+    display.tone_mapping_exposure = number(post.and_then(|p| p.get("exposure")), 1.);
+    display.contrast = number(post.and_then(|p| p.get("contrast")), 1.);
+    display.saturation = number(post.and_then(|p| p.get("saturation")), 1.);
+    display.vignette = number(post.and_then(|p| p.get("vignette")), 0.).clamp(0., 1.);
+    Ok(StageCamera { camera, display })
+}
+
+fn add_environment(
+    scene: &mut Scene,
+    source: &Value,
+    view: Option<&Value>,
+    assets: &HashMap<String, String>,
+) -> Result<()> {
+        .iter()
+        .filter(|(_, entity)| entity.get("type").and_then(Value::as_str) == Some("root"))
+        .map(|(id, _)| id.clone())
+        .collect::<Vec<_>>();
+    let mut visited = std::collections::BTreeSet::new();
+    for root in roots {
+        walk_light(
+            scene,
+            &lights,
+            &root,
+            Mat4::IDENTITY,
+            view,
+            job,
+            &mut visited,
+        )?;
+    }
+    Ok(())
+}
+
+fn walk_light(
+    scene: &mut Scene,
+    lights: &Map<String, Value>,
+    id: &str,
+    parent: Mat4,
+    view: Option<&Value>,
+    job: RenderJob,
+    visited: &mut std::collections::BTreeSet<String>,
+) -> Result<()> {
+    if !visited.insert(id.into()) {
+        return Ok(());
+    }
+    let Some(entity) = lights.get(id) else {
+        return Ok(());
+    };
+    if entity.get("is_visible").and_then(Value::as_bool) == Some(false) {
+        return Ok(());
+    }
+    let transform = parent * local_matrix(Some(entity));
+    if entity.get("type").and_then(Value::as_str) == Some("light") {
+        let data = entity.get("light").ok_or("Light settings missing")?;
+        let color = vector(data.get("color"), [1.; 3]);
+        let intensity = number(data.get("power"), 0.) * job.light_scale;
+        let light = match data.get("type").and_then(Value::as_str) {
+            Some("area_light") => Light::Rect {
+                color,
+                intensity,
+                width: number(data.get("size_x"), 0.) / 100.,
+                height: number(data.get("size_z"), 0.) / 100.,
+                spread: 0.,
+                transform: stage_to_render() * transform,
+                texture: None,
+            },
+            Some("point_light") => Light::Sphere {
+                color,
+                intensity,
+                radius: (number(data.get("radius"), 0.) / 100.).max(0.01),
+                transform: stage_to_render() * transform,
+            },
+            Some("directional_light") => Light::Directional {
+                color,
+                intensity,
+                transform: stage_to_render() * transform,
+            },
+            Some("spot_light") => {
+                let outer = number(data.get("spot_size"), 45.).clamp(0.1, 89.9);
+                let blend = number(data.get("blend"), 0.).clamp(0., 1.);
+                Light::Spot {
+                    color,
+                    intensity,
+                    inner: outer * blend,
+                    outer,
+                    transform: stage_to_render() * transform,
+                    ies: Vec::new().into(),
+                }
+            }
+            _ => {
+                return Err(format!(
+                    "Unsupported light type {}",
+                    data.get("type").unwrap_or(&Value::Null)
+                ));
+            }
+        };
+        scene.add_light(light).map_err(|e| e.to_string())?;
+    }
+    for child in entity
+        .get("children")
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+    {
+        if let Some(child) = child.as_str() {
+            walk_light(scene, lights, child, transform, view, job, visited)?;
+        }
+    }
+    Ok(())
+}
+
+fn build_scene(source: &Value, assets: &HashMap<String, String>) -> Result<Scene> {
+    let mut scene = Scene::new();
+    let mut mesh_count = 0;
+    let mut log_count = 0;
+
+Need propagate basis into visible_mesh_transforms and walk_lights/build scene call. Find main call sites.
+exec
+/bin/zsh -lc "rg -n \"visible_mesh_transforms|walk_lights|build_scene|active_camera|fn main|Args \\{\" native/host/src/bin/stage_render.rs" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+72:    let mut args = Args {
+129:struct Args {
+207:fn visible_mesh_transforms(scene: &Value) -> Vec<(String, Mat4)> {
+589:        .and_then(|view| view.get("active_camera"))
+827:fn build_scene(source: &Value, assets: &HashMap<String, String>) -> Result<Scene> {
+831:    for (mesh_id, transform) in visible_mesh_transforms(source) {
+876:fn main() -> Result<()> {
+903:    let mut scene = build_scene(source, &assets)?;
+
+exec
+/bin/zsh -lc 'sed -n 800,930p native/host/src/bin/stage_render.rs' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+                    outer,
+                    transform: stage_to_render() * transform,
+                    ies: Vec::new().into(),
+                }
+            }
+            _ => {
+                return Err(format!(
+                    "Unsupported light type {}",
+                    data.get("type").unwrap_or(&Value::Null)
+                ));
+            }
+        };
+        scene.add_light(light).map_err(|e| e.to_string())?;
+    }
+    for child in entity
+        .get("children")
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+    {
+        if let Some(child) = child.as_str() {
+            walk_light(scene, lights, child, transform, view, job, visited)?;
+        }
+    }
+    Ok(())
+}
+
+fn build_scene(source: &Value, assets: &HashMap<String, String>) -> Result<Scene> {
+    let mut scene = Scene::new();
+    let mut mesh_count = 0;
+    let mut log_count = 0;
+    for (mesh_id, transform) in visible_mesh_transforms(source) {
+        let url = mesh_url(source, &mesh_id).ok_or_else(|| format!("Mesh {mesh_id} has no URL"))?;
+        let path = assets
+            .get(url)
+            .ok_or_else(|| format!("Missing asset for {url}"))?;
+        let imported =
+            Scene::import_gltf(path).map_err(|e| format!("Importing {url}: {}", e.message))?;
+        let override_material = override_material(source, &mesh_id, assets)?;
+        mesh_count += merge_imported(
+            &mut scene,
+            imported,
+            transform,
+            &mesh_id,
+            override_material.as_ref().map(|v| &**v),
+            &mut log_count,
+        )?;
+    }
+    if mesh_count == 0 {
+        return Err("No visible meshes were imported".into());
+    }
+    Ok(scene)
+}
+
+fn selected_view(scene: &Value, view: Option<&str>) -> Result<Option<Value>> {
+    let Some(view) = view else { return Ok(None) };
+    scene
+        .get("views")
+        .and_then(Value::as_object)
+        .and_then(|views| views.get(view))
+        .cloned()
+        .map(Some)
+        .ok_or_else(|| format!("View {view} not found"))
+}
+
+fn tone_mapping_from_arg(arg: &str) -> Result<ToneMapping> {
+    match arg {
+        "agx" => Ok(ToneMapping::Agx),
+        "aces" => Ok(ToneMapping::Aces),
+        "cineon" => Ok(ToneMapping::Cineon),
+        "reinhard" => Ok(ToneMapping::Reinhard),
+        "linear" => Ok(ToneMapping::Linear),
+        _ => Err(format!("Unsupported tone mapping {arg}")),
+    }
+}
+
+fn main() -> Result<()> {
+    let (args, job) = parse_args()?;
+    let raw =
+        fs::read(&args.scene).map_err(|e| format!("Reading {}: {e}", args.scene.display()))?;
+    let data: Value =
+        serde_json::from_slice(&raw).map_err(|e| format!("Parsing scene JSON: {e}"))?;
+    let source = data.get("scene_json").unwrap_or(&data);
+    let assets = match args.asset_map.as_ref() {
+        Some(path) => {
+            let raw = fs::read(path).map_err(|e| format!("Reading asset map: {e}"))?;
+            serde_json::from_slice(&raw).map_err(|e| format!("Parsing asset map: {e}"))?
+        }
+        None => HashMap::new(),
+    };
+    let target_parts = args
+        .camera_target
+        .split(',')
+        .map(|part| part.trim().parse::<f32>())
+        .collect::<std::result::Result<Vec<_>, _>>()
+        .map_err(|_| "--camera-target must be x,y,z")?;
+    let camera_target = match target_parts[..] {
+        [x, y, z] => glam::Vec3::new(x, y, z),
+        _ => return Err("--camera-target must contain three numbers".into()),
+    };
+    let view = selected_view(source, args.view.as_deref())?;
+    let mut camera = stage_camera(source, view.as_ref(), camera_target, args.camera_mode)?;
+    camera.display.tone_mapping = tone_mapping_from_arg(&args.tone_mapping)?;
+    let mut scene = build_scene(source, &assets)?;
+    add_environment(&mut scene, source, view.as_ref(), &assets)?;
+    add_lights(&mut scene, source, view.as_ref(), job)?;
+
+    let engine = Engine::new(EngineOptions::default()).map_err(|e| e.to_string())?;
+    engine
+        .display()
+        .set_settings(camera.display)
+        .map_err(|e| e.to_string())?;
+    engine.set_scene_object(&scene).map_err(|e| e.to_string())?;
+    engine.update().map_err(|e| e.to_string())?;
+    let render = Render::new(
+        &engine,
+        RenderSettings {
+            size: RenderSize::Fixed {
+                width: job.width,
+                height: job.height,
+            },
+            max_samples: job.samples,
+            bounces: job.bounces.clamp(1, 20),
+            ..Default::default()
+        },
+    )
+    .map_err(|e| e.to_string())?;
+    if job.denoise {
+        render
+            .set_denoiser(Default::default())
+            .map_err(|e| e.to_string())?;
+
+Patch enum RenderBasis, basis_to_render method or map point. identity is no multiply, raw points. Need pass to functions. stage_camera signature add basis. build_scene add basis, visible transforms. add_lights add basis. Could add stage_to_render(basis). `stage_to_render` currently no param. Maybe rename basis_matrix(RenderBasis). map_stage_point basis. Requirement identity do not multiply stage_to_render. If function returns identity that's no multiply mathematically but says do NOT multiply, probably avoid. We can branch. Need light match repeated. basis method can produce Option? Define `fn basis_matrix(self) -> Mat4 { match ...}` then transform match. But identity times transform still? user explicitly "do NOT multiply stage_to_render". They likely care semantic. We'll avoid multiplication by helper `apply_stage_basis(transform, basis)`. For camera matrix same helper. LookAt eye = stage point depending basis: if stage2y map_stage_point else p. Up Y or Z.
+
+Need perhaps env display? all material overrides unaffected.
+
+Let's patch.
+2026-11-09T07:32:03.332418Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://mcp.figma.com/mcp)")))
+codex
+The transform flow is localized to meshes, lights, and camera setup. I’m adding a copied basis enum and threading it through those paths without touching override logic.
+2026-11-09T07:32:14.866303Z ERROR codex_core::tools::router: error=apply_patch verification failed: Failed to find expected lines in /Users/wangjianzheng/Project/git/mutracer/native/host/src/bin/stage_render.rs:
+fn stage_camera(
+    source: &Value,
+    view: Option<&Value>,
+    camera_target: glam::Vec3,
+    camera_mode: CameraMode,
+) -> Result<StageCamera> {
+Patch failed whole. Need inspect signatures exact.
+exec
+/bin/zsh -lc 'sed -n 20,155p native/host/src/bin/stage_render.rs; sed -n 570,640p native/host/src/bin/stage_render.rs; sed -n 720,850p native/host/src/bin/stage_render.rs; sed -n 860,925p native/host/src/bin/stage_render.rs' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+        glam::Vec4::new(0., 0., -1., 0.),
+        glam::Vec4::new(0., 1., 0., 0.),
+        glam::Vec4::new(0., 0., 0., 1.),
+    )
+}
+
+fn map_stage_point(p: glam::Vec3) -> glam::Vec3 {
+    glam::Vec3::new(p.x, p.z, -p.y)
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum CameraMode {
+    Matrix,
+    LookAt,
+}
+
+struct MaterialOverride {
+    name: String,
+    master: String,
+    color: Option<[f32; 3]>,
+    roughness: Option<f32>,
+    metalness: Option<f32>,
+    normal_scale: Option<f32>,
+    roughness_texture: Option<PathBuf>,
+    normal_texture: Option<PathBuf>,
+    basecolor_texture: Option<PathBuf>,
+}
+
+fn is_cad_debug_name(name: &str) -> bool {
+    name.starts_with("solid_")
+        || ((3..=8).contains(&name.len()) && name.chars().all(|char| char.is_ascii_hexdigit()))
+        || (!name.is_empty() && name.chars().all(|char| char.is_ascii_digit()))
+}
+
+#[derive(Clone, Copy, Debug)]
+struct RenderJob {
+    width: u32,
+    height: u32,
+    samples: u32,
+    bounces: u32,
+    denoise: bool,
+    light_scale: f32,
+    timeout_ms: u64,
+}
+
+#[derive(Clone, Debug)]
+struct StageCamera {
+    camera: Camera,
+    display: DisplaySettings,
+}
+
+fn parse_args() -> Result<(Args, RenderJob)> {
+    let mut args = Args {
+        scene: PathBuf::new(),
+        out: PathBuf::new(),
+        view: None,
+        asset_map: None,
+        camera_target: "0,0,0".into(),
+        tone_mapping: "agx".into(),
+        camera_mode: CameraMode::Matrix,
+    };
+    let mut job = RenderJob {
+        width: 0,
+        height: 0,
+        samples: 32,
+        bounces: 3,
+        denoise: true,
+        light_scale: 1.,
+        timeout_ms: 600_000,
+    };
+    let values = std::env::args().skip(1).collect::<Vec<_>>();
+    let mut i = 0;
+    while i < values.len() {
+        let key = values[i].as_str();
+        let value = values.get(i + 1).map(String::as_str);
+        let next_value = value.ok_or_else(|| format!("{key} requires a value"))?;
+        i += 1;
+        match key {
+            "--scene" => args.scene = PathBuf::from(next_value),
+            "--out" => args.out = PathBuf::from(next_value),
+            "--view" => args.view = Some(next_value.to_string()),
+            "--asset-map" => args.asset_map = Some(PathBuf::from(next_value)),
+            "--camera-target" => args.camera_target = next_value.to_string(),
+            "--camera-mode" => {
+                args.camera_mode = match next_value {
+                    "matrix" => CameraMode::Matrix,
+                    "lookat" => CameraMode::LookAt,
+                    _ => return Err("--camera-mode must be matrix or lookat".into()),
+                }
+            }
+            "--tone-mapping" => args.tone_mapping = next_value.to_string(),
+            "--width" => job.width = parse_u32(value, "--width")?,
+            "--height" => job.height = parse_u32(value, "--height")?,
+            "--samples" => job.samples = parse_u32(value, "--samples")?,
+            "--bounces" => job.bounces = parse_u32(value, "--bounces")?,
+            "--denoise" => job.denoise = parse_bool(value, "--denoise")?,
+            "--light-scale" => job.light_scale = parse_f32(value, "--light-scale")?,
+            "--timeout-ms" => job.timeout_ms = parse_u64(value, "--timeout-ms")?,
+            _ => return Err(format!("unknown option {key}")),
+        }
+        i += 1;
+    }
+    if !args.scene.as_os_str().is_empty() && !args.out.as_os_str().is_empty() {
+        Ok((args, job))
+    } else {
+        Err("usage: mutracer-render --scene <task.json> --out <render.png> [options]".into())
+    }
+}
+
+struct Args {
+    scene: PathBuf,
+    out: PathBuf,
+    view: Option<String>,
+    asset_map: Option<PathBuf>,
+    camera_target: String,
+    camera_mode: CameraMode,
+    tone_mapping: String,
+}
+
+fn parse_u32(value: Option<&str>, name: &'static str) -> Result<u32> {
+    value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be an integer"))
+}
+
+fn parse_u64(value: Option<&str>, name: &'static str) -> Result<u64> {
+    value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .parse()
+        .map_err(|_| format!("{name} must be an integer"))
+}
+
+fn parse_f32(value: Option<&str>, name: &'static str) -> Result<f32> {
+    let value: f32 = value
+        .ok_or_else(|| format!("{name} requires a value"))?
+        .unwrap_or_default();
+    if material_ids.is_empty() {
+        return Ok(None);
+    }
+    let mut overrides = Vec::new();
+    for material_id in material_ids {
+        overrides.extend(material_override(scene, assets, material_id)?);
+    }
+    Ok((!overrides.is_empty()).then_some(overrides))
+}
+
+fn stage_camera(
+    scene: &Value,
+    view: Option<&Value>,
+    camera_target: glam::Vec3,
+    camera_mode: CameraMode,
+) -> Result<StageCamera> {
+    let cameras = scene.get("cameras").and_then(Value::as_object);
+    let active = view
+        .and_then(|view| view.get("active_camera"))
+        .and_then(Value::as_str);
+    let entity = cameras
+        .and_then(|cameras| active.and_then(|id| cameras.get(id)))
+        .or_else(|| {
+            cameras.and_then(|cameras| {
+                cameras
+                    .values()
+                    .find(|c| c.get("type").and_then(Value::as_str) == Some("camera"))
+            })
+        });
+    let entity = entity.ok_or("No camera entity found")?;
+    let settings = entity.get("camera").ok_or("Camera settings missing")?;
+    let width = entity
+        .get("frame_size")
+        .and_then(Value::as_array)
+        .and_then(|v| v.first())
+        .and_then(Value::as_f64)
+        .unwrap_or(1920.) as f32;
+    let height = entity
+        .get("frame_size")
+        .and_then(Value::as_array)
+        .and_then(|v| v.get(1))
+        .and_then(Value::as_f64)
+        .unwrap_or(1080.) as f32;
+    let fov_horizontal = number(settings.get("fov"), 45.).to_radians();
+    let fov_vertical = 2. * ((fov_horizontal / 2.).tan() * height / width).atan();
+    let mut camera = Camera::default();
+    camera.fov = fov_vertical.to_degrees();
+    camera.f_stop = if settings.get("dof").and_then(Value::as_bool) == Some(true) {
+        number(settings.get("aperture_fstop"), 0.)
+    } else {
+        0.
+    };
+    camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+    camera.world_matrix = match camera_mode {
+        CameraMode::Matrix => stage_to_render() * local_matrix(Some(entity)),
+        CameraMode::LookAt => {
+            let p = vector(entity.get("position"), [0.; 3]);
+            let eye = map_stage_point(glam::Vec3::from(p));
+            let target = map_stage_point(camera_target);
+            Mat4::look_at_rh(eye, target, glam::Vec3::Y).inverse()
+        }
+    }
+    .to_cols_array();
+
+    let post = settings.get("post_processing_settings");
+    let mut display = DisplaySettings::default();
+    display.tone_mapping = ToneMapping::Agx;
+    display.tone_mapping_exposure = number(post.and_then(|p| p.get("exposure")), 1.);
+    display.contrast = number(post.and_then(|p| p.get("contrast")), 1.);
+    display.saturation = number(post.and_then(|p| p.get("saturation")), 1.);
+    source: &Value,
+    view: Option<&Value>,
+    job: RenderJob,
+) -> Result<()> {
+    let lights = source
+        .get("lights")
+        .and_then(Value::as_object)
+        .cloned()
+        .unwrap_or_default();
+    let roots = lights
+        .iter()
+        .filter(|(_, entity)| entity.get("type").and_then(Value::as_str) == Some("root"))
+        .map(|(id, _)| id.clone())
+        .collect::<Vec<_>>();
+    let mut visited = std::collections::BTreeSet::new();
+    for root in roots {
+        walk_light(
+            scene,
+            &lights,
+            &root,
+            Mat4::IDENTITY,
+            view,
+            job,
+            &mut visited,
+        )?;
+    }
+    Ok(())
+}
+
+fn walk_light(
+    scene: &mut Scene,
+    lights: &Map<String, Value>,
+    id: &str,
+    parent: Mat4,
+    view: Option<&Value>,
+    job: RenderJob,
+    visited: &mut std::collections::BTreeSet<String>,
+) -> Result<()> {
+    if !visited.insert(id.into()) {
+        return Ok(());
+    }
+    let Some(entity) = lights.get(id) else {
+        return Ok(());
+    };
+    if entity.get("is_visible").and_then(Value::as_bool) == Some(false) {
+        return Ok(());
+    }
+    let transform = parent * local_matrix(Some(entity));
+    if entity.get("type").and_then(Value::as_str) == Some("light") {
+        let data = entity.get("light").ok_or("Light settings missing")?;
+        let color = vector(data.get("color"), [1.; 3]);
+        let intensity = number(data.get("power"), 0.) * job.light_scale;
+        let light = match data.get("type").and_then(Value::as_str) {
+            Some("area_light") => Light::Rect {
+                color,
+                intensity,
+                width: number(data.get("size_x"), 0.) / 100.,
+                height: number(data.get("size_z"), 0.) / 100.,
+                spread: 0.,
+                transform: stage_to_render() * transform,
+                texture: None,
+            },
+            Some("point_light") => Light::Sphere {
+                color,
+                intensity,
+                radius: (number(data.get("radius"), 0.) / 100.).max(0.01),
+                transform: stage_to_render() * transform,
+            },
+            Some("directional_light") => Light::Directional {
+                color,
+                intensity,
+                transform: stage_to_render() * transform,
+            },
+            Some("spot_light") => {
+                let outer = number(data.get("spot_size"), 45.).clamp(0.1, 89.9);
+                let blend = number(data.get("blend"), 0.).clamp(0., 1.);
+                Light::Spot {
+                    color,
+                    intensity,
+                    inner: outer * blend,
+                    outer,
+                    transform: stage_to_render() * transform,
+                    ies: Vec::new().into(),
+                }
+            }
+            _ => {
+                return Err(format!(
+                    "Unsupported light type {}",
+                    data.get("type").unwrap_or(&Value::Null)
+                ));
+            }
+        };
+        scene.add_light(light).map_err(|e| e.to_string())?;
+    }
+    for child in entity
+        .get("children")
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+    {
+        if let Some(child) = child.as_str() {
+            walk_light(scene, lights, child, transform, view, job, visited)?;
+        }
+    }
+    Ok(())
+}
+
+fn build_scene(source: &Value, assets: &HashMap<String, String>) -> Result<Scene> {
+    let mut scene = Scene::new();
+    let mut mesh_count = 0;
+    let mut log_count = 0;
+    for (mesh_id, transform) in visible_mesh_transforms(source) {
+        let url = mesh_url(source, &mesh_id).ok_or_else(|| format!("Mesh {mesh_id} has no URL"))?;
+        let path = assets
+            .get(url)
+            .ok_or_else(|| format!("Missing asset for {url}"))?;
+        let imported =
+            Scene::import_gltf(path).map_err(|e| format!("Importing {url}: {}", e.message))?;
+        let override_material = override_material(source, &mesh_id, assets)?;
+        mesh_count += merge_imported(
+            &mut scene,
+            imported,
+            transform,
+            &mesh_id,
+            override_material.as_ref().map(|v| &**v),
+            &mut log_count,
+        )?;
+    }
+    if mesh_count == 0 {
+        return Err("No visible meshes were imported".into());
+    }
+        .cloned()
+        .map(Some)
+        .ok_or_else(|| format!("View {view} not found"))
+}
+
+fn tone_mapping_from_arg(arg: &str) -> Result<ToneMapping> {
+    match arg {
+        "agx" => Ok(ToneMapping::Agx),
+        "aces" => Ok(ToneMapping::Aces),
+        "cineon" => Ok(ToneMapping::Cineon),
+        "reinhard" => Ok(ToneMapping::Reinhard),
+        "linear" => Ok(ToneMapping::Linear),
+        _ => Err(format!("Unsupported tone mapping {arg}")),
+    }
+}
+
+fn main() -> Result<()> {
+    let (args, job) = parse_args()?;
+    let raw =
+        fs::read(&args.scene).map_err(|e| format!("Reading {}: {e}", args.scene.display()))?;
+    let data: Value =
+        serde_json::from_slice(&raw).map_err(|e| format!("Parsing scene JSON: {e}"))?;
+    let source = data.get("scene_json").unwrap_or(&data);
+    let assets = match args.asset_map.as_ref() {
+        Some(path) => {
+            let raw = fs::read(path).map_err(|e| format!("Reading asset map: {e}"))?;
+            serde_json::from_slice(&raw).map_err(|e| format!("Parsing asset map: {e}"))?
+        }
+        None => HashMap::new(),
+    };
+    let target_parts = args
+        .camera_target
+        .split(',')
+        .map(|part| part.trim().parse::<f32>())
+        .collect::<std::result::Result<Vec<_>, _>>()
+        .map_err(|_| "--camera-target must be x,y,z")?;
+    let camera_target = match target_parts[..] {
+        [x, y, z] => glam::Vec3::new(x, y, z),
+        _ => return Err("--camera-target must contain three numbers".into()),
+    };
+    let view = selected_view(source, args.view.as_deref())?;
+    let mut camera = stage_camera(source, view.as_ref(), camera_target, args.camera_mode)?;
+    camera.display.tone_mapping = tone_mapping_from_arg(&args.tone_mapping)?;
+    let mut scene = build_scene(source, &assets)?;
+    add_environment(&mut scene, source, view.as_ref(), &assets)?;
+    add_lights(&mut scene, source, view.as_ref(), job)?;
+
+    let engine = Engine::new(EngineOptions::default()).map_err(|e| e.to_string())?;
+    engine
+        .display()
+        .set_settings(camera.display)
+        .map_err(|e| e.to_string())?;
+    engine.set_scene_object(&scene).map_err(|e| e.to_string())?;
+    engine.update().map_err(|e| e.to_string())?;
+    let render = Render::new(
+        &engine,
+        RenderSettings {
+            size: RenderSize::Fixed {
+                width: job.width,
+                height: job.height,
+            },
+            max_samples: job.samples,
+            bounces: job.bounces.clamp(1, 20),
+            ..Default::default()
+        },
+    )
+
+apply patch
+patch: completed
+/Users/wangjianzheng/Project/git/mutracer/native/host/src/bin/stage_render.rs
+diff --git a/native/host/src/bin/stage_render.rs b/native/host/src/bin/stage_render.rs
+index 799962b3a422945b0a8627bdbadaadda7b24833c..7a075a848cf22b505087d8ba2c41bfb2d7a0bc46
+--- a/native/host/src/bin/stage_render.rs
++++ b/native/host/src/bin/stage_render.rs
+@@ -28,6 +28,35 @@
+ }
+ 
+ #[derive(Clone, Copy, Debug, PartialEq, Eq)]
++enum StageBasis {
++    Stage2Y,
++    None,
++}
++
++impl StageBasis {
++    fn apply_transform(self, transform: Mat4) -> Mat4 {
++        match self {
++            StageBasis::Stage2Y => stage_to_render() * transform,
++            StageBasis::None => transform,
++        }
++    }
++
++    fn apply_point(self, point: glam::Vec3) -> glam::Vec3 {
++        match self {
++            StageBasis::Stage2Y => map_stage_point(point),
++            StageBasis::None => point,
++        }
++    }
++
++    fn up(self) -> glam::Vec3 {
++        match self {
++            StageBasis::Stage2Y => glam::Vec3::Y,
++            StageBasis::None => glam::Vec3::Z,
++        }
++    }
++}
++
++#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+ enum CameraMode {
+     Matrix,
+     LookAt,
+@@ -77,6 +106,7 @@
+         camera_target: "0,0,0".into(),
+         tone_mapping: "agx".into(),
+         camera_mode: CameraMode::Matrix,
++        basis: StageBasis::Stage2Y,
+     };
+     let mut job = RenderJob {
+         width: 0,
+@@ -107,6 +137,13 @@
+                     _ => return Err("--camera-mode must be matrix or lookat".into()),
+                 }
+             }
++            "--basis" => {
++                args.basis = match next_value {
++                    "stage2y" => StageBasis::Stage2Y,
++                    "none" => StageBasis::None,
++                    _ => return Err("--basis must be stage2y or none".into()),
++                }
++            }
+             "--tone-mapping" => args.tone_mapping = next_value.to_string(),
+             "--width" => job.width = parse_u32(value, "--width")?,
+             "--height" => job.height = parse_u32(value, "--height")?,
+@@ -133,6 +170,7 @@
+     asset_map: Option<PathBuf>,
+     camera_target: String,
+     camera_mode: CameraMode,
++    basis: StageBasis,
+     tone_mapping: String,
+ }
+ 
+@@ -204,7 +242,7 @@
+     Mat4::from_scale_rotation_translation(scale.into(), rotation, translation.into())
+ }
+ 
+-fn visible_mesh_transforms(scene: &Value) -> Vec<(String, Mat4)> {
++fn visible_mesh_transforms(scene: &Value, basis: StageBasis) -> Vec<(String, Mat4)> {
+     let models = scene
+         .get("models")
+         .and_then(Value::as_object)
+@@ -229,7 +267,7 @@
+     }
+     transforms
+         .into_iter()
+-        .map(|(mesh_id, transform)| (mesh_id, stage_to_render() * transform))
++        .map(|(mesh_id, transform)| (mesh_id, basis.apply_transform(transform)))
+         .collect()
+ }
+ 
+@@ -583,6 +621,7 @@
+     view: Option<&Value>,
+     camera_target: glam::Vec3,
+     camera_mode: CameraMode,
++    basis: StageBasis,
+ ) -> Result<StageCamera> {
+     let cameras = scene.get("cameras").and_then(Value::as_object);
+     let active = view
+@@ -622,12 +661,12 @@
+     };
+     camera.focus_distance = number(settings.get("focal_distance"), 1.).max(0.1);
+     camera.world_matrix = match camera_mode {
+-        CameraMode::Matrix => stage_to_render() * local_matrix(Some(entity)),
++        CameraMode::Matrix => basis.apply_transform(local_matrix(Some(entity))),
+         CameraMode::LookAt => {
+             let p = vector(entity.get("position"), [0.; 3]);
+-            let eye = map_stage_point(glam::Vec3::from(p));
+-            let target = map_stage_point(camera_target);
+-            Mat4::look_at_rh(eye, target, glam::Vec3::Y).inverse()
++            let eye = basis.apply_point(glam::Vec3::from(p));
++            let target = basis.apply_point(camera_target);
++            Mat4::look_at_rh(eye, target, basis.up()).inverse()
+         }
+     }
+     .to_cols_array();
+@@ -720,6 +759,7 @@
+     source: &Value,
+     view: Option<&Value>,
+     job: RenderJob,
++    basis: StageBasis,
+ ) -> Result<()> {
+     let lights = source
+         .get("lights")
+@@ -733,15 +773,7 @@
+         .collect::<Vec<_>>();
+     let mut visited = std::collections::BTreeSet::new();
+     for root in roots {
+-        walk_light(
+-            scene,
+-            &lights,
+-            &root,
+-            Mat4::IDENTITY,
+-            view,
+-            job,
+-            &mut visited,
+-        )?;
++        walk_light(scene, &lights, &root, Mat4::IDENTITY, view, job, basis, &mut visited)?;
+     }
+     Ok(())
+ }
+@@ -753,6 +785,7 @@
+     parent: Mat4,
+     view: Option<&Value>,
+     job: RenderJob,
++    basis: StageBasis,
+     visited: &mut std::collections::BTreeSet<String>,
+ ) -> Result<()> {
+     if !visited.insert(id.into()) {
+@@ -776,19 +809,19 @@
+                 width: number(data.get("size_x"), 0.) / 100.,
+                 height: number(data.get("size_z"), 0.) / 100.,
+                 spread: 0.,
+-                transform: stage_to_render() * transform,
++                transform: basis.apply_transform(transform),
+                 texture: None,
+             },
+             Some("point_light") => Light::Sphere {
+                 color,
+                 intensity,
+                 radius: (number(data.get("radius"), 0.) / 100.).max(0.01),
+-                transform: stage_to_render() * transform,
++                transform: basis.apply_transform(transform),
+             },
+             Some("directional_light") => Light::Directional {
+                 color,
+                 intensity,
+-                transform: stage_to_render() * transform,
++                transform: basis.apply_transform(transform),
+             },
+             Some("spot_light") => {
+                 let outer = number(data.get("spot_size"), 45.).clamp(0.1, 89.9);
+@@ -798,7 +831,7 @@
+                     intensity,
+                     inner: outer * blend,
+                     outer,
+-                    transform: stage_to_render() * transform,
++                    transform: basis.apply_transform(transform),
+                     ies: Vec::new().into(),
+                 }
+             }
+@@ -818,17 +851,17 @@
+         .flatten()
+     {
+         if let Some(child) = child.as_str() {
+-            walk_light(scene, lights, child, transform, view, job, visited)?;
++            walk_light(scene, lights, child, transform, view, job, basis, visited)?;
+         }
+     }
+     Ok(())
+ }
+ 
+-fn build_scene(source: &Value, assets: &HashMap<String, String>) -> Result<Scene> {
++fn build_scene(source: &Value, assets: &HashMap<String, String>, basis: StageBasis) -> Result<Scene> {
+     let mut scene = Scene::new();
+     let mut mesh_count = 0;
+     let mut log_count = 0;
+-    for (mesh_id, transform) in visible_mesh_transforms(source) {
++    for (mesh_id, transform) in visible_mesh_transforms(source, basis) {
+         let url = mesh_url(source, &mesh_id).ok_or_else(|| format!("Mesh {mesh_id} has no URL"))?;
+         let path = assets
+             .get(url)
+@@ -898,11 +931,17 @@
+         _ => return Err("--camera-target must contain three numbers".into()),
+     };
+     let view = selected_view(source, args.view.as_deref())?;
+-    let mut camera = stage_camera(source, view.as_ref(), camera_target, args.camera_mode)?;
++    let mut camera = stage_camera(
++        source,
++        view.as_ref(),
++        camera_target,
++        args.camera_mode,
++        args.basis,
++    )?;
+     camera.display.tone_mapping = tone_mapping_from_arg(&args.tone_mapping)?;
+-    let mut scene = build_scene(source, &assets)?;
++    let mut scene = build_scene(source, &assets, args.basis)?;
+     add_environment(&mut scene, source, view.as_ref(), &assets)?;
+-    add_lights(&mut scene, source, view.as_ref(), job)?;
++    add_lights(&mut scene, source, view.as_ref(), job, args.basis)?;
+ 
+     let engine = Engine::new(EngineOptions::default()).map_err(|e| e.to_string())?;
+     engine
+
+Need maybe rustfmt. Build requested exact with env. First check git diff and maybe cargo fmt specific? Rustfmt executable. Run cargo fmt --check? Could rustfmt file. Then build.
+codex
+The basis switch is wired through all affected transforms. Next I’m formatting, checking the diff, and running the requested release build.
+exec
+/bin/zsh -lc 'rustfmt --edition 2024 native/host/src/bin/stage_render.rs && git diff --check && git diff -- native/host/src/bin/stage_render.rs && MUTRACER_AOT_ARCHIVE=$PWD/.native-build/scene-core/render-core.lib.a CARGO_TARGET_DIR=$PWD/native/host/target cargo build --locked --release --manifest-path native/host/Cargo.toml --bin mutracer-render' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 2667ms:
+   Compiling mutracer-native-probe v0.0.0 (/Users/wangjianzheng/Project/git/mutracer/native/host)
+    Finished `release` profile [optimized] target(s) in 2.60s
+
+Need poll.
+Need perhaps verify CLI with invalid basis? Build successful sufficient. Check diff perhaps rustfmt changed. git diff --check passed before cargo (then output diff didn't show? max output likely command diff weird absent because it was included but blank? It didn't show? In result only compile lines, weird perhaps max output output omitted? We should inspect status/diff concise and maybe test invalid arg. User asks no push/Metal. Could run binary with unknown --basis foo but it will error usage due scene/out missing, error may show basis first. `binary --basis foo` should Err "--basis must..." printed? main Result prints. Could verify. Also ensure all stage_to_render usage only helper.
+codex
+The requested release build succeeds. I’m doing one final source audit and CLI validation for both basis values.
+exec
+/bin/zsh -lc "rg -n \"StageBasis|--basis|stage_to_render\\(\\)|apply_transform|apply_point|basis.up\" native/host/src/bin/stage_render.rs && git status --short native/host/src/bin/stage_render.rs && native/host/target/release/mutracer-render --basis foo 2>&1 | head -n 3" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 309ms:
+17:fn stage_to_render() -> Mat4 {
+31:enum StageBasis {
+36:impl StageBasis {
+37:    fn apply_transform(self, transform: Mat4) -> Mat4 {
+39:            StageBasis::Stage2Y => stage_to_render() * transform,
+40:            StageBasis::None => transform,
+44:    fn apply_point(self, point: glam::Vec3) -> glam::Vec3 {
+46:            StageBasis::Stage2Y => map_stage_point(point),
+47:            StageBasis::None => point,
+53:            StageBasis::Stage2Y => glam::Vec3::Y,
+54:            StageBasis::None => glam::Vec3::Z,
+109:        basis: StageBasis::Stage2Y,
+140:            "--basis" => {
+142:                    "stage2y" => StageBasis::Stage2Y,
+143:                    "none" => StageBasis::None,
+144:                    _ => return Err("--basis must be stage2y or none".into()),
+173:    basis: StageBasis,
+245:fn visible_mesh_transforms(scene: &Value, basis: StageBasis) -> Vec<(String, Mat4)> {
+270:        .map(|(mesh_id, transform)| (mesh_id, basis.apply_transform(transform)))
+624:    basis: StageBasis,
+664:        CameraMode::Matrix => basis.apply_transform(local_matrix(Some(entity))),
+667:            let eye = basis.apply_point(glam::Vec3::from(p));
+668:            let target = basis.apply_point(camera_target);
+669:            Mat4::look_at_rh(eye, target, basis.up()).inverse()
+762:    basis: StageBasis,
+797:    basis: StageBasis,
+821:                transform: basis.apply_transform(transform),
+828:                transform: basis.apply_transform(transform),
+833:                transform: basis.apply_transform(transform),
+843:                    transform: basis.apply_transform(transform),
+872:    basis: StageBasis,
+?? native/host/src/bin/stage_render.rs
+Error: "--basis must be stage2y or none"
+
+Interesting file is untracked? It says ?? meaning stage_render.rs new untracked in repo. Maybe this task started with untracked file, no git commit. Fine. Need maybe final concise. Mention build. No tests requested. Could perhaps test stage2y/none accepted only with scene args. Invalid parser confirms. Need check git diff unavailable untracked. But done.
+
+Need maybe not mention untracked weird. Could mention file lines. Final no more than 10 lines.
+codex
+Implemented `--basis stage2y|none` in `native/host/src/bin/stage_render.rs:31`.
+
+- Default remains `stage2y` (`native/host/src/bin/stage_render.rs:109`).
+- `none` preserves raw mesh, light, and matrix-camera transforms.
+- `none` LookAt uses raw stage positions with `up = Vec3::Z`.
+- Material override logic remains unchanged.
+- Release build succeeded with the requested AOT archive, target directory, and locked dependencies.
+- No push or Metal work was performed.
+tokens used
+89,793
+Implemented `--basis stage2y|none` in `native/host/src/bin/stage_render.rs:31`.
+
+- Default remains `stage2y` (`native/host/src/bin/stage_render.rs:109`).
+- `none` preserves raw mesh, light, and matrix-camera transforms.
+- `none` LookAt uses raw stage positions with `up = Vec3::Z`.
+- Material override logic remains unchanged.
+- Release build succeeded with the requested AOT archive, target directory, and locked dependencies.
+- No push or Metal work was performed.

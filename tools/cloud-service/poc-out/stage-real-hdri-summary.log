@@ -1,0 +1,28 @@
+MuTracer POC — Leader 场景补 HDRI 重渲
+时间: 2026-11-09 Asia/Shanghai
+
+HDRI:
+- 远端源: stage-stack .../brown_photostudio_02_2k.exr/<uuid> (OpenEXR 2k, ~5.0MB; supabase 目录形态)
+- 本机: tools/cloud-service/poc-out/hdri/brown_photostudio_02_2k.exr
+- assets key: official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr
+- scene active_environment image tex id: f0297447-532f-4f4a-8ac3-0e6f68a343fc → 上述 url
+- stage-real-assets.json 现 26 项（25 GLB + 1 EXR）
+
+本机:
+- 参数: 512x512 samples=32 bounces=3 denoise=1 timeout_ms=600000 view=Front/298cfe60...
+- 耗时: ~0.83s (Metal)
+- 输出: tools/cloud-service/poc-out/stage-real-leader-hdri.png (388120 bytes)
+- log: stage-real-hdri-local.log
+- 对比无 HDRI 的 stage-real-leader-512.png (147769 bytes / 8spp denoise0) 成片明显变化
+
+云端:
+- SSH 内网 POST（公网 :8787 仍不可达）
+- job 69c067f3846f426d93a94af44458af0a status=succeed
+- created 2026-11-09 14:02:45 CST → updated 14:02:53 CST (~8s)
+- PNG: stage-real-cloud-hdri-69c067f3846f426d93a94af44458af0a.png (388056 bytes)
+- payload ~7.8MB（含 EXR base64），未 push
+
+残余缺口:
+- 材质/其他 official_asset 贴图仍缺（仅补了 HDRI）
+- scene background_type=white；成片背景可能仍偏亮，需对照可影原图
+- 公网 API 入口未通；systemd unit inactive 但进程在听 8787（运维债）

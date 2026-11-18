@@ -1,0 +1,98 @@
+{
+  "final": "docs/prd/evidence/fusion/fidelity/render-Front-1c4a3883-standard-spp128-1920x1080.png (Standard, spp128, denoise, M2 c83a2f4a scene-override)",
+  "view": "1c4a3883-8668-4c16-a10e-0b7c24272279 Front",
+  "canvas": "928x522 CSS px (16:9 outputAspect), headed Chrome ANGLE Metal",
+  "tolerance": {
+    "d_lum": 10,
+    "d_rgb": 12,
+    "d_bg_lum": 12,
+    "mask_iou": 0.8
+  },
+  "rounds": [
+    {
+      "round": "r2b-original (pre-fix capture, 768x832 canvas)",
+      "d_lum": -98.62,
+      "d_rgb": [
+        -100.22,
+        -98.71,
+        -93.07
+      ],
+      "d_bg_lum": -211.85,
+      "mask_iou": 0.4652,
+      "pass": false,
+      "source": "docs/prd/evidence/fusion/f2/r2b/f2-front-realtime-canvas-r2.png"
+    },
+    {
+      "round": "round0-before",
+      "realtime_lum": 51.34,
+      "final_lum": 156.62,
+      "d_lum": -105.28,
+      "d_rgb": [
+        -106.97000122070312,
+        -105.30000305175781,
+        -100.12000274658203
+      ],
+      "d_bg_lum": -211.85,
+      "mask_iou": 0.2814,
+      "mae_fg": 114.28,
+      "pass": false
+    },
+    {
+      "round": "round1-fov",
+      "realtime_lum": 67.76,
+      "final_lum": 156.62,
+      "d_lum": -88.86,
+      "d_rgb": [
+        -90.44999694824219,
+        -89.05000305175781,
+        -82.38999938964844
+      ],
+      "d_bg_lum": -211.85,
+      "mask_iou": 0.8664,
+      "mae_fg": 111.89,
+      "pass": false
+    },
+    {
+      "round": "round2-look-bg",
+      "realtime_lum": 59.52,
+      "final_lum": 156.62,
+      "d_lum": -97.1,
+      "d_rgb": [
+        -98.45999908447266,
+        -97.4000015258789,
+        -90.13999938964844
+      ],
+      "d_bg_lum": 0.0,
+      "mask_iou": 0.9873,
+      "mae_fg": 102.72,
+      "pass": false
+    },
+    {
+      "round": "round3-camlights",
+      "realtime_lum": 159.02,
+      "final_lum": 156.62,
+      "d_lum": 2.4,
+      "d_rgb": [
+        2.299999952316284,
+        2.4100000858306885,
+        2.549999952316284
+      ],
+      "d_bg_lum": 0.0,
+      "mask_iou": 0.9874,
+      "mae_fg": 36.59,
+      "pass": true
+    }
+  ],
+  "not_adopted": {
+    "round4_tone_standard": "NoToneMapping best mae 37.3 at lum 174 / IoU 0.962 — no gain; realtime stays AgX",
+    "round5_key_placement": "frontal/high/left key: best mae 36.49 at matched mean vs 36.59 — no gain; stopped (two rounds no new improvement)"
+  },
+  "realtime_lights": {
+    "fill": 0.75,
+    "ground": 0.5,
+    "key": 2.0,
+    "keyUp": 0.6,
+    "keyRight": 0.35,
+    "tone": "agx"
+  }
+}

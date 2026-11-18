@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2/f2-front-quality-canvas-r2.png",
+    "width": 768,
+    "height": 832,
+    "mean": 87.83145904541016,
+    "lum_mean": 87.83145904541016,
+    "lum_std": 20.502870559692383,
+    "lum_median": 88.33333587646484,
+    "foreground_ratio": 1.0,
+    "unique_lum_bins": 31,
+    "row_std": 14.258305549621582,
+    "col_std": 17.977447509765625,
+    "sha256": "a41fc6592b4656483d354b0fe0d425e50c3c79fa6dd2a213f09c4fffcfbae5fa",
+    "visible": true
+  }
+]

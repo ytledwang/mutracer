@@ -1,0 +1,12 @@
+loaded viewer
+view-mode-bar count=1 text="实时查看\n高质量预览\n提交渲染"
+f1-named-materials-realtime.png
+CONSOLE error: Path tracing failed: Pipeline overridable constant ""AOV_REFLECTANCE"" not found in [ShaderModule "Ray Trace"].
+f1-named-materials-quality.png
+f1-bad-contract-toast.png
+f2-catalog-official-unavailable.png
+clicked apply M2
+apply toast seen
+f2-realtime-after-template.png
+f2-quality-after-template.png
+f2-mode-labels.png

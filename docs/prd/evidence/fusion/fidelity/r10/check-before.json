@@ -1,0 +1,576 @@
+{
+  "round": "r10",
+  "title": "light parent accumulation: UE-space then convert once",
+  "result": "FAIL",
+  "scene": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r8/scene-00ac0cff-preview.json",
+  "inner": "/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py",
+  "r9_lights": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r9-analysis/lights.json",
+  "n_stove_lights": 13,
+  "n_match_expected": 0,
+  "n_match_buggy": 13,
+  "still_at_r9_buggy_poses": true,
+  "identity_group_parents_clean": false,
+  "impl_exec_error": null,
+  "RectLight24": {
+    "id": "ca05c81b-d2e9-4cb6-947a-9bef54a38283",
+    "r9_buggy_loc": [
+      -0.740132,
+      0.589719,
+      3.212538
+    ],
+    "expected_loc": [
+      0.740132,
+      0.589719,
+      -3.212538
+    ],
+    "r9_buggy_forward": [
+      0.0,
+      -0.788011,
+      -0.615661
+    ],
+    "expected_forward": [
+      -0.0,
+      -0.788011,
+      0.615661
+    ],
+    "impl_loc": [
+      -0.740132,
+      0.589719,
+      3.212538
+    ],
+    "impl_forward": [
+      0.0,
+      -0.788011,
+      -0.615661
+    ],
+    "r9_delta_m": 6.593389,
+    "independent_delta_m": 6.59339
+  },
+  "identity_groups_independent": {
+    "buggy_injects": [
+      {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "name": "light_root",
+        "type": "root",
+        "depth": 0,
+        "child_parent_is_identity": false,
+        "injected_extra_basis": true
+      }
+    ],
+    "correct_injects": []
+  },
+  "lights": [
+    {
+      "name": "PointLight",
+      "id": "69fa63ad-5ad5-4fcd-90db-6bf884c8c2a1",
+      "depth": 2,
+      "r9_buggy_loc": [
+        -0.55267,
+        0.087536,
+        -1.145431
+      ],
+      "expected_loc": [
+        0.55267,
+        0.087536,
+        1.145431
+      ],
+      "r9_buggy_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "impl_loc": [
+        -0.55267,
+        0.087536,
+        -1.145431
+      ],
+      "impl_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "delta_impl_vs_expected_m": 2.543585,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "PointLight2",
+      "id": "720bb730-d0f4-4815-9a96-98e1063cedd1",
+      "depth": 2,
+      "r9_buggy_loc": [
+        -0.1,
+        -0.231764,
+        -0.316548
+      ],
+      "expected_loc": [
+        0.1,
+        -0.231764,
+        0.316548
+      ],
+      "r9_buggy_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "impl_loc": [
+        -0.1,
+        -0.231764,
+        -0.316548
+      ],
+      "impl_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "delta_impl_vs_expected_m": 0.663935,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "RectLight2",
+      "id": "f91c345b-13bc-46ab-91b8-de462a25d454",
+      "depth": 2,
+      "r9_buggy_loc": [
+        0.014907,
+        0.318679,
+        -0.803299
+      ],
+      "expected_loc": [
+        -0.014907,
+        0.318679,
+        0.803299
+      ],
+      "r9_buggy_forward": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "expected_forward": [
+        -0.0,
+        0.0,
+        -1.0
+      ],
+      "impl_loc": [
+        0.014907,
+        0.318679,
+        -0.803299
+      ],
+      "impl_forward": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "delta_impl_vs_expected_m": 1.606874,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "PointLight3",
+      "id": "ad2b1620-00f4-4c00-a58d-e265ba24c9ad",
+      "depth": 2,
+      "r9_buggy_loc": [
+        1.157479,
+        0.053048,
+        -1.145431
+      ],
+      "expected_loc": [
+        -1.157479,
+        0.053048,
+        1.145431
+      ],
+      "r9_buggy_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "impl_loc": [
+        1.157479,
+        0.053048,
+        -1.145431
+      ],
+      "impl_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "delta_impl_vs_expected_m": 3.256852,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "PointLight4",
+      "id": "e691ce59-4374-4aa7-8aac-21f357d6c547",
+      "depth": 2,
+      "r9_buggy_loc": [
+        0.167732,
+        0.03467,
+        -0.37935
+      ],
+      "expected_loc": [
+        -0.167732,
+        0.03467,
+        0.37935
+      ],
+      "r9_buggy_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "impl_loc": [
+        0.167732,
+        0.03467,
+        -0.37935
+      ],
+      "impl_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "delta_impl_vs_expected_m": 0.829555,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "PointLight5",
+      "id": "ad67bc52-216d-4278-b86a-1f407acfeba1",
+      "depth": 2,
+      "r9_buggy_loc": [
+        -0.343957,
+        0.03467,
+        0.336946
+      ],
+      "expected_loc": [
+        0.343957,
+        0.03467,
+        -0.336946
+      ],
+      "r9_buggy_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "impl_loc": [
+        -0.343957,
+        0.03467,
+        0.336946
+      ],
+      "impl_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "delta_impl_vs_expected_m": 0.962994,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "RectLight3",
+      "id": "0a9b2a72-03f3-4af3-94fb-7c49d01d2938",
+      "depth": 2,
+      "r9_buggy_loc": [
+        -0.081285,
+        0.149843,
+        0.152878
+      ],
+      "expected_loc": [
+        0.081285,
+        0.149843,
+        -0.152878
+      ],
+      "r9_buggy_forward": [
+        -0.0,
+        -0.866025,
+        0.5
+      ],
+      "expected_forward": [
+        0.0,
+        -0.866025,
+        -0.5
+      ],
+      "impl_loc": [
+        -0.081285,
+        0.149843,
+        0.152878
+      ],
+      "impl_forward": [
+        -0.0,
+        -0.866025,
+        0.5
+      ],
+      "delta_impl_vs_expected_m": 0.346288,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "RectLight4",
+      "id": "e3a87b32-8745-4c33-96fa-585bf38d4a9d",
+      "depth": 2,
+      "r9_buggy_loc": [
+        0.08369,
+        0.149843,
+        0.152878
+      ],
+      "expected_loc": [
+        -0.08369,
+        0.149843,
+        -0.152878
+      ],
+      "r9_buggy_forward": [
+        0.0,
+        -0.866025,
+        0.5
+      ],
+      "expected_forward": [
+        -0.0,
+        -0.866025,
+        -0.5
+      ],
+      "impl_loc": [
+        0.08369,
+        0.149843,
+        0.152878
+      ],
+      "impl_forward": [
+        0.0,
+        -0.866025,
+        0.5
+      ],
+      "delta_impl_vs_expected_m": 0.348573,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "RectLight5",
+      "id": "efc22348-8c94-4779-8677-e3782ec7c08c",
+      "depth": 2,
+      "r9_buggy_loc": [
+        -0.187922,
+        0.051088,
+        0.271017
+      ],
+      "expected_loc": [
+        0.187922,
+        0.051088,
+        -0.271017
+      ],
+      "r9_buggy_forward": [
+        0.0,
+        -0.939693,
+        -0.34202
+      ],
+      "expected_forward": [
+        -0.0,
+        -0.939693,
+        0.34202
+      ],
+      "impl_loc": [
+        -0.187922,
+        0.051088,
+        0.271017
+      ],
+      "impl_forward": [
+        0.0,
+        -0.939693,
+        -0.34202
+      ],
+      "delta_impl_vs_expected_m": 0.65959,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "RectLight20",
+      "id": "06622d11-6b19-40d6-9bb4-dad3d2a30a2a",
+      "depth": 2,
+      "r9_buggy_loc": [
+        0.028699,
+        0.5472,
+        -0.803063
+      ],
+      "expected_loc": [
+        -0.028699,
+        0.5472,
+        0.803063
+      ],
+      "r9_buggy_forward": [
+        -0.045235,
+        -0.705124,
+        0.707639
+      ],
+      "expected_forward": [
+        0.045235,
+        -0.705124,
+        -0.707639
+      ],
+      "impl_loc": [
+        0.028699,
+        0.5472,
+        -0.803063
+      ],
+      "impl_forward": [
+        -0.045235,
+        -0.705124,
+        0.707639
+      ],
+      "delta_impl_vs_expected_m": 1.607151,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "RectLight24",
+      "id": "ca05c81b-d2e9-4cb6-947a-9bef54a38283",
+      "depth": 2,
+      "r9_buggy_loc": [
+        -0.740132,
+        0.589719,
+        3.212538
+      ],
+      "expected_loc": [
+        0.740132,
+        0.589719,
+        -3.212538
+      ],
+      "r9_buggy_forward": [
+        0.0,
+        -0.788011,
+        -0.615661
+      ],
+      "expected_forward": [
+        -0.0,
+        -0.788011,
+        0.615661
+      ],
+      "impl_loc": [
+        -0.740132,
+        0.589719,
+        3.212538
+      ],
+      "impl_forward": [
+        0.0,
+        -0.788011,
+        -0.615661
+      ],
+      "delta_impl_vs_expected_m": 6.59339,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "RectLight25",
+      "id": "9f6f81b8-8919-4f13-aff0-2919e297dfe3",
+      "depth": 2,
+      "r9_buggy_loc": [
+        -3.092473,
+        2.568387,
+        -0.0
+      ],
+      "expected_loc": [
+        3.092473,
+        2.568387,
+        0.0
+      ],
+      "r9_buggy_forward": [
+        0.829038,
+        -0.559193,
+        -0.0
+      ],
+      "expected_forward": [
+        -0.829038,
+        -0.559193,
+        0.0
+      ],
+      "impl_loc": [
+        -3.092473,
+        2.568387,
+        -0.0
+      ],
+      "impl_forward": [
+        0.829038,
+        -0.559193,
+        -0.0
+      ],
+      "delta_impl_vs_expected_m": 6.184946,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    },
+    {
+      "name": "RectLight26",
+      "id": "ad732ef6-fb40-4552-af0b-0500226e28b7",
+      "depth": 2,
+      "r9_buggy_loc": [
+        3.092473,
+        2.568387,
+        -0.0
+      ],
+      "expected_loc": [
+        -3.092473,
+        2.568387,
+        0.0
+      ],
+      "r9_buggy_forward": [
+        -0.829038,
+        -0.559193,
+        -0.0
+      ],
+      "expected_forward": [
+        0.829038,
+        -0.559193,
+        0.0
+      ],
+      "impl_loc": [
+        3.092473,
+        2.568387,
+        -0.0
+      ],
+      "impl_forward": [
+        -0.829038,
+        -0.559193,
+        -0.0
+      ],
+      "delta_impl_vs_expected_m": 6.184946,
+      "delta_impl_vs_buggy_m": 0.0,
+      "matches_expected": false,
+      "matches_buggy": true
+    }
+  ],
+  "dump": null,
+  "failures": [
+    "implementation still uses parent_matrix @ light_basis_from_ue(node); all 13 stove lights remain at the r9 buggy mirrored pose (RectLight24 at [-0.740132, 0.589719, 3.212538], expected [0.740132, 0.589719, -3.212538])",
+    "identity-group parents still inject swap_yz @ ue_basis_from_view"
+  ]
+}

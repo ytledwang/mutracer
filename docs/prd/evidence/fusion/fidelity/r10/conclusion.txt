@@ -1,0 +1,58 @@
+r10 结论：灯的父子累积已按模型同一套算法改完（先在 UE 空间乘完再转换一次），检查器先红后绿；锁定 r8 规则重渲后，灶机灯位已正、但美渲几乎仍等于 r8，灶面还是黑的。未调 k，未改 candela→W 公式，未开 F3/F5，未 commit。
+时间：2026-11-13 14:36–14:51 Asia/Shanghai
+
+一、检查器先写后改（fail-first）
+
+命令：python3 tools/fusion-checks/fidelity_r10_light_check.py --out docs/prd/evidence/fusion/fidelity/r10/check.json
+改前（check-before.json）：exit 1。13 盏灶灯全部落在 r9 镜像位姿；RectLight24 在 [-0.740132, 0.589719, 3.212538]，朝向产品背面。
+改后（check.json）：exit 0。13/13 与「UE 累积再转一次」期望位姿重合；RectLight24 在 [0.740132, 0.589719, -3.212538]，主补光在产品前方（相机同侧，z=-3.213）。identity group 不再注入额外的 swap_yz @ ue_basis_from_view。
+
+二、代码改动（未 commit，未 git add）
+
+备份：~/mutracer-scratch/bak/r10/（blender_inner.py / run_blender_final.py / ue_filmic.py，sha 仍为改前 ed8ef353… / 46176bc7… / 30ec118e…）
+只改了 tools/dual-track/blender/blender_inner.py：
+- 新增 light_world_from_ue(ue_local) = sanitize(swap_yz @ ue_local @ ue_basis_from_view)
+- add_light 改为 matrix_ue = parent @ ue_local_matrix(node)，仅在 type==light 时 matrix = light_world_from_ue(matrix_ue)，子节点传递 matrix_ue
+这是正确性修复，不是按产品拟合。run_blender_final.py / ue_filmic.py 未改。
+新 sha：blender_inner.py 58013b921fdf4da57729cf015c67c4f47ddd173dd0f1c7f5b66ae42ddaaf4950
+HEAD 仍是 af527ef，工作区未 stage。
+
+三、Default Standard identity probe（改后必跑，现有脚本，未另开默认路径）
+
+命令：Blender --factory-startup --python tools/fusion-checks/default_identity_probe.py，r2 official Front 1c4a3883，spp 128，无新旗标。
+- post PNG sha = 024e98431d937525845ad2cbf88455a3fadbc55b641f2636b9d3cc0db72143e4（与参考字节级相同）
+- state sha = cc2a2d147577bd5447377b8ee55c5bbca67b5331ad08cafb1bbd157838c169b8（不再是 367c8c93…）
+差且只差 32 个 LIGHT 的 matrix_world（r2 厨房 32 盏 RectLight 同样踩中 identity 父节点多转一次）。物体数 1065、灯光数据块、世界、1250 个材质、view/render/cycles 均相同。这是本修复在默认路径上的预期副作用，不是其它漂移。
+
+四、锁定规则重渲（k=3.1 未重标定；旗标与 r8 相同）
+
+--env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --hdri-angle (task.hdri_angle-90) --skylight-scale 3.1 --white-sky-scale 0 --light-units candela
+1920×1080，spp 256，denoise 1，--view-transform Standard。
+
+灶机 00ac0cff 前视图 3c8d747b：
+- r8 vs 金样：mae 32.3524，mae_fg 87.6523，SSIM 0.645989，Δlum_fg -61.025，fg lum 19.31 vs 80.33
+- r10 vs 金样：mae 32.35，mae_fg 87.6459，SSIM 0.646021，Δlum_fg -60.985，fg lum 19.35 vs 80.33
+- r10 vs r8：mae 0.0951，mae_fg 0.2691，SSIM 0.994637，Δlum_fg +0.042
+灯位已在前方，但美渲几乎仍是黑灶面/像擦边。0.532 W（RectLight24 0.178 W，10×10 m）在当前换算下几乎照不亮主体。构图残留约 59 px / 左侧炉架 is_visible=false 未动。
+
+其它产品（检查器已绿，同样锁定旗标；失败则记单条，本批渲染全部 EXIT 0）：
+- 329c 对照（无灯）：r10 vs r7 R1 mae 1.6e-5（96 px 最多差 1），vs 金样 mae_fg 19.8068、Δlum_fg +2.477，与 r8 报告值相同。控制组稳定。
+- 2aa0：r10 vs 金样 mae_fg 57.4894、Δlum_fg +54.244（r8 为 57.4812 / +54.235）；vs r8 mae_fg 0.0216。仍过亮，灯位修正可忽略。
+- 枕头：r10 vs 金样 mae_fg 26.5856、Δlum_fg +26.731（与 r8 相同）；vs r8 mae 0、mae_fg 0（56 px 最多差 1）。仍削白。
+- 烟机：r10 vs 金样 mae 12.4912，mae_fg 42.9932，SSIM 0.946209，Δlum_fg +31.391（r8 为 12.0891 / 39.8915 / 0.948577 / +28.073）；vs r8 mae_fg 0.8491、Δlum_fg +0.585。灯位修正让已经偏亮的烟机再略亮一点（深度 1 的同样算法）。贴花仍缺。记为孤立副作用，不是渲染失败。
+
+五、白天空 / candela（只调查，不改公式、不调 k）
+
+白天空：SetEnvironmentSettings 在 background_type=white 时仍显示天空球（cubemap=White.White，HDRI_Brightness 写在球体材质上），SkyLight 另用 settings.image，强度可为 0。M_LightStage_Skybox_Master 为 MSM_Unlit，且含 MaterialExpressionPathTracingRayTypeSwitch。再结合 r7 的 white-sky leak（b>0 更差），强烈支持「可见白球体是相机背景，不是给 Path Tracer 照明的主项」。二进制线图未完全读出，不能 100% 排除残留贡献。本轮未改 white-sky-scale，也未再做 k 扫描或新的漏光实验。
+
+candela→W：引擎仍是 ELightUnits::Candelas + SetIntensity(power)，Rect 尺寸为厘米，与除以 100 一致。工程里没有改成瓦特。Cycles 的 W=πI/683（面）/ 4πI/683（点）仍是光度学推理，未经 Path Tracer 对照。位姿修正后 0.532 W 仍照不亮灶面；若白天空确实不照明，剩余缺口更可能在这个换算（尤其 10×10 m、38.78 cd 的 Rect）或其它未建模项。没有引擎级反证，本轮不改这条全局公式。
+
+ue55 后期未拆：五张共用，解释不了有的过亮、灶机过暗。
+
+六、未做（留给下一刀）
+
+- 灶机残留约 59 px 高度差，及 JSON 里 zuobianzaomian* is_visible=false（金样左右炉架都完整）
+- 烟机卡萨帝/Leader 贴花（blender_inner 无 decal 路径）
+- 不建议再调 k=3.1；若继续亮度，应先单独核 UE Path Tracer 对 candela Rect 的数值，或在不改默认公式的前提下做一次有引擎依据的单位对照，而不是按产品拟合。
+
+检查器（改后）exit 0 只表示灯位算法对了，不表示画质已对齐金样。

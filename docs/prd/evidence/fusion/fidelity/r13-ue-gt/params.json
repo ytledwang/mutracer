@@ -1,0 +1,12 @@
+{
+ "gray": 0.11401541,
+ "k_new": 0.0331738743,
+ "note": "ENGINE_DISPLAY_GRAY = 0.18 * 80.3319/126.8227; env product locked; legacy unchanged",
+ "scene": "docs/prd/evidence/fusion/fidelity/r8/scene-00ac0cff-preview.json",
+ "view": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+ "ue": "ue-00ac0cff-front-1920.png",
+ "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/00ac0cff-front-1920.png",
+ "spp": 256,
+ "width": 1920,
+ "height": 1080
+}

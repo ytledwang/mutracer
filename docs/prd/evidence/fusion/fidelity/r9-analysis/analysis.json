@@ -1,0 +1,152 @@
+{
+  "title": "r9 analysis: why locked r8 diverges, especially the stove",
+  "time": "2026-11-12 00:09 Asia/Shanghai",
+  "scope": "analysis only; no k/angle/post retune; no F3/F5; no commit; blender_inner.py / run_blender_final.py / ue_filmic.py not modified",
+  "diagnostic": {
+    "script": "docs/prd/evidence/fusion/fidelity/r9-analysis/dump_blender_scene.py",
+    "kind": "Blender dump + Workbench clay (geometry only). Did not change blender_inner.py. Default Standard identity not touched.",
+    "out": [
+      "blender-dump.json",
+      "clay-00ac0cff-front.png"
+    ]
+  },
+  "claims": [
+    {
+      "id": "view",
+      "text": "前视图 3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+      "value": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2"
+    },
+    {
+      "id": "cam_json_pos",
+      "text": "[0, -1.45, 0.9]",
+      "value": [
+        0,
+        -1.45,
+        0.9
+      ]
+    },
+    {
+      "id": "cam_json_rot",
+      "text": "[0, -30, 90]",
+      "value": [
+        0,
+        -30.000000000000004,
+        90
+      ]
+    },
+    {
+      "id": "look_down_deg",
+      "text": "30.0",
+      "value": 30.0
+    },
+    {
+      "id": "blender_loc",
+      "text": "[0.0, 0.9, -1.45]",
+      "value": [
+        0.0,
+        0.9,
+        -1.45
+      ]
+    },
+    {
+      "id": "fov",
+      "text": "35",
+      "value": 35
+    },
+    {
+      "id": "gold_bbox",
+      "text": "72–1846 × 311–846",
+      "value": [
+        72,
+        1846,
+        311,
+        846
+      ]
+    },
+    {
+      "id": "r8_bbox",
+      "text": "73–1845 × 370–845",
+      "value": [
+        73,
+        1845,
+        370,
+        845
+      ]
+    },
+    {
+      "id": "clay_union",
+      "text": "72.0–1846.6 × 369.08–847.11",
+      "value": [
+        72.0,
+        1846.6,
+        369.08,
+        847.11
+      ]
+    },
+    {
+      "id": "height_delta_px",
+      "text": "59",
+      "value": 59
+    },
+    {
+      "id": "zaojumian_thin",
+      "text": "Y",
+      "value": "Y"
+    },
+    {
+      "id": "RectLight24_delta_m",
+      "text": "6.593389",
+      "value": 6.593389
+    },
+    {
+      "id": "RectLight24_W",
+      "text": "0.1784",
+      "value": 0.1784
+    },
+    {
+      "id": "total_W",
+      "text": "0.532",
+      "value": 0.532
+    },
+    {
+      "id": "k",
+      "text": "3.1",
+      "value": 3.1
+    },
+    {
+      "id": "329c_mae_fg",
+      "text": "19.81",
+      "value": 19.8068
+    },
+    {
+      "id": "stove_d_lum",
+      "text": "-61.03",
+      "value": -61.025
+    },
+    {
+      "id": "pillow_ev",
+      "text": "2.056",
+      "value": 2.056
+    },
+    {
+      "id": "pillow_ev_lin",
+      "text": "4.158",
+      "value": 4.158
+    }
+  ],
+  "hypotheses": {
+    "H1": "REJECTED — gold is 前视图 3c8d747b (task's only view; backup views_in_task agrees). 透视 and other cameras exist in the official 5-cam template but were not used for this gold.",
+    "H2": "REJECTED as the primary 'wrong camera convention' cause. Applied look-down is 30.0° at blender loc [0, 0.9, -1.45]; clay/r8 silhouette width matches gold (72–1846). Residual: gold is 59 px taller at the back; left burner grate missing in our scene (is_visible=false on several zuobianzaomian*).",
+    "H3": "REJECTED at 16:9. fov 35 horizontal, sensor 24.576, sensor_fit HORIZONTAL. Width boxes match. UE SetFieldOfView(fov)+MaintainYFOV does not change a 16:9 frame authored at 16:9.",
+    "H4": "REJECTED. Official UE 5.5.4 glTFs with rot [-90,-90,180] scale 0.1 still sit horizontal after mesh_basis_from_ue (zaojumian thin in Y, 0.86×0.0012×0.45 m). That actor xform is the cm-scale official-template convention, not a mis-rotation of the hob.",
+    "H5": "REJECTED — preview vs raw 0 diffs.",
+    "H6": "REJECTED — render_task backup 20261024 scene_json cameras/models/lights identical to r8 raw; output 7680×4320, 2048 spp.",
+    "B1": "SUPPORTED — k=3.1 is empirical on 329c and should not be a universal scale.",
+    "B2": "UNRESOLVED — ue55 post still doc-sourced; same formula on all 5, cannot alone explain stove dark vs others bright.",
+    "B3": "PARTIALLY — Candelas is engine-source confirmed (SpawnLight). Cycles W=pi*I/683 (area) / 4pi*I/683 (point) is still reasoned, not Path Tracer verified. Stove mapped total is 0.532 W; RectLight24 is 0.1784 W on a 10×10 m panel.",
+    "B4": "SUPPORTED — identity light groups still inject swap_yz@ue_basis. Stove depth-2 mirrors lights (RectLight24 6.593389 m off, z +3.213 vs -3.213). Darkness and (apparent) 'edge-on black glass' share this lighting root, plus B6, not a separate camera bug.",
+    "B5": "REJECTED as 'lights dropped' — all 13 imported and visible; they are misplaced (B4), not missing.",
+    "B6": "SUPPORTED as a major stove gap — white-sky-scale 0 + skylight 0 removes all env light. UE white path keeps a visible White.White skybox at HDRI_Brightness=100; Path Tracer may light from that skybox. Not re-rendered this pass.",
+    "C": "CONFIRMED — hood decal 卡萨帝logo (f623dfcf, M_New_Decal_Master) exists in scene JSON; blender_inner.py has no decal path."
+  }
+}

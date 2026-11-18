@@ -1,0 +1,22 @@
+START 2026-11-11 23:46:21 +0800 Asia/Shanghai
+ARGS --env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --hdri-angle -90 --skylight-scale 3.1 --white-sky-scale 0 --light-units candela
+23:46:22 | INFO: Data are loaded, start creating Blender stuff
+23:46:22 | INFO: Blender create Mesh node Mesh_0
+23:46:23 | INFO: glTF import finished in 1.31s
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py:442: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+[color] view_transform=Standard
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py:717: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+[env] hdri rotation z=-90.0
+[env] ue bg=white skylight=1.0*3.1 white_sky=0.0*100.0 cam_strength=1.0 mirror=False lights=candela
+[gpu] METAL: 1
+00:20.863  render           | Saved: '/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r8/render-2425a469-Front.png.linear.exr'
+[tonemap] ue-filmic exposure_ev=2.056 film_transparent=True
+[done] /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r8/render-2425a469-Front.png
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit
+/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r8/render-2425a469-Front.png
+EXIT 0
+END 2026-11-11 23:46:43 +0800 Asia/Shanghai

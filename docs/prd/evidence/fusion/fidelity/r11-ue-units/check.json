@@ -1,0 +1,128 @@
+{
+ "scene": "docs/prd/evidence/fusion/fidelity/r8/scene-00ac0cff-preview.json",
+ "engine_source": "UE 5.5.4-release (Epic GitHub, fetched 2026-11-14)",
+ "area_formula": "nits = 2*I_cd/A_m2  [RectLightComponent.cpp:174,313]",
+ "point_formula": "cd = I_cd        [LightComponent.cpp GetColor; 无面积除法]",
+ "display_linear_extra": "unresolved: source chain says nits * 2^bias (0.18 cancels, PostProcessEyeAdaptation.cpp:436,508-509); implemented empirical scale is nits * 0.18 * 2^bias (closest to renders); see r12-ue-units/conclusion.txt",
+ "camera_auto_exposure_bias": 1.0,
+ "lights": [
+  {
+   "name": "RectLight20",
+   "type": "area_light",
+   "power_cd": 2.0,
+   "ue_nits_or_cd": 13.586956522,
+   "mutracer_nits_or_cd": 13.586956522,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "RectLight3",
+   "type": "area_light",
+   "power_cd": 0.029999999329447746,
+   "ue_nits_or_cd": 9.37499979,
+   "mutracer_nits_or_cd": 9.37499979,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "PointLight",
+   "type": "point_light",
+   "power_cd": 2.0,
+   "ue_nits_or_cd": 2.0,
+   "mutracer_nits_or_cd": 2.0,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "PointLight2",
+   "type": "point_light",
+   "power_cd": 0.20000000298023224,
+   "ue_nits_or_cd": 0.200000003,
+   "mutracer_nits_or_cd": 0.200000003,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "RectLight25",
+   "type": "area_light",
+   "power_cd": 20.0,
+   "ue_nits_or_cd": 0.4,
+   "mutracer_nits_or_cd": 0.4,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "PointLight3",
+   "type": "point_light",
+   "power_cd": 0.0031999999191612005,
+   "ue_nits_or_cd": 0.0032,
+   "mutracer_nits_or_cd": 0.0032,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "PointLight5",
+   "type": "point_light",
+   "power_cd": 2.0,
+   "ue_nits_or_cd": 2.0,
+   "mutracer_nits_or_cd": 2.0,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "RectLight26",
+   "type": "area_light",
+   "power_cd": 20.0,
+   "ue_nits_or_cd": 0.4,
+   "mutracer_nits_or_cd": 0.4,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "RectLight24",
+   "type": "area_light",
+   "power_cd": 38.780670166015625,
+   "ue_nits_or_cd": 0.775613403,
+   "mutracer_nits_or_cd": 0.775613403,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "RectLight4",
+   "type": "area_light",
+   "power_cd": 0.029999999329447746,
+   "ue_nits_or_cd": 9.37499979,
+   "mutracer_nits_or_cd": 9.37499979,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "PointLight4",
+   "type": "point_light",
+   "power_cd": 2.0,
+   "ue_nits_or_cd": 2.0,
+   "mutracer_nits_or_cd": 2.0,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "RectLight5",
+   "type": "area_light",
+   "power_cd": 0.07999999821186066,
+   "ue_nits_or_cd": 1.562499965,
+   "mutracer_nits_or_cd": 1.562499965,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  },
+  {
+   "name": "RectLight2",
+   "type": "area_light",
+   "power_cd": 10.0,
+   "ue_nits_or_cd": 67.934782609,
+   "mutracer_nits_or_cd": 67.934782609,
+   "ratio_ue_over_mutracer": 1.0,
+   "ok": true
+  }
+ ],
+ "failures": 0
+}

@@ -1,0 +1,2309 @@
+Reading prompt from stdin...
+OpenAI Codex v0.163.0
+--------
+workdir: /Users/wangjianzheng/Project/git/mutracer
+model: volcengine/glm-5.3-flash
+provider: magpie
+approval: never
+sandbox: danger-full-access
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1c019-011a-70f3-b1aa-f5244ca1763c
+--------
+user
+仓库 /Users/wangjianzheng/Project/git/mutracer。姿态矩阵已对。IoU≈0.29 的主因不是材质，是 **相机镜头 FOV 算错导致成片冰箱比金样小一圈**（对比图中栏明显偏小）。
+
+## 证据
+stage fov 是水平角。当前代码：
+```python
+camera.lens = (camera.sensor_width * render_height / render_width) / (2 * math.tan(fov / 2))
+```
+把水平 fov 误当垂直用，lens 偏小 → FOV 偏大 → 物体偏小。
+
+正确（与 stage_render 水平 fov 一致）：
+```python
+camera.sensor_fit = 'HORIZONTAL'
+camera.lens = camera.sensor_width / (2 * math.tan(fov / 2))
+```
+
+## 只改这一处（blender_inner.py 相机段）
+1. 按上面修正 lens + sensor_fit='HORIZONTAL'
+2. 保持现有矩阵/白世界 Strength=1.0/材质封顶；可保留 clay metalness=0
+3. 直接跑正式 both 验收一次
+
+目标 silhouette_iou_final_vs_ref > 0.7。更新 arch-run-summary.md 与 metrics。不 push。
+若仍 <0.5：附 final/ref bbox 后停。
+
+warning: Codex is ignoring 3 unrecognized configuration settings. Check for typos or deprecated settings.
+  user (/Users/wangjianzheng/.codex/config.toml): `disable_response_storage` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `features.rmcp_client` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `preferred_auth_method` is ignored.
+warning: Codex is ignoring 3 unrecognized configuration settings. Check for typos or deprecated settings.
+  user (/Users/wangjianzheng/.codex/config.toml): `disable_response_storage` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `features.rmcp_client` is ignored.
+  user (/Users/wangjianzheng/.codex/config.toml): `preferred_auth_method` is ignored.
+warning: failed to parse hooks config /Users/wangjianzheng/.codex/hooks.json: unknown field `SessionEnd`, expected `description` or `hooks` at line 2 column 14
+2026-11-09T11:37:08.852687Z ERROR codex_rmcp_client::oauth::refresh_transaction: error=failed to refresh OAuth tokens for server canva
+We need act in repo. Need inspect plan/progress? This seems ongoing task. User explicitly says only change camera section and run formal both acceptance. Need find files. We should preamble and plan perhaps.
+codex
+我先定位 `blender_inner.py` 相机段和验收流程，再做最小修改。
+2026-11-09T11:37:15.751968Z ERROR codex_core::tools::router: error=cannot update goal because this thread has no goal
+No goal. Need tool preamble already. Use rg.
+exec
+/bin/zsh -lc "rg --files -g 'blender_inner.py' -g 'arch-run-summary.md' -g '*metrics*' -g 'plans/**' | sed -n '1,120p' && rg -n \"camera.lens|sensor_width|sensor_fit|fov\" --glob 'blender_inner.py' -S ." in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+metrics.json
+scripts/pbrt-metrics.mjs
+scripts/caustics-noise-metrics.mjs
+scripts/caustics-photon-metrics.mjs
+tools/dual-track/blender/blender_inner.py
+viewer/tests/pbrt-metrics.test.ts
+native/viewer/src/metrics.rs
+tools/cloud-service/poc-out/fridge/arch-metrics.json
+tools/cloud-service/poc-out/fridge/arch-run-summary.md
+./tools/dual-track/blender/blender_inner.py:440:    camera.sensor_width = camera_camera.get("sensor_width", 24.576)
+./tools/dual-track/blender/blender_inner.py:441:    fov = math.radians(camera_camera.get("fov", 75))
+./tools/dual-track/blender/blender_inner.py:442:    camera.lens = (
+./tools/dual-track/blender/blender_inner.py:443:        camera.sensor_width * render_height / render_width
+./tools/dual-track/blender/blender_inner.py:444:    ) / (2 * math.tan(fov / 2))
+
+Need inspect context and summary/metrics.
+codex
+找到目标代码和验收产物了；现在核对上下文与现有指标结构。
+exec
+/bin/zsh -lc "sed -n '400,470p' tools/dual-track/blender/blender_inner.py && printf '\\n--- summary ---\\n' && sed -n '1,220p' tools/cloud-service/poc-out/fridge/arch-run-summary.md && printf '\\n--- metrics ---\\n' && cat tools/cloud-service/poc-out/fridge/arch-metrics.json && printf '\\n--- commands ---\\n' && rg -n \"formal|both|arch|fridge\" tools/dual-track/blender tools/cloud-service/poc-out/fridge/arch-run-summary.md package.json -S | sed -n '1,200p'" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+    if node.get("type") == "root":
+        add_light(light_id, identity(), set())
+
+if not has_stage_light:
+    fallback_position = Matrix.Translation((-0.04, -4.50, 2.30))
+    fallback_direction = (-fallback_position.to_translation()).normalized()
+    fallback_light = bpy.data.lights.new("soft_fill", type="AREA")
+    fallback_light.energy = 200.0
+    fallback_light.shape = "RECTANGLE"
+    fallback_light.size = 1.5
+    fallback_light.size_y = 1.0
+    fallback_object = bpy.data.objects.new("soft_fill", fallback_light)
+    bpy.context.scene.collection.objects.link(fallback_object)
+    fallback_object.matrix_world = (
+        fallback_position
+        @ fallback_direction.to_track_quat("-Z", "Y").to_matrix().to_4x4()
+    )
+
+views = stage_scene.get("views") or {}
+view = views.get(view_id) or (next(iter(views.values())) if views else {})
+
+camera_id = view.get("active_camera")
+camera_data = (stage_scene.get("cameras") or {}).get(camera_id)
+if not camera_data:
+    camera_data = next(
+        (
+            camera
+            for camera in (stage_scene.get("cameras") or {}).values()
+            if camera.get("type") == "camera"
+        ),
+        None,
+    )
+
+scene = bpy.context.scene
+if camera_data:
+    camera_camera = camera_data.get("camera", {})
+    frame_size = camera_data.get("frame_size", [1920, 1080])
+    render_width = int(width_override or frame_size[0])
+    render_height = int(height_override or frame_size[1])
+    camera = bpy.data.cameras.new("camera")
+    camera.sensor_width = camera_camera.get("sensor_width", 24.576)
+    fov = math.radians(camera_camera.get("fov", 75))
+    camera.lens = (
+        camera.sensor_width * render_height / render_width
+    ) / (2 * math.tan(fov / 2))
+    camera_object = bpy.data.objects.new("camera", camera)
+    bpy.context.scene.collection.objects.link(camera_object)
+    camera_object.matrix_world = camera_basis_from_ue(camera_data)
+    scene.camera = camera_object
+    scene.render.resolution_x = render_width
+    scene.render.resolution_y = render_height
+
+environment_id = view.get("active_environment")
+environment = (stage_scene.get("environments") or {}).get(environment_id)
+environment_texture_path = None
+environment_settings = (environment or {}).get("settings") or {}
+background_type = environment_settings.get("background_type", "white")
+if background_type != "white":
+    texture_id = environment_settings.get("image")
+    texture = (stage_scene.get("textures") or {}).get(texture_id)
+    texture_url = texture and (texture.get("urls") or texture.get("url"))
+    environment_texture_path = assets.get(texture_url)
+
+scene.render.film_transparent = False
+scene.view_settings.view_transform = "Standard"
+world = bpy.data.worlds.new("world")
+scene.world = world
+world.use_nodes = True
+background = world.node_tree.nodes["Background"]
+if background_type == "white":
+    # The stage white studio is a pure white backdrop; Standard view transform
+
+--- summary ---
+# Fridge dual-track architecture run
+
+## Result
+
+- Preview: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png`
+- Final: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png`
+- Comparison: `tools/cloud-service/poc-out/fridge/arch-vs-ref.png`
+- Metrics: `tools/cloud-service/poc-out/fridge/arch-metrics.json`
+- Acceptance: **not met**; `silhouette_iou_final_vs_ref` is `0.2897`, below the
+  `0.7` target and below the fallback threshold of `0.5`. The run stopped.
+- Final corner RGB: top-left `(255, 255, 255)`, top-right `(217, 236, 216)`,
+  bottom-left `(255, 249, 255)`, bottom-right `(242, 248, 242)`.
+- Reference corner RGB: all four corners `(255, 255, 255)`.
+- Comparison background color: final RGB `(254, 253, 254)`,
+  reference RGB `(255, 255, 255)`, from the corner-median used by the comparison.
+- Mask areas on the comparison-sized images: final `53600`, reference `145829`.
+
+## Overrides
+
+The white environment uses pure white color and Strength `1.0` under
+`view_transform: Standard`. Material colors with `sum(color) / 3 > 0.65` are
+replaced by `(0.55, 0.55, 0.55)`. The charcoal overrides for sheet-metal powder
+coating and `door_edge_meshes` are retained. No `mesh_basis` or camera data was
+changed.
+
+Non-charcoal materials are forced to `metalness: 0.0` and `roughness >= 0.45`,
+including their roughness maps. Glass uses Transmission `0.0` and the
+non-charcoal gray color. Charcoal door-edge materials retain `metalness: 0.12`.
+
+## Metrics
+
+```json
+{
+  "brightness_std": {
+    "preview": 43.934539165667395,
+    "final": 30.287231359659657,
+    "ref": 42.81089388887461
+  },
+  "silhouette_iou_preview_vs_ref": 0.8004316040881151,
+  "silhouette_iou_final_vs_ref": 0.2897155729321751,
+  "threshold": 16
+}
+```
+
+## Command
+
+```bash
+python3 tools/dual-track/run_dual_track.py both \
+  --scene tools/cloud-service/poc-out/fridge/stage-fridge-scene_snapshot.json \
+  --asset-map tools/cloud-service/poc-out/fridge/stage-fridge-assets.json \
+  --assets-root tools/cloud-service/poc-out/fridge/assets \
+  --view 298cfe60-923d-44fb-a0d1-f2206b9a48e1 \
+  --preview-out tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png \
+  --final-out tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png \
+  --compare-out tools/cloud-service/poc-out/fridge/arch-vs-ref.png \
+  --ref tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c-1024.png \
+  --metrics-out tools/cloud-service/poc-out/fridge/arch-metrics.json \
+  --preview-width 960 --preview-height 540 --preview-spp 32 \
+  --final-width 960 --final-height 540 --final-spp 64 \
+  --blender /Applications/Blender.app/Contents/MacOS/Blender
+```
+
+--- metrics ---
+{
+  "brightness_std": {
+    "preview": 43.934539165667395,
+    "final": 30.287231359659657,
+    "ref": 42.81089388887461
+  },
+  "silhouette_iou_preview_vs_ref": 0.8004316040881151,
+  "silhouette_iou_final_vs_ref": 0.2897155729321751,
+  "threshold": 16
+}
+
+--- commands ---
+package.json:69:    "build": "npm run typecheck && vite build && node scripts/check-research-artifacts.mjs dist",
+package.json:85:    "build:viewer": "vite build --config viewer/vite.config.ts && node scripts/check-research-artifacts.mjs dist-viewer",
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:1:# Fridge dual-track architecture run
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:5:- Preview: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png`
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:6:- Final: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png`
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:7:- Comparison: `tools/cloud-service/poc-out/fridge/arch-vs-ref.png`
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:8:- Metrics: `tools/cloud-service/poc-out/fridge/arch-metrics.json`
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:48:python3 tools/dual-track/run_dual_track.py both \
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:49:  --scene tools/cloud-service/poc-out/fridge/stage-fridge-scene_snapshot.json \
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:50:  --asset-map tools/cloud-service/poc-out/fridge/stage-fridge-assets.json \
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:51:  --assets-root tools/cloud-service/poc-out/fridge/assets \
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:53:  --preview-out tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png \
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:54:  --final-out tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png \
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:55:  --compare-out tools/cloud-service/poc-out/fridge/arch-vs-ref.png \
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:56:  --ref tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c-1024.png \
+tools/cloud-service/poc-out/fridge/arch-run-summary.md:57:  --metrics-out tools/cloud-service/poc-out/fridge/arch-metrics.json \
+
+exec
+/bin/zsh -lc "sed -n '1,260p' tools/dual-track/run_dual_track.py" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+#!/usr/bin/env python3
+import argparse
+import json
+import os
+import subprocess
+import sys
+import time
+
+from PIL import Image
+from PIL import ImageChops
+
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PREVIEW_BINARY = os.path.join(
+    REPO_ROOT, "native/host/target/release/mutracer-render"
+)
+FINAL_SCRIPT = os.path.join(
+    REPO_ROOT, "tools/dual-track/blender/run_blender_final.py"
+)
+DEFAULT_REF = os.path.join(
+    REPO_ROOT,
+    "tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c-1024.png",
+)
+BLENDER_BINARY = (
+    "/Applications/Blender.app/Contents/MacOS/Blender"
+    if sys.platform == "darwin"
+    else "blender"
+)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Render one stage scene through preview and/or Blender final tracks."
+    )
+    parser.add_argument("mode", choices=("preview", "final", "both"))
+    parser.add_argument("--scene", required=True)
+    parser.add_argument("--asset-map", required=True)
+    parser.add_argument("--assets-root")
+    parser.add_argument("--view", required=True)
+    parser.add_argument("--preview-out")
+    parser.add_argument("--preview-width", type=int, default=960)
+    parser.add_argument("--preview-height", type=int, default=540)
+    parser.add_argument("--preview-spp", type=int, default=32)
+    parser.add_argument("--final-out")
+    parser.add_argument("--final-width", type=int, default=960)
+    parser.add_argument("--final-height", type=int, default=540)
+    parser.add_argument("--final-spp", type=int, default=64)
+    parser.add_argument("--denoise", choices=("0", "1"), default="1")
+    parser.add_argument("--compare-out")
+    parser.add_argument(
+        "--ref",
+        default=DEFAULT_REF if os.path.isfile(DEFAULT_REF) else None,
+    )
+    parser.add_argument("--metrics-out")
+    parser.add_argument("--preview-binary", default=PREVIEW_BINARY)
+    parser.add_argument("--blender", default=BLENDER_BINARY)
+    args = parser.parse_args()
+    if args.mode == "preview":
+        args.preview_out = args.preview_out or "preview.png"
+    elif args.mode == "final":
+        args.final_out = args.final_out or "final.png"
+    else:
+        args.preview_out = args.preview_out or "preview.png"
+        args.final_out = args.final_out or "final.png"
+    if args.compare_out and not args.metrics_out:
+        args.metrics_out = os.path.join(
+            os.path.dirname(os.path.abspath(args.compare_out)), "arch-metrics.json"
+        )
+    return args
+
+
+def run(command):
+    print("+", " ".join(command), flush=True)
+    subprocess.run(command, check=True)
+
+
+def render_preview(args):
+    output = os.path.abspath(args.preview_out)
+    os.makedirs(os.path.dirname(output) or ".", exist_ok=True)
+    command = [
+        args.preview_binary,
+        "--scene",
+        args.scene,
+        "--out",
+        output,
+        "--asset-map",
+        args.asset_map,
+        "--view",
+        args.view,
+        "--width",
+        str(args.preview_width),
+        "--height",
+        str(args.preview_height),
+        "--samples",
+        str(args.preview_spp),
+        "--bounces",
+        "3",
+        "--denoise",
+        args.denoise,
+        "--timeout-ms",
+        "600000",
+    ]
+    started = time.monotonic()
+    run(command)
+    return output, time.monotonic() - started
+
+
+def render_final(args):
+    output = os.path.abspath(args.final_out)
+    os.makedirs(os.path.dirname(output) or ".", exist_ok=True)
+    command = [
+        sys.executable,
+        FINAL_SCRIPT,
+        "--scene",
+        args.scene,
+        "--asset-map",
+        args.asset_map,
+        "--out",
+        output,
+        "--view",
+        args.view,
+        "--width",
+        str(args.final_width),
+        "--height",
+        str(args.final_height),
+        "--spp",
+        str(args.final_spp),
+        "--denoise",
+        args.denoise,
+        "--blender",
+        args.blender,
+    ]
+    if args.assets_root:
+        env = os.environ.copy()
+        env["DUAL_TRACK_ASSETS_ROOT"] = os.path.abspath(args.assets_root)
+        started = time.monotonic()
+        subprocess.run(command, check=True, env=env)
+        return output, time.monotonic() - started
+    started = time.monotonic()
+    run(command)
+    return output, time.monotonic() - started
+
+
+def brightness_standard_deviation(image):
+    gray = image.convert("L")
+    histogram = gray.histogram()
+    count = sum(histogram)
+    mean = sum(index * value for index, value in enumerate(histogram)) / count
+    variance = (
+        sum(value * (index - mean) ** 2 for index, value in enumerate(histogram)) / count
+    )
+    return variance ** 0.5
+
+
+def background_color(image):
+    corners = (
+        image.getpixel((2, 2)),
+        image.getpixel((image.width - 3, 2)),
+        image.getpixel((2, image.height - 3)),
+        image.getpixel((image.width - 3, image.height - 3)),
+    )
+    return tuple(
+        sorted(pixel[channel] for pixel in corners)[1] for channel in range(3)
+    )
+
+
+def silhouette(image, background, threshold):
+    difference = ImageChops.difference(image, Image.new("RGB", image.size, background))
+    return difference.convert("L").point(lambda value: value > threshold)
+
+
+def intersection_over_union(left_mask, right_mask):
+    intersection = sum(
+        left and right for left, right in zip(left_mask.getdata(), right_mask.getdata())
+    )
+    union = sum(
+        left or right for left, right in zip(left_mask.getdata(), right_mask.getdata())
+    )
+    return intersection / union if union else 1.0
+
+
+def compare_and_measure(args, preview_path, final_path):
+    preview = Image.open(preview_path).convert("RGB")
+    final = Image.open(final_path).convert("RGB")
+    reference = Image.open(args.ref).convert("RGB") if args.ref else None
+    target_height = min(preview.height, final.height)
+    target_height = reference.height if reference else target_height
+
+    def resized(image):
+        width = max(1, round(image.width * target_height / image.height))
+        return image.resize((width, target_height), Image.Resampling.LANCZOS)
+
+    preview = resized(preview)
+    final = resized(final)
+    reference = resized(reference) if reference else None
+    images = [preview, final] + ([reference] if reference else [])
+    separator = Image.new("RGB", (2, target_height), "white")
+    total_width = sum(image.width for image in images) + 2 * (len(images) - 1)
+    comparison = Image.new("RGB", (total_width, target_height), "white")
+    offset = 0
+    for image in images:
+        comparison.paste(image, (offset, 0))
+        offset += image.width + 2
+    comparison_path = os.path.abspath(args.compare_out)
+    os.makedirs(os.path.dirname(comparison_path) or ".", exist_ok=True)
+    comparison.save(comparison_path)
+
+    threshold = 16
+    preview_iou = None
+    final_iou = None
+    if reference:
+        reference_mask = silhouette(reference, background_color(reference), threshold)
+        preview_iou = intersection_over_union(
+            silhouette(preview, background_color(preview), threshold),
+            reference_mask,
+        )
+        final_iou = intersection_over_union(
+            silhouette(final, background_color(final), threshold),
+            reference_mask,
+        )
+    metrics = {
+        "brightness_std": {
+            "preview": brightness_standard_deviation(preview),
+            "final": brightness_standard_deviation(final),
+            "ref": brightness_standard_deviation(reference) if reference else None,
+        },
+        "silhouette_iou_preview_vs_ref": preview_iou,
+        "silhouette_iou_final_vs_ref": final_iou,
+        "threshold": threshold,
+    }
+    metrics_path = os.path.abspath(args.metrics_out)
+    os.makedirs(os.path.dirname(metrics_path) or ".", exist_ok=True)
+    with open(metrics_path, "w", encoding="utf-8") as stream:
+        json.dump(metrics, stream, indent=2)
+        stream.write("\n")
+    print(json.dumps(metrics, indent=2))
+    return comparison_path, metrics_path
+
+
+def main():
+    args = parse_args()
+    preview_path = None
+    final_path = None
+    preview_seconds = None
+    final_seconds = None
+    if args.mode in ("preview", "both"):
+        preview_path, preview_seconds = render_preview(args)
+    if args.mode in ("final", "both"):
+        final_path, final_seconds = render_final(args)
+    if args.compare_out:
+        if not (preview_path and final_path):
+            raise SystemExit("--compare-out requires --mode both")
+        compare_and_measure(args, preview_path, final_path)
+    print(
+        json.dumps(
+            {
+                "mode": args.mode,
+                "preview_seconds": preview_seconds,
+                "final_seconds": final_seconds,
+            },
+
+codex
+上下文确认完毕，只修改相机 FOV 转换，随后执行同一条 `both` 验收。
+apply patch
+patch: completed
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py
+diff --git a/tools/dual-track/blender/blender_inner.py b/tools/dual-track/blender/blender_inner.py
+index f0fc125df693596fcd1af52d4e848378be4fc975..1d0abb6640d7ca910d9575f5b8bde716c0b5745d
+--- a/tools/dual-track/blender/blender_inner.py
++++ b/tools/dual-track/blender/blender_inner.py
+@@ -439,9 +439,8 @@
+     camera = bpy.data.cameras.new("camera")
+     camera.sensor_width = camera_camera.get("sensor_width", 24.576)
+     fov = math.radians(camera_camera.get("fov", 75))
+-    camera.lens = (
+-        camera.sensor_width * render_height / render_width
+-    ) / (2 * math.tan(fov / 2))
++    camera.sensor_fit = "HORIZONTAL"
++    camera.lens = camera.sensor_width / (2 * math.tan(fov / 2))
+     camera_object = bpy.data.objects.new("camera", camera)
+     bpy.context.scene.collection.objects.link(camera_object)
+     camera_object.matrix_world = camera_basis_from_ue(camera_data)
+
+codex
+补丁已落地。现在跑正式 `both` 流程并等它完成。
+2026-11-09T11:37:36.709491Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://mcp.figma.com/mcp)")))
+exec
+/bin/zsh -lc "python3 tools/dual-track/run_dual_track.py both \\
+  --scene tools/cloud-service/poc-out/fridge/stage-fridge-scene_snapshot.json \\
+  --asset-map tools/cloud-service/poc-out/fridge/stage-fridge-assets.json \\
+  --assets-root tools/cloud-service/poc-out/fridge/assets \\
+  --view 298cfe60-923d-44fb-a0d1-f2206b9a48e1 \\
+  --preview-out tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png \\
+  --final-out tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png \\
+  --compare-out tools/cloud-service/poc-out/fridge/arch-vs-ref.png \\
+  --ref tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c-1024.png \\
+  --metrics-out tools/cloud-service/poc-out/fridge/arch-metrics.json \\
+  --preview-width 960 --preview-height 540 --preview-spp 32 \\
+  --final-width 960 --final-height 540 --final-spp 64 \\
+  --blender /Applications/Blender.app/Contents/MacOS/Blender" in /Users/wangjianzheng/Project/git/mutracer
+Poll.
+Need poll.
+codex
+预览轨已完成，Blender 正在导入/渲染最终轨。
+ succeeded in 28503ms:
++ /Users/wangjianzheng/Project/git/mutracer/native/host/target/release/mutracer-render --scene tools/cloud-service/poc-out/fridge/stage-fridge-scene_snapshot.json --out /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png --asset-map tools/cloud-service/poc-out/fridge/stage-fridge-assets.json --view 298cfe60-923d-44fb-a0d1-f2206b9a48e1 --width 960 --height 540 --samples 32 --bounces 3 --denoise 1 --timeout-ms 600000
+cad debug override: material=solid_9acea7 master=M_Opaque_Master color=[0.808, 0.553, 0.527]
+cad debug override: material=solid_e7ebd7 master=M_Opaque_Master color=[0.906, 0.922, 0.843]
+cad debug override: material=solid_ff0000 master=M_Opaque_Master color=[0.97, 0.97, 0.97]
+frosted override: mesh=37120001-2d7e-4fb7-bafa-f65eb3d87604 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=37120001-2d7e-4fb7-bafa-f65eb3d87604 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=8166b002-033f-49f9-9baf-c5cc0931aa8f material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=8166b002-033f-49f9-9baf-c5cc0931aa8f material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=3b52785c-707f-4992-a2e5-c990f192cf24 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+door edge override: mesh=门体-51_Default material=Plastic_Rough
+door edge override: mesh=门体-52_Default material=Plastic_Rough
+door edge override: mesh=门体-53_Default material=钣金喷粉.布朗灰
+door edge override: mesh=门体-58_Default material=Plastic_Coated
+door edge override: mesh=门体-62_Default material=Plastic_Coated
+door edge override: mesh=门体-64_Default material=Plastic_Coated
+door edge override: mesh=门体-76_Default material=钣金喷粉.布朗灰
+door edge override: mesh=门体-79_Default material=Plastic_Coated
+rendered 960x540 32 spp -> /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png
+[assets] 50 scene URLs absent from asset map; skipping
+19:37:48 | INFO: Data are loaded, start creating Blender stuff
+19:37:48 | INFO: Blender create Mesh node shape
+19:37:48 | INFO: glTF import finished in 0.02s
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py:288: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+19:37:48 | INFO: Data are loaded, start creating Blender stuff
+19:37:48 | INFO: Blender create Mesh node shape.001
+19:37:48 | INFO: glTF import finished in 0.18s
+19:37:48 | INFO: Data are loaded, start creating Blender stuff
+19:37:48 | INFO: Blender create Mesh node shape.002
+19:37:48 | INFO: glTF import finished in 0.00s
+19:37:48 | INFO: Data are loaded, start creating Blender stuff
+19:37:48 | INFO: Blender create Mesh node shape.003
+19:37:48 | INFO: glTF import finished in 0.00s
+19:37:48 | INFO: Data are loaded, start creating Blender stuff
+19:37:48 | INFO: Blender create Mesh node shape.004
+19:37:48 | INFO: glTF import finished in 0.05s
+19:37:48 | INFO: Data are loaded, start creating Blender stuff
+19:37:48 | INFO: Blender create Mesh node shape.005
+19:37:48 | INFO: glTF import finished in 0.02s
+19:37:48 | INFO: Data are loaded, start creating Blender stuff
+19:37:48 | INFO: Blender create Mesh node shape.006
+19:37:48 | INFO: glTF import finished in 0.01s
+19:37:48 | INFO: Data are loaded, start creating Blender stuff
+19:37:48 | INFO: Blender create Mesh node shape.007
+19:37:49 | INFO: glTF import finished in 0.02s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.008
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.009
+19:37:49 | INFO: glTF import finished in 0.40s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.010
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.012
+19:37:49 | INFO: glTF import finished in 0.10s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.013
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.014
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.015
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.016
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.017
+19:37:49 | INFO: glTF import finished in 0.02s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.018
+19:37:49 | INFO: glTF import finished in 0.06s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.019
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.020
+19:37:49 | INFO: glTF import finished in 0.06s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.021
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.022
+19:37:49 | INFO: glTF import finished in 0.08s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.023
+19:37:49 | INFO: glTF import finished in 0.03s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.024
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.026
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.027
+19:37:49 | INFO: glTF import finished in 0.03s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.028
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.029
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.030
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.031
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.032
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.033
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.034
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.035
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.036
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.037
+19:37:49 | INFO: glTF import finished in 0.01s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.038
+19:37:49 | INFO: glTF import finished in 0.00s
+19:37:49 | INFO: Data are loaded, start creating Blender stuff
+19:37:49 | INFO: Blender create Mesh node shape.039
+19:37:50 | INFO: glTF import finished in 0.02s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.040
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.041
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.042
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.043
+19:37:50 | INFO: glTF import finished in 0.02s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.044
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.045
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.046
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.047
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.048
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.049
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.050
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.051
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.052
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.053
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.054
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.055
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.056
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.057
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.058
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.059
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.060
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.061
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.062
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.063
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.064
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.065
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.066
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.067
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.068
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.070
+19:37:50 | INFO: glTF import finished in 0.04s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.071
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.072
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.073
+19:37:50 | INFO: glTF import finished in 0.07s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.074
+19:37:50 | INFO: glTF import finished in 0.08s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.075
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.076
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.077
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.078
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.079
+19:37:50 | INFO: glTF import finished in 0.03s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.080
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.081
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.082
+19:37:50 | INFO: glTF import finished in 0.07s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.083
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.084
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.085
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.086
+19:37:50 | INFO: glTF import finished in 0.07s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.087
+19:37:50 | INFO: glTF import finished in 0.13s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.088
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.089
+19:37:50 | INFO: glTF import finished in 0.01s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.090
+19:37:50 | INFO: glTF import finished in 0.00s
+19:37:50 | INFO: Data are loaded, start creating Blender stuff
+19:37:50 | INFO: Blender create Mesh node shape.091
+19:37:51 | INFO: glTF import finished in 0.00s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.092
+19:37:51 | INFO: glTF import finished in 0.00s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.093
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.094
+19:37:51 | INFO: glTF import finished in 0.00s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.095
+19:37:51 | INFO: glTF import finished in 0.00s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.096
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.097
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.098
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.099
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.100
+19:37:51 | INFO: glTF import finished in 0.00s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.101
+19:37:51 | INFO: glTF import finished in 0.00s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.102
+19:37:51 | INFO: glTF import finished in 0.00s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.103
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.104
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.105
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.106
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.107
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.108
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.109
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.110
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.111
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.112
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.113
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.114
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.115
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.116
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.117
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.118
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.119
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.120
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.121
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.122
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.123
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.124
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.125
+19:37:51 | INFO: glTF import finished in 0.03s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.126
+19:37:51 | INFO: glTF import finished in 0.03s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.127
+19:37:51 | INFO: glTF import finished in 0.03s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.128
+19:37:51 | INFO: glTF import finished in 0.05s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.129
+19:37:51 | INFO: glTF import finished in 0.04s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.130
+19:37:51 | INFO: glTF import finished in 0.03s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.131
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.132
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.133
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.134
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.135
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.136
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.137
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.138
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.139
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.140
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.141
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.142
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.143
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.144
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.145
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.146
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.147
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.148
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.149
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.150
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.151
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.152
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.153
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.154
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.155
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.156
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.157
+19:37:51 | INFO: glTF import finished in 0.01s
+19:37:51 | INFO: Data are loaded, start creating Blender stuff
+19:37:51 | INFO: Blender create Mesh node shape.158
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.159
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.160
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.161
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.162
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.163
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.164
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.165
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.166
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.167
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.168
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.169
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.170
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.171
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.172
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.173
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.174
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.175
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.176
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.177
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.178
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.179
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.180
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.181
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.182
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.183
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.184
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.185
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.186
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.187
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.188
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.189
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.190
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.191
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.192
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.193
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.194
+19:37:52 | INFO: glTF import finished in 0.01s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.195
+19:37:52 | INFO: glTF import finished in 0.02s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.196
+19:37:52 | INFO: glTF import finished in 0.02s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.197
+19:37:52 | INFO: glTF import finished in 0.02s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.198
+19:37:52 | INFO: glTF import finished in 0.06s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.199
+19:37:52 | INFO: glTF import finished in 0.02s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.200
+19:37:52 | INFO: glTF import finished in 0.09s
+19:37:52 | INFO: Data are loaded, start creating Blender stuff
+19:37:52 | INFO: Blender create Mesh node shape.201
+19:37:53 | INFO: glTF import finished in 0.08s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.202
+19:37:53 | INFO: glTF import finished in 0.01s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.203
+19:37:53 | INFO: glTF import finished in 0.02s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.204
+19:37:53 | INFO: glTF import finished in 0.03s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.205
+19:37:53 | INFO: glTF import finished in 0.02s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.206
+19:37:53 | INFO: glTF import finished in 0.05s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.207
+19:37:53 | INFO: glTF import finished in 0.06s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.208
+19:37:53 | INFO: glTF import finished in 0.07s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.209
+19:37:53 | INFO: glTF import finished in 0.06s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.210
+19:37:53 | INFO: glTF import finished in 0.07s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.211
+19:37:53 | INFO: glTF import finished in 0.01s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.212
+19:37:53 | INFO: glTF import finished in 0.03s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.213
+19:37:53 | INFO: glTF import finished in 0.10s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.214
+19:37:53 | INFO: glTF import finished in 0.02s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.215
+19:37:53 | INFO: glTF import finished in 0.04s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.216
+19:37:53 | INFO: glTF import finished in 0.03s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.217
+19:37:53 | INFO: glTF import finished in 0.03s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.218
+19:37:53 | INFO: glTF import finished in 0.01s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.219
+19:37:53 | INFO: glTF import finished in 0.06s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.220
+19:37:53 | INFO: glTF import finished in 0.01s
+19:37:53 | INFO: Data are loaded, start creating Blender stuff
+19:37:53 | INFO: Blender create Mesh node shape.221
+19:37:54 | INFO: glTF import finished in 0.01s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.222
+19:37:54 | INFO: glTF import finished in 0.01s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.223
+19:37:54 | INFO: glTF import finished in 0.01s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.224
+19:37:54 | INFO: glTF import finished in 0.03s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.225
+19:37:54 | INFO: glTF import finished in 0.11s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.226
+19:37:54 | INFO: glTF import finished in 0.05s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.227
+19:37:54 | INFO: glTF import finished in 0.04s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.228
+19:37:54 | INFO: glTF import finished in 0.01s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.229
+19:37:54 | INFO: glTF import finished in 0.06s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.230
+19:37:54 | INFO: glTF import finished in 0.03s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.231
+19:37:54 | INFO: glTF import finished in 0.06s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.232
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.233
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.234
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.235
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.236
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.237
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.238
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.239
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.240
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.241
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.242
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.243
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.244
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.245
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.246
+19:37:54 | INFO: glTF import finished in 0.02s
+19:37:54 | INFO: Data are loaded, start creating Blender stuff
+19:37:54 | INFO: Blender create Mesh node shape.247
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.248
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.249
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.250
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.251
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.252
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.253
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.254
+19:37:55 | INFO: glTF import finished in 0.03s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.255
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.256
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.257
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.258
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.259
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.260
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.261
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.262
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.263
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.264
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.265
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.266
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.267
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.268
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.269
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.270
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.271
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.272
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.273
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.274
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.275
+19:37:55 | INFO: glTF import finished in 0.02s
+19:37:55 | INFO: Data are loaded, start creating Blender stuff
+19:37:55 | INFO: Blender create Mesh node shape.276
+19:37:56 | INFO: glTF import finished in 0.03s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.277
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.278
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.279
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.280
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.281
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.282
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.283
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.284
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.285
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.286
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.287
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.288
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.289
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.290
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.291
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.292
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.293
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.294
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.295
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.296
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.297
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.298
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.299
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.300
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.301
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.302
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.303
+19:37:56 | INFO: glTF import finished in 0.02s
+19:37:56 | INFO: Data are loaded, start creating Blender stuff
+19:37:56 | INFO: Blender create Mesh node shape.304
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.305
+19:37:57 | INFO: glTF import finished in 0.03s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.306
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.307
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.308
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.309
+19:37:57 | INFO: glTF import finished in 0.03s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.310
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.311
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.312
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.313
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.314
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.315
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.316
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.317
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.318
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.319
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.320
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.321
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.322
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.323
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.324
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.325
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.326
+19:37:57 | INFO: glTF import finished in 0.02s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.327
+19:37:57 | INFO: glTF import finished in 0.03s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.328
+19:37:57 | INFO: glTF import finished in 0.03s
+19:37:57 | INFO: Data are loaded, start creating Blender stuff
+19:37:57 | INFO: Blender create Mesh node shape.329
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.330
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.331
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.332
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.333
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.334
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.335
+19:37:58 | INFO: glTF import finished in 0.03s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.336
+19:37:58 | INFO: glTF import finished in 0.03s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.337
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.338
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.339
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.340
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.341
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.342
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.343
+19:37:58 | INFO: glTF import finished in 0.03s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.344
+19:37:58 | INFO: glTF import finished in 0.03s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.345
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.346
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.347
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.348
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.349
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.350
+19:37:58 | INFO: glTF import finished in 0.02s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.363
+19:37:58 | INFO: glTF import finished in 0.03s
+19:37:58 | INFO: Data are loaded, start creating Blender stuff
+19:37:58 | INFO: Blender create Mesh node shape.364
+19:37:58 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.365
+19:37:59 | INFO: glTF import finished in 0.02s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.366
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.367
+19:37:59 | INFO: glTF import finished in 0.02s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.368
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.369
+19:37:59 | INFO: glTF import finished in 0.04s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.370
+19:37:59 | INFO: glTF import finished in 0.04s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.371
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.372
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.373
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.374
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.375
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.376
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.377
+19:37:59 | INFO: glTF import finished in 0.04s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.378
+19:37:59 | INFO: glTF import finished in 0.04s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.379
+19:37:59 | INFO: glTF import finished in 0.07s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.380
+19:37:59 | INFO: glTF import finished in 0.03s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.381
+19:37:59 | INFO: glTF import finished in 0.05s
+19:37:59 | INFO: Data are loaded, start creating Blender stuff
+19:37:59 | INFO: Blender create Mesh node shape.382
+19:37:59 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.383
+19:38:00 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.385
+19:38:00 | INFO: glTF import finished in 0.07s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.386
+19:38:00 | INFO: glTF import finished in 0.07s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.387
+19:38:00 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.388
+19:38:00 | INFO: glTF import finished in 0.05s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.389
+19:38:00 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.390
+19:38:00 | INFO: glTF import finished in 0.07s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.391
+19:38:00 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.392
+19:38:00 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.393
+19:38:00 | INFO: glTF import finished in 0.07s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.394
+19:38:00 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.395
+19:38:00 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.396
+19:38:00 | INFO: glTF import finished in 0.03s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.397
+19:38:00 | INFO: glTF import finished in 0.05s
+19:38:00 | INFO: Data are loaded, start creating Blender stuff
+19:38:00 | INFO: Blender create Mesh node shape.398
+19:38:00 | INFO: glTF import finished in 0.05s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.399
+19:38:01 | INFO: glTF import finished in 0.07s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.351
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.352
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.353
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.354
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.355
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.356
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.357
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.358
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.359
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.360
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.361
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.400
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.401
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.402
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.403
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.404
+19:38:01 | INFO: glTF import finished in 0.06s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.405
+19:38:01 | INFO: glTF import finished in 0.03s
+19:38:01 | INFO: Data are loaded, start creating Blender stuff
+19:38:01 | INFO: Blender create Mesh node shape.407
+19:38:02 | INFO: glTF import finished in 0.03s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.408
+19:38:02 | INFO: glTF import finished in 0.03s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.409
+19:38:02 | INFO: glTF import finished in 0.03s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.410
+19:38:02 | INFO: glTF import finished in 0.03s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.411
+19:38:02 | INFO: glTF import finished in 0.04s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.412
+19:38:02 | INFO: glTF import finished in 0.03s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.413
+19:38:02 | INFO: glTF import finished in 0.03s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.414
+19:38:02 | INFO: glTF import finished in 0.06s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.415
+19:38:02 | INFO: glTF import finished in 0.04s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.416
+19:38:02 | INFO: glTF import finished in 0.04s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.417
+19:38:02 | INFO: glTF import finished in 0.04s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.418
+19:38:02 | INFO: glTF import finished in 0.09s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.419
+19:38:02 | INFO: glTF import finished in 0.04s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.420
+19:38:02 | INFO: glTF import finished in 0.04s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.421
+19:38:02 | INFO: glTF import finished in 0.04s
+19:38:02 | INFO: Data are loaded, start creating Blender stuff
+19:38:02 | INFO: Blender create Mesh node shape.422
+19:38:03 | INFO: glTF import finished in 0.04s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.423
+19:38:03 | INFO: glTF import finished in 0.03s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.424
+19:38:03 | INFO: glTF import finished in 0.07s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.425
+19:38:03 | INFO: glTF import finished in 0.08s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.426
+19:38:03 | INFO: glTF import finished in 0.08s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.427
+19:38:03 | INFO: glTF import finished in 0.03s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.429
+19:38:03 | INFO: glTF import finished in 0.03s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.430
+19:38:03 | INFO: glTF import finished in 0.03s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.431
+19:38:03 | INFO: glTF import finished in 0.04s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.432
+19:38:03 | INFO: glTF import finished in 0.04s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.433
+19:38:03 | INFO: glTF import finished in 0.07s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.434
+19:38:03 | INFO: glTF import finished in 0.10s
+19:38:03 | INFO: Data are loaded, start creating Blender stuff
+19:38:03 | INFO: Blender create Mesh node shape.435
+19:38:03 | INFO: glTF import finished in 0.04s
+19:38:04 | INFO: Data are loaded, start creating Blender stuff
+19:38:04 | INFO: Blender create Mesh node shape.436
+19:38:04 | INFO: glTF import finished in 0.04s
+19:38:04 | INFO: Data are loaded, start creating Blender stuff
+19:38:04 | INFO: Blender create Mesh node shape.437
+19:38:04 | INFO: glTF import finished in 0.03s
+19:38:04 | INFO: Data are loaded, start creating Blender stuff
+19:38:04 | INFO: Blender create Mesh node shape.448
+19:38:04 | INFO: glTF import finished in 0.05s
+19:38:04 | INFO: Data are loaded, start creating Blender stuff
+19:38:04 | INFO: Blender create Mesh node shape.449
+19:38:04 | INFO: glTF import finished in 0.04s
+19:38:04 | INFO: Data are loaded, start creating Blender stuff
+19:38:04 | INFO: Blender create Mesh node shape.383
+19:38:04 | INFO: glTF import finished in 0.03s
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py:466: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+[gpu] METAL: 1
+00:18.829  render           | Saved: '/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png'
+[done] /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit
+/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/run_dual_track.py:174: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  left and right for left, right in zip(left_mask.getdata(), right_mask.getdata())
+/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/run_dual_track.py:177: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  left or right for left, right in zip(left_mask.getdata(), right_mask.getdata())
+{
+  "brightness_std": {
+    "preview": 43.9345634957806,
+    "final": 49.81821101401523,
+    "ref": 42.81089388887461
+  },
+  "silhouette_iou_preview_vs_ref": 0.8004316040881151,
+  "silhouette_iou_final_vs_ref": 0.8608100365620994,
+  "threshold": 16
+}
+{
+  "mode": "both",
+  "preview_seconds": 8.91290129092522,
+  "final_seconds": 19.49926333304029
+}
+
+Still running. Poll longer 10 sec.
+codex
+验收通过（IoU 0.8608）。现在更新 summary 与 metrics，并核对最终 diff。
+exec
+/bin/zsh -lc "python3 - <<'PY'
+import json
+from PIL import Image, ImageChops
+
+paths = {
+    \"final\": \"tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png\",
+    \"ref\": \"tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c-1024.png\",
+}
+threshold = 16
+
+def corners(image):
+    return [
+        image.getpixel((2, 2)),
+        image.getpixel((image.width - 3, 2)),
+        image.getpixel((2, image.height - 3)),
+        image.getpixel((image.width - 3, image.height - 3)),
+    ]
+
+def background_color(image):
+    corner_colors = corners(image)
+    return tuple(sorted(color[channel] for color in corner_colors)[1] for channel in range(3))
+
+def mask_area(image):
+    background = background_color(image)
+    mask = ImageChops.difference(image, Image.new(\"RGB\", image.size, background))
+    return sum(pixel > threshold for pixel in mask.convert(\"L\").getdata())
+
+images = {name: Image.open(path).convert(\"RGB\") for name, path in paths.items()}
+for name, image in images.items():
+    print(f\"{name}: size={image.size} corners={corners(image)} background={background_color(image)} mask_area={mask_area(image)}\")
+
+metrics_path = \"tools/cloud-service/poc-out/fridge/arch-metrics.json\"
+with open(metrics_path, encoding=\"utf-8\") as stream:
+    metrics = json.load(stream)
+metrics[\"mask_areas\"] = {name: mask_area(image) for name, image in images.items()}
+metrics[\"corner_rgb\"] = {name: corners(image) for name, image in images.items()}
+metrics[\"background_rgb\"] = {name: background_color(image) for name, image in images.items()}
+with open(metrics_path, \"w\", encoding=\"utf-8\") as stream:
+    json.dump(metrics, stream, indent=2)
+    stream.write(\"\\n\")
+PY
+
+git diff -- tools/cloud-service/poc-out/fridge/arch-metrics.json tools/dual-track/blender/blender_inner.py && sed -n '1,120p' tools/cloud-service/poc-out/fridge/arch-metrics.json" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 5ms:
+<stdin>:25: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+final: size=(960, 540) corners=[(255, 255, 255), (255, 253, 254), (253, 252, 253), (255, 254, 254)] background=(255, 253, 254) mask_area=148342
+ref: size=(1024, 576) corners=[(255, 255, 255), (255, 255, 255), (255, 255, 255), (255, 255, 255)] background=(255, 255, 255) mask_area=145741
+{
+  "brightness_std": {
+    "preview": 43.9345634957806,
+    "final": 49.81821101401523,
+    "ref": 42.81089388887461
+  },
+  "silhouette_iou_preview_vs_ref": 0.8004316040881151,
+  "silhouette_iou_final_vs_ref": 0.8608100365620994,
+  "threshold": 16,
+  "mask_areas": {
+    "final": 148342,
+    "ref": 145741
+  },
+  "corner_rgb": {
+    "final": [
+      [
+        255,
+        255,
+        255
+      ],
+      [
+        255,
+        253,
+        254
+      ],
+      [
+        253,
+        252,
+        253
+      ],
+      [
+        255,
+        254,
+        254
+      ]
+    ],
+    "ref": [
+      [
+        255,
+        255,
+        255
+      ],
+      [
+        255,
+        255,
+        255
+      ],
+      [
+        255,
+        255,
+        255
+      ],
+      [
+        255,
+        255,
+        255
+      ]
+    ]
+  },
+  "background_rgb": {
+    "final": [
+      255,
+      253,
+      254
+    ],
+    "ref": [
+      255,
+      255,
+      255
+    ]
+  }
+}
+
+exec
+/bin/zsh -lc 'git status --short && git diff -- tools/dual-track/blender/blender_inner.py tools/cloud-service/poc-out/fridge/arch-metrics.json tools/cloud-service/poc-out/fridge/arch-run-summary.md' in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+ M native/host/Cargo.lock
+ M native/host/Cargo.toml
+?? compare.png
+?? docs/technical/dual-track-render.md
+?? docs/technical/editor-parity.md
+?? final.png
+?? metrics.json
+?? native/host/src/bin/
+?? preview.png
+?? tools/cloud-relay.py
+?? tools/cloud-service/
+?? tools/dual-track/
+
+Repo untracked includes all our files; no diff because untracked. Also unrelated preexisting modifications. We should inspect git status baseline? It seems all tools/cloud-service untracked. User requested update, okay. Cargo.toml modifications possibly existing unrelated. We don't touch.
+
+Need update summary fully. Apply patch delete add. Then maybe inspect file? But not necessary. Use apply patch. Need no comments. Ensure no unrelated existing untracked. We'll patch.
+codex
+`both` 已通过，产物是未跟踪工作区文件；我继续重写验收摘要，不动其他文件。
+2026-11-09T11:38:42.110511Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: multiple operations target /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/arch-run-summary.md
+apply patch doesn't allow delete+add same. Use update whole maybe context difficult. Could delete and add separate? One operation only? Tool may allow update file with @@. Better use cat? Developer says use apply_patch. Could delete file and then add file in separate patch calls. Do delete first then add.
+apply patch
+patch: completed
+/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/arch-run-summary.md
+diff --git a/tools/cloud-service/poc-out/fridge/arch-run-summary.md b/tools/cloud-service/poc-out/fridge/arch-run-summary.md
+deleted file mode 100644
+index d262b79153635422262e16284784b5a474d4c2a7..0000000000000000000000000000000000000000
+--- a/tools/cloud-service/poc-out/fridge/arch-run-summary.md
++++ /dev/null
+@@ -1,61 +0,0 @@
+-# Fridge dual-track architecture run
+-
+-## Result
+-
+-- Preview: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png`
+-- Final: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png`
+-- Comparison: `tools/cloud-service/poc-out/fridge/arch-vs-ref.png`
+-- Metrics: `tools/cloud-service/poc-out/fridge/arch-metrics.json`
+-- Acceptance: **not met**; `silhouette_iou_final_vs_ref` is `0.2897`, below the
+-  `0.7` target and below the fallback threshold of `0.5`. The run stopped.
+-- Final corner RGB: top-left `(255, 255, 255)`, top-right `(217, 236, 216)`,
+-  bottom-left `(255, 249, 255)`, bottom-right `(242, 248, 242)`.
+-- Reference corner RGB: all four corners `(255, 255, 255)`.
+-- Comparison background color: final RGB `(254, 253, 254)`,
+-  reference RGB `(255, 255, 255)`, from the corner-median used by the comparison.
+-- Mask areas on the comparison-sized images: final `53600`, reference `145829`.
+-
+-## Overrides
+-
+-The white environment uses pure white color and Strength `1.0` under
+-`view_transform: Standard`. Material colors with `sum(color) / 3 > 0.65` are
+-replaced by `(0.55, 0.55, 0.55)`. The charcoal overrides for sheet-metal powder
+-coating and `door_edge_meshes` are retained. No `mesh_basis` or camera data was
+-changed.
+-
+-Non-charcoal materials are forced to `metalness: 0.0` and `roughness >= 0.45`,
+-including their roughness maps. Glass uses Transmission `0.0` and the
+-non-charcoal gray color. Charcoal door-edge materials retain `metalness: 0.12`.
+-
+-## Metrics
+-
+-```json
+-{
+-  "brightness_std": {
+-    "preview": 43.934539165667395,
+-    "final": 30.287231359659657,
+-    "ref": 42.81089388887461
+-  },
+-  "silhouette_iou_preview_vs_ref": 0.8004316040881151,
+-  "silhouette_iou_final_vs_ref": 0.2897155729321751,
+-  "threshold": 16
+-}
+-```
+-
+-## Command
+-
+-```bash
+-python3 tools/dual-track/run_dual_track.py both \
+-  --scene tools/cloud-service/poc-out/fridge/stage-fridge-scene_snapshot.json \
+-  --asset-map tools/cloud-service/poc-out/fridge/stage-fridge-assets.json \
+-  --assets-root tools/cloud-service/poc-out/fridge/assets \
+-  --view 298cfe60-923d-44fb-a0d1-f2206b9a48e1 \
+-  --preview-out tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png \
+-  --final-out tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png \
+-  --compare-out tools/cloud-service/poc-out/fridge/arch-vs-ref.png \
+-  --ref tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c-1024.png \
+-  --metrics-out tools/cloud-service/poc-out/fridge/arch-metrics.json \
+-  --preview-width 960 --preview-height 540 --preview-spp 32 \
+-  --final-width 960 --final-height 540 --final-spp 64 \
+-  --blender /Applications/Blender.app/Contents/MacOS/Blender
+-```
+diff --git a/tools/dual-track/blender/blender_inner.py b/tools/dual-track/blender/blender_inner.py
+index f0fc125df693596fcd1af52d4e848378be4fc975..1d0abb6640d7ca910d9575f5b8bde716c0b5745d
+--- a/tools/dual-track/blender/blender_inner.py
++++ b/tools/dual-track/blender/blender_inner.py
+@@ -439,9 +439,8 @@
+     camera = bpy.data.cameras.new("camera")
+     camera.sensor_width = camera_camera.get("sensor_width", 24.576)
+     fov = math.radians(camera_camera.get("fov", 75))
+-    camera.lens = (
+-        camera.sensor_width * render_height / render_width
+-    ) / (2 * math.tan(fov / 2))
++    camera.sensor_fit = "HORIZONTAL"
++    camera.lens = camera.sensor_width / (2 * math.tan(fov / 2))
+     camera_object = bpy.data.objects.new("camera", camera)
+     bpy.context.scene.collection.objects.link(camera_object)
+     camera_object.matrix_world = camera_basis_from_ue(camera_data)
+
+apply patch
+patch: completed
+/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/arch-run-summary.md
+diff --git a/tools/cloud-service/poc-out/fridge/arch-run-summary.md b/tools/cloud-service/poc-out/fridge/arch-run-summary.md
+index d262b79153635422262e16284784b5a474d4c2a7..7f899eeb654706944cb4003add90127ed6912cfc
+--- a/tools/cloud-service/poc-out/fridge/arch-run-summary.md
++++ b/tools/cloud-service/poc-out/fridge/arch-run-summary.md
+@@ -6,22 +6,28 @@
+ - Final: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png`
+ - Comparison: `tools/cloud-service/poc-out/fridge/arch-vs-ref.png`
+ - Metrics: `tools/cloud-service/poc-out/fridge/arch-metrics.json`
+-- Acceptance: **not met**; `silhouette_iou_final_vs_ref` is `0.2897`, below the
+-  `0.7` target and below the fallback threshold of `0.5`. The run stopped.
+-- Final corner RGB: top-left `(255, 255, 255)`, top-right `(217, 236, 216)`,
+-  bottom-left `(255, 249, 255)`, bottom-right `(242, 248, 242)`.
++- Acceptance: **met**; `silhouette_iou_final_vs_ref` is `0.86081`, above the
++  `0.7` target and the fallback threshold of `0.5`.
++- Final corner RGB: top-left `(255, 255, 255)`, top-right `(255, 253, 254)`,
++  bottom-left `(253, 252, 253)`, bottom-right `(255, 254, 254)`.
+ - Reference corner RGB: all four corners `(255, 255, 255)`.
+-- Comparison background color: final RGB `(254, 253, 254)`,
++- Comparison background color: final RGB `(255, 253, 254)`,
+   reference RGB `(255, 255, 255)`, from the corner-median used by the comparison.
+-- Mask areas on the comparison-sized images: final `53600`, reference `145829`.
++- Mask areas on the native image sizes: final `148342`, reference `145741`.
++
++## Camera
++
++The stage `fov` is the horizontal angle. Blender now uses
++`sensor_fit: HORIZONTAL` and computes `lens` from `sensor_width`, so the final
++track matches the stage renderer's horizontal field of view. The camera matrix
++is unchanged.
+ 
+ ## Overrides
+ 
+ The white environment uses pure white color and Strength `1.0` under
+ `view_transform: Standard`. Material colors with `sum(color) / 3 > 0.65` are
+ replaced by `(0.55, 0.55, 0.55)`. The charcoal overrides for sheet-metal powder
+-coating and `door_edge_meshes` are retained. No `mesh_basis` or camera data was
+-changed.
++coating and `door_edge_meshes` are retained.
+ 
+ Non-charcoal materials are forced to `metalness: 0.0` and `roughness >= 0.45`,
+ including their roughness maps. Glass uses Transmission `0.0` and the
+@@ -32,12 +38,12 @@
+ ```json
+ {
+   "brightness_std": {
+-    "preview": 43.934539165667395,
+-    "final": 30.287231359659657,
++    "preview": 43.9345634957806,
++    "final": 49.81821101401523,
+     "ref": 42.81089388887461
+   },
+   "silhouette_iou_preview_vs_ref": 0.8004316040881151,
+-  "silhouette_iou_final_vs_ref": 0.2897155729321751,
++  "silhouette_iou_final_vs_ref": 0.8608100365620994,
+   "threshold": 16
+ }
+ ```
+diff --git a/tools/dual-track/blender/blender_inner.py b/tools/dual-track/blender/blender_inner.py
+index f0fc125df693596fcd1af52d4e848378be4fc975..1d0abb6640d7ca910d9575f5b8bde716c0b5745d
+--- a/tools/dual-track/blender/blender_inner.py
++++ b/tools/dual-track/blender/blender_inner.py
+@@ -439,9 +439,8 @@
+     camera = bpy.data.cameras.new("camera")
+     camera.sensor_width = camera_camera.get("sensor_width", 24.576)
+     fov = math.radians(camera_camera.get("fov", 75))
+-    camera.lens = (
+-        camera.sensor_width * render_height / render_width
+-    ) / (2 * math.tan(fov / 2))
++    camera.sensor_fit = "HORIZONTAL"
++    camera.lens = camera.sensor_width / (2 * math.tan(fov / 2))
+     camera_object = bpy.data.objects.new("camera", camera)
+     bpy.context.scene.collection.objects.link(camera_object)
+     camera_object.matrix_world = camera_basis_from_ue(camera_data)
+
+Need final verify. Could show image maybe inspect comparison to visually confirm. Use view_image perhaps. Also run syntax compile for changed Python? It executed successfully. Maybe git status and line numbers. Need line refs. Use nl. Also perhaps check metrics JSON. Need no need. Could inspect comparison image.
+codex
+摘要与指标已更新。最后做一次可视核对和状态确认。
+Visual: preview noisy; final scale close ref. Good. Need maybe run git status and line numbers.
+exec
+/bin/zsh -lc "printf '%s\\n' '--- camera lines ---' && nl -ba tools/dual-track/blender/blender_inner.py | sed -n '434,450p' && printf '%s\\n' '--- summary lines ---' && nl -ba tools/cloud-service/poc-out/fridge/arch-run-summary.md | sed -n '1,36p' && printf '%s\\n' '--- status ---' && git status --short" in /Users/wangjianzheng/Project/git/mutracer
+ succeeded in 0ms:
+--- camera lines ---
+   434	if camera_data:
+   435	    camera_camera = camera_data.get("camera", {})
+   436	    frame_size = camera_data.get("frame_size", [1920, 1080])
+   437	    render_width = int(width_override or frame_size[0])
+   438	    render_height = int(height_override or frame_size[1])
+   439	    camera = bpy.data.cameras.new("camera")
+   440	    camera.sensor_width = camera_camera.get("sensor_width", 24.576)
+   441	    fov = math.radians(camera_camera.get("fov", 75))
+   442	    camera.sensor_fit = "HORIZONTAL"
+   443	    camera.lens = camera.sensor_width / (2 * math.tan(fov / 2))
+   444	    camera_object = bpy.data.objects.new("camera", camera)
+   445	    bpy.context.scene.collection.objects.link(camera_object)
+   446	    camera_object.matrix_world = camera_basis_from_ue(camera_data)
+   447	    scene.camera = camera_object
+   448	    scene.render.resolution_x = render_width
+   449	    scene.render.resolution_y = render_height
+   450	
+--- summary lines ---
+     1	# Fridge dual-track architecture run
+     2	
+     3	## Result
+     4	
+     5	- Preview: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-preview.png`
+     6	- Final: `tools/cloud-service/poc-out/fridge/stage-fridge-arch-final.png`
+     7	- Comparison: `tools/cloud-service/poc-out/fridge/arch-vs-ref.png`
+     8	- Metrics: `tools/cloud-service/poc-out/fridge/arch-metrics.json`
+     9	- Acceptance: **met**; `silhouette_iou_final_vs_ref` is `0.86081`, above the
+    10	  `0.7` target and the fallback threshold of `0.5`.
+    11	- Final corner RGB: top-left `(255, 255, 255)`, top-right `(255, 253, 254)`,
+    12	  bottom-left `(253, 252, 253)`, bottom-right `(255, 254, 254)`.
+    13	- Reference corner RGB: all four corners `(255, 255, 255)`.
+    14	- Comparison background color: final RGB `(255, 253, 254)`,
+    15	  reference RGB `(255, 255, 255)`, from the corner-median used by the comparison.
+    16	- Mask areas on the native image sizes: final `148342`, reference `145741`.
+    17	
+    18	## Camera
+    19	
+    20	The stage `fov` is the horizontal angle. Blender now uses
+    21	`sensor_fit: HORIZONTAL` and computes `lens` from `sensor_width`, so the final
+    22	track matches the stage renderer's horizontal field of view. The camera matrix
+    23	is unchanged.
+    24	
+    25	## Overrides
+    26	
+    27	The white environment uses pure white color and Strength `1.0` under
+    28	`view_transform: Standard`. Material colors with `sum(color) / 3 > 0.65` are
+    29	replaced by `(0.55, 0.55, 0.55)`. The charcoal overrides for sheet-metal powder
+    30	coating and `door_edge_meshes` are retained.
+    31	
+    32	Non-charcoal materials are forced to `metalness: 0.0` and `roughness >= 0.45`,
+    33	including their roughness maps. Glass uses Transmission `0.0` and the
+    34	non-charcoal gray color. Charcoal door-edge materials retain `metalness: 0.12`.
+    35	
+    36	## Metrics
+--- status ---
+ M native/host/Cargo.lock
+ M native/host/Cargo.toml
+?? compare.png
+?? docs/technical/dual-track-render.md
+?? docs/technical/editor-parity.md
+?? final.png
+?? metrics.json
+?? native/host/src/bin/
+?? preview.png
+?? tools/cloud-relay.py
+?? tools/cloud-service/
+?? tools/dual-track/
+
+Need final concise <=10 lines perhaps. Mention change, acceptance IoU, summary, no push. File refs with line. Include generated outputs maybe metrics path line? Metrics JSON line for IoU perhaps find line. We can reference summary line 9 and code line 442. Metrics line 6 maybe. We don't need mention untracked unrelated. But maybe user expects no push; say no push. We could mention formal both done and visual comparison. Need no commit. Ensure no further goals. Could call update_plan? none used. Final.
+
+But consider requirement: update arch-run-summary.md and metrics. metrics is untracked; updated. Good. "正式 both 验收一次" yes only ran once. We computed extra metrics only. Not push. Final in Chinese. Use headers maybe 2. Keep <10 lines.
+codex
+**结果**
+- 已修正 Blender 相机为水平 FOV：`tools/dual-track/blender/blender_inner.py:442`
+- 正式 `both` 验收通过：`silhouette_iou_final_vs_ref = 0.86081`（目标 `> 0.7`）
+- Preview IoU `0.80043`；最终/ref 原图 mask 面积分别为 `148342 / 145741`
+- 摘要已更新：`tools/cloud-service/poc-out/fridge/arch-run-summary.md:9`
+- 指标已更新：`tools/cloud-service/poc-out/fridge/arch-metrics.json:6`
+- 已可视核对 `tools/cloud-service/poc-out/fridge/arch-vs-ref.png`，最终图与参考图尺寸明显一致
+- 未 push，未 commit。
+tokens used
+84,097
+**结果**
+- 已修正 Blender 相机为水平 FOV：`tools/dual-track/blender/blender_inner.py:442`
+- 正式 `both` 验收通过：`silhouette_iou_final_vs_ref = 0.86081`（目标 `> 0.7`）
+- Preview IoU `0.80043`；最终/ref 原图 mask 面积分别为 `148342 / 145741`
+- 摘要已更新：`tools/cloud-service/poc-out/fridge/arch-run-summary.md:9`
+- 指标已更新：`tools/cloud-service/poc-out/fridge/arch-metrics.json:6`
+- 已可视核对 `tools/cloud-service/poc-out/fridge/arch-vs-ref.png`，最终图与参考图尺寸明显一致
+- 未 push，未 commit。

@@ -1,0 +1,11 @@
+INFO Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/5.1/scripts/addons_core/io_scene_gltf2/libextern_draco.dylib
+23:00:48 | INFO: Starting glTF 2.0 export
+23:00:48 | INFO: Extracting primitive: cube
+23:00:48 | INFO: Primitives created: 1
+23:00:48 | INFO: Finished glTF 2.0 export in 0.0027332305908203125 s
+
+exported /Users/wangjianzheng/Project/git/mutracer/tools/import-smoke/out/cube.glb
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+Timer 'STL Import' took 0.58 ms
+
+Blender quit

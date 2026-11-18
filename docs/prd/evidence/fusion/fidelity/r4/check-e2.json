@@ -1,0 +1,27 @@
+{
+ "candidate": "docs/prd/evidence/fusion/fidelity/r4/render-e2-Front-298cfe60-standard-gold329c-ev-0p8-spp128-1920x1080.png",
+ "baseline_r2": {
+  "mae": 12.7765,
+  "mae_fg": 34.4164,
+  "ssim": 0.921622
+ },
+ "metrics": {
+  "mae": 14.3048,
+  "mae_fg": 42.9553,
+  "ssim": 0.913209,
+  "d_lum_fg": 18.374
+ },
+ "best_previous": {
+  "mae": 15.1533,
+  "mae_fg": 52.0831,
+  "ssim": 0.910028,
+  "d_lum_fg": 40.687
+ },
+ "must_beat": {
+  "mae": 12.7765,
+  "mae_fg": 34.4164,
+  "ssim": 0.921622
+ },
+ "status": "NOT_IMPROVED",
+ "reason": "diff vs gold not reduced: {'mae': 14.3048, 'mae_fg': 42.9553, 'ssim': 0.913209, 'd_lum_fg': 18.374} vs {'mae': 12.7765, 'mae_fg': 34.4164, 'ssim': 0.921622}"
+}

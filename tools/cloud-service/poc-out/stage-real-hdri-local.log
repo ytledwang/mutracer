@@ -1,0 +1,10 @@
+START 2026-11-09 14:01:57 +0800
+params: 512x512 samples=32 bounces=3 denoise=1 timeout_ms=600000 view=298cfe60-923d-44fb-a0d1-f2206b9a48e1
+asset-map includes HDRI: official_asset/.../brown_photostudio_02_2k.exr
+rendered 512x512 32 spp -> /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/stage-real-leader-hdri.png
+real 0.83
+user 0.37
+sys 0.15
+END 2026-11-09 14:01:58 +0800 exit=0
+-rw-r--r--@ 1 wangjianzheng  staff   379K Nov  9 14:01 /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/stage-real-leader-hdri.png
+/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/stage-real-leader-hdri.png: PNG image data, 512 x 512, 8-bit/color RGBA, non-interlaced

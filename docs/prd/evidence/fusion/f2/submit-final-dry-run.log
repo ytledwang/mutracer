@@ -1,0 +1,6 @@
+dry-run command:
+python3 tools/dual-track/blender/run_blender_final.py --scene docs/prd/evidence/fusion/f2/m2-preview-scene.json --asset-map docs/prd/evidence/fusion/f2/stage-fridge-assets.json --view 1c4a3883-8668-4c16-a10e-0b7c24272279 --out docs/prd/evidence/fusion/f2/f2-final-spp4.png --width 640 --height 360 --spp 4 --denoise 0
+[assets] 105 scene URLs absent from asset map; skipping
+resolved_assets=436
+view_ok=True
+dry_run_ok=1

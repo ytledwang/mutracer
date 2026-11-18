@@ -1,0 +1,46 @@
+{
+ "id": "00ac0cff-eb58-4d82-9578-97a8f732e1bb",
+ "name": "灶机-单品-5镜头 - 样例导入_05162215",
+ "created_at": "2025-05-16T14:15:53.975198+00:00",
+ "file_id": "1cc9799f-a678-409e-9682-23d5de574816",
+ "image_url": "s3://render_results/00ac0cff-eb58-4d82-9578-97a8f732e1bb",
+ "status": "succeed",
+ "note": "official template Product_ZJG_5cam; 白背景; skylight 0; 13 lights in 3 groups; only view in task.",
+ "view_choice": {
+  "id": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+  "name": "前视图"
+ },
+ "env_remaps": [],
+ "environments": [
+  {
+   "id": "e5cf3914-df09-4b80-84ce-8a2d4e85f26a",
+   "name": "白背景",
+   "settings": {
+    "image": "8c795b02-30f4-43bd-a136-993a410a5642",
+    "hdri_angle": 0,
+    "sun_height": 0,
+    "hdri_contrast": 1,
+    "sun_direction": 0,
+    "use_sun_light": false,
+    "background_type": "white",
+    "hdri_brightness": 100,
+    "hdri_resolution": 128,
+    "skylight_intensity": 0,
+    "sun_light_brightness": 1
+   }
+  }
+ ],
+ "views": [
+  {
+   "id": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+   "name": "前视图",
+   "camera": "028cb306-266e-476b-8426-b8d5b9bc4f49",
+   "environment": "e5cf3914-df09-4b80-84ce-8a2d4e85f26a"
+  }
+ ],
+ "expected_hdri_angle": -90.0,
+ "hdri_angle": 0,
+ "background_type": "white",
+ "skylight_intensity": 0,
+ "env_name": "白背景"
+}

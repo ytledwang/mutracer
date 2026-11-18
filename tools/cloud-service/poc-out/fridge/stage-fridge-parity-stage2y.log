@@ -1,0 +1,9 @@
+cad debug override: material=solid_9acea7 master=M_Opaque_Master color=[0.808, 0.553, 0.527]
+cad debug override: material=solid_e7ebd7 master=M_Opaque_Master color=[0.906, 0.922, 0.843]
+cad debug override: material=solid_ff0000 master=M_Opaque_Master color=[0.92, 0.92, 0.92]
+frosted override: mesh=37120001-2d7e-4fb7-bafa-f65eb3d87604 material=Metal_Frosted color=[0.45, 0.44, 0.4] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=37120001-2d7e-4fb7-bafa-f65eb3d87604 material=Metal_Frosted color=[0.45, 0.44, 0.4] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=8166b002-033f-49f9-9baf-c5cc0931aa8f material=Metal_Frosted color=[0.45, 0.44, 0.4] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=8166b002-033f-49f9-9baf-c5cc0931aa8f material=Metal_Frosted color=[0.45, 0.44, 0.4] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=3b52785c-707f-4992-a2e5-c990f192cf24 material=Metal_Frosted color=[0.45, 0.44, 0.4] rough=0.305 metal=0.850 normal=true roughness_map=true
+rendered 960x540 32 spp -> tools/cloud-service/poc-out/fridge/stage-fridge-parity-stage2y.png

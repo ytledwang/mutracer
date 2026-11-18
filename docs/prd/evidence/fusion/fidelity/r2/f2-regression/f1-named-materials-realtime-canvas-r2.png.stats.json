@@ -1,0 +1,17 @@
+[
+  {
+    "path": "docs/prd/evidence/fusion/fidelity/r2/f2-regression/f1-named-materials-realtime-canvas-r2.png",
+    "width": 768,
+    "height": 832,
+    "mean": 160.2020263671875,
+    "lum_mean": 160.20201110839844,
+    "lum_std": 48.73846435546875,
+    "lum_median": 184.0,
+    "foreground_ratio": 1.0,
+    "unique_lum_bins": 24,
+    "row_std": 25.375452041625977,
+    "col_std": 5.0271711349487305,
+    "sha256": "9787fa249a45e11e7a4900e5bfb47c97732fb6c1f5755556cd9487b03a19d9a4",
+    "visible": true
+  }
+]

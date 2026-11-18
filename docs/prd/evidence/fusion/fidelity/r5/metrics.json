@@ -1,0 +1,120 @@
+{
+ "baseline_r2": {
+  "mae": 12.7765,
+  "mae_fg": 34.4164,
+  "ssim": 0.921622,
+  "d_lum_fg": -13.759,
+  "region_mae": {
+   "background": 5.648,
+   "interior_cavity": 54.662,
+   "crisper_bins": 33.715,
+   "drawers": 20.063,
+   "door_left_inner": 53.456,
+   "door_right_inner": 43.145
+  },
+  "gold_region_p50": {
+   "background": 255.0,
+   "interior_cavity": 180.9,
+   "crisper_bins": 137.5,
+   "drawers": 233.1,
+   "door_left_inner": 180.4,
+   "door_right_inner": 210.2
+  }
+ },
+ "rounds": [
+  {
+   "round": "R1-filmic-k1",
+   "cli": "--tonemap ue-filmic --fallback-light 0 --sky-scale 0 --hdri-reflection 0.35",
+   "metrics": {
+    "mae": 15.6225,
+    "mae_fg": 62.0435,
+    "ssim": 0.9019,
+    "d_lum_fg": 58.62
+   },
+   "checker_status": "NOT_IMPROVED",
+   "checker_exit": 1,
+   "region_mae": {
+    "background": 0.331,
+    "interior_cavity": 61.226,
+    "crisper_bins": 91.278,
+    "drawers": 33.898,
+    "door_left_inner": 69.492,
+    "door_right_inner": 50.73
+   },
+   "region_p50": {
+    "background": 255.0,
+    "interior_cavity": 241.1,
+    "crisper_bins": 236.9,
+    "drawers": 255.0,
+    "door_left_inner": 253.0,
+    "door_right_inner": 247.9
+   }
+  },
+  {
+   "round": "R2-filmic-k0223-rot",
+   "cli": "--tonemap ue-filmic --fallback-light 0 --sky-scale 0 --hdri-reflection 0.078 --hdri-angle scene",
+   "metrics": {
+    "mae": 12.5071,
+    "mae_fg": 36.5374,
+    "ssim": 0.914733,
+    "d_lum_fg": 12.747
+   },
+   "checker_status": "NOT_IMPROVED",
+   "checker_exit": 1,
+   "region_mae": {
+    "background": 4.591,
+    "interior_cavity": 52.9,
+    "crisper_bins": 33.329,
+    "drawers": 10.994,
+    "door_left_inner": 52.361,
+    "door_right_inner": 36.216
+   },
+   "region_p50": {
+    "background": 255.0,
+    "interior_cavity": 148.6,
+    "crisper_bins": 137.1,
+    "drawers": 233.0,
+    "door_left_inner": 213.2,
+    "door_right_inner": 188.4
+   }
+  }
+ ],
+ "env_calibration": {
+  "method": "R1 linear EXR (no stage lights, fallback off, sky-scale 0) is linear in world strength; offline sweep of scale through ue_filmic + same metrics (sweep-R1-linear.json)",
+  "best_scale_vs_k1": 0.22304,
+  "offline_best": {
+   "scale": 0.22304,
+   "mae": 12.7707,
+   "mae_fg": 37.4764,
+   "d_lum_fg": 11.997,
+   "ssim": 0.913895
+  },
+  "mapping": "Cycles world strength (non-camera rays) = 0.223 * hdri_brightness * skylight_intensity  (gold: 0.223*10*0.35 = 0.78; CLI --sky-scale 0 --hdri-reflection 0.078)",
+  "floor_any_monotone_curve_on_R1_linear": {
+   "mae": 10.343,
+   "mae_fg": 32.631,
+   "region_mae": {
+    "interior_cavity": 44.81,
+    "crisper_bins": 37.08,
+    "drawers": 11.87,
+    "door_left_inner": 47.23,
+    "door_right_inner": 21.67
+   }
+  },
+  "region_needed_multiplier_at_global_scale": {
+   "interior_cavity": 1.36,
+   "crisper_bins": 1.01,
+   "drawers": 1.04,
+   "door_left_inner": 0.58,
+   "door_right_inner": 1.47
+  }
+ },
+ "default_identity": {
+  "method": "default_identity_probe.py: blender_inner run in Blender with render.render replaced by a deterministic fake; dumps full scene state (1065 objects, 32 lights, world nodes/links, 1250 material node hashes, view/render/cycles settings) + post PNG; old (backup) vs new code, no new flags, r2 scene",
+  "state_sha_old_new": "367c8c93504e19939f6ef7d0c5522291593b3d97df627352d4a7b406b5a56c96 (identical, also after the hdri-angle edit: probe-new2)",
+  "post_png_sha_old_new": "024e98431d937525845ad2cbf88455a3fadbc55b641f2636b9d3cc0db72143e4 (identical)",
+  "real_render_note": "Cycles Metal is not bit-deterministic: old code re-render vs its own r2 PNG differs in 219 px (max 2); new code no-flag vs old code 152 px (max 2), MAE 3e-5"
+ },
+ "unit_test": "tools/fusion-checks/test_ue_filmic.py exit 0 (monotone, ACES(1)=0.804, backdrop stays 255, contrast pivot 0.18; linear 1.0 under gold post -> 240/255)",
+ "stopped": "R1 and R2 both NOT_IMPROVED (2 consecutive) -> stopped per brief; checker best remains r2"
+}

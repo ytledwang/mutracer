@@ -1,0 +1,9 @@
+paint override: material=Plastic_Rough -> [0,1,0]
+paint override: material=Plastic_Rough -> [0,1,0]
+paint override: material=钣金喷粉.布朗灰 -> [1,0,0]
+paint override: material=Plastic_Coated -> [1,1,0]
+paint override: material=Plastic_Coated -> [1,1,0]
+paint override: material=Plastic_Coated -> [1,1,0]
+paint override: material=钣金喷粉.布朗灰 -> [1,0,0]
+paint override: material=Plastic_Coated -> [1,1,0]
+rendered 640x360 32 spp -> edges-paint.png

@@ -1,0 +1,9 @@
+door edge override: mesh=门体-51_Default material=Plastic_Rough
+door edge override: mesh=门体-52_Default material=Plastic_Rough
+door edge override: mesh=门体-53_Default material=钣金喷粉.布朗灰
+door edge override: mesh=门体-58_Default material=Plastic_Coated
+door edge override: mesh=门体-62_Default material=Plastic_Coated
+door edge override: mesh=门体-64_Default material=Plastic_Coated
+door edge override: mesh=门体-76_Default material=钣金喷粉.布朗灰
+door edge override: mesh=门体-79_Default material=Plastic_Coated
+rendered 640x360 32 spp -> tools/cloud-service/poc-out/fridge/edges-v5.png

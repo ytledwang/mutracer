@@ -1,0 +1,9 @@
+frosted override: mesh=37120001-2d7e-4fb7-bafa-f65eb3d87604 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=37120001-2d7e-4fb7-bafa-f65eb3d87604 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=8166b002-033f-49f9-9baf-c5cc0931aa8f material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=8166b002-033f-49f9-9baf-c5cc0931aa8f material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+frosted override: mesh=3b52785c-707f-4992-a2e5-c990f192cf24 material=Metal_Frosted color=[0.52156866, 0.50980395, 0.45882353] rough=0.305 metal=0.850 normal=true roughness_map=true
+rendered 960x540 32 spp -> /Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/stage-fridge-parity-matrix-try.png
+real 12.11
+user 5.50
+sys 4.69

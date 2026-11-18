@@ -1,0 +1,22 @@
+[2026-11-15T08:12:35.375Z] reusing viewer at http://127.0.0.1:3012/
+[2026-11-15T08:12:35.626Z] launched headed-chrome-metal
+[2026-11-15T08:12:36.362Z] backend={"name":"WebGPU","adapter":"apple"} launch=headed-chrome-metal
+[2026-11-15T08:12:36.530Z] PASS  mode-labels screenshot
+[2026-11-15T08:12:38.353Z] PASS  F1 good fixture realtime visible exit=0
+[2026-11-15T08:12:39.226Z] PASS  F1 pick material by name Fridge_White — {"ok":true,"name":"Fridge_White","materialId":"62029d88-7565-42c0-8067-d98863dbb40a","objectId":"0fafa755-d9e3-4b90-8cc2-9fd22af79834"}
+[2026-11-15T08:12:40.025Z] PASS  apply M2 fixture — replaceId=c83a2f4a-0a3d-4494-8da9-37e6ca6943a7
+[2026-11-15T08:12:40.025Z] PASS  M2 replace_id is c83a2f4a-… only — c83a2f4a-0a3d-4494-8da9-37e6ca6943a7
+[2026-11-15T08:12:43.167Z] PASS  M2 realtime canvas shows fridge (not black) exit=0
+[2026-11-15T08:12:43.180Z] PASS  M2 Front view has visible meshes in camera frustum — null
+[2026-11-15T08:12:46.379Z] PASS  quality preview no AOV_REFLECTANCE error — none
+[2026-11-15T08:12:46.380Z] PASS  quality preview spp advances > 0 — spp=7 phase=converging
+[2026-11-15T08:12:46.380Z] PASS  quality canvas shows fridge exit=0
+[2026-11-15T08:12:46.380Z] PASS  quality sha256 differs from realtime and labels — {"quality":"82301d9beb807d79dccce05aee0913991d3fe183429266fd430baa2dbc66bad1","realtime":"92b7cca8bb67bd1afe9bb93ab1b72ffeca0643c8d6bc4705590e75fcfb005fd0","labels":"d1cac4a8465def2a28e9119d2f8ee492e48ab00097ec7d85b80ecacedca81543"}
+[2026-11-15T08:12:46.399Z] PASS  switch to quality keeps camera (pos/target/fov) — {"ok":true,"dpos":0,"dtarget":0,"dfov":0}
+[2026-11-15T08:12:46.400Z] PASS  switch to quality keeps material assignments — {"ok":true,"countA":514,"countB":514}
+[2026-11-15T08:12:49.217Z] PASS  realtime orbit timing log — {"avg":117.62860727838945,"min":72.99270079344093,"max":131.5789474716147}
+[2026-11-15T08:12:51.142Z] PASS  front realtime visible exit=0
+[2026-11-15T08:12:53.711Z] PASS  front quality visible, spp>0, no AOV, camera+materials consistent exit=0
+[2026-11-15T08:12:55.253Z] PASS  closeup realtime visible exit=0
+[2026-11-15T08:12:57.591Z] PASS  closeup quality visible, spp>0, no AOV, camera+materials consistent exit=0
+[2026-11-15T08:12:57.595Z] PASS  official kitchen ccdaa114 stays 不可验收 (not rewritten to M2) — {"replaceId":"ccdaa114-cdb7-4ef5-af26-022938a780d5","badge":"不可验收","name":"冰箱厨房场景"}

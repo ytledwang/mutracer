@@ -1,0 +1,41 @@
+{
+  "time": "2026-11-13 14:51 Asia/Shanghai",
+  "k_retune": false,
+  "formula_changed": false,
+  "white_sky": {
+    "question": "When SkyLight intensity is 0, does UE Path Tracer still get lighting from the visible White.White sky sphere (HDRI_Brightness, stove=100)?",
+    "engine_source": {
+      "file": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/HaierJsonBlueprintFunctionLibrary.cpp",
+      "function": "SetEnvironmentSettings",
+      "white_branch": "background_type==white: Skybox mesh SetVisibility(true); material HDRI_Cubemap=/Game/Blueprints/Assets/White.White; SkyLight also visible; SkyLight cubemap still async-loads settings.image (not White.White); HDRI_Brightness is set on the skybox MESH materials; SkyLightComponent->SetIntensity(skylight_intensity) which can be 0."
+    },
+    "asset_evidence": {
+      "master": "Content/Blueprints/Assets/M_LightStage_Skybox_Master.uasset",
+      "shading_model": "MSM_Unlit",
+      "contains": "MaterialExpressionPathTracingRayTypeSwitch (plus TextureSampleParameterCube, Multiply, Constant, StaticSwitch, HDRI_Brightness / HDRI_Cubemap parameters)",
+      "note": "Exact pin wiring is in the binary uasset and was not fully reconstructed. IndirectDiffuse/IndirectSpecular/IndirectVolume and EmissiveColor strings also appear in the asset (may be material attribute names, not necessarily live connections)."
+    },
+    "prior_empirical": {
+      "r7_white_sky_leak": "On 329c (skylight 0.35), any white-sky leak b>0 made fg MAE worse; recorded as consistent with PathTracingRayTypeSwitch keeping the White skybox out of lighting."
+    },
+    "r10_stove_observation": "After the light-pose fix, stove skylight=0, white-sky-scale=0, 13 lights at the convert-once poses, total mapped power still 0.532 W. Beauty is nearly identical to r8 (mae 0.095, mae_fg 0.269, SSIM 0.995) and still far below gold (mae_fg 87.65, Δlum_fg -60.99, fg lum 19.3 vs gold 80.3). Correctly placed lights do not meaningfully light the cooktop under the current mapping.",
+    "verdict": "STRONGLY SUPPORTED that the visible White sphere is a camera backdrop, not the intended Path Tracer lighting term: Unlit master contains PathTracingRayTypeSwitch; SkyLight lighting is a separate cubemap whose intensity can be 0; r7 leak test agreed. NOT FULLY PROVEN: binary graph wiring unread, so a residual lighting contribution from the sphere cannot be 100% excluded. No white-sky-scale change and no new render experiment (r7 already tested b>0; asset evidence is new this round).",
+    "still_open": "Exact PathTracingRayTypeSwitch pin wiring; whether any residual sphere lighting remains when SkyLight=0."
+  },
+  "candela_to_watts": {
+    "question": "Is Cycles W=πI/683 (area) / 4πI/683 (point/spot) the same mapping UE Path Tracer uses for ELightUnits::Candelas?",
+    "engine_source": {
+      "file": "HaierJsonBlueprintFunctionLibrary.cpp SpawnLight / ActorSetLightAttr",
+      "facts": [
+        "ULocalLightComponent->IntensityUnits = ELightUnits::Candelas",
+        "LightComponent->SetIntensity(Attr.power) — no Watts conversion in project code; Path Tracer consumes candelas natively",
+        "RectLight SourceWidth=size_x, SourceHeight=size_z (UE centimeters); blender_inner divides by 100, consistent"
+      ]
+    },
+    "current_cycles_mapping": "area W=πI/683; point/spot 4πI/683 (photometric, CIE 683 lm/W, Lambertian area flux πI). Still reasoned, not Path Tracer verified.",
+    "stove_mapped": {"total_W": 0.532339, "RectLight24_W": 0.178379, "RectLight24_cd": 38.780670166015625, "RectLight24_size_m": [10, 10]},
+    "verdict": "DO NOT CHANGE the formula this slice. Engine confirms the unit is Candelas and size is cm, not a different conversion. After the pose fix, 0.532 W still leaves the cooktop dark (fg lum 19 vs gold 80). If the White sphere is not lighting, the remaining stove gap is likely this mapping / how UE interprets Rect candela on a 10×10 m panel, or another unmodeled term. That is not yet engine-backed enough to edit the single global mapping. Default Standard path was not affected by units (legacy default unchanged).",
+    "still_open": "Path Tracer's numeric interpretation of a candela RectLight (whole-light intensity vs luminance) vs Cycles Watts; whether 10×10 m at 38.78 cd should be far brighter than 0.178 W."
+  },
+  "ue55_post": "Not reopened. Same formula on all five tasks; does not by itself explain stove-dark vs others-bright. No engine contradiction found this slice that would justify ripping it up."
+}

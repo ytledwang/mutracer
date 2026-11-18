@@ -1,0 +1,148 @@
+{
+  "version": "mutracer-names/1",
+  "source": "blender-scene",
+  "nodes": [
+    {
+      "name": "Cam_Close",
+      "parent": null,
+      "kind": "CAMERA",
+      "materials": [],
+      "extras": null
+    },
+    {
+      "name": "Cam_Front",
+      "parent": null,
+      "kind": "CAMERA",
+      "materials": [],
+      "extras": null
+    },
+    {
+      "name": "Crisper_Drawer",
+      "parent": "Crisper_Pivot",
+      "kind": "MESH",
+      "materials": [
+        "Crisper_Plastic"
+      ],
+      "extras": null
+    },
+    {
+      "name": "Crisper_Pivot",
+      "parent": null,
+      "kind": "EMPTY",
+      "materials": [],
+      "extras": null
+    },
+    {
+      "name": "Door_Pivot",
+      "parent": null,
+      "kind": "EMPTY",
+      "materials": [],
+      "extras": null
+    },
+    {
+      "name": "Fridge_Body",
+      "parent": null,
+      "kind": "MESH",
+      "materials": [
+        "Fridge_White"
+      ],
+      "extras": null
+    },
+    {
+      "name": "Fridge_Door",
+      "parent": "Door_Pivot",
+      "kind": "MESH",
+      "materials": [
+        "Fridge_White"
+      ],
+      "extras": null
+    },
+    {
+      "name": "Fridge_Handle",
+      "parent": "Door_Pivot",
+      "kind": "MESH",
+      "materials": [
+        "Handle_Brass"
+      ],
+      "extras": null
+    },
+    {
+      "name": "Fridge_Shelf",
+      "parent": null,
+      "kind": "MESH",
+      "materials": [
+        "Fridge_Glass"
+      ],
+      "extras": null
+    },
+    {
+      "name": "Product_Slot",
+      "parent": null,
+      "kind": "EMPTY",
+      "materials": [],
+      "extras": {
+        "replace_id": "f1-named-pivot-placeholder"
+      }
+    }
+  ],
+  "materials": [
+    {
+      "name": "Crisper_Plastic",
+      "baseColorFactor": [
+        0.15000000596046448,
+        0.550000011920929,
+        0.6200000047683716,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.44999998807907104
+    },
+    {
+      "name": "Fridge_Glass",
+      "baseColorFactor": [
+        0.8500000238418579,
+        0.9300000071525574,
+        0.9700000286102295,
+        0.30000001192092896
+      ],
+      "metallic": 0.0,
+      "roughness": 0.05000000074505806
+    },
+    {
+      "name": "Fridge_White",
+      "baseColorFactor": [
+        0.9200000166893005,
+        0.9300000071525574,
+        0.9399999976158142,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.3499999940395355
+    },
+    {
+      "name": "Handle_Brass",
+      "baseColorFactor": [
+        0.7799999713897705,
+        0.550000011920929,
+        0.2199999988079071,
+        1.0
+      ],
+      "metallic": 1.0,
+      "roughness": 0.2800000011920929
+    }
+  ],
+  "cameras": [
+    "Cam_Close",
+    "Cam_Front"
+  ],
+  "pivots": [
+    "Crisper_Pivot",
+    "Door_Pivot"
+  ],
+  "placeholders": [
+    {
+      "name": "Product_Slot",
+      "replace_id": "f1-named-pivot-placeholder"
+    }
+  ]
+}

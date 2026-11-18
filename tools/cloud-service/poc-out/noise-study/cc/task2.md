@@ -1,0 +1,2 @@
+上一个会话（同一任务，见 tools/cloud-service/poc-out/noise-study/cc/task.md）在中途被中断：stage_render.rs 的降噪修复/OIDN 探测、docs/technical/oidn-native.md、run_dual_track.py 的多视角改动看起来已写完，二进制 22:40 已构建，但 tools/dual-track/README.md 未更新，多视角验证跑（tools/cloud-service/poc-out/noise-study/cc/mv/）未完成。
+请：1) 审阅这些已有改动是否满足 task.md 全部要求，缺什么补什么（硬约束同 task.md：不改 blender_inner.py，不动 git HEAD/不提交）；2) 重新构建（命令见 task.md）；3) 跑 task.md 任务 A 第 5 步与任务 B 第 5 步验证并报数；4) 更新 tools/dual-track/README.md。最后用中文简报改动文件、验证结果。

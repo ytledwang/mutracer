@@ -1,0 +1,156 @@
+{
+  "version": "mutracer-names/1",
+  "source": "gltf",
+  "nodes": [
+    {
+      "index": 0,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "mesh",
+      "mesh": 0,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 1,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "mesh",
+      "mesh": 1,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 2,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "mesh",
+      "mesh": 2,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 3,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "node",
+      "mesh": null,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 4,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "mesh",
+      "mesh": 3,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 5,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "node",
+      "mesh": null,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 6,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "mesh",
+      "mesh": 4,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 7,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "node",
+      "mesh": null,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 8,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "camera",
+      "mesh": null,
+      "camera": 0,
+      "extras": null
+    },
+    {
+      "index": 9,
+      "name": "",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "camera",
+      "mesh": null,
+      "camera": 1,
+      "extras": null
+    }
+  ],
+  "meshes": [
+    {
+      "index": 0,
+      "name": ""
+    },
+    {
+      "index": 1,
+      "name": ""
+    },
+    {
+      "index": 2,
+      "name": ""
+    },
+    {
+      "index": 3,
+      "name": ""
+    },
+    {
+      "index": 4,
+      "name": ""
+    }
+  ],
+  "materials": [
+    {
+      "index": 0,
+      "name": "PaletteMaterial001",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "cameras": [
+    "",
+    ""
+  ],
+  "pivots": [],
+  "placeholders": [],
+  "rootIndices": [
+    0,
+    1,
+    2,
+    4,
+    6,
+    7,
+    8,
+    9
+  ]
+}

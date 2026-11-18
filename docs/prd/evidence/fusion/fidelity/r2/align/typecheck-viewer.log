@@ -1,0 +1,5 @@
+
+> @meimu/mutracer@0.3.1 typecheck:viewer
+> tsc --noEmit -p viewer/tsconfig.json
+
+TYPECHECK_EXIT:0

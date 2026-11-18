@@ -1,0 +1,319 @@
+{
+  "task_id": "00ac0cff-eb58-4d82-9578-97a8f732e1bb",
+  "view_id": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+  "view_name": "前视图",
+  "active_camera_id": "028cb306-266e-476b-8426-b8d5b9bc4f49",
+  "applied_camera": {
+    "id": "028cb306-266e-476b-8426-b8d5b9bc4f49",
+    "name": "前视图",
+    "json_pos": [
+      0,
+      -1.45,
+      0.9
+    ],
+    "json_rot_rpy_deg": [
+      0,
+      -30.000000000000004,
+      90
+    ],
+    "fov_h_deg": 35,
+    "sensor_width": 24.576000213623047,
+    "sensor_fit": "HORIZONTAL",
+    "lens_mm": 38.9726,
+    "blender_loc": [
+      0.0,
+      0.9,
+      -1.45
+    ],
+    "blender_forward_minusZ": [
+      0.0,
+      -0.5,
+      0.866025
+    ],
+    "blender_up_plusY": [
+      0.0,
+      0.866025,
+      0.5
+    ],
+    "look_down_sceneYup_deg": 30.0,
+    "parent_chain_applied": false,
+    "note": "camera_basis_from_ue(entity) only; camera_root / group not multiplied"
+  },
+  "product_world_aabb_blender": {
+    "min": [
+      -0.43,
+      -0.001488,
+      -0.244781
+    ],
+    "max": [
+      0.430336,
+      0.1,
+      0.215368
+    ],
+    "span": [
+      0.860336,
+      0.101488,
+      0.460149
+    ],
+    "thin_axis_blender": "Y",
+    "horizontal_if_thin_Y": true,
+    "vertical_facing_camera_if_thin_Z": false
+  },
+  "scene_up_after_swap_yz": "Blender +Y (UE +Z)",
+  "hob_orientation": {
+    "zaojumian_span_m": [
+      0.86,
+      0.0012,
+      0.45
+    ],
+    "thin_axis_blender": "Y",
+    "horizontal_in_scene": true,
+    "source": "blender-dump.json meshes zaojumian / product_world_aabb"
+  },
+  "silhouette": {
+    "gold_fg_bbox_px": {
+      "x0": 72,
+      "x1": 1846,
+      "y0": 311,
+      "y1": 846,
+      "w": 1775,
+      "h": 536,
+      "aspect": 3.3115671641791047
+    },
+    "r8_render_fg_bbox_px": {
+      "x0": 73,
+      "x1": 1845,
+      "y0": 370,
+      "y1": 845,
+      "w": 1773,
+      "h": 476,
+      "aspect": 3.7247899159663866
+    },
+    "clay_projected_union_px": {
+      "x0": 72.0,
+      "x1": 1846.6,
+      "y0": 369.08,
+      "y1": 847.11,
+      "w": 1774.6,
+      "h": 478.03000000000003,
+      "width_frac": 0.9242708333333333,
+      "height_frac": 0.4426203703703704
+    },
+    "width_match_gold_vs_r8": "gold x0/x1 72/1846 vs r8 73/1845 (1 px); front edge y1 846 vs 845",
+    "height_delta_px": -59,
+    "height_delta_note": "gold silhouette is 59 px taller at the back (y0 311 vs 370); width and front edge almost identical"
+  },
+  "other_cameras_in_scene_not_used": [
+    {
+      "id": "0a07c9cc-554f-4d0b-8dd8-4f492840068d",
+      "name": "顶视图-高",
+      "position": [
+        0,
+        0,
+        1
+      ],
+      "rotation_euler_rpy_deg": [
+        0,
+        -90,
+        90
+      ],
+      "fov": 50,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    },
+    {
+      "id": "1020347b-98d5-461e-89d4-9f554cf98a24",
+      "name": "透视-高",
+      "position": [
+        -0.4,
+        -0.95,
+        0.88
+      ],
+      "rotation_euler_rpy_deg": [
+        3.321535412241903e-13,
+        -40.000000000000014,
+        69.99999999999997
+      ],
+      "fov": 50,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    },
+    {
+      "id": "3925b2bb-a336-4b9c-ac77-1647e5f60dea",
+      "name": "顶视图",
+      "position": [
+        0,
+        0,
+        1
+      ],
+      "rotation_euler_rpy_deg": [
+        0,
+        -90,
+        90
+      ],
+      "fov": 50,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    },
+    {
+      "id": "6436b8bf-db6a-4249-9c38-5a7a48f7004f",
+      "name": "灶头",
+      "position": [
+        -0.012367346543594185,
+        -0.25842963360542137,
+        0.4628438641099799
+      ],
+      "rotation_euler_rpy_deg": [
+        0,
+        -47.999999999999964,
+        49.999999999999986
+      ],
+      "fov": 50,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    },
+    {
+      "id": "907a676c-b4b5-4c2b-86b6-74ed6aa6c626",
+      "name": "旋钮-高",
+      "position": [
+        0.118,
+        -0.316,
+        0.317
+      ],
+      "rotation_euler_rpy_deg": [
+        0,
+        -54.02645555272578,
+        121.73610769533758
+      ],
+      "fov": 50,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    },
+    {
+      "id": "a3748973-eddc-44c7-8a3c-cfae349b2696",
+      "name": "灶头-高",
+      "position": [
+        -0.012367346543594185,
+        -0.25842963360542137,
+        0.4628438641099799
+      ],
+      "rotation_euler_rpy_deg": [
+        0,
+        -47.999999999999964,
+        49.999999999999986
+      ],
+      "fov": 50,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    },
+    {
+      "id": "b5ba849e-edb7-44f2-a9e5-c66d076f2d3f",
+      "name": "旋钮",
+      "position": [
+        0.118,
+        -0.316,
+        0.317
+      ],
+      "rotation_euler_rpy_deg": [
+        0,
+        -54.026,
+        121.736
+      ],
+      "fov": 50,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    },
+    {
+      "id": "eaceb6d4-dd07-49ac-96e7-08dd5345b4ae",
+      "name": "前视图-高",
+      "position": [
+        0,
+        -1.45,
+        0.9
+      ],
+      "rotation_euler_rpy_deg": [
+        2.797860693562078e-07,
+        -30.000000000000004,
+        90
+      ],
+      "fov": 35,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    },
+    {
+      "id": "ffbca653-0372-49a2-899d-104ba2452929",
+      "name": "透视",
+      "position": [
+        -0.4,
+        -0.95,
+        0.88
+      ],
+      "rotation_euler_rpy_deg": [
+        3.321535412241903e-13,
+        -40.00000000000001,
+        69.99999999999997
+      ],
+      "fov": 50,
+      "sensor_width": 24.576000213623047,
+      "used_by_task_view": false
+    }
+  ],
+  "used_camera": {
+    "id": "028cb306-266e-476b-8426-b8d5b9bc4f49",
+    "name": "前视图",
+    "position": [
+      0,
+      -1.45,
+      0.9
+    ],
+    "rotation_euler_rpy_deg": [
+      0,
+      -30.000000000000004,
+      90
+    ],
+    "fov": 35,
+    "sensor_width": 24.576000213623047,
+    "used_by_task_view": true
+  },
+  "parent_chain": {
+    "camera_root": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "pos": [
+        0,
+        -1.45,
+        0.9
+      ],
+      "rot": [
+        0,
+        -30.000000000000004,
+        90
+      ]
+    },
+    "default_camera_group": {
+      "id": "0181b872-4831-4f4b-b1e7-81f042ad792d",
+      "pos": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ]
+    },
+    "前视图_stored_same_as_root": true,
+    "blender_inner_applies_parent": false,
+    "note": "If treated as local under camera_root the pose would double; gold width matches the no-parent application, so stored positions are world (or parent is not composed)."
+  },
+  "preview_vs_raw": "0 diffs (cameras/models/lights)",
+  "backup_vs_raw": "0 diffs; render_settings.views_in_task only 3c8d747b at 7680x4320, aa_spatial_samples 2048, max_bounces 32",
+  "hypotheses": {
+    "H1_wrong_view": "REJECTED",
+    "H2_transform_convention_as_primary_framing_fail": "REJECTED_AS_PRIMARY",
+    "H3_fov_mismatch": "REJECTED_AT_16x9",
+    "H4_model_orientation_wrong": "REJECTED",
+    "H5_preview_adaptation": "REJECTED",
+    "H6_render_time_camera_override": "REJECTED"
+  }
+}

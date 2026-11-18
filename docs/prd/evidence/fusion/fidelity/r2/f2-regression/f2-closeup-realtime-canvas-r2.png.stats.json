@@ -1,0 +1,17 @@
+[
+  {
+    "path": "docs/prd/evidence/fusion/fidelity/r2/f2-regression/f2-closeup-realtime-canvas-r2.png",
+    "width": 768,
+    "height": 832,
+    "mean": 179.0845947265625,
+    "lum_mean": 179.0845947265625,
+    "lum_std": 65.69731903076172,
+    "lum_median": 171.6666717529297,
+    "foreground_ratio": 1.0,
+    "unique_lum_bins": 32,
+    "row_std": 38.786617279052734,
+    "col_std": 47.29920959472656,
+    "sha256": "a80bde80ebddaf1bf03762391fd2d2e408378af49c489e9cdede43213d401c94",
+    "visible": true
+  }
+]

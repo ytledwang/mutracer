@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1c4a3883-8668-4c16-a10e-0b7c24272279",
+    "name": "Front",
+    "camera": "Front"
+  },
+  {
+    "id": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+    "name": "Front",
+    "camera": "Front"
+  },
+  {
+    "id": "3c697acc-1228-4e46-ba54-77eb7bb87cfb",
+    "name": "新视图",
+    "camera": "新相机1"
+  },
+  {
+    "id": "da307f8c-a522-4ec9-a1fe-03f7092e1dfc",
+    "name": "新视图",
+    "camera": "新相机2"
+  },
+  {
+    "id": "ab38eaf9-e9f8-478f-ab09-6fa654369b71",
+    "name": "新视图",
+    "camera": "新相机3"
+  }
+]

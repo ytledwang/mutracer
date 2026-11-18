@@ -1,0 +1,1 @@
+gmsh not found: pip install gmsh (or brew install gmsh), or pass a pre-meshed .stl

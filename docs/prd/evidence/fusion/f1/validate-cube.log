@@ -1,0 +1,5 @@
+WARN [node.generic] node[0] has generic name 'cube'
+ERROR [material.missing] mesh[0] primitive[0] has no material
+ERROR [material.none] file has meshes but no materials
+RESULT FAIL errors=2 warnings=1 file=/Users/wangjianzheng/Project/git/mutracer/tools/import-smoke/out/cube.glb
+EXIT:1

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key><string>mutracer-fridge-cloud-check</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/zsh</string>
+      <string>-c</string>
+      <string>cd /Users/wangjianzheng/Project/git/mutracer; ssh -o ConnectTimeout=15 -o BatchMode=yes ubuntu@43.192.32.90 'printf "files="; find /tmp/mutracer-fridge-assets -type f | wc -l; printf "glb="; find /tmp/mutracer-fridge-assets -type f -name "*.glb" | wc -l; printf "ssh_exit=0\n"' > tools/cloud-service/poc-out/fridge/cloud-check.log 2>&1</string>
+    </array>
+    <key>RunAtLoad</key><true/>
+    <key>StandardOutPath</key><string>/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/cloud-check.out</string>
+    <key>StandardErrorPath</key><string>/Users/wangjianzheng/Project/git/mutracer/tools/cloud-service/poc-out/fridge/cloud-check.err</string>
+  </dict>
+</plist>

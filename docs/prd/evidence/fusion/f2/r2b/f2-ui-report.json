@@ -1,0 +1,284 @@
+{
+  "launchMode": "headed-chrome-metal",
+  "headedOnRealGpu": true,
+  "items": [
+    {
+      "name": "mode-labels screenshot",
+      "status": "PASS",
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-mode-labels-r2.png",
+      "sha256": "96e9ace3cbd30ff7b0042eef15943741dc5076eda100a0797ea32928137fee5c"
+    },
+    {
+      "name": "F1 good fixture realtime visible",
+      "status": "PASS",
+      "exit": 0,
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f1-named-materials-realtime-canvas-r2.png",
+      "fullPage": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f1-named-materials-realtime-r2.png",
+      "stats": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f1-named-materials-realtime-canvas-r2.png",
+        "width": 768,
+        "height": 832,
+        "mean": 134.77923583984375,
+        "lum_mean": 134.7792205810547,
+        "lum_std": 40.61690139770508,
+        "lum_median": 153,
+        "foreground_ratio": 1,
+        "unique_lum_bins": 21,
+        "row_std": 27.224401473999023,
+        "col_std": 5.113102436065674,
+        "sha256": "479ce4714752431e638856a6b7bebe30f66ed7a63b6a21996f880df24611915d",
+        "visible": true
+      },
+      "sha256": "479ce4714752431e638856a6b7bebe30f66ed7a63b6a21996f880df24611915d"
+    },
+    {
+      "name": "F1 pick material by name Fridge_White",
+      "status": "PASS",
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f1-named-materials-picked-r2.png",
+      "detail": "{\"ok\":true,\"name\":\"Fridge_White\",\"materialId\":\"d0195f7a-d513-4a14-9f95-5cd25423ec76\",\"objectId\":\"209c6aa3-6e0b-4bcd-8087-353c9eac7136\"}",
+      "sha256": "c76fe6eac5a25f61104600e3440b6eb989ee64b8ac74b7cc74d42f851632743a"
+    },
+    {
+      "name": "apply M2 fixture",
+      "status": "PASS",
+      "detail": "replaceId=c83a2f4a-0a3d-4494-8da9-37e6ca6943a7"
+    },
+    {
+      "name": "M2 replace_id is c83a2f4a-… only",
+      "status": "PASS",
+      "detail": "c83a2f4a-0a3d-4494-8da9-37e6ca6943a7"
+    },
+    {
+      "name": "M2 realtime canvas shows fridge (not black)",
+      "status": "PASS",
+      "exit": 0,
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-realtime-after-template-canvas-r2.png",
+      "fullPage": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-realtime-after-template-r2.png",
+      "stats": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-realtime-after-template-canvas-r2.png",
+        "width": 768,
+        "height": 832,
+        "mean": 48.58054733276367,
+        "lum_mean": 48.58054733276367,
+        "lum_std": 24.42264747619629,
+        "lum_median": 44.33333206176758,
+        "foreground_ratio": 0.13521947616185898,
+        "unique_lum_bins": 30,
+        "row_std": 17.07295036315918,
+        "col_std": 18.15582847595215,
+        "sha256": "802fa791c3de7b1dd9fc6d2c3dc91dbbb73f5ef858755415f3fe2958f94baff9",
+        "visible": true
+      },
+      "sha256": "802fa791c3de7b1dd9fc6d2c3dc91dbbb73f5ef858755415f3fe2958f94baff9"
+    },
+    {
+      "name": "M2 Front view has visible meshes in camera frustum",
+      "status": "PASS",
+      "detail": "null"
+    },
+    {
+      "name": "quality preview no AOV_REFLECTANCE error",
+      "status": "PASS",
+      "detail": "none"
+    },
+    {
+      "name": "quality preview spp advances > 0",
+      "status": "PASS",
+      "detail": "spp=8 phase=converging"
+    },
+    {
+      "name": "quality canvas shows fridge",
+      "status": "PASS",
+      "exit": 0,
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-quality-after-template-canvas-r2.png",
+      "fullPage": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-quality-after-template-r2.png",
+      "stats": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-quality-after-template-canvas-r2.png",
+        "width": 768,
+        "height": 832,
+        "mean": 88.3353500366211,
+        "lum_mean": 88.3353500366211,
+        "lum_std": 22.63438606262207,
+        "lum_median": 88.66666412353516,
+        "foreground_ratio": 1,
+        "unique_lum_bins": 29,
+        "row_std": 13.670784950256348,
+        "col_std": 19.92453384399414,
+        "sha256": "f04cd5c6524bb70e015fba7dcc8296d53fe48ba39dd3af11ee94b8c311fa736f",
+        "visible": true
+      },
+      "sha256": "f04cd5c6524bb70e015fba7dcc8296d53fe48ba39dd3af11ee94b8c311fa736f"
+    },
+    {
+      "name": "quality sha256 differs from realtime and labels",
+      "status": "PASS",
+      "detail": "{\"quality\":\"f04cd5c6524bb70e015fba7dcc8296d53fe48ba39dd3af11ee94b8c311fa736f\",\"realtime\":\"802fa791c3de7b1dd9fc6d2c3dc91dbbb73f5ef858755415f3fe2958f94baff9\",\"labels\":\"96e9ace3cbd30ff7b0042eef15943741dc5076eda100a0797ea32928137fee5c\"}"
+    },
+    {
+      "name": "switch to quality keeps camera (pos/target/fov)",
+      "status": "PASS",
+      "detail": "{\"ok\":true,\"dpos\":0,\"dtarget\":0,\"dfov\":0}"
+    },
+    {
+      "name": "switch to quality keeps material assignments",
+      "status": "PASS",
+      "detail": "{\"ok\":true,\"countA\":514,\"countB\":514}"
+    },
+    {
+      "name": "realtime orbit timing log",
+      "status": "PASS",
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-orbit-timing-r2.json",
+      "detail": "{\"avg\":301.6894610068131,\"min\":243.90243937896875,\"max\":400}"
+    },
+    {
+      "name": "front realtime visible",
+      "status": "PASS",
+      "exit": 0,
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-front-realtime-canvas-r2.png",
+      "fullPage": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-front-realtime-r2.png",
+      "stats": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-front-realtime-canvas-r2.png",
+        "width": 768,
+        "height": 832,
+        "mean": 48.729190826416016,
+        "lum_mean": 48.72919845581055,
+        "lum_std": 23.781518936157227,
+        "lum_median": 44.33333206176758,
+        "foreground_ratio": 0.1312381059695513,
+        "unique_lum_bins": 27,
+        "row_std": 17.048110961914062,
+        "col_std": 18.07829475402832,
+        "sha256": "774ba33e30a41202e0a000735c1729dc3173e3d6ddc91ce494c282710a0fe363",
+        "visible": true
+      },
+      "sha256": "774ba33e30a41202e0a000735c1729dc3173e3d6ddc91ce494c282710a0fe363"
+    },
+    {
+      "name": "front quality visible, spp>0, no AOV, camera+materials consistent",
+      "status": "PASS",
+      "exit": 0,
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-front-quality-canvas-r2.png",
+      "fullPage": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-front-quality-r2.png",
+      "sha256": "18b9a770882fe20ee889410fd19920cb27a8de64fe03e3eed71509514645ffbb",
+      "spp": 2,
+      "phase": "converging",
+      "aov": [],
+      "camera": {
+        "ok": true,
+        "dpos": 0,
+        "dtarget": 0,
+        "dfov": 0
+      },
+      "materials": {
+        "ok": true,
+        "countA": 514,
+        "countB": 514
+      },
+      "stats": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-front-quality-canvas-r2.png",
+        "width": 768,
+        "height": 832,
+        "mean": 87.95162200927734,
+        "lum_mean": 87.95162200927734,
+        "lum_std": 22.126676559448242,
+        "lum_median": 88.33333587646484,
+        "foreground_ratio": 1,
+        "unique_lum_bins": 29,
+        "row_std": 13.2310209274292,
+        "col_std": 19.483762741088867,
+        "sha256": "18b9a770882fe20ee889410fd19920cb27a8de64fe03e3eed71509514645ffbb",
+        "visible": true
+      }
+    },
+    {
+      "name": "closeup realtime visible",
+      "status": "PASS",
+      "exit": 0,
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-closeup-realtime-canvas-r2.png",
+      "fullPage": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-closeup-realtime-r2.png",
+      "stats": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-closeup-realtime-canvas-r2.png",
+        "width": 768,
+        "height": 832,
+        "mean": 70.36177062988281,
+        "lum_mean": 70.36176300048828,
+        "lum_std": 43.50641632080078,
+        "lum_median": 51.66666793823242,
+        "foreground_ratio": 0.6731426532451923,
+        "unique_lum_bins": 30,
+        "row_std": 33.70878219604492,
+        "col_std": 45.104122161865234,
+        "sha256": "a455802c90d459ad67badd7e702e1c937ae732bb1a03437b779f7a4397be1ac5",
+        "visible": true
+      },
+      "sha256": "a455802c90d459ad67badd7e702e1c937ae732bb1a03437b779f7a4397be1ac5"
+    },
+    {
+      "name": "closeup quality visible, spp>0, no AOV, camera+materials consistent",
+      "status": "PASS",
+      "exit": 0,
+      "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-closeup-quality-canvas-r2.png",
+      "fullPage": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-closeup-quality-r2.png",
+      "sha256": "ffa46849a2d8b83d048e6b8d0d0376ebfd10556ece89d16b8b89a4127b059a4f",
+      "spp": 1,
+      "phase": "converging",
+      "aov": [],
+      "camera": {
+        "ok": true,
+        "dpos": 0,
+        "dtarget": 0,
+        "dfov": 0
+      },
+      "materials": {
+        "ok": true,
+        "countA": 514,
+        "countB": 514
+      },
+      "stats": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b/f2-closeup-quality-canvas-r2.png",
+        "width": 768,
+        "height": 832,
+        "mean": 100.633544921875,
+        "lum_mean": 100.63353729248047,
+        "lum_std": 31.458614349365234,
+        "lum_median": 103.33333587646484,
+        "foreground_ratio": 1,
+        "unique_lum_bins": 30,
+        "row_std": 19.8699951171875,
+        "col_std": 30.48221778869629,
+        "sha256": "ffa46849a2d8b83d048e6b8d0d0376ebfd10556ece89d16b8b89a4127b059a4f",
+        "visible": true
+      }
+    },
+    {
+      "name": "official kitchen ccdaa114 stays 不可验收 (not rewritten to M2)",
+      "status": "PASS",
+      "detail": "{\"replaceId\":\"ccdaa114-cdb7-4ef5-af26-022938a780d5\",\"badge\":\"不可验收\",\"name\":\"冰箱厨房场景\"}"
+    }
+  ],
+  "notes": [
+    "[2026-11-11T07:07:54.033Z] reusing viewer at http://127.0.0.1:3012/",
+    "[2026-11-11T07:07:54.336Z] launched headed-chrome-metal",
+    "[2026-11-11T07:07:55.077Z] backend={\"name\":\"WebGPU\",\"adapter\":\"apple\"} launch=headed-chrome-metal",
+    "[2026-11-11T07:07:55.240Z] PASS  mode-labels screenshot",
+    "[2026-11-11T07:07:57.143Z] PASS  F1 good fixture realtime visible exit=0",
+    "[2026-11-11T07:07:58.045Z] PASS  F1 pick material by name Fridge_White — {\"ok\":true,\"name\":\"Fridge_White\",\"materialId\":\"d0195f7a-d513-4a14-9f95-5cd25423ec76\",\"objectId\":\"209c6aa3-6e0b-4bcd-8087-353c9eac7136\"}",
+    "[2026-11-11T07:07:58.684Z] PASS  apply M2 fixture — replaceId=c83a2f4a-0a3d-4494-8da9-37e6ca6943a7",
+    "[2026-11-11T07:07:58.684Z] PASS  M2 replace_id is c83a2f4a-… only — c83a2f4a-0a3d-4494-8da9-37e6ca6943a7",
+    "[2026-11-11T07:08:01.845Z] PASS  M2 realtime canvas shows fridge (not black) exit=0",
+    "[2026-11-11T07:08:01.856Z] PASS  M2 Front view has visible meshes in camera frustum — null",
+    "[2026-11-11T07:08:04.105Z] PASS  quality preview no AOV_REFLECTANCE error — none",
+    "[2026-11-11T07:08:04.105Z] PASS  quality preview spp advances > 0 — spp=8 phase=converging",
+    "[2026-11-11T07:08:04.105Z] PASS  quality canvas shows fridge exit=0",
+    "[2026-11-11T07:08:04.105Z] PASS  quality sha256 differs from realtime and labels — {\"quality\":\"f04cd5c6524bb70e015fba7dcc8296d53fe48ba39dd3af11ee94b8c311fa736f\",\"realtime\":\"802fa791c3de7b1dd9fc6d2c3dc91dbbb73f5ef858755415f3fe2958f94baff9\",\"labels\":\"96e9ace3cbd30ff7b0042eef15943741dc5076eda100a0797ea32928137fee5c\"}",
+    "[2026-11-11T07:08:04.112Z] PASS  switch to quality keeps camera (pos/target/fov) — {\"ok\":true,\"dpos\":0,\"dtarget\":0,\"dfov\":0}",
+    "[2026-11-11T07:08:04.112Z] PASS  switch to quality keeps material assignments — {\"ok\":true,\"countA\":514,\"countB\":514}",
+    "[2026-11-11T07:08:06.924Z] PASS  realtime orbit timing log — {\"avg\":301.6894610068131,\"min\":243.90243937896875,\"max\":400}",
+    "[2026-11-11T07:08:08.759Z] PASS  front realtime visible exit=0",
+    "[2026-11-11T07:08:09.928Z] PASS  front quality visible, spp>0, no AOV, camera+materials consistent exit=0",
+    "[2026-11-11T07:08:11.373Z] PASS  closeup realtime visible exit=0",
+    "[2026-11-11T07:08:12.667Z] PASS  closeup quality visible, spp>0, no AOV, camera+materials consistent exit=0",
+    "[2026-11-11T07:08:12.669Z] PASS  official kitchen ccdaa114 stays 不可验收 (not rewritten to M2) — {\"replaceId\":\"ccdaa114-cdb7-4ef5-af26-022938a780d5\",\"badge\":\"不可验收\",\"name\":\"冰箱厨房场景\"}"
+  ],
+  "consoleErrors": []
+}

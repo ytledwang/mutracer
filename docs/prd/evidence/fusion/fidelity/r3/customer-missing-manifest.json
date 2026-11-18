@@ -1,0 +1,314 @@
+{
+  "purpose": "Explicit missing customer_asset GLBs for r3 Front official merge (fd26af6d only)",
+  "allowlist_file": "docs/prd/evidence/fusion/fidelity/r3/missing-customer-keys.json",
+  "source": {
+    "host": "10.160.9.143:8000",
+    "base": "http://10.160.9.143:8000",
+    "envfile": ".env.production",
+    "note": "Explicit keys only. No signed URLs, no secrets, no bucket listing."
+  },
+  "files": [
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/0414aaa2-f6ca-4984-88a8-9ab9d52fd83b.glb",
+      "size": 3820,
+      "sha256": "bb37e079f530bb7a962dda6c0899f58c9eace1ee650872424bbe5d9f86041e58",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/0414aaa2-f6ca-4984-88a8-9ab9d52fd83b.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/10e0d48a-67c6-497f-aec9-0e9f02cc8477.glb",
+      "size": 2276,
+      "sha256": "d6f466784f5655c12ab288ff616006fdd428d51aa1c564ee9250ee3c426cfb85",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/10e0d48a-67c6-497f-aec9-0e9f02cc8477.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/13bf3cd3-4f5e-4573-9eef-6ace4db08916.glb",
+      "size": 2132764,
+      "sha256": "ea07e4effb4407eed8045570ea368cd437b6bb6f18b5df5a0e081712039eb55d",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/13bf3cd3-4f5e-4573-9eef-6ace4db08916.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/15527a31-e34a-4d03-bbd5-3c3ac6261a6b.glb",
+      "size": 161692,
+      "sha256": "60d0a2f8b1bd4f30131f10f6c27043ffe2340bac28af65c426d987bf13d29dc6",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/15527a31-e34a-4d03-bbd5-3c3ac6261a6b.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/1a021b9d-6c90-4aaf-8982-1f80f1246b49.glb",
+      "size": 165068,
+      "sha256": "8862d10be437bb7ece6a63c205694cc0d822d52de44b57934c16807757746446",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/1a021b9d-6c90-4aaf-8982-1f80f1246b49.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/2df7ee85-89ef-4cde-9fe7-9dac3f46cf83.glb",
+      "size": 300712,
+      "sha256": "902d04c22c9053650e83bf5ca6ac7b4c04484d653f3f1f4430ab76963e3cb9a0",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/2df7ee85-89ef-4cde-9fe7-9dac3f46cf83.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/5075bae6-377e-47c5-a630-bcdbf39768ad.glb",
+      "size": 229372,
+      "sha256": "eec8324fea21eba8c11423a7dea5fe4f5de34ae86ab7ce9ca409ce30b3aff579",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/5075bae6-377e-47c5-a630-bcdbf39768ad.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/585f4a7a-98e8-4668-b5c7-8fd50a019756.glb",
+      "size": 137868,
+      "sha256": "2e83038a0a5724e8480af4eb06b9610854147c058f6d07a961b3ece27fe9e845",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/585f4a7a-98e8-4668-b5c7-8fd50a019756.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/5d8a3839-382c-467c-869a-f0a601485a6b.glb",
+      "size": 118816,
+      "sha256": "c8065c107f7c02748001bcbf22c18ddd0758305ccd779e3845712136eb2fae7b",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/5d8a3839-382c-467c-869a-f0a601485a6b.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/63ac8485-8840-4a46-9dc6-8cfa33bbe7a2.glb",
+      "size": 107428,
+      "sha256": "cf731a5b08a610c383859332c6aff6efed8c5b041f48bbfd51546afd3445cb56",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/63ac8485-8840-4a46-9dc6-8cfa33bbe7a2.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/64e0fabc-7055-41d7-985e-ec016e30abde.glb",
+      "size": 111544,
+      "sha256": "ab7f4041ff4d8db83fc1c0744609f4e507ee1ee7bf9d42dab4e2a62390e39daf",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/64e0fabc-7055-41d7-985e-ec016e30abde.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/6998f05b-810b-4bc4-aa88-079a10419eb0.glb",
+      "size": 2660,
+      "sha256": "edffa1619c027d9704b0d3f98bd6232dce34bc170ead5c72ddfb23745f622128",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/6998f05b-810b-4bc4-aa88-079a10419eb0.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/6b1d14e7-1274-4145-a912-edb0f9d55d68.glb",
+      "size": 5824,
+      "sha256": "af5d9e3c14e810fdbab8ee0950b2ac5bdf985a1650176eafb93cf25e733d3f07",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/6b1d14e7-1274-4145-a912-edb0f9d55d68.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/7133122c-3277-44f7-85e0-ce2ced4f7405.glb",
+      "size": 22372,
+      "sha256": "4f149e88364ffbaf5ff71fd4ea4f455f05a2faac2efa9150d3effaf2f807c556",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/7133122c-3277-44f7-85e0-ce2ced4f7405.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/7d271292-c401-4c86-b1af-371f2ddbc675.glb",
+      "size": 1013060,
+      "sha256": "401ea59a7bfb5502fc91fd5d5e681c712ec2bcbcc4d6c427d33e8ce18a05218b",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/7d271292-c401-4c86-b1af-371f2ddbc675.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/7d5f3231-4fdc-4fec-9288-77089d9be59a.glb",
+      "size": 124672,
+      "sha256": "fdb00953c7221ab211f851edf71442d61b8d88b2f3f008420695a134009fba72",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/7d5f3231-4fdc-4fec-9288-77089d9be59a.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/7df6e020-ffa9-4b01-860c-9e33632193a6.glb",
+      "size": 2092,
+      "sha256": "031480818381433fceb52d5682e165e340e47fe72eca3f932cb35aa32879ad42",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/7df6e020-ffa9-4b01-860c-9e33632193a6.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/82920c6e-c70e-4241-9003-64d99d6b3971.glb",
+      "size": 246028,
+      "sha256": "5d3f9f5fefb818fb873875dfaa5d39677247e266c0ecf20312ef3159ace787d4",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/82920c6e-c70e-4241-9003-64d99d6b3971.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/876da68d-5f58-4fdf-90a4-ac37e26b4cca.glb",
+      "size": 164660,
+      "sha256": "b8c658a7c23763537df99d2c9dea3d38a3672d2af9dd46b12469b998fac207be",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/876da68d-5f58-4fdf-90a4-ac37e26b4cca.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/920d2ce4-6282-4f78-b69e-0fc31d8a3921.glb",
+      "size": 33920,
+      "sha256": "68e3d6fcd103b9e3e6560f8d79fbb063c16e6ff546c2b8e4de32b7b6b0ed41ea",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/920d2ce4-6282-4f78-b69e-0fc31d8a3921.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9364cdcf-2bb9-4076-b848-e60250d33f88.glb",
+      "size": 100840,
+      "sha256": "703f40628b170b89d02c69610e50d10e794e324db0cb8441c4452926b5571b58",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9364cdcf-2bb9-4076-b848-e60250d33f88.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/988da379-8f79-404a-8c6c-3c3f76d89674.glb",
+      "size": 246140,
+      "sha256": "3c65872d145c45af7c872a2622d9ea78d6060b50f0fab805c09bac7178281c69",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/988da379-8f79-404a-8c6c-3c3f76d89674.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9b22e44a-2732-4da5-838f-8a2bb7911c98.glb",
+      "size": 30892,
+      "sha256": "850d39755bc5d8e9a09d15007eb109d0d44ce59353d6735be0684fa31eeffb1a",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9b22e44a-2732-4da5-838f-8a2bb7911c98.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9b508fec-04b6-48c8-86ed-c17adffd2a23.glb",
+      "size": 1480468,
+      "sha256": "74d0f881db8ef381eea81cd6a04d6c04b090d1e4a32e2c9de11e1d06fc050be1",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9b508fec-04b6-48c8-86ed-c17adffd2a23.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9c5928dd-f9f7-447b-b562-a8ec4401fe87.glb",
+      "size": 195448,
+      "sha256": "4d519a5252047f9fea719fb70957a7a039fcf503aa95c44f174a77c6967625d6",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9c5928dd-f9f7-447b-b562-a8ec4401fe87.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9fc108d2-8d6c-4d24-b3b7-6078c500bdc1.glb",
+      "size": 1196096,
+      "sha256": "7dcb23c8947e6431e7c26a6a6c0870c77c81cf708547490bd545c1d0aeb56a1d",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/9fc108d2-8d6c-4d24-b3b7-6078c500bdc1.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a1c39be1-13c5-4f69-97e2-5f8f31c3831c.glb",
+      "size": 11736,
+      "sha256": "50dbdba1764744f2dbb5c183d01ef3c85a686df93a475ca9734e87a5670fa393",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a1c39be1-13c5-4f69-97e2-5f8f31c3831c.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a26d3cb7-0421-4d84-a142-30ee6732723e.glb",
+      "size": 1197068,
+      "sha256": "1c89af508f66cb6203c242ec11bc7d6b7036716b47eebc73c5f16f8c314af294",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a26d3cb7-0421-4d84-a142-30ee6732723e.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a3f44a09-98b6-4802-a23c-ea084671b626.glb",
+      "size": 97088,
+      "sha256": "2d892daab7270a8af8378fa22a3bdef056ce7ab6315065cb0a096b60efe6c904",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a3f44a09-98b6-4802-a23c-ea084671b626.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a42bcc95-a236-41e0-af09-06c15932b92f.glb",
+      "size": 1480972,
+      "sha256": "d03725710d9140bc6f489ef2e14938ac6c90b80ecf2eafa795a7265de148b2cc",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a42bcc95-a236-41e0-af09-06c15932b92f.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a5b88c7d-769c-40df-a877-ae9cf4f340fd.glb",
+      "size": 1564,
+      "sha256": "18b6bd3d7a07ddd8cbcc3a300362d88d30d79b5f935c58ef8871e778e4c6c44e",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a5b88c7d-769c-40df-a877-ae9cf4f340fd.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a6e1c79c-275f-40ec-aafb-5634db8fdba2.glb",
+      "size": 34448,
+      "sha256": "e078a8bf11a35dfbc16ff42062de2cedf50c2cc02129c8b7557afd2935b0cce1",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/a6e1c79c-275f-40ec-aafb-5634db8fdba2.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/aae459b3-b185-447b-a078-a5b298270898.glb",
+      "size": 516392,
+      "sha256": "1f5048307a51c4203425aac9e74f3eaa30f1d03c55bb55f75bc83fa57bc42771",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/aae459b3-b185-447b-a078-a5b298270898.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/ab44c98c-94b9-40fe-a081-7ec3f0bfff71.glb",
+      "size": 2188,
+      "sha256": "7980aeb6af877717bc1ad2b1d65c1692fb76923c4647ceb15293824dd2aca73d",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/ab44c98c-94b9-40fe-a081-7ec3f0bfff71.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b2ad99dc-787a-4576-aa00-6d5302892ca9.glb",
+      "size": 869396,
+      "sha256": "01cd8c6863e3e3362106f33c2625eb92768579eef28f97ca0e120c229549ef9f",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b2ad99dc-787a-4576-aa00-6d5302892ca9.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b540ee30-9474-49b3-8687-a1ef976d5243.glb",
+      "size": 49904,
+      "sha256": "7fa29fa0124ee08879dd6a0896601e75b3c379ed90e80b6d2cd5257e1e554973",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b540ee30-9474-49b3-8687-a1ef976d5243.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b681cd3f-282d-4d77-862e-ed76ba1c04e3.glb",
+      "size": 205064,
+      "sha256": "b6a310e157a1db69835ba1c9f36430a5d868073d5c944f69ff9ab05f5ee16d5c",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b681cd3f-282d-4d77-862e-ed76ba1c04e3.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b7214449-a627-4d6c-a69b-e4ebdb1e1730.glb",
+      "size": 2736,
+      "sha256": "98f58f82da724fbe4a4abc302af93f4b6a6a43deb65dd36f4ed6d936de4d48a9",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b7214449-a627-4d6c-a69b-e4ebdb1e1730.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b7bdee19-25f8-4b42-bf14-d6e12dab96c6.glb",
+      "size": 49872,
+      "sha256": "36f925ee86a07a2c6a286512fa12279396a654aea3d9e67df7ec6a64d150a793",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/b7bdee19-25f8-4b42-bf14-d6e12dab96c6.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/ba0040d8-68dc-4a8f-934d-fc0b15cd3a75.glb",
+      "size": 204432,
+      "sha256": "0ed29091b516f66fde64e821c80ff61e0c1acdfac2aa7f372f12898aed1fb69b",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/ba0040d8-68dc-4a8f-934d-fc0b15cd3a75.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/bde852b5-c7c4-4ed9-a209-0ba61fcd6d0d.glb",
+      "size": 107448,
+      "sha256": "e8a56ac76200fdf7aa3d677a0e9c07f62b88d97f219b0cab04c683c610825210",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/bde852b5-c7c4-4ed9-a209-0ba61fcd6d0d.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/bfc39b6a-5d55-4bd1-ac5c-497ffea16e4e.glb",
+      "size": 178376,
+      "sha256": "18e3c1441732988983ba10bf662a9ae9b2fd9b0bd72bc93abb3498c139abaa72",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/bfc39b6a-5d55-4bd1-ac5c-497ffea16e4e.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/c1e4aefd-0ad8-49d7-8955-f4ca5c123d15.glb",
+      "size": 226252,
+      "sha256": "2bd7d23eea346bce456722c6af0882b9525df38d3e07cd0d6279a3bd4cffd511",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/c1e4aefd-0ad8-49d7-8955-f4ca5c123d15.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/ca94078f-1fe3-4c55-bf57-79b420bb26e5.glb",
+      "size": 234128,
+      "sha256": "951f081fad88e614caaedd121a9864c774b93202f0bef51e6e63604f24aa386e",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/ca94078f-1fe3-4c55-bf57-79b420bb26e5.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/dae3c77c-0868-4ef7-b827-be673fbe0ae3.glb",
+      "size": 1934740,
+      "sha256": "c9f03b6fb8c496358c5fab6fe627cbc120822f6c4225e7ca4143452782ac424d",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/dae3c77c-0868-4ef7-b827-be673fbe0ae3.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/dea61f20-629c-4e77-8280-cfd08347b0ab.glb",
+      "size": 225512,
+      "sha256": "720dee89a32026a3efa96e55dbcdfaa17dc7e9929c7f7caa26be34185a6f4926",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/dea61f20-629c-4e77-8280-cfd08347b0ab.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/ed53804f-d4e5-48af-9892-11d74362c676.glb",
+      "size": 233940,
+      "sha256": "5fcec3367cd8094f3689133133e2a899e54ca43641a2b3f27d56e5a1a4af68e1",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/ed53804f-d4e5-48af-9892-11d74362c676.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/f06dbefe-8d3d-40ca-89a6-f25282073907.glb",
+      "size": 161952,
+      "sha256": "c7a883c5d76666b709d25a7c4d521fd217fc6f238593b184061fc9a4e06d3e09",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/f06dbefe-8d3d-40ca-89a6-f25282073907.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/f08e672a-f584-42dd-8dc6-0234340da3e8.glb",
+      "size": 241584,
+      "sha256": "93dce28a3c08a97358f9a21b2534059826e760f079ece33bde1df5e63a0811f8",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/f08e672a-f584-42dd-8dc6-0234340da3e8.glb"
+    },
+    {
+      "path": "tools/cloud-service/poc-out/customer-missing/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/fed5bfbf-cba0-4e22-95b1-155534ffef8c.glb",
+      "size": 11812,
+      "sha256": "ac5d59633fc574afb80bf238bbacb4325b06d4b28aea42eb5fb17c4b083daadc",
+      "source_key": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/fed5bfbf-cba0-4e22-95b1-155534ffef8c.glb"
+    }
+  ],
+  "failed": [],
+  "pulled_at": "2026-11-11 18:27:34 +0800 Asia/Shanghai"
+}

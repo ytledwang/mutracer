@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "exit": 0,
+  "command": "python3 tools/fusion-checks/fidelity_r9_analysis_check.py docs/prd/evidence/fusion/fidelity/r9-analysis",
+  "meaning": "analysis complete and internally consistent; NOT a quality pass",
+  "time": "2026-11-12 00:09 Asia/Shanghai",
+  "renderer_untouched": {
+    "blender_inner.py": "ed8ef353833b26ec53a910ace5ea8a17e56a034e85ac3a9832cc66d20d0ba565",
+    "run_blender_final.py": "46176bc76fb7825d4ab3ad2d7adf0aa6a9cb9b77cd3747f5275141f86a6b8dcb",
+    "ue_filmic.py": "30ec118ed66bf621e0f077a5479d39a174908f8d8f434eb3c9f3dc600f803c6c"
+  },
+  "no_commit": true
+}

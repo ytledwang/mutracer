@@ -1,0 +1,24 @@
+{
+  "probe": "tools/fusion-checks/default_identity_probe.py",
+  "scene": "docs/prd/evidence/fusion/fidelity/r2/scene-official-preview.json",
+  "view": "1c4a3883-8668-4c16-a10e-0b7c24272279",
+  "flags": "none (default Standard path): --spp 128 --denoise 1 --view-transform Standard --width 1920 --height 1080",
+  "time": "2026-11-13 14:44:18 to 14:44:56 +0800 Asia/Shanghai",
+  "exit": 0,
+  "state_sha256": "cc2a2d147577bd5447377b8ee55c5bbca67b5331ad08cafb1bbd157838c169b8",
+  "post_sha256": "024e98431d937525845ad2cbf88455a3fadbc55b641f2636b9d3cc0db72143e4",
+  "reference_state_sha256": "367c8c93504e19939f6ef7d0c5522291593b3d97df627352d4a7b406b5a56c96",
+  "reference_post_sha256": "024e98431d937525845ad2cbf88455a3fadbc55b641f2636b9d3cc0db72143e4",
+  "post_byte_identical": true,
+  "state_identical": false,
+  "diff": {
+    "objects": 1065,
+    "lights_datablocks": 32,
+    "changed_objects": 32,
+    "changed_object_types": ["LIGHT matrix_world only"],
+    "world": "identical",
+    "materials": "identical (1250)",
+    "view_render_cycles": "identical"
+  },
+  "note": "Default Standard path post PNG is byte-identical. Scene-state hash changed only because add_light now accumulates in UE space and converts once; the r2 official kitchen's 32 RectLights had the same parent-basis bug. No other default-path drift."
+}

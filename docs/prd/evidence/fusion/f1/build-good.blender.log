@@ -1,0 +1,20 @@
+/Users/wangjianzheng/Project/git/mutracer/tools/import-contract/build_good_fixture.py:26: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+INFO Draco mesh compression is available, use library at /Applications/Blender.app/Contents/Resources/5.1/scripts/addons_core/io_scene_gltf2/libextern_draco.dylib
+22:58:10 | INFO: Starting glTF 2.0 export
+22:58:10 | INFO: Extracting primitive: Fridge_Body
+22:58:10 | INFO: Primitives created: 1
+22:58:10 | INFO: Extracting primitive: Fridge_Door
+22:58:10 | INFO: Primitives created: 1
+22:58:10 | INFO: Extracting primitive: Fridge_Handle
+22:58:10 | INFO: Primitives created: 1
+22:58:10 | INFO: Extracting primitive: Crisper_Drawer
+22:58:10 | INFO: Primitives created: 1
+22:58:10 | INFO: Extracting primitive: Fridge_Shelf
+22:58:10 | INFO: Primitives created: 1
+22:58:10 | INFO: Finished glTF 2.0 export in 0.011538028717041016 s
+
+wrote /Users/wangjianzheng/Project/git/mutracer/tools/import-contract/fixtures/good-named-pivot.glb
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

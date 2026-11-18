@@ -1,0 +1,10 @@
+{
+  "brightness_std": {
+    "preview": 43.96814106007165,
+    "final": 44.05175956896273,
+    "ref": 43.36373962282608
+  },
+  "silhouette_iou_preview_vs_ref": 0.7992922470610456,
+  "silhouette_iou_final_vs_ref": 0.37972717801692674,
+  "threshold": 16
+}

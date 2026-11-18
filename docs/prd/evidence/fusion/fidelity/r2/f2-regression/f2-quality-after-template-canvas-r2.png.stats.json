@@ -1,0 +1,17 @@
+[
+  {
+    "path": "docs/prd/evidence/fusion/fidelity/r2/f2-regression/f2-quality-after-template-canvas-r2.png",
+    "width": 768,
+    "height": 832,
+    "mean": 87.5628433227539,
+    "lum_mean": 87.56283569335938,
+    "lum_std": 20.13389778137207,
+    "lum_median": 88.33333587646484,
+    "foreground_ratio": 1.0,
+    "unique_lum_bins": 31,
+    "row_std": 13.879439353942871,
+    "col_std": 17.724599838256836,
+    "sha256": "ac75504cce0ce64f31162165f560bdb1ac0efbb2918d5da2c0384ebf5e9447c8",
+    "visible": true
+  }
+]

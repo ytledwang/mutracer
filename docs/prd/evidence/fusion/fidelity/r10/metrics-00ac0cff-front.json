@@ -1,0 +1,34 @@
+{
+  "task": "00ac0cff-front",
+  "view": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+  "r10_vs_gold": {
+    "vs": "r10_vs_gold",
+    "mae": 32.35,
+    "mae_fg": 87.6459,
+    "ssim": 0.646021,
+    "d_lum_fg": -60.985,
+    "fg_frac": 0.3686,
+    "rend_fg_lum": 19.347,
+    "gold_fg_lum": 80.332
+  },
+  "r10_vs_r8": {
+    "vs": "r10_vs_r8",
+    "mae": 0.0951,
+    "mae_fg": 0.2691,
+    "ssim": 0.994637,
+    "d_lum_fg": 0.042,
+    "fg_frac": 0.3526,
+    "rend_fg_lum": 8.524,
+    "gold_fg_lum": 8.483
+  },
+  "r8_vs_gold": {
+    "vs": "r8_vs_gold",
+    "mae": 32.3524,
+    "mae_fg": 87.6523,
+    "ssim": 0.645989,
+    "d_lum_fg": -61.025,
+    "fg_frac": 0.3686,
+    "rend_fg_lum": 19.307,
+    "gold_fg_lum": 80.332
+  }
+}

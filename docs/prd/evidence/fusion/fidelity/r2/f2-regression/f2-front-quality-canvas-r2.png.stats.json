@@ -1,0 +1,17 @@
+[
+  {
+    "path": "docs/prd/evidence/fusion/fidelity/r2/f2-regression/f2-front-quality-canvas-r2.png",
+    "width": 768,
+    "height": 832,
+    "mean": 87.8305892944336,
+    "lum_mean": 87.8305892944336,
+    "lum_std": 20.494300842285156,
+    "lum_median": 88.33333587646484,
+    "foreground_ratio": 1.0,
+    "unique_lum_bins": 31,
+    "row_std": 14.258296966552734,
+    "col_std": 17.98145866394043,
+    "sha256": "faef0043778f871bd98959b81975127bb3dc242862dc6b04a927184cbfe8aecc",
+    "visible": true
+  }
+]

@@ -1,0 +1,101 @@
++ npm run typecheck:viewer
+
+> @meimu/mutracer@0.3.1 typecheck:viewer
+> tsc --noEmit -p viewer/tsconfig.json
+
+PASS  typecheck:viewer  exit=0
++ npm run test:viewer
+
+> @meimu/mutracer@0.3.1 test:viewer
+> vitest run --config viewer/vitest.config.ts
+
+
+ RUN  v1.6.1 /Users/wangjianzheng/Project/git/mutracer
+
+ ✓ viewer/tests/viewerFetchWithProgress.test.ts  (18 tests) 18ms
+ ✓ viewer/tests/viewerMaterialX.test.ts  (8 tests) 9ms
+ ✓ viewer/tests/viewerModelCache.test.ts  (6 tests) 6ms
+ ✓ viewer/tests/viewerAreaFocus.test.ts  (9 tests) 13ms
+ ✓ viewer/tests/viewerURLSettings.test.ts  (11 tests) 819ms
+ ✓ viewer/tests/bvhCache.test.ts  (4 tests) 18ms
+ ✓ viewer/tests/shareStaticGeometry.test.ts  (5 tests) 13ms
+ ✓ viewer/tests/viewerDisplacement.test.ts  (6 tests) 11ms
+ ✓ viewer/tests/viewerModelLighting.test.ts  (13 tests) 37ms
+ ✓ viewer/tests/pbrt-loading.test.ts  (14 tests) 53ms
+ ✓ viewer/tests/viewerModelLoading.test.ts  (10 tests) 69ms
+ ✓ viewer/tests/viewerHDRCache.test.ts  (10 tests) 1027ms
+ ✓ viewer/tests/viewerSceneTree.test.ts  (7 tests) 13ms
+ ✓ viewer/tests/viewerCode.test.ts  (14 tests) 302ms
+ ✓ viewer/tests/viewerCameraImport.test.ts  (48 tests) 98ms
+ ✓ viewer/tests/pbrt-textures.test.ts  (6 tests) 30ms
+ ✓ viewer/tests/pbrt-scene.test.ts  (11 tests) 32ms
+ ✓ viewer/tests/pbrt-parser.test.ts  (13 tests) 20ms
+ ✓ viewer/tests/presetSettings.test.ts  (6 tests) 4ms
+ ✓ viewer/tests/viewerPolyHaven.test.ts  (5 tests) 6ms
+ ✓ viewer/tests/viewerStudio.test.ts  (12 tests) 6ms
+ ✓ viewer/tests/viewerCameraState.test.ts  (16 tests) 7ms
+ ✓ viewer/tests/f2ViewMode.test.ts  (8 tests) 4ms
+ ✓ viewer/tests/finalLook.test.ts  (5 tests) 6ms
+ ✓ viewer/tests/viewerOrbitControls.test.ts  (20 tests) 16ms
+ ✓ viewer/tests/viewerDenoiserLoading.test.ts  (10 tests) 10ms
+ ✓ viewer/tests/pbrt-metrics.test.ts  (4 tests) 22ms
+ ✓ viewer/tests/chromeI18n.test.ts  (3 tests) 2ms
+ ✓ viewer/tests/pbrt-transfer.test.ts  (3 tests) 24ms
+ ✓ viewer/tests/viewerExport.test.ts  (2 tests) 12ms
+ ✓ viewer/tests/pbrt-medium-boundary.test.ts  (7 tests) 793ms
+ ✓ viewer/tests/pbrt-subdivision.test.ts  (4 tests) 7ms
+ ✓ viewer/tests/viewerFolderHDR.test.ts  (2 tests) 9ms
+ ✓ viewer/tests/importContract.test.ts  (3 tests) 3ms
+ ✓ viewer/tests/viewerHeightRange.test.ts  (12 tests) 9ms
+ ✓ viewer/tests/viewerModelGrounding.test.ts  (2 tests) 5ms
+ ✓ viewer/tests/viewerInstancing.test.ts  (1 test) 14ms
+ ✓ viewer/tests/viewerNumberInput.test.ts  (5 tests) 5ms
+ ✓ viewer/tests/viewerEnvironment.test.ts  (2 tests) 6ms
+ ✓ viewer/tests/viewerGpuPicking.test.ts  (3 tests) 5ms
+ ✓ viewer/tests/viewerSky.test.ts  (2 tests) 2ms
+ ✓ viewer/tests/viewerModelCamera.test.ts  (2 tests) 1ms
+ ✓ viewer/tests/pbrt-convert.test.ts  (48 tests) 2660ms
+ ✓ viewer/tests/ueBasis.test.ts  (1 test) 1ms
+ ✓ viewer/tests/caustics.test.ts  (1 test) 4ms
+ ✓ viewer/tests/viewerSkyUpdates.test.ts  (1 test) 1ms
+ ✓ viewer/tests/viewerViewControls.test.ts  (3 tests) 14ms
+ ✓ viewer/tests/viewerRenderLimits.test.ts  (2 tests) 31ms
+ ✓ viewer/tests/viewerSceneLightingOptions.test.ts  (3 tests) 18ms
+ ✓ viewer/tests/pbrt-environment.test.ts  (2 tests) 10629ms
+
+ Test Files  50 passed (50)
+      Tests  413 passed (413)
+   Start at  16:12:20
+   Duration  14.24s (transform 4.81s, setup 2ms, collect 21.54s, tests 16.92s, environment 6ms, prepare 2.75s)
+
+PASS  test:viewer  exit=0
++ node tools/scene-template/smoke.mjs
+merged: newModelId=c633eae5-e516-4e3d-a951-c0584bd24378 parent=aaaaaaaa-0000-4000-8000-000000000001 models=9 cameras=1 views=1 -> /Users/wangjianzheng/Project/git/mutracer/tools/scene-template/out/merged-synthetic.json
+ok synthetic: models=9 newRoot=c633eae5-e516-4e3d-a951-c0584bd24378 -> out/merged-synthetic.json
+merged: newModelId=6d3045c6-5798-4005-a81c-7001fcde99ba parent=00000000-0000-0000-0000-000000000000 models=61 cameras=11 views=6 -> /Users/wangjianzheng/Project/git/mutracer/tools/scene-template/out/merged-smoke.json
+ok real: models=61 newRoot=6d3045c6-5798-4005-a81c-7001fcde99ba -> out/merged-smoke.json
+PASS  scene-template smoke  exit=0
+[2026-11-15T08:12:35.375Z] reusing viewer at http://127.0.0.1:3012/
+[2026-11-15T08:12:35.626Z] launched headed-chrome-metal
+[2026-11-15T08:12:36.362Z] backend={"name":"WebGPU","adapter":"apple"} launch=headed-chrome-metal
+[2026-11-15T08:12:36.530Z] PASS  mode-labels screenshot
+[2026-11-15T08:12:38.353Z] PASS  F1 good fixture realtime visible exit=0
+[2026-11-15T08:12:39.226Z] PASS  F1 pick material by name Fridge_White — {"ok":true,"name":"Fridge_White","materialId":"62029d88-7565-42c0-8067-d98863dbb40a","objectId":"0fafa755-d9e3-4b90-8cc2-9fd22af79834"}
+[2026-11-15T08:12:40.025Z] PASS  apply M2 fixture — replaceId=c83a2f4a-0a3d-4494-8da9-37e6ca6943a7
+[2026-11-15T08:12:40.025Z] PASS  M2 replace_id is c83a2f4a-… only — c83a2f4a-0a3d-4494-8da9-37e6ca6943a7
+[2026-11-15T08:12:43.167Z] PASS  M2 realtime canvas shows fridge (not black) exit=0
+[2026-11-15T08:12:43.180Z] PASS  M2 Front view has visible meshes in camera frustum — null
+[2026-11-15T08:12:46.379Z] PASS  quality preview no AOV_REFLECTANCE error — none
+[2026-11-15T08:12:46.380Z] PASS  quality preview spp advances > 0 — spp=7 phase=converging
+[2026-11-15T08:12:46.380Z] PASS  quality canvas shows fridge exit=0
+[2026-11-15T08:12:46.380Z] PASS  quality sha256 differs from realtime and labels — {"quality":"82301d9beb807d79dccce05aee0913991d3fe183429266fd430baa2dbc66bad1","realtime":"92b7cca8bb67bd1afe9bb93ab1b72ffeca0643c8d6bc4705590e75fcfb005fd0","labels":"d1cac4a8465def2a28e9119d2f8ee492e48ab00097ec7d85b80ecacedca81543"}
+[2026-11-15T08:12:46.399Z] PASS  switch to quality keeps camera (pos/target/fov) — {"ok":true,"dpos":0,"dtarget":0,"dfov":0}
+[2026-11-15T08:12:46.400Z] PASS  switch to quality keeps material assignments — {"ok":true,"countA":514,"countB":514}
+[2026-11-15T08:12:49.217Z] PASS  realtime orbit timing log — {"avg":117.62860727838945,"min":72.99270079344093,"max":131.5789474716147}
+[2026-11-15T08:12:51.142Z] PASS  front realtime visible exit=0
+[2026-11-15T08:12:53.711Z] PASS  front quality visible, spp>0, no AOV, camera+materials consistent exit=0
+[2026-11-15T08:12:55.253Z] PASS  closeup realtime visible exit=0
+[2026-11-15T08:12:57.591Z] PASS  closeup quality visible, spp>0, no AOV, camera+materials consistent exit=0
+[2026-11-15T08:12:57.595Z] PASS  official kitchen ccdaa114 stays 不可验收 (not rewritten to M2) — {"replaceId":"ccdaa114-cdb7-4ef5-af26-022938a780d5","badge":"不可验收","name":"冰箱厨房场景"}
+[2026-11-15T08:12:57.849Z] UI check done: 19 passed, 0 failed, launch=headed-chrome-metal, realGpu=true
+PASS  f2_check.mjs (headed UI)  exit=0

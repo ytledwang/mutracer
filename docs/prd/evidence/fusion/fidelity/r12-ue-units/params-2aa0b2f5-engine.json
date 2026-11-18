@@ -1,0 +1,23 @@
+{
+ "width": 1920,
+ "height": 1080,
+ "spp": 256,
+ "denoise": 1,
+ "view-transform": "Standard",
+ "env-mode": "ue",
+ "material-mode": "stage",
+ "tonemap": "ue55",
+ "fallback-light": 0,
+ "white-sky-scale": 0,
+ "light-units": "candela",
+ "display-units": "engine",
+ "skylight-scale": 0.0210129603,
+ "blender": "/Applications/Blender.app/Contents/MacOS/Blender",
+ "asset-map": "docs/prd/evidence/fusion/fidelity/r8/assets.json",
+ "code_state": "uncommitted on af527ef; blender_inner+ue_filmic+run_blender_final with --display-units engine; backups ~/mutracer-scratch/bak/r12/",
+ "scene": "docs/prd/evidence/fusion/fidelity/r8/scene-2aa0b2f5-preview.json",
+ "view": "3c697acc-1228-4e46-ba54-77eb7bb87cfb",
+ "hdri-angle": -79.8,
+ "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/2aa0b2f5-view3c69-1920.png",
+ "out": "render-2aa0b2f5-engine.png"
+}

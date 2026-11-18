@@ -1,0 +1,46 @@
+{
+ "round": "r8-329c-control",
+ "task_id": "329c202e-e89a-48c0-aa04-59a360510cbd",
+ "name": "冰箱体.fbx-[单品渲染]_06251729",
+ "product": "冰箱体",
+ "view": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+ "view_name": "Front",
+ "scene": "docs/prd/evidence/fusion/fidelity/r5/scene-gold329c-preview.json",
+ "env": {
+  "name": "4",
+  "background_type": "white",
+  "hdri_brightness": 10,
+  "skylight_intensity": 0.35,
+  "hdri_angle": 182.9,
+  "image": "4.exr"
+ },
+ "lights": "none",
+ "camera_post": {
+  "exposure": 0.8,
+  "gamma": 0.9,
+  "contrast": 1.2,
+  "saturation": 0.8,
+  "temperature": 6500
+ },
+ "fov": 35,
+ "expected_hdri_angle": 92.9,
+ "k_source": "locked_r7_R1",
+ "spp": "256",
+ "width": "1920",
+ "height": "1080",
+ "denoise": "1",
+ "flags": {
+  "env-mode": "ue",
+  "material-mode": "stage",
+  "tonemap": "ue55",
+  "fallback-light": "0",
+  "hdri-angle": "92.9",
+  "skylight-scale": "3.1",
+  "white-sky-scale": "0"
+ },
+ "extra_cli": "--env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --hdri-angle 92.9 --skylight-scale 3.1 --white-sky-scale 0",
+ "note": "control: r7 R1 render reused (same locked flags, 256 spp). Default path not used.",
+ "blender_inner_sha256": "ed8ef353833b26ec53a910ace5ea8a17e56a034e85ac3a9832cc66d20d0ba565",
+ "gold": "docs/prd/evidence/fusion/fidelity/r2/reference-fridge-ref-front-329c-1920.png",
+ "replace_id": "ccdaa114-cdb7-4ef5-af26-022938a780d5"
+}

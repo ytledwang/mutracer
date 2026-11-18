@@ -1,0 +1,186 @@
+{
+ "task": "r8 prove whether r7 R1 locked parameter set generalizes (VPN golds of other products)",
+ "time": "2026-11-11 23:47 Asia/Shanghai",
+ "checker": {
+  "path": "tools/fusion-checks/fidelity_r8_check.py",
+  "command": "python3 tools/fusion-checks/fidelity_r8_check.py docs/prd/evidence/fusion/fidelity/r8/manifest.json docs/prd/evidence/fusion/fidelity/r8/check.json",
+  "exit": 0,
+  "result": "PASS",
+  "n_scored": 5,
+  "n": 5
+ },
+ "locked_rules": {
+  "flags": "--env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --skylight-scale 3.1 --white-sky-scale 0",
+  "spp": 256,
+  "resolution": [
+   1920,
+   1080
+  ],
+  "denoise": true,
+  "hdri_angle": "task.hdri_angle - 90 (not a per-task fit)",
+  "k": "3.1 locked from r7 R1 (not refit)",
+  "post": "task camera FPostProcessSettings through --tonemap ue55",
+  "lights": "include scene lights; --light-units candela (Cycles W = pi*I/683 area, 4pi*I/683 point/spot; reasoned photometric, not engine-source verified)",
+  "background": "task background_type: white -> visible white skybox (post via alpha); hdri -> visible EXR * hdri_brightness; lighting always EXR * skylight * 3.1"
+ },
+ "locked_flags_held": true,
+ "default_identity": {
+  "result": "NOT RE-RUN: renderer code (blender_inner.py / run_blender_final.py / ue_filmic.py) was not touched this pass",
+  "blender_inner_sha256": "ed8ef353833b26ec53a910ace5ea8a17e56a034e85ac3a9832cc66d20d0ba565",
+  "run_blender_final_sha256": "46176bc76fb7825d4ab3ad2d7adf0aa6a9cb9b77cd3747f5275141f86a6b8dcb",
+  "fidelity_r8_check_sha256": "c62677704aaa0ca2d7835ec4c412a390bdc826eb3db3f3b890e12dd1c012333f",
+  "ue_filmic_sha256": "30ec118ed66bf621e0f077a5479d39a174908f8d8f434eb3c9f3dc600f803c6c",
+  "reference_probe_state_sha256": "367c8c93504e19939f6ef7d0c5522291593b3d97df627352d4a7b406b5a56c96",
+  "reference_probe_post_sha256": "024e98431d937525845ad2cbf88455a3fadbc55b641f2636b9d3cc0db72143e4"
+ },
+ "vpn_route": {
+  "host": "http://10.160.9.143:8000",
+  "interface": "utun9",
+  "stayed_up": true,
+  "probe": "unauthenticated GET /rest/v1/ -> HTTP 401 in ~0.12s (expected)"
+ },
+ "gold_fetch": {
+  "2425a469": {
+   "status": "OK",
+   "host": "http://10.160.9.143:8000",
+   "key": "2425a469-6e38-4783-84b1-7fccc66b2866/2425a469-6e38-4783-84b1-7fccc66b2866_298cfe60-923d-44fb-a0d1-f2206b9a48e1_base_color.png",
+   "bytes": 4270325,
+   "sha256": "d6f7feeb30cbb124d27b1b8091be120a514c19d27063b3b6f0fb4448f6f4cf0e",
+   "size": [
+    3840,
+    2160
+   ],
+   "resize_1920": "LANCZOS RGB",
+   "sha256_1920": "31dfb3fa6490a20b339d9976ef10c878632ae2cb2f585afd7e57a1e000bf7bc2",
+   "bytes_1920": 955573
+  },
+  "00ac0cff": {
+   "status": "OK",
+   "host": "http://10.160.9.143:8000",
+   "key": "00ac0cff-eb58-4d82-9578-97a8f732e1bb/00ac0cff-eb58-4d82-9578-97a8f732e1bb_3c8d747b-24c6-428a-aa2c-b9124f60e2f2_base_color.png",
+   "bytes": 17100263,
+   "sha256": "55ac6517db51125f2e31883cf7a425ab069dc4aa8a7d57115f63ebf442f738bf",
+   "size": [
+    7680,
+    4320
+   ],
+   "resize_1920": "LANCZOS RGB",
+   "sha256_1920": "5364915c44aafb260d0667bf05bedef1f568f9c21a5a39fada3b9a5b939fd295",
+   "bytes_1920": 949173
+  },
+  "55cc8c05": {
+   "status": "OK",
+   "host": "http://10.160.9.143:8000",
+   "key": "55cc8c05-2d23-49e5-bc2a-69934328c591/55cc8c05-2d23-49e5-bc2a-69934328c591_298cfe60-923d-44fb-a0d1-f2206b9a48e1_base_color.png",
+   "bytes": 26755200,
+   "sha256": "a6ecbe7b80f74f649bc0994ab5783b3853924c182ca13cada783c4201a6e1421",
+   "size": [
+    7680,
+    4320
+   ],
+   "resize_1920": "LANCZOS RGB",
+   "sha256_1920": "46eec310f1f2364742f09eca66f15431bce1db7569bc9d16821a4a0d5496899d",
+   "bytes_1920": 1004592
+  }
+ },
+ "assets_pulled": {
+  "host": "http://10.160.9.143:8000",
+  "n_needed": 61,
+  "n_fetched": 61,
+  "n_already_local": 0,
+  "n_failed": 0,
+  "n_customer_allowlist": 21,
+  "dest_root": "tools/cloud-service/poc-out/r8-assets",
+  "asset_map": "docs/prd/evidence/fusion/fidelity/r8/assets.json",
+  "note": "explicit GET of Front/前视图 needed URLs only; unused scene URLs not pulled. customer_asset only via get_allowlisted_object."
+ },
+ "selection": {
+  "329c202e_Front": "control, r7 R1 reused, not re-rendered",
+  "2aa0b2f5_view3c69": "same fridge, different view/env/lights; already scored, not re-rendered",
+  "2425a469_Front": "枕头; view Front 298cfe60; expected_hdri_angle=-90",
+  "00ac0cff_front": "灶机; only task view 前视图 3c8d747b (not 透视); expected_hdri_angle=-90",
+  "55cc8c05_Front": "烟机; chose Front 298cfe60 over 新视图 4d45a917; expected_hdri_angle=-26.1"
+ },
+ "tasks": {
+  "329c202e-Front": {
+   "metrics": {
+    "mae": 5.0454,
+    "mae_fg": 19.8068,
+    "ssim": 0.960352,
+    "d_lum_fg": 2.477,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "verdict": "control; r7 R1 reused; close (mae_fg 19.81, SSIM 0.960)"
+  },
+  "2aa0b2f5-view3c69": {
+   "metrics": {
+    "mae": 19.4896,
+    "mae_fg": 57.4812,
+    "ssim": 0.924056,
+    "d_lum_fg": 54.235,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "verdict": "same fridge, env 16 + 2 lights; too bright (Δlum_fg +54, mae_fg 57.48)"
+  },
+  "2425a469-Front": {
+   "metrics": {
+    "mae": 9.5753,
+    "mae_fg": 26.5857,
+    "ssim": 0.943861,
+    "d_lum_fg": 26.731,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "verdict": "too bright: pillow clipped to white (Δlum_fg +26.73, mae_fg 26.59, SSIM 0.944); mesh imported, exposure 2.056 + skylight 1.0*3.1 + lights blew the subject out",
+   "env": "布朗摄影工作室 white, hdri_angle 0, skylight 1.0, 2 area lights, exposure 2.056"
+  },
+  "00ac0cff-front": {
+   "metrics": {
+    "mae": 32.3524,
+    "mae_fg": 87.6523,
+    "ssim": 0.645989,
+    "d_lum_fg": -61.025,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "verdict": "too dark (Δlum_fg -61.03, mae_fg 87.65, SSIM 0.646) and framing mismatch: gold is a 3/4 look-down of both burners; render is flatter/edge-on. Task has only 前视图 (skylight 0, 13 lights, exposure 1). Did not switch to 透视 after seeing the gold.",
+   "env": "白背景 white, hdri_angle 0, skylight 0, 13 lights, exposure 1"
+  },
+  "55cc8c05-Front": {
+   "metrics": {
+    "mae": 12.0891,
+    "mae_fg": 39.8915,
+    "ssim": 0.948577,
+    "d_lum_fg": 28.073,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "verdict": "silhouette close (SSIM 0.949) but too bright (Δlum_fg +28.07, mae_fg 39.89); Casarte/Leader logo is a visible decal, not drawn (no decal path in renderer). Framing is close.",
+   "env": "布朗摄影工作室 white, hdri_angle 63.9, skylight 0.7, 5 visible lights, exposure 0.363, fov 40.262"
+  }
+ },
+ "generalizes": false,
+ "which_rule_broke": "Lighting/brightness transfer still does not generalize: locked k=3.1 + candela + task exposure over-brightens pillow, hood, and the earlier 2aa0 fridge, and under-brightens the stove (skylight 0, many lights). Stove also has a camera/framing discrepancy on the task's only view (前视图 vs gold's 3/4 look). Hood decal is a separate renderer gap, not a flag retune.",
+ "changed_files_sha256": {
+  "tools/dual-track/blender/blender_inner.py": "ed8ef353833b26ec53a910ace5ea8a17e56a034e85ac3a9832cc66d20d0ba565",
+  "tools/dual-track/blender/run_blender_final.py": "46176bc76fb7825d4ab3ad2d7adf0aa6a9cb9b77cd3747f5275141f86a6b8dcb",
+  "tools/fusion-checks/fidelity_r8_check.py": "c62677704aaa0ca2d7835ec4c412a390bdc826eb3db3f3b890e12dd1c012333f",
+  "tools/dual-track/blender/ue_filmic.py": "30ec118ed66bf621e0f077a5479d39a174908f8d8f434eb3c9f3dc600f803c6c"
+ },
+ "renderer_code_touched": false,
+ "viewer": "untouched (127.0.0.1:3012)",
+ "no_commit": true,
+ "recommended_next_step": "Do not start F3/F5 and do not per-product retune k/angle. Next is to investigate brightness transfer (k / candela mapping / exposure) from these failures, and separately the stove camera-basis vs gold framing."
+}

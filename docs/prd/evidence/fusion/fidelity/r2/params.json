@@ -1,0 +1,75 @@
+{
+  "status": "OK",
+  "require_official_content": true,
+  "camera": {
+    "view_id": "1c4a3883-8668-4c16-a10e-0b7c24272279",
+    "name": "Front",
+    "camera_id": "858db55c-ec03-4fa6-9ec4-948a6df1ea33",
+    "why": "Same Front camera as the previous Standard fidelity run and the 1.0 gold Front framing."
+  },
+  "common_params": {
+    "spp": 128,
+    "denoise": 1,
+    "width": 1920,
+    "height": 1080,
+    "view_transform": "Standard",
+    "default_view_transform_unchanged": "Standard (blender_inner.py not modified)",
+    "engine": "Blender 5.1.1 Cycles METAL",
+    "submit_path": "tools/dual-track/blender/run_blender_final.py -> blender_inner.py",
+    "background": "white studio for camera rays; real HDRI 16.exr on non-camera rays",
+    "lights": "official RF_Kitchen_0302_Scene 32 RectLights (all groups on)",
+    "hdri": "16.exr",
+    "hdri_path": "official_asset/environment/0d718b1b-976d-4225-8ce6-ae514f45eea9/textures/16.exr",
+    "hdri_bytes": 2766813,
+    "white_exr": {
+      "path": "official_asset/template/RF_Scene_Kitchen_2cam/textures/White.exr",
+      "bytes": 2781,
+      "placeholder_not_used": true
+    },
+    "scene": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r2/scene-official-preview.json",
+    "asset_map": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r2/official-assets.json",
+    "replace_id": "ccdaa114-cdb7-4ef5-af26-022938a780d5",
+    "m2_id_not_used": "c83a2f4a-0a3d-4494-8da9-37e6ca6943a7"
+  },
+  "renders": [
+    {
+      "png": "render-Front-1c4a3883-standard-official-spp128-1920x1080.png",
+      "log": "render-Front-1c4a3883-standard-official-spp128-1920x1080.log",
+      "sha256": "render-Front-1c4a3883-standard-official-spp128-1920x1080.png.sha256",
+      "view_transform": "Standard",
+      "official_content_manifest": "tools/cloud-service/poc-out/official/ccdaa114/manifest.json",
+      "wall_clock_s": 55.32,
+      "blender_render_s": 54.245,
+      "start": "2026-11-11 18:19:06 +0800 (Asia/Shanghai)",
+      "end": "2026-11-11 18:20:02 +0800 (Asia/Shanghai)",
+      "exit": 0,
+      "sha256_hex": "3ede03b973144d43737c4384bc6def22f67d93c2498b68f445d07d1a1d59d775"
+    }
+  ],
+  "reference": {
+    "png_8k": "tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c.png",
+    "png": "reference-fridge-ref-front-329c-1920.png",
+    "origin": "Local 1.0 gold Front already on this Mac mini; not re-downloaded. Resized 7680x4320 -> 1920x1080 for metrics and the comparison strip.",
+    "sha256_hex_8k": "d81538fb4d1fc14f6e07744ab27c4f4dcb700dd3da650f70fdfdb65079a5bd35",
+    "sha256_hex_1920": "21aafa96599e4f164a0efa84cd98b79eecee1153079fe94b44de75e1816fbc80"
+  },
+  "previous_standard": {
+    "png": "../render-Front-1c4a3883-standard-spp128-1920x1080.png",
+    "sha256_hex": "31a8b172c6fee2f6a3f86915200aaa475bf60c0b6f3698b77e7132b19c03fe62",
+    "note": "Same camera/spp/size, brown_photostudio HDRI, no official shell lights/textures."
+  },
+  "comparison": "comparison-gold-previous-official.png",
+  "comparison_sha256_hex": "fe07791ff47c26dbebff6b4ccba53f3d947d7f030b1298af5094fbd60e7f7d61",
+  "diff_vs_gold": {
+    "mae": 12.7765,
+    "ssim": 0.922736,
+    "mae_fg": 34.4164,
+    "d_lum_fg": -13.759,
+    "previous_mae": 14.1589,
+    "previous_ssim": 0.920468,
+    "previous_mae_fg": 38.9515,
+    "previous_d_lum_fg": -21.483,
+    "method": "gold resized 7680x4320 -> 1920x1080 LANCZOS; full-frame mae (8-bit) and luminance SSIM (11x11 uniform window); also fridge-foreground mae/d_lum using gold border mask"
+  },
+  "conclusion": "换上官方厨房壳的 32 盏面光、金样所用官方材质，以及金样真实环境 16.exr（White.exr 仅 2781 字节为占位、未使用）后，Standard 正视图相对 1.0 金样的全图平均绝对差从 14.16 降到 12.78、冰箱前景从 38.95 降到 34.42，亮度差从 −21.5 收到 −13.8，仍略偏暗，内胆和抽屉的暖色层次还没有完全跟上 1.0。"
+}

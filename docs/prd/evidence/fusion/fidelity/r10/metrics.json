@@ -1,0 +1,188 @@
+{
+  "time_zone": "Asia/Shanghai",
+  "locked_flags": "--env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --skylight-scale 3.1 --white-sky-scale 0 --light-units candela --view-transform Standard --spp 256 --denoise 1 1920x1080; hdri-angle=task.hdri_angle-90 (unchanged)",
+  "note": "k=3.1 not retuned; only light parent accumulation changed in blender_inner.py",
+  "tasks": {
+    "00ac0cff-front": {
+      "label": "灶机 前视图",
+      "r10_vs_gold": {
+        "mae": 32.35,
+        "mae_fg": 87.6459,
+        "ssim": 0.646021,
+        "d_lum_fg": -60.985,
+        "rend_fg_lum": 19.347,
+        "gold_fg_lum": 80.332
+      },
+      "r10_vs_r8": {
+        "mae": 0.0951,
+        "mae_fg": 0.2691,
+        "ssim": 0.994637,
+        "d_lum_fg": 0.042,
+        "rend_fg_lum": 8.524,
+        "gold_fg_lum": 8.483
+      },
+      "r8_vs_gold": {
+        "mae": 32.3524,
+        "mae_fg": 87.6523,
+        "ssim": 0.645989,
+        "d_lum_fg": -61.025,
+        "rend_fg_lum": 19.307,
+        "gold_fg_lum": 80.332
+      },
+      "r8_reported": {
+        "mae_fg": 87.6523,
+        "d_lum_fg": -61.025
+      },
+      "paths": {
+        "r10": "docs/prd/evidence/fusion/fidelity/r10/render-00ac0cff-front.png",
+        "r8": "docs/prd/evidence/fusion/fidelity/r8/render-00ac0cff-front.png",
+        "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/00ac0cff-front-1920.png"
+      }
+    },
+    "329c202e-Front": {
+      "label": "329c Front (control, no lights)",
+      "r10_vs_gold": {
+        "mae": 5.0454,
+        "mae_fg": 19.8068,
+        "ssim": 0.960352,
+        "d_lum_fg": 2.477,
+        "rend_fg_lum": 186.603,
+        "gold_fg_lum": 184.126
+      },
+      "r10_vs_r8": {
+        "mae": 0.0,
+        "mae_fg": 0.0001,
+        "ssim": 1.0,
+        "d_lum_fg": -0.0,
+        "rend_fg_lum": 186.815,
+        "gold_fg_lum": 186.815
+      },
+      "r8_vs_gold": {
+        "mae": 5.0454,
+        "mae_fg": 19.8068,
+        "ssim": 0.960352,
+        "d_lum_fg": 2.477,
+        "rend_fg_lum": 186.603,
+        "gold_fg_lum": 184.126
+      },
+      "r8_reported": {
+        "mae_fg": 19.8068,
+        "d_lum_fg": 2.477
+      },
+      "paths": {
+        "r10": "docs/prd/evidence/fusion/fidelity/r10/render-329c202e-Front.png",
+        "r8": "docs/prd/evidence/fusion/fidelity/r7/render-R1-ue55-k3.1.png",
+        "gold": "docs/prd/evidence/fusion/fidelity/r2/reference-fridge-ref-front-329c-1920.png"
+      }
+    },
+    "2aa0b2f5-view3c69": {
+      "label": "2aa0 新视图",
+      "r10_vs_gold": {
+        "mae": 19.4915,
+        "mae_fg": 57.4894,
+        "ssim": 0.924054,
+        "d_lum_fg": 54.244,
+        "rend_fg_lum": 186.749,
+        "gold_fg_lum": 132.505
+      },
+      "r10_vs_r8": {
+        "mae": 0.0059,
+        "mae_fg": 0.0216,
+        "ssim": 0.999965,
+        "d_lum_fg": 0.008,
+        "rend_fg_lum": 187.127,
+        "gold_fg_lum": 187.119
+      },
+      "r8_vs_gold": {
+        "mae": 19.4896,
+        "mae_fg": 57.4812,
+        "ssim": 0.924056,
+        "d_lum_fg": 54.235,
+        "rend_fg_lum": 186.74,
+        "gold_fg_lum": 132.505
+      },
+      "r8_reported": {
+        "mae_fg": 57.4812,
+        "d_lum_fg": 54.235
+      },
+      "paths": {
+        "r10": "docs/prd/evidence/fusion/fidelity/r10/render-2aa0b2f5-view3c69.png",
+        "r8": "docs/prd/evidence/fusion/fidelity/r8/render-2aa0b2f5-view3c69.png",
+        "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/2aa0b2f5-view3c69-1920.png"
+      }
+    },
+    "2425a469-Front": {
+      "label": "枕头 Front",
+      "r10_vs_gold": {
+        "mae": 9.5753,
+        "mae_fg": 26.5856,
+        "ssim": 0.943861,
+        "d_lum_fg": 26.731,
+        "rend_fg_lum": 254.999,
+        "gold_fg_lum": 228.269
+      },
+      "r10_vs_r8": {
+        "mae": 0.0,
+        "mae_fg": 0.0,
+        "ssim": 1.0,
+        "d_lum_fg": -0.0,
+        "rend_fg_lum": 254.999,
+        "gold_fg_lum": 254.999,
+        "note": "fg_mask taken from gold because r8/r10 are clipped nearly white so a self-mask is empty"
+      },
+      "r8_vs_gold": {
+        "mae": 9.5753,
+        "mae_fg": 26.5857,
+        "ssim": 0.943861,
+        "d_lum_fg": 26.731,
+        "rend_fg_lum": 254.999,
+        "gold_fg_lum": 228.269
+      },
+      "r8_reported": {
+        "mae_fg": 26.5857,
+        "d_lum_fg": 26.731
+      },
+      "paths": {
+        "r10": "docs/prd/evidence/fusion/fidelity/r10/render-2425a469-Front.png",
+        "r8": "docs/prd/evidence/fusion/fidelity/r8/render-2425a469-Front.png",
+        "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/2425a469-front-1920.png"
+      }
+    },
+    "55cc8c05-Front": {
+      "label": "烟机 Front",
+      "r10_vs_gold": {
+        "mae": 12.4912,
+        "mae_fg": 42.9932,
+        "ssim": 0.946209,
+        "d_lum_fg": 31.391,
+        "rend_fg_lum": 204.505,
+        "gold_fg_lum": 173.113
+      },
+      "r10_vs_r8": {
+        "mae": 1.7612,
+        "mae_fg": 0.8491,
+        "ssim": 0.99458,
+        "d_lum_fg": 0.585,
+        "rend_fg_lum": 184.632,
+        "gold_fg_lum": 184.047
+      },
+      "r8_vs_gold": {
+        "mae": 12.0891,
+        "mae_fg": 39.8915,
+        "ssim": 0.948577,
+        "d_lum_fg": 28.073,
+        "rend_fg_lum": 201.186,
+        "gold_fg_lum": 173.113
+      },
+      "r8_reported": {
+        "mae_fg": 39.8915,
+        "d_lum_fg": 28.073
+      },
+      "paths": {
+        "r10": "docs/prd/evidence/fusion/fidelity/r10/render-55cc8c05-Front.png",
+        "r8": "docs/prd/evidence/fusion/fidelity/r8/render-55cc8c05-Front.png",
+        "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/55cc8c05-front-1920.png"
+      }
+    }
+  }
+}

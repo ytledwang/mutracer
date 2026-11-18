@@ -1,0 +1,49 @@
+{
+ "round": "r8-55cc8c05",
+ "task_id": "55cc8c05-2d23-49e5-bc2a-69934328c591",
+ "name": "Leader欧近一体烟机场景渲染0605白.fbx-[单品渲染]_06112250",
+ "product": "烟机",
+ "view": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+ "view_name": "Front",
+ "scene": "docs/prd/evidence/fusion/fidelity/r8/scene-55cc8c05-preview.json",
+ "env": {
+  "name": "布朗摄影工作室",
+  "background_type": "white",
+  "hdri_brightness": 1,
+  "skylight_intensity": 0.7,
+  "hdri_angle": 63.9,
+  "image": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr"
+ },
+ "lights": "5 visible lights (4 area + 1 directional) and 1 hidden spot; Candelas -> Cycles Watts. Chose Front over 新视图 4d45a917.",
+ "camera_post": {
+  "exposure": 0.363,
+  "gamma": 0.766,
+  "contrast": 1.169,
+  "saturation": 0.903,
+  "temperature": 6500
+ },
+ "fov": 40.262,
+ "expected_hdri_angle": -26.1,
+ "k_source": "locked_r7_R1",
+ "spp": "256",
+ "width": "1920",
+ "height": "1080",
+ "denoise": "1",
+ "flags": {
+  "env-mode": "ue",
+  "material-mode": "stage",
+  "tonemap": "ue55",
+  "fallback-light": "0",
+  "skylight-scale": "3.1",
+  "white-sky-scale": "0",
+  "light-units": "candela",
+  "hdri-angle": "-26.1"
+ },
+ "extra_cli": "--env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --hdri-angle -26.1 --skylight-scale 3.1 --white-sky-scale 0 --light-units candela",
+ "asset_map": "docs/prd/evidence/fusion/fidelity/r8/assets.json",
+ "note": "locked-rule replay, no k/angle/post retune. 20 visible customer_asset GLBs pulled by explicit allowlist. Not the kitchen replace_id.",
+ "blender_inner_sha256": "ed8ef353833b26ec53a910ace5ea8a17e56a034e85ac3a9832cc66d20d0ba565",
+ "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/55cc8c05-front-1920.png",
+ "gold_full": "docs/prd/evidence/fusion/fidelity/r8/golds/55cc8c05-front-raw.png",
+ "replace_id": null
+}

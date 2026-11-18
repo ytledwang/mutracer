@@ -1,0 +1,36 @@
+r11 结论：UE 5.5.4 官方源码核过 candela 换算，面光差 2 倍已修（检查器先红后绿）；但重渲证明灯光贡献在当前成片里占比极小，黑灶面主因不在单位换算，指向 ue55 显示缩放/曝光链，这是下一刀。
+
+时间：2026-11-14 10:20-11:10 Asia/Shanghai
+
+一、引擎源码核证（Epic GitHub 5.5.4-release，用户已挂 Epic-GitHub 授权）
+源码存 ~/mutracer-scratch/ue55-src/（PathTracing 38 文件 + RectLightComponent/LightComponent/PostProcessEyeAdaptation/PostProcessTonemap/RectLightSceneProxy 等）。关键链路（file:line 实证）：
+- 面光 radiance：ComputeLightBrightness = I*100^2 [RectLightComponent.cpp:174]；proxy Color=LightColor*I*1e4 [LightComponent.cpp:1467]；GetLightShaderParameters 除以 0.5*W*H [RectLightComponent.cpp:313] => nits = 2*I_cd/A_m2（UE 约定含 x2）。
+- PathTracer 直接以该值为 radiance 采样（PathTracingRectLight.ush "stored color is radiance"），曝光不烘进灯色（InverseExposureBlend 默认 0 [LocalLightComponent.cpp:21]，PathTracing.cpp:2746 的乘法为无效操作）。
+- 显示层：tonemap 前 display_linear = nits * 2^AutoExposureBias * 0.18（AEM_Manual + ApplyPhysicalCameraExposure=false => WhitePoint=1 [PostProcessEyeAdaptation.cpp:436]；TargetExposure=L/0.18 [usf:162]；GlobalExposure=Comp*0.18 [usf:183]；tonemap 乘 GlobalExposure [PostProcessTonemap.usf:529]）。灶机相机 exposure=1 => 因子 0.36。
+- 点光：Color=LightColor*I_cd 无面积除法，与 mutracer 4*pi*I/683 等价，无误差。
+
+二、fail-first 检查器
+tools/fusion-checks/ue_candela_unit_check.py；证据 r11-ue-units/check.json。
+- 改前（对照 pi*I/683）：exit 1，8 盏面光全部 ratio=2.0，5 盏点光 ratio=1.0。
+- 改后（2*pi*I/683）：exit 0，failures=0。
+
+三、代码改动（未 commit）
+只改 tools/dual-track/blender/blender_inner.py 一处常量（candela 分支 area_light），sha c11c2422...，备份 ~/mutracer-scratch/bak/r11/（改前 58013b92...）。legacy 默认路径不可达该分支（LIGHT_UNITS 默认 legacy），默认 Standard 成片不受影响。
+
+四、锁定规则重渲（灶机前视图，唯一变量=面光 x2）
+- r11 vs gold：mae 32.3177，mae_fg 87.5585，SSIM 0.646950，d_lum_fg -60.885，fg_lum 19.45
+- r10 vs gold：mae 32.35，mae_fg 87.6459，SSIM 0.646021，d_lum_fg -60.985，fg_lum 19.35
+- r11 vs r10：mae_fg 0.1018，fg_lum 仅 +0.10/255
+新发现：8 盏面光能量翻倍，前视亮度几乎不动（+0.10/255）。灯光对当前成片的直接贡献极小，fg_lum 19.45 的主力是背景/环境反射。因此：
+- 单位换算 2 倍差是真 bug 且已修，但不是黑灶面主因；
+- 灶面黑的剩余缺口在灯光路径的显示缩放，已定位到代码级：ue_filmic.py:78 ue55_exposure_scale = 2^bias/1.2，且直接作用于 Cycles 辐射度 radiance（W）。UE 引擎（已核源码）对光度 nits 用 2^bias*0.18。折算到同一输入，mutracer 灯光路径相对 UE 差 683*0.18/1.2 = 147.5x —— 这就是 0.532W"照不亮灶面"的定量解释（env/skylight 路径当年用 k=3.1 拟合金样，吸收了这个因子，所以 329c 无灯对照是好的；灯光路径没有对应补偿）。
+- 另注：mutracer 的 1.2 来自 UE 旧版 lens attenuation 0.65 约定（"1.0cd/m2->1.2"）；UE 5.5 默认 q=0.78（"1.0->1.0"），且 tonemap GlobalExposure 含 0.18 灰基准——1.2 和 0.18 两个因子在灯光路径上都没有。
+- 注意：相机 post 还有 contrast=1.1/saturation=1.2/temperature=6500 待对齐核证（ue_filmic 已实现后三者，曝光尺度如上）。
+
+五、下一刀（未开）
+r12：把显示映射统一到引擎口径——display = nits * 2^bias * 0.18：
+- 灯光路径：radiance_W -> nits（x683）再进 ue55，ue55_exposure_scale 从 2^bias/1.2 改为 0.18*2^bias；
+- 环境路径：k=3.1 是旧尺度下的拟合值，统一后需按引擎语义重推 k（预期 ~3.1/147.5 量级），重推依据写进检查器，不按产品拟合；
+- 改前先写 329c 对照（应保持对齐）+ 灶机期望亮度检查；随后才是 59px 高度差、左炉架 is_visible=false、烟机贴花。
+
+检查器 exit 0 只表示换算与引擎一致，不表示画质对齐金样。

@@ -1,0 +1,585 @@
+{
+  "conventions": {
+    "scene_up_after_swap_yz": "Blender +Y (UE +Z)",
+    "camera_look": "Blender local -Z",
+    "current_light_path": "parent_matrix @ light_basis_from_ue(node) starting at identity from type=root; each root/group injects swap_yz @ ue_basis_from_view even if identity",
+    "correct_light_path": "accumulate ue_local_matrix in UE space, convert once with swap_yz @ ue @ ue_basis_from_view (same pattern as walk() for models)",
+    "camera_path": "camera_basis_from_ue(active camera) only; no parent chain",
+    "mesh_path": "walk() accumulates ue_local then mesh_basis_from_ue once"
+  },
+  "hierarchy": {
+    "stove_depth": 2,
+    "stove_path": "light_root (identity) -> 3 groups (identity: 01_Light, 前视图, buguang) -> 13 lights",
+    "pillow_hood_2aa0_depth": 1,
+    "pillow_hood_2aa0_path": "light_root (identity) -> lights",
+    "329c_lights": 0,
+    "bug": "add_light in blender_inner.py does parent_matrix @ light_basis_from_ue(node) from type=root. Each root/group injects swap_yz @ ue_basis_from_view even when identity. Models correctly accumulate ue_local then convert once.",
+    "symbol": "tools/dual-track/blender/blender_inner.py add_light / light_basis_from_ue / walk"
+  },
+  "ue_units_engine_source": {
+    "file": "PixelStreaming/Source/PixelStreamingDemo/HaierJsonBlueprintFunctionLibrary.cpp",
+    "symbol": "UHaierJsonBlueprintFunctionLibrary::SpawnLight",
+    "fact": "ULocalLightComponent->IntensityUnits = ELightUnits::Candelas; ActorSetLightAttr SetIntensity(Attr.power); RectLight SourceWidth=size_x SourceHeight=size_z (UE cm).",
+    "cycles_mapping": "area W = pi*I/683; point/spot W = 4pi*I/683; reasoned photometric, not engine-source verified. blender_inner.py LIGHT_UNITS=='candela' branch.",
+    "size_conversion": "blender_inner divides size_x/size_z and radius by 100 (cm->m), consistent with UE UU."
+  },
+  "comparison": [
+    {
+      "name": "PointLight",
+      "id": "69fa63ad-5ad5-4fcd-90db-6bf884c8c2a1",
+      "depth": 2,
+      "type": "point_light",
+      "power_raw": 2,
+      "applied_loc": [
+        -0.55267,
+        0.087536,
+        -1.145431
+      ],
+      "correct_loc": [
+        0.55267,
+        0.087536,
+        1.145431
+      ],
+      "delta_applied_minus_correct": [
+        -1.10534,
+        0.0,
+        -2.290862
+      ],
+      "delta_dist_m": 2.543585,
+      "applied_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "correct_forward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PointLight2",
+      "id": "720bb730-d0f4-4815-9a96-98e1063cedd1",
+      "depth": 2,
+      "type": "point_light",
+      "power_raw": 0.20000000298023224,
+      "applied_loc": [
+        -0.1,
+        -0.231764,
+        -0.316548
+      ],
+      "correct_loc": [
+        0.1,
+        -0.231764,
+        0.316548
+      ],
+      "delta_applied_minus_correct": [
+        -0.2,
+        0.0,
+        -0.633096
+      ],
+      "delta_dist_m": 0.663936,
+      "applied_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "correct_forward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "RectLight2",
+      "id": "f91c345b-13bc-46ab-91b8-de462a25d454",
+      "depth": 2,
+      "type": "area_light",
+      "power_raw": 10,
+      "applied_loc": [
+        0.014907,
+        0.318679,
+        -0.803299
+      ],
+      "correct_loc": [
+        -0.014907,
+        0.318679,
+        0.803299
+      ],
+      "delta_applied_minus_correct": [
+        0.029814,
+        0.0,
+        -1.606598
+      ],
+      "delta_dist_m": 1.606875,
+      "applied_forward": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "correct_forward": [
+        -0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "name": "PointLight3",
+      "id": "ad2b1620-00f4-4c00-a58d-e265ba24c9ad",
+      "depth": 2,
+      "type": "point_light",
+      "power_raw": 0.0031999999191612005,
+      "applied_loc": [
+        1.157479,
+        0.053048,
+        -1.145431
+      ],
+      "correct_loc": [
+        -1.157479,
+        0.053048,
+        1.145431
+      ],
+      "delta_applied_minus_correct": [
+        2.314958,
+        0.0,
+        -2.290862
+      ],
+      "delta_dist_m": 3.256851,
+      "applied_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "correct_forward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PointLight4",
+      "id": "e691ce59-4374-4aa7-8aac-21f357d6c547",
+      "depth": 2,
+      "type": "point_light",
+      "power_raw": 2,
+      "applied_loc": [
+        0.167732,
+        0.03467,
+        -0.37935
+      ],
+      "correct_loc": [
+        -0.167732,
+        0.03467,
+        0.37935
+      ],
+      "delta_applied_minus_correct": [
+        0.335464,
+        0.0,
+        -0.7587
+      ],
+      "delta_dist_m": 0.829555,
+      "applied_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "correct_forward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PointLight5",
+      "id": "ad67bc52-216d-4278-b86a-1f407acfeba1",
+      "depth": 2,
+      "type": "point_light",
+      "power_raw": 2,
+      "applied_loc": [
+        -0.343957,
+        0.03467,
+        0.336946
+      ],
+      "correct_loc": [
+        0.343957,
+        0.03467,
+        -0.336946
+      ],
+      "delta_applied_minus_correct": [
+        -0.687914,
+        0.0,
+        0.673892
+      ],
+      "delta_dist_m": 0.962993,
+      "applied_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "correct_forward": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "RectLight3",
+      "id": "0a9b2a72-03f3-4af3-94fb-7c49d01d2938",
+      "depth": 2,
+      "type": "area_light",
+      "power_raw": 0.029999999329447746,
+      "applied_loc": [
+        -0.081285,
+        0.149843,
+        0.152878
+      ],
+      "correct_loc": [
+        0.081285,
+        0.149843,
+        -0.152878
+      ],
+      "delta_applied_minus_correct": [
+        -0.16257,
+        0.0,
+        0.305756
+      ],
+      "delta_dist_m": 0.346289,
+      "applied_forward": [
+        -0.0,
+        -0.866025,
+        0.5
+      ],
+      "correct_forward": [
+        0.0,
+        -0.866025,
+        -0.5
+      ]
+    },
+    {
+      "name": "RectLight4",
+      "id": "e3a87b32-8745-4c33-96fa-585bf38d4a9d",
+      "depth": 2,
+      "type": "area_light",
+      "power_raw": 0.029999999329447746,
+      "applied_loc": [
+        0.08369,
+        0.149843,
+        0.152878
+      ],
+      "correct_loc": [
+        -0.08369,
+        0.149843,
+        -0.152878
+      ],
+      "delta_applied_minus_correct": [
+        0.16738,
+        0.0,
+        0.305756
+      ],
+      "delta_dist_m": 0.348573,
+      "applied_forward": [
+        0.0,
+        -0.866025,
+        0.5
+      ],
+      "correct_forward": [
+        -0.0,
+        -0.866025,
+        -0.5
+      ]
+    },
+    {
+      "name": "RectLight5",
+      "id": "efc22348-8c94-4779-8677-e3782ec7c08c",
+      "depth": 2,
+      "type": "area_light",
+      "power_raw": 0.07999999821186066,
+      "applied_loc": [
+        -0.187922,
+        0.051088,
+        0.271017
+      ],
+      "correct_loc": [
+        0.187922,
+        0.051088,
+        -0.271017
+      ],
+      "delta_applied_minus_correct": [
+        -0.375844,
+        0.0,
+        0.542034
+      ],
+      "delta_dist_m": 0.65959,
+      "applied_forward": [
+        0.0,
+        -0.939693,
+        -0.34202
+      ],
+      "correct_forward": [
+        -0.0,
+        -0.939693,
+        0.34202
+      ]
+    },
+    {
+      "name": "RectLight20",
+      "id": "06622d11-6b19-40d6-9bb4-dad3d2a30a2a",
+      "depth": 2,
+      "type": "area_light",
+      "power_raw": 2,
+      "applied_loc": [
+        0.028699,
+        0.5472,
+        -0.803063
+      ],
+      "correct_loc": [
+        -0.028699,
+        0.5472,
+        0.803063
+      ],
+      "delta_applied_minus_correct": [
+        0.057398,
+        0.0,
+        -1.606126
+      ],
+      "delta_dist_m": 1.607151,
+      "applied_forward": [
+        -0.045235,
+        -0.705124,
+        0.707639
+      ],
+      "correct_forward": [
+        0.045235,
+        -0.705124,
+        -0.707639
+      ]
+    },
+    {
+      "name": "RectLight24",
+      "id": "ca05c81b-d2e9-4cb6-947a-9bef54a38283",
+      "depth": 2,
+      "type": "area_light",
+      "power_raw": 38.780670166015625,
+      "applied_loc": [
+        -0.740132,
+        0.589719,
+        3.212538
+      ],
+      "correct_loc": [
+        0.740132,
+        0.589719,
+        -3.212538
+      ],
+      "delta_applied_minus_correct": [
+        -1.480264,
+        0.0,
+        6.425076
+      ],
+      "delta_dist_m": 6.593389,
+      "applied_forward": [
+        0.0,
+        -0.788011,
+        -0.615661
+      ],
+      "correct_forward": [
+        -0.0,
+        -0.788011,
+        0.615661
+      ]
+    },
+    {
+      "name": "RectLight25",
+      "id": "9f6f81b8-8919-4f13-aff0-2919e297dfe3",
+      "depth": 2,
+      "type": "area_light",
+      "power_raw": 20,
+      "applied_loc": [
+        -3.092473,
+        2.568387,
+        -0.0
+      ],
+      "correct_loc": [
+        3.092473,
+        2.568387,
+        0.0
+      ],
+      "delta_applied_minus_correct": [
+        -6.184946,
+        0.0,
+        -0.0
+      ],
+      "delta_dist_m": 6.184946,
+      "applied_forward": [
+        0.829038,
+        -0.559193,
+        -0.0
+      ],
+      "correct_forward": [
+        -0.829038,
+        -0.559193,
+        0.0
+      ]
+    },
+    {
+      "name": "RectLight26",
+      "id": "ad732ef6-fb40-4552-af0b-0500226e28b7",
+      "depth": 2,
+      "type": "area_light",
+      "power_raw": 20,
+      "applied_loc": [
+        3.092473,
+        2.568387,
+        -0.0
+      ],
+      "correct_loc": [
+        -3.092473,
+        2.568387,
+        0.0
+      ],
+      "delta_applied_minus_correct": [
+        6.184946,
+        0.0,
+        -0.0
+      ],
+      "delta_dist_m": 6.184946,
+      "applied_forward": [
+        -0.829038,
+        -0.559193,
+        -0.0
+      ],
+      "correct_forward": [
+        0.829038,
+        -0.559193,
+        0.0
+      ]
+    }
+  ],
+  "main_fill_RectLight24": {
+    "name": "RectLight24",
+    "id": "ca05c81b-d2e9-4cb6-947a-9bef54a38283",
+    "depth": 2,
+    "type": "area_light",
+    "power_raw": 38.780670166015625,
+    "applied_loc": [
+      -0.740132,
+      0.589719,
+      3.212538
+    ],
+    "correct_loc": [
+      0.740132,
+      0.589719,
+      -3.212538
+    ],
+    "delta_applied_minus_correct": [
+      -1.480264,
+      0.0,
+      6.425076
+    ],
+    "delta_dist_m": 6.593389,
+    "applied_forward": [
+      0.0,
+      -0.788011,
+      -0.615661
+    ],
+    "correct_forward": [
+      -0.0,
+      -0.788011,
+      0.615661
+    ]
+  },
+  "candela_watts": [
+    {
+      "name": "PointLight",
+      "type": "point_light",
+      "power_cd": 2.0,
+      "cycles_W_mapped": 0.036798,
+      "delta_dist_m": 2.543585
+    },
+    {
+      "name": "PointLight2",
+      "type": "point_light",
+      "power_cd": 0.20000000298023224,
+      "cycles_W_mapped": 0.00368,
+      "delta_dist_m": 0.663936
+    },
+    {
+      "name": "RectLight2",
+      "type": "area_light",
+      "power_cd": 10.0,
+      "cycles_W_mapped": 0.045997,
+      "delta_dist_m": 1.606875
+    },
+    {
+      "name": "PointLight3",
+      "type": "point_light",
+      "power_cd": 0.0031999999191612005,
+      "cycles_W_mapped": 5.9e-05,
+      "delta_dist_m": 3.256851
+    },
+    {
+      "name": "PointLight4",
+      "type": "point_light",
+      "power_cd": 2.0,
+      "cycles_W_mapped": 0.036798,
+      "delta_dist_m": 0.829555
+    },
+    {
+      "name": "PointLight5",
+      "type": "point_light",
+      "power_cd": 2.0,
+      "cycles_W_mapped": 0.036798,
+      "delta_dist_m": 0.962993
+    },
+    {
+      "name": "RectLight3",
+      "type": "area_light",
+      "power_cd": 0.029999999329447746,
+      "cycles_W_mapped": 0.000138,
+      "delta_dist_m": 0.346289
+    },
+    {
+      "name": "RectLight4",
+      "type": "area_light",
+      "power_cd": 0.029999999329447746,
+      "cycles_W_mapped": 0.000138,
+      "delta_dist_m": 0.348573
+    },
+    {
+      "name": "RectLight5",
+      "type": "area_light",
+      "power_cd": 0.07999999821186066,
+      "cycles_W_mapped": 0.000368,
+      "delta_dist_m": 0.65959
+    },
+    {
+      "name": "RectLight20",
+      "type": "area_light",
+      "power_cd": 2.0,
+      "cycles_W_mapped": 0.009199,
+      "delta_dist_m": 1.607151
+    },
+    {
+      "name": "RectLight24",
+      "type": "area_light",
+      "power_cd": 38.780670166015625,
+      "cycles_W_mapped": 0.178379,
+      "delta_dist_m": 6.593389
+    },
+    {
+      "name": "RectLight25",
+      "type": "area_light",
+      "power_cd": 20.0,
+      "cycles_W_mapped": 0.091994,
+      "delta_dist_m": 6.184946
+    },
+    {
+      "name": "RectLight26",
+      "type": "area_light",
+      "power_cd": 20.0,
+      "cycles_W_mapped": 0.091994,
+      "delta_dist_m": 6.184946
+    }
+  ],
+  "total_cycles_W_mapped": 0.532339,
+  "RectLight24_cycles_W": 0.178379
+}

@@ -1,0 +1,21 @@
+{
+ "candidate": "docs/prd/evidence/fusion/fidelity/r4/selftest/r2-copy.png",
+ "baseline_r2": {
+  "mae": 12.7765,
+  "mae_fg": 34.4164,
+  "ssim": 0.921622
+ },
+ "metrics": {
+  "mae": 12.7765,
+  "mae_fg": 34.4164,
+  "ssim": 0.921622,
+  "d_lum_fg": -13.759
+ },
+ "must_beat": {
+  "mae": 12.7765,
+  "mae_fg": 34.4164,
+  "ssim": 0.921622
+ },
+ "status": "NOT_IMPROVED",
+ "reason": "diff vs gold not reduced: {'mae': 12.7765, 'mae_fg': 34.4164, 'ssim': 0.921622, 'd_lum_fg': -13.759} vs {'mae': 12.7765, 'mae_fg': 34.4164, 'ssim': 0.921622}"
+}

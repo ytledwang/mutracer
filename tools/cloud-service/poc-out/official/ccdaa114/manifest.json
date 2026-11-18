@@ -1,0 +1,1046 @@
+{
+  "replace_id": "ccdaa114-cdb7-4ef5-af26-022938a780d5",
+  "template_name": "RF_Kitchen_0302_Scene",
+  "template_data_bucket_url": "official_asset/template/RF_Kitchen_0302_Scene",
+  "source": {
+    "host": "10.160.9.143:8000",
+    "base": "http://10.160.9.143:8000",
+    "envfile": ".env.production",
+    "note": "Render2-supabase private IP over Mac mini VPN. No signed URLs, no secrets."
+  },
+  "files": [
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/scene.json",
+      "size": 216377,
+      "sha256": "b088478fc323b3d9374dd86b0a3049e81b12c49453db5fbec373ee2187cb2333",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/scene.json",
+      "role": "shell_scene"
+    },
+    {
+      "path": "shell/scene.json",
+      "size": 216377,
+      "sha256": "b088478fc323b3d9374dd86b0a3049e81b12c49453db5fbec373ee2187cb2333",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/scene.json",
+      "role": "shell_scene_canonical"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_1.glb",
+      "size": 2221204,
+      "sha256": "f4f146957e9e0933b72755c7130d2cef64ddcd899733edfadfe1bfac1b3f8800",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_1.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_11.glb",
+      "size": 62180,
+      "sha256": "6e622470091044581ac9d38f7ff441f2921d69c1110199d6d7c6a2abb89227b4",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_11.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_15.glb",
+      "size": 237252,
+      "sha256": "c29ac11769ac01e2fcf37457a0a6a0fe704a373552804f903b5694b1af9d9c4a",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_15.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_16.glb",
+      "size": 237244,
+      "sha256": "14c2ccfcd0accc1ab4691326b469136f7c2698cd7252616ee58de203b279c5bd",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_16.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_18.glb",
+      "size": 1545928,
+      "sha256": "815cd4bb7c351a6cb2974a335fe08c2e0e45755d160102d159644c61622a6922",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_18.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_1_013.glb",
+      "size": 6860960,
+      "sha256": "83a14105fc6761142e46fb2d5039ee079000377cf965b13be74dfcf4e116daf1",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_1_013.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_22.glb",
+      "size": 1351068,
+      "sha256": "ca99382b2762a4528735925e598ed3f9053c1917db18d0d070e993a95c608191",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_22.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_6.glb",
+      "size": 3541292,
+      "sha256": "7cba0a478cbeb5089dc46c24e76b6e9246c7eca019df2958646e5ae9f7eda753",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_6.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/DS___.glb",
+      "size": 2740,
+      "sha256": "54fa46386b285b391d356af31c037040f5f37f6f0b039a8c76d698e6eac4630b",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/DS___.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/DS____0012.glb",
+      "size": 98960,
+      "sha256": "8392f7140f6214819f29cced3ae769921ded108ca06b090b707e4e2879e735eb",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/DS____0012.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/DS____002.glb",
+      "size": 99408,
+      "sha256": "93eb091439a6df1870583e3e55001750eee847d7590617240e31b5a2d9db0b02",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/DS____002.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_56_100.glb",
+      "size": 45160,
+      "sha256": "c5d2ca1644421cdbf17794ddf7fda24f29008b4ae7274eea7dd44e2e27d7cec8",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_56_100.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_57_806.glb",
+      "size": 15716,
+      "sha256": "749b5fa671edbde180daba9da14209206dcb8fcdc8754242184e60e4aa3efa1d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_57_806.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464.glb",
+      "size": 7358784,
+      "sha256": "56b345175c92e857719386ec51eb35ff59b65239f75955709e187fa1148f8a9b",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_001.glb",
+      "size": 7358784,
+      "sha256": "56b345175c92e857719386ec51eb35ff59b65239f75955709e187fa1148f8a9b",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_001.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_002.glb",
+      "size": 7358784,
+      "sha256": "56b345175c92e857719386ec51eb35ff59b65239f75955709e187fa1148f8a9b",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_002.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_003.glb",
+      "size": 7358784,
+      "sha256": "56b345175c92e857719386ec51eb35ff59b65239f75955709e187fa1148f8a9b",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_003.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_004.glb",
+      "size": 7358784,
+      "sha256": "56b345175c92e857719386ec51eb35ff59b65239f75955709e187fa1148f8a9b",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_004.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_86_913.glb",
+      "size": 126076,
+      "sha256": "efb7593c323abc512d99c5742bf6a04a07c72c979ba139d4333800de92950004",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_86_913.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_87_678.glb",
+      "size": 8176,
+      "sha256": "c900d892ea78d44552f897cf9738679512f6750850df91f208c10846f22f0d4a",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_87_678.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_88_456.glb",
+      "size": 124844,
+      "sha256": "971211fd451b28ff34bc48abaae1adb426004130b433a5469a6541bf77a56f5c",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_88_456.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_89_572.glb",
+      "size": 8176,
+      "sha256": "fbc43fe20f44e09aca59d67c592d1f293fd79fb72f8a3bd66f15ab2dbdf14919",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_89_572.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_12_589.glb",
+      "size": 5952,
+      "sha256": "511b7bf4f1714762e32158f6cee8e8d96747b8da59c4ba1ef3700d936e07880b",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_12_589.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1486_175.glb",
+      "size": 163276,
+      "sha256": "c627de8e666eba67542b546dec84876f055e1cda19197d92742cd21d74527b95",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1486_175.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1487_337.glb",
+      "size": 6520,
+      "sha256": "dca46b4b075ff150f9293754ad4ae08d03ae47df93ed902d98e48076c5cf39fc",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1487_337.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1614_323.glb",
+      "size": 168300,
+      "sha256": "83c96e379bbedea5e40cbd4a3a6079391a8653d2b19403f19e8a76f68fee8941",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1614_323.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1614_323_001.glb",
+      "size": 7096,
+      "sha256": "324efc48d1641bfd420bdf34767833453b5c2cd8692f192effe850077ce017ad",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1614_323_001.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1624_577.glb",
+      "size": 5960,
+      "sha256": "a84ca015b3c543987a244751bb8ec412aded9066533f2647f61c9853edc27c99",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1624_577.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1655_912.glb",
+      "size": 104116,
+      "sha256": "7fd2355b6dde4adccfcb841069501fe8784a41212cf1af565a85264a10d224e6",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1655_912.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_16_869.glb",
+      "size": 5968,
+      "sha256": "73684e52ef1e4ab6ed58f378951a2bdc62b874955920f8526c67745772fb193c",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_16_869.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1770_146.glb",
+      "size": 36584,
+      "sha256": "16295b1f0b8003b29392e9a05faa79a87cc3cbc997128c19086f5b1d3639967f",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1770_146.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_17_498.glb",
+      "size": 4176,
+      "sha256": "5ca6c19f99156fdb36bb89ff1b4facd51639a78339402fc0973022db0e0fbe48",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_17_498.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1877_13.glb",
+      "size": 129256,
+      "sha256": "5231ec3ed3b98fef9e685f5ebd80867e1d80f68543e03962e6d32c0f97d1b7c5",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1877_13.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1878_271.glb",
+      "size": 159364,
+      "sha256": "8cae953ab861bf63246c43a8b78b2e854dc9a5d166f60c0dafd45a54523d2652",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1878_271.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1879_918.glb",
+      "size": 4128,
+      "sha256": "ba2578caa1a968dc6a08f085e6926b72d4664c9d590ab02a21b3c2633dd0aac3",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1879_918.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1898_375.glb",
+      "size": 26144,
+      "sha256": "71cb2cde08f842dbeac6b522f2a1643a041dbd38d77333966bc2fcfdeb74277e",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1898_375.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1899_616.glb",
+      "size": 6888,
+      "sha256": "75a6aca2f5922df40972bdb2bdcaccbb8e50d089426034358a00eceed2640570",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1899_616.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1994_931.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1994_931.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1995_419.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1995_419.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1996_445.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1996_445.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1997_460.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1997_460.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1998_166.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1998_166.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1999_579.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1999_579.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2000_895.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2000_895.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2001_62.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2001_62.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2002_32.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2002_32.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2003_673.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2003_673.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2004_531.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2004_531.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2005_219.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2005_219.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2006_564.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2006_564.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2007_273.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2007_273.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2008_43.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2008_43.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2009_268.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2009_268.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2010_471.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2010_471.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2011_640.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2011_640.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2012_146.glb",
+      "size": 109172,
+      "sha256": "bd19c9e63970035edee9a38fc669e0c2a4c855b8495001c93c302626b382a716",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2012_146.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2013_286.glb",
+      "size": 109172,
+      "sha256": "5217c1f9d81902517ed0812f70ea56967cb31a020f3f5f3092bcd67430d6e021",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2013_286.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_21_582.glb",
+      "size": 8844,
+      "sha256": "6a66f8f32c7554f9678e80a9e1a9902dee6f96e560016d80bb421ed6a17a6b73",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_21_582.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2211_729.glb",
+      "size": 22141508,
+      "sha256": "a2eb1c6709041636d45bdb05cc6892b300646836ce11288472deda0b0e8b3130",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2211_729.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2211_729_001.glb",
+      "size": 22141508,
+      "sha256": "a2eb1c6709041636d45bdb05cc6892b300646836ce11288472deda0b0e8b3130",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2211_729_001.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2249_236.glb",
+      "size": 532732,
+      "sha256": "f5f7b627d70340a67bfd69374239d63fccec6d7373a2dea1a58ed9e355923576",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2249_236.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2250_374.glb",
+      "size": 25408,
+      "sha256": "f6cb5c9b39ee63b57741a14163b1b9f62034081ffe11db65776a71354251457d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2250_374.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_001.glb",
+      "size": 2740,
+      "sha256": "1ddd55a1e744802cf7aa58d3d8608ec6455c12128fb70c05ac39ce9e2925cb7a",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_001.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_004.glb",
+      "size": 1816,
+      "sha256": "91d40df9879faa3cc36a09bcdd97fb81a90eac74d340bf5583faf2fd188682c7",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_004.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_006.glb",
+      "size": 1816,
+      "sha256": "c41217e90a11c70a71ee11443c50f37d48084523fb31aa4bc8fea5dd73ad77bd",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_006.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_007.glb",
+      "size": 1816,
+      "sha256": "195448a78376ca39d71a80aed77d2ad5a4dceb7525b4ed11945452e94acbad7c",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_007.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2259_314.glb",
+      "size": 2696,
+      "sha256": "5815df8dbbd6d7616a3a7d1f988147628da80360a8729c2d966ea44436ee22cf",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2259_314.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2285_379.glb",
+      "size": 2708,
+      "sha256": "51a17a29490a648e2fe940bf9981c312ab89b84bb3642d6c303e8a9dba2cf08f",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2285_379.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2287_96.glb",
+      "size": 3068,
+      "sha256": "d7a632ae74823833ca466ae43ddab3db764ed4ebdd8ba044defa85ac4e25e0e0",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2287_96.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2294_690.glb",
+      "size": 2744,
+      "sha256": "05710a3740bd5ca7fde9f6545a1308cc16ef6ef368f080c7600d7af078818421",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2294_690.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_26_269.glb",
+      "size": 4096,
+      "sha256": "ae6785ba62ecb5ac2811aeaa6c2d76d0e76b4425b75c76870e9912d0cb7f8702",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_26_269.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_27_423.glb",
+      "size": 7080,
+      "sha256": "b1a18e7571c15a9b4f1de94e6dfea8c25c1188d8e31e22c3f7fcbd6b29793708",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_27_423.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_33_498.glb",
+      "size": 2724,
+      "sha256": "8a44c319da935e36a66c4b2abb9f6d57beb46722a4e7b8ae784b27905cd50bc7",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_33_498.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_34_898.glb",
+      "size": 6464,
+      "sha256": "fd7ae878c8187bae37483ca3511887d7039f3dded8a351b61bd913386b0aa3c4",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_34_898.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_35_209.glb",
+      "size": 4832,
+      "sha256": "a90d697750e16cbe1b59ba3f4b5bd27adf01ce5efa1e3eee946b90e0d8f3d0a6",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_35_209.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_37_534_001.glb",
+      "size": 13344,
+      "sha256": "059925e5641887b7ddb105969dc4958b940e1c5c6b0dc463510d330adfb9fa85",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_37_534_001.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_38_580.glb",
+      "size": 6900,
+      "sha256": "f6d5351a54323d6b8f2e2c2bdd566d52cc0e1891da61eadb503f8abb61a9417d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_38_580.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_39_411.glb",
+      "size": 12460,
+      "sha256": "f428638a81b46fd9318a87abf1f5fad14aeb1e35e5e88e734d30d51b0c781146",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_39_411.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_41_763_001.glb",
+      "size": 12448,
+      "sha256": "c19268c9eedac0bae94ef2ee43c0e4db545a2e02ab96f86ad7e60d14d853383d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_41_763_001.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_41_763_002.glb",
+      "size": 12448,
+      "sha256": "c19268c9eedac0bae94ef2ee43c0e4db545a2e02ab96f86ad7e60d14d853383d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_41_763_002.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_4_115.glb",
+      "size": 4808,
+      "sha256": "8632375bdc202e1b848dff4c1be4b5b28f17be5eddb91541efa36095a688a1c5",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_4_115.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_5_290.glb",
+      "size": 5940,
+      "sha256": "5d093eac3970475c8164acec6cc221508bcc7086f3fd229c555833a7e34e854d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_5_290.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_820_295.glb",
+      "size": 216780,
+      "sha256": "7c4f25473a6406a57007fe498f7c7055c6f41cd98361ac285359dc190978687e",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_820_295.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_847_265.glb",
+      "size": 3664,
+      "sha256": "4431202466197e3bad2e50120e6bdee9a7754bbc89b4f6debdce9f007f17ee2b",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_847_265.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_41_919.glb",
+      "size": 49100,
+      "sha256": "4e3f3aefeb38701a50b7ad3329b302aa4aa6baa92692e98fba9e280289d56397",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_41_919.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_42_404.glb",
+      "size": 35344,
+      "sha256": "03fc9e257153cdf602f90f6a437e9119b1d812970a62101e4d8d79bbfc783e39",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_42_404.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_43_639.glb",
+      "size": 207020,
+      "sha256": "d6d760e4ac7a127895376d80052bd77b26d0b2695b88f884d886dca8066c33b4",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_43_639.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_44_38.glb",
+      "size": 83832,
+      "sha256": "7695f69f33c765ecc5cb0c8ef2946e525bacf83c88f17b778e8eea1757cb2656",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_44_38.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/models/views_outside.glb",
+      "size": 1512,
+      "sha256": "51d940af1d3580814a8a7a9c754ea73d7bd3cbf6b1611a082fff94246e202039",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/models/views_outside.glb",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_1237520_files_70_png.png",
+      "size": 8625732,
+      "sha256": "e3b3d1f95ecf8574d80ad47117514a03a6a1162d1e60f41f21f30ce3511b41ff",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_1237520_files_70_png.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_36_jpg.png",
+      "size": 28613655,
+      "sha256": "192f4e5240681b2e820689206cdb843150f80a07920485d48c9dd949f4c15c3d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_36_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_47_jpg.png",
+      "size": 20932633,
+      "sha256": "545320eac163cdaa810302d503c642694bde3888bdf3b884f2a86e88ac811e79",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_47_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_66_jpg.png",
+      "size": 5340326,
+      "sha256": "a58d97c988ac674a478116b3c23c8237a05e8ee90ce31704292c939c8fbc665d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_66_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_165_jpg.png",
+      "size": 1129693,
+      "sha256": "e001f27efdf7f751e9e0cd1f755564d924fea7d974729c2fadfa0ae7c7c1d121",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_165_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_207_jpg.png",
+      "size": 196848,
+      "sha256": "9e972bc747e8f0bfbcbbd4b9196b5470202c5ab55077d8e78fbe3b3174b42309",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_207_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_2_jpg.png",
+      "size": 416114,
+      "sha256": "a32e0f2c36b1bab737beb0b72131091495fca71c121f483dae83072b97de1cf3",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_2_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_50_jpg.png",
+      "size": 317716,
+      "sha256": "31b20a8c103251b6c2b207d7d90b40f8d654cb102009a67ed8af00753acec3b9",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_50_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_66_jpg.png",
+      "size": 5506533,
+      "sha256": "b12783bac629dba48e2b5ac9a1b0d395a72ceff17c8f6647cbecfa5d49832bfe",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_66_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_79_jpg.png",
+      "size": 67185,
+      "sha256": "b27b02595a9ec1700ca99bad317ef0da4a1254a342608914cbb374edf8c235c5",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_79_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_81_jpg.png",
+      "size": 145507,
+      "sha256": "c634b83dc17ddee7c4a90e804df1bbed173e4d851a855c36376cd8e51e3a0886",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_81_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66model2020_A004_28_266925_jpg.png",
+      "size": 291419,
+      "sha256": "ee0147c6bfd452b8267a5fdb03bda31528e0bac7650b817ea9385e433077eef7",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66model2020_A004_28_266925_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66model2020_A004_29_266925_jpg.png",
+      "size": 1387820,
+      "sha256": "6e49b625f8e859593aae7fb19c599625c9e19fc96c7d0d39a965914969a202ee",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66model2020_A004_29_266925_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/DS____7fa2d943c1251aa7ab98d3a24f4a7335_png.png",
+      "size": 2246760,
+      "sha256": "2386b04e8c512be20cadc4020186801f29f5ea128dc92064f197818122bce9f9",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/DS____7fa2d943c1251aa7ab98d3a24f4a7335_png.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/DS__ui_10x_png.png",
+      "size": 2325135,
+      "sha256": "35e6cff7e2b4ded24ce8721303f97ab8350114e22ae6725083eb6cab77254c9d",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/DS__ui_10x_png.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/T_MetalWear_Frosted_N.exr",
+      "size": 51263511,
+      "sha256": "4bc7474cb336d536e875fe6f5e2fa146a523439df7b79018262a6ab4ac331343",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/T_MetalWear_Frosted_N.exr",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/WoodQuarteredRecchiuti001_GLOSS_3K_jpg.png",
+      "size": 2379352,
+      "sha256": "a529441be748042e7b4dbd097d28be2280f3a59c76c4e809f6ce8a4721efc234",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/WoodQuarteredRecchiuti001_GLOSS_3K_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/WoodQuarteredRecchiuti001_NRM_3K_jpg.png",
+      "size": 1378027,
+      "sha256": "955cfba054d296ac49615b099d0f52656d804d9715d610b1e565ccbc2823d30a",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/WoodQuarteredRecchiuti001_NRM_3K_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/d08d98122f685c8ef511a71b163218a_jpg.png",
+      "size": 17382544,
+      "sha256": "c27bd8d3e3ac1f72eda62570e27ad080d69baef037d4495ef3613c444adcbddf",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/d08d98122f685c8ef511a71b163218a_jpg.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Kitchen_0302_Scene/textures/mu.png",
+      "size": 9562135,
+      "sha256": "1fb5c9010c51f70e9016514027c9ea20f06f011964cca17a5ddcd0c0400951d1",
+      "source_key": "official_asset/template/RF_Kitchen_0302_Scene/textures/mu.png",
+      "role": "shell"
+    },
+    {
+      "path": "official_asset/template/RF_Scene_Kitchen_2cam/textures/White.exr",
+      "size": 2781,
+      "sha256": "394ec4379433c2bf8ece2e20da9f9af14ebe265eb87d12ca6310d6ea7cb957b4",
+      "source_key": "official_asset/template/RF_Scene_Kitchen_2cam/textures/White.exr",
+      "role": "hdri_placeholder_check"
+    },
+    {
+      "path": "official_asset/material/ede95c7f-fb5d-44d6-abad-cb9458616a90/textures/T_MetalWear_Frosted_R.exr",
+      "size": 1582870,
+      "sha256": "a16be49beea635d70ae1da57bbcaee8b2eafcd60cab317228a4eb73ba1511f4b",
+      "source_key": "official_asset/material/ede95c7f-fb5d-44d6-abad-cb9458616a90/textures/T_MetalWear_Frosted_R.exr",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/material/ede95c7f-fb5d-44d6-abad-cb9458616a90/textures/T_MetalWear_Frosted_N.exr",
+      "size": 4209008,
+      "sha256": "44ad597bf7e925b19ef3f00c2124562d5a9517cd553aa82aa2bd133d491efd44",
+      "source_key": "official_asset/material/ede95c7f-fb5d-44d6-abad-cb9458616a90/textures/T_MetalWear_Frosted_N.exr",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/material/ea684aef-b2c2-4b12-b264-27449c21c5ed/textures/T_MetalWear_Frosted_R.exr",
+      "size": 1582870,
+      "sha256": "a16be49beea635d70ae1da57bbcaee8b2eafcd60cab317228a4eb73ba1511f4b",
+      "source_key": "official_asset/material/ea684aef-b2c2-4b12-b264-27449c21c5ed/textures/T_MetalWear_Frosted_R.exr",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/material/ea684aef-b2c2-4b12-b264-27449c21c5ed/textures/T_MetalWear_Frosted_N.exr",
+      "size": 4209008,
+      "sha256": "44ad597bf7e925b19ef3f00c2124562d5a9517cd553aa82aa2bd133d491efd44",
+      "source_key": "official_asset/material/ea684aef-b2c2-4b12-b264-27449c21c5ed/textures/T_MetalWear_Frosted_N.exr",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/material/f7b081d4-c512-4f09-9452-bb130deafd74/textures/T_Mask_03.png",
+      "size": 108540,
+      "sha256": "2121975d2bd865f219753e014078b0964f7addf8106f3034a877ce9ab0c49f1f",
+      "source_key": "official_asset/material/f7b081d4-c512-4f09-9452-bb130deafd74/textures/T_Mask_03.png",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/good_templates/Empty_file/textures/GradientTexture0.tga",
+      "size": 3090,
+      "sha256": "21acb6e7abb5aa73094e4c7c84839bb644d0931ef0eece88241c023c8650bee6",
+      "source_key": "official_asset/good_templates/Empty_file/textures/GradientTexture0.tga",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/environment/8c2e21fc-bc21-4904-80a7-990eb69c9ff3/textures/25.exr",
+      "size": 3405833,
+      "sha256": "6aeac2dbf94f480831e81fa54322887f2144fc9997569c372a621d613e7550f8",
+      "source_key": "official_asset/environment/8c2e21fc-bc21-4904-80a7-990eb69c9ff3/textures/25.exr",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/environment/8ffebd47-fb14-4175-bcac-dd9a175b7bde/textures/4.exr",
+      "size": 3970994,
+      "sha256": "4204d394a8bc79e2ec2478932448948e55849aeda08fc8fafb8fcccb5c1e3b1e",
+      "source_key": "official_asset/environment/8ffebd47-fb14-4175-bcac-dd9a175b7bde/textures/4.exr",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/environment/8115f2b2-a7bf-4b11-9ef3-5f602f804869/textures/3.exr",
+      "size": 2613762,
+      "sha256": "5b65919c81c3ca66cde60e4e88639c55f0d9d9da98c712bf0bd8b1838922cb04",
+      "source_key": "official_asset/environment/8115f2b2-a7bf-4b11-9ef3-5f602f804869/textures/3.exr",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/environment/0d718b1b-976d-4225-8ce6-ae514f45eea9/textures/16.exr",
+      "size": 2766813,
+      "sha256": "1959764525416563d8adac7b1b4219b8d2e90c609ac14b3d18b5ebefa91c320d",
+      "source_key": "official_asset/environment/0d718b1b-976d-4225-8ce6-ae514f45eea9/textures/16.exr",
+      "role": "gold_official"
+    },
+    {
+      "path": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr",
+      "size": 5161529,
+      "sha256": "5c57ce3eade978cdb85789f4b7375a816d306df943f907261deec4ccda64567a",
+      "source_key": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr",
+      "role": "gold_official"
+    }
+  ],
+  "references": {
+    "texture_refs": 20,
+    "mesh_refs": 89,
+    "all_keys": [
+      "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_1.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_11.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_15.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_16.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_18.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_1_013.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_22.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/BRep_6.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/DS___.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/DS____0012.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/DS____002.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_56_100.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_57_806.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_001.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_002.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_003.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_62_464_004.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_86_913.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_87_678.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_88_456.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_12776935_89_572.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_12_589.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1486_175.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1487_337.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1614_323.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1614_323_001.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1624_577.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1655_912.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_16_869.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1770_146.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_17_498.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1877_13.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1878_271.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1879_918.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1898_375.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1899_616.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1994_931.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1995_419.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1996_445.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1997_460.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1998_166.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_1999_579.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2000_895.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2001_62.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2002_32.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2003_673.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2004_531.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2005_219.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2006_564.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2007_273.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2008_43.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2009_268.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2010_471.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2011_640.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2012_146.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2013_286.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_21_582.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2211_729.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2211_729_001.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2249_236.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2250_374.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_001.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_004.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_006.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2258_209_007.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2259_314.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2285_379.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2287_96.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_2294_690.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_26_269.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_27_423.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_33_498.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_34_898.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_35_209.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_37_534_001.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_38_580.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_39_411.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_41_763_001.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_41_763_002.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_4_115.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_5_290.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_820_295.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9298590_847_265.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_41_919.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_42_404.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_43_639.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/Obj3d66_9799050_44_38.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/models/views_outside.glb",
+      "official_asset/template/RF_Kitchen_0302_Scene/scene.json",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_1237520_files_70_png.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_36_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_47_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_12776935_files_66_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_165_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_207_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_2_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_50_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_66_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_79_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66Model_9298590_files_81_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66model2020_A004_28_266925_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/3d66model2020_A004_29_266925_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/DS____7fa2d943c1251aa7ab98d3a24f4a7335_png.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/DS__ui_10x_png.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/T_MetalWear_Frosted_N.exr",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/WoodQuarteredRecchiuti001_GLOSS_3K_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/WoodQuarteredRecchiuti001_NRM_3K_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/d08d98122f685c8ef511a71b163218a_jpg.png",
+      "official_asset/template/RF_Kitchen_0302_Scene/textures/mu.png"
+    ],
+    "missing": []
+  },
+  "environment": [
+    {
+      "name": "White.exr",
+      "source_key": "official_asset/template/RF_Scene_Kitchen_2cam/textures/White.exr",
+      "size": 2781,
+      "used": false,
+      "placeholder_not_used": true
+    },
+    {
+      "name": "25.exr",
+      "source_key": "official_asset/environment/8c2e21fc-bc21-4904-80a7-990eb69c9ff3/textures/25.exr",
+      "size": 3405833,
+      "used": false,
+      "placeholder_not_used": false
+    },
+    {
+      "name": "4.exr",
+      "source_key": "official_asset/environment/8ffebd47-fb14-4175-bcac-dd9a175b7bde/textures/4.exr",
+      "size": 3970994,
+      "used": false,
+      "placeholder_not_used": false
+    },
+    {
+      "name": "3.exr",
+      "source_key": "official_asset/environment/8115f2b2-a7bf-4b11-9ef3-5f602f804869/textures/3.exr",
+      "size": 2613762,
+      "used": false,
+      "placeholder_not_used": false
+    },
+    {
+      "name": "16.exr",
+      "source_key": "official_asset/environment/0d718b1b-976d-4225-8ce6-ae514f45eea9/textures/16.exr",
+      "size": 2766813,
+      "used": true,
+      "placeholder_not_used": false
+    },
+    {
+      "name": "brown_photostudio_02_2k.exr",
+      "source_key": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr",
+      "size": 5161529,
+      "used": false,
+      "placeholder_not_used": false
+    }
+  ],
+  "environment_none_used_reason": null,
+  "white_exr": {
+    "name": "White.exr",
+    "source_key": "official_asset/template/RF_Scene_Kitchen_2cam/textures/White.exr",
+    "used": false,
+    "placeholder_not_used": true,
+    "size": 2781,
+    "path": "official_asset/template/RF_Scene_Kitchen_2cam/textures/White.exr",
+    "sha256": "394ec4379433c2bf8ece2e20da9f9af14ebe265eb87d12ca6310d6ea7cb957b4"
+  },
+  "pulled_at": "2026-11-11 18:14:27 +0800 Asia/Shanghai"
+}

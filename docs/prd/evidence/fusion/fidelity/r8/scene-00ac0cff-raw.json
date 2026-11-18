@@ -1,0 +1,4609 @@
+{
+ "views": {
+  "3c8d747b-24c6-428a-aa2c-b9124f60e2f2": {
+   "name": "前视图",
+   "active_camera": "028cb306-266e-476b-8426-b8d5b9bc4f49",
+   "active_environment": "e5cf3914-df09-4b80-84ce-8a2d4e85f26a",
+   "material_group_states": {},
+   "decal_group_visibility": {},
+   "light_group_visibility": {
+    "02c430eb-4459-49c7-809d-75cfd31a4a45": true,
+    "67f7d6be-7c7d-4202-bcb3-7304de9e7115": true,
+    "9f5f54a1-29d4-40e7-93c1-93b6760b3aef": false,
+    "a3ad4f52-7c68-4b66-993b-af1f39f8d3c3": false,
+    "c9a2bb19-4828-465a-ad59-f77a21a7c316": true,
+    "e8b2ce1b-9cc1-4f8e-9123-eb0484594779": false,
+    "eeecd74a-2914-4073-9aa0-b3470c2b6a6f": false
+   },
+   "model_group_visibility": {
+    "0161b9d6-3dc1-4428-9f2a-183100d69521": true,
+    "0ac383f2-2734-4aca-9ec8-44772f191093": false,
+    "24631540-8544-4d6c-a670-de81a39cf7a0": false,
+    "4ff97222-b1a6-4673-b05b-e044620f67e4": true,
+    "6ebb7f10-74ed-4df9-a6b0-e895e7b2f60f": false,
+    "85921107-1f0a-46e9-bc8a-d4e18ea72e20": true,
+    "984d3c41-7be3-4192-92e6-a181d60eb41e": true,
+    "995a52b0-9b48-4ebb-870f-795b864cf45b": false,
+    "9e02e313-7cf2-4086-8e2a-be3c02028e1b": true,
+    "d3ab0287-7809-43bd-853c-cc3f4cd4b013": true,
+    "db2eecf7-8ffa-4c96-9925-cece06e4d75a": false
+   }
+  }
+ },
+ "decals": {
+  "00000000-0000-0000-0000-000000000000": {
+   "name": "decal_root",
+   "type": "root",
+   "children": []
+  }
+ },
+ "lights": {
+  "00000000-0000-0000-0000-000000000000": {
+   "name": "light_root",
+   "type": "root",
+   "children": [
+    "67f7d6be-7c7d-4202-bcb3-7304de9e7115",
+    "02c430eb-4459-49c7-809d-75cfd31a4a45",
+    "c9a2bb19-4828-465a-ad59-f77a21a7c316"
+   ]
+  },
+  "02c430eb-4459-49c7-809d-75cfd31a4a45": {
+   "name": "前视图",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "0a9b2a72-03f3-4af3-94fb-7c49d01d2938",
+    "e3a87b32-8745-4c33-96fa-585bf38d4a9d",
+    "efc22348-8c94-4779-8677-e3782ec7c08c",
+    "06622d11-6b19-40d6-9bb4-dad3d2a30a2a"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "06622d11-6b19-40d6-9bb4-dad3d2a30a2a": {
+   "name": "RectLight20",
+   "type": "light",
+   "light": {
+    "type": "area_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 2,
+    "size_x": 368,
+    "size_z": 8,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_texture": "f7816676-6c50-4e05-bb6e-019b7cc142ea",
+    "barn_door_angle": 90,
+    "barn_door_length": 12.258735656738281,
+    "attenuation_radius": 155.88282775878906
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    -0.02869901,
+    0.80306306,
+    0.54720002
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    2
+   ],
+   "rotation_euler": [
+    174.81992300000002,
+    -44.839581000000045,
+    -86.34239500000004
+   ]
+  },
+  "0a9b2a72-03f3-4af3-94fb-7c49d01d2938": {
+   "name": "RectLight3",
+   "type": "light",
+   "light": {
+    "type": "area_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 0.029999999329447746,
+    "size_x": 8,
+    "size_z": 8,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_texture": "",
+    "barn_door_angle": 88,
+    "barn_door_length": 5,
+    "attenuation_radius": 10
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    0.08128488687798738,
+    -0.15287803744174902,
+    0.14984336402622309
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    2
+   ],
+   "rotation_euler": [
+    89.99999999999865,
+    -60.000000232389716,
+    -89.99999999999861
+   ]
+  },
+  "67f7d6be-7c7d-4202-bcb3-7304de9e7115": {
+   "name": "01_Light",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "69fa63ad-5ad5-4fcd-90db-6bf884c8c2a1",
+    "720bb730-d0f4-4815-9a96-98e1063cedd1",
+    "f91c345b-13bc-46ab-91b8-de462a25d454",
+    "ad2b1620-00f4-4c00-a58d-e265ba24c9ad",
+    "e691ce59-4374-4aa7-8aac-21f357d6c547",
+    "ad67bc52-216d-4278-b86a-1f407acfeba1"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "69fa63ad-5ad5-4fcd-90db-6bf884c8c2a1": {
+   "name": "PointLight",
+   "type": "light",
+   "light": {
+    "type": "point_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 2,
+    "radius": 5,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_length": 0,
+    "attenuation_radius": 200,
+    "soft_source_radius": 0
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    0.5526697463056799,
+    1.1454312762321457,
+    0.08753599078173796
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    0
+   ],
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "720bb730-d0f4-4815-9a96-98e1063cedd1": {
+   "name": "PointLight2",
+   "type": "light",
+   "light": {
+    "type": "point_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 0.20000000298023224,
+    "radius": 5,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_length": 0,
+    "attenuation_radius": 1000,
+    "soft_source_radius": 0
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    0.09999992528488225,
+    0.3165476707888638,
+    -0.23176395772625313
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    0
+   ],
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "9f6f81b8-8919-4f13-aff0-2919e297dfe3": {
+   "name": "RectLight25",
+   "type": "light",
+   "light": {
+    "type": "area_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 20,
+    "size_x": 1000,
+    "size_z": 1000,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_texture": "",
+    "barn_door_angle": 88,
+    "barn_door_length": 20,
+    "attenuation_radius": 1045.1192626953125
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    3.0924731300000063,
+    3.4106051316484808e-15,
+    2.568386640000002
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    0
+   ],
+   "rotation_euler": [
+    3.917998853784698e-15,
+    -34,
+    179.99999999999997
+   ]
+  },
+  "ad2b1620-00f4-4c00-a58d-e265ba24c9ad": {
+   "name": "PointLight3",
+   "type": "light",
+   "light": {
+    "type": "point_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 0.0031999999191612005,
+    "radius": 5,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_length": 0,
+    "attenuation_radius": 200,
+    "soft_source_radius": 0
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    -1.1574793249296158,
+    1.145431280000005,
+    0.05304807477472252
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    0
+   ],
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "ad67bc52-216d-4278-b86a-1f407acfeba1": {
+   "name": "PointLight5",
+   "type": "light",
+   "light": {
+    "type": "point_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 2,
+    "radius": 3,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_length": 0,
+    "attenuation_radius": 1500,
+    "soft_source_radius": 0
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    0.34395749698280925,
+    -0.336946061646088,
+    0.034669887296020684
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    1
+   ],
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "ad732ef6-fb40-4552-af0b-0500226e28b7": {
+   "name": "RectLight26",
+   "type": "light",
+   "light": {
+    "type": "area_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 20,
+    "size_x": 1000,
+    "size_z": 1000,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_texture": "",
+    "barn_door_angle": 88,
+    "barn_door_length": 20,
+    "attenuation_radius": 1045.1192626953125
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    -3.092473130000004,
+    2.2737367544323206e-15,
+    2.5683866400000017
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    0
+   ],
+   "rotation_euler": [
+    -8.518612799556048e-31,
+    -34.00000000000001,
+    2.23760322772248e-14
+   ]
+  },
+  "c9a2bb19-4828-465a-ad59-f77a21a7c316": {
+   "name": "buguang",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "ca05c81b-d2e9-4cb6-947a-9bef54a38283",
+    "9f6f81b8-8919-4f13-aff0-2919e297dfe3",
+    "ad732ef6-fb40-4552-af0b-0500226e28b7"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "ca05c81b-d2e9-4cb6-947a-9bef54a38283": {
+   "name": "RectLight24",
+   "type": "light",
+   "light": {
+    "type": "area_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 38.780670166015625,
+    "size_x": 1000,
+    "size_z": 1000,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_texture": "",
+    "barn_door_angle": 88,
+    "barn_door_length": 20,
+    "attenuation_radius": 1045.1192626953125
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    0.7401319913734785,
+    -3.2125381821354804,
+    0.5897190169417593
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    0,
+    1
+   ],
+   "rotation_euler": [
+    -6.971729340048245e-07,
+    -52.00000061970976,
+    90.00000000000006
+   ]
+  },
+  "e3a87b32-8745-4c33-96fa-585bf38d4a9d": {
+   "name": "RectLight4",
+   "type": "light",
+   "light": {
+    "type": "area_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 0.029999999329447746,
+    "size_x": 8,
+    "size_z": 8,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_texture": "",
+    "barn_door_angle": 88,
+    "barn_door_length": 5,
+    "attenuation_radius": 10
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    -0.08369033241151397,
+    -0.1528780407641362,
+    0.1498433583142292
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    2
+   ],
+   "rotation_euler": [
+    90.00000000000003,
+    -60.00000000000002,
+    -90.00000000000003
+   ]
+  },
+  "e691ce59-4374-4aa7-8aac-21f357d6c547": {
+   "name": "PointLight4",
+   "type": "light",
+   "light": {
+    "type": "point_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 2,
+    "radius": 3,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_length": 0,
+    "attenuation_radius": 1500,
+    "soft_source_radius": 0
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    -0.16773167327459607,
+    0.3793501320869582,
+    0.03466988865600801
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    1
+   ],
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "efc22348-8c94-4779-8677-e3782ec7c08c": {
+   "name": "RectLight5",
+   "type": "light",
+   "light": {
+    "type": "area_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 0.07999999821186066,
+    "size_x": 8,
+    "size_z": 128,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_texture": "",
+    "barn_door_angle": 88,
+    "barn_door_length": 5,
+    "attenuation_radius": 100
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    0.18792166195017948,
+    -0.2710169230944977,
+    0.05108800941578133
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    2
+   ],
+   "rotation_euler": [
+    -90,
+    -70.0000001549267,
+    90.00000023239097
+   ]
+  },
+  "f91c345b-13bc-46ab-91b8-de462a25d454": {
+   "name": "RectLight2",
+   "type": "light",
+   "light": {
+    "type": "area_light",
+    "color": [
+     1,
+     1,
+     1
+    ],
+    "power": 10,
+    "size_x": 368,
+    "size_z": 8,
+    "ies_texture": "",
+    "function_mat": "",
+    "source_texture": "f7816676-6c50-4e05-bb6e-019b7cc142ea",
+    "barn_door_angle": 90,
+    "barn_door_length": 12.258735656738281,
+    "attenuation_radius": 155.88282775878906
+   },
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "position": [
+    -0.014906982958989958,
+    0.8032989227076244,
+    0.3186785652896713
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "light_channels": [
+    1
+   ],
+   "rotation_euler": [
+    0,
+    0,
+    -90.00000000000001
+   ]
+  }
+ },
+ "meshes": {
+  "12ec6334-a697-4ac0-ad83-d16cba4d5832": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_8.glb",
+   "name": "zuobiananniu_8",
+   "type": "mesh",
+   "materials": [
+    "a3694c17-e375-47c8-96ce-926a362fa2d4"
+   ]
+  },
+  "14182bbe-781b-49ba-ab6c-894ba65df7fd": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_99_001.glb",
+   "name": "youbinzaomian_99_001",
+   "type": "mesh",
+   "materials": [
+    "37655372-5028-426a-b580-d82cad583b92"
+   ]
+  },
+  "1d4f1422-5db5-481f-8008-86a0ad4a3e99": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_23.glb",
+   "name": "youbiananniu_23",
+   "type": "mesh",
+   "materials": [
+    "9a887ede-3209-4949-9326-60da476d8822"
+   ]
+  },
+  "20809d17-e653-49fe-a807-749d2093f872": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_18.glb",
+   "name": "youbinzaomian_18",
+   "type": "mesh",
+   "materials": [
+    "c08c12ca-18bd-4bd9-a018-93ac7aa1ece9",
+    "1d23d491-e698-457c-8108-b421b4542be6",
+    "a95154c2-a5b1-4886-a51b-c124dfe244fb"
+   ]
+  },
+  "22219555-0e7e-4553-8c45-7a6b406c06a7": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_20.glb",
+   "name": "zuobianzaomian_20",
+   "type": "mesh",
+   "materials": [
+    "2a2c74ca-9f8e-4304-af09-5375fe7dc86b"
+   ]
+  },
+  "248bb01d-8e82-481e-8496-41cbe61e9cea": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_28.glb",
+   "name": "youbiananniu_28",
+   "type": "mesh",
+   "materials": [
+    "1d893d6d-1cd3-462d-b147-78eeac6ae53f"
+   ]
+  },
+  "282902b8-905d-49f3-a5ed-53255b4ff2c9": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_11.glb",
+   "name": "zuobiananniu_11",
+   "type": "mesh",
+   "materials": [
+    "01275277-0bf3-4d57-b039-918e888c024c"
+   ]
+  },
+  "2ae6a946-93c7-45ce-bc84-a978776d0482": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_28.glb",
+   "name": "zuobiananniu_28",
+   "type": "mesh",
+   "materials": [
+    "a6ff8c67-a401-4dc7-8a78-42d5c75621e8"
+   ]
+  },
+  "39eabf5c-f25c-453b-b3e4-48e289ad9e78": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_12.glb",
+   "name": "youbinzaomian_12",
+   "type": "mesh",
+   "materials": [
+    "b813db0d-6abe-4622-ab00-d28a4ff8e765"
+   ]
+  },
+  "4e3e02df-09be-4eaf-a024-9b6db6c37a43": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zaojumian.glb",
+   "name": "zaojumian",
+   "type": "mesh",
+   "materials": [
+    "7c90d5ea-f9f0-46d4-bbfa-ae80ddac7f8b"
+   ]
+  },
+  "53e5b548-e8fd-425d-8b3a-d2a318aae67f": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_15.glb",
+   "name": "zuobianzaomian_15",
+   "type": "mesh",
+   "materials": [
+    "4935b6dd-92f1-4241-84c0-0668b73faa99"
+   ]
+  },
+  "53f4e7e7-22ea-4cdf-8acd-f1377b4abd39": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_13.glb",
+   "name": "youbinzaomian_13",
+   "type": "mesh",
+   "materials": [
+    "a84ef790-c07f-47fa-a209-47a61ecd4752"
+   ]
+  },
+  "557c4255-9979-4f9a-9f5c-3aeece63af50": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuocetiezhi.glb",
+   "name": "zuocetiezhi",
+   "type": "mesh",
+   "materials": [
+    "1a2506a6-9a92-4fd5-ac70-0ade46f2da97"
+   ]
+  },
+  "73b0d37e-1c2b-4864-825f-8b75e307d45a": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_22.glb",
+   "name": "zuobiananniu_22",
+   "type": "mesh",
+   "materials": [
+    "4a23e377-6864-4775-bb4b-e589a217bc00"
+   ]
+  },
+  "74840033-20b7-456c-b4e8-16c11b44736f": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_27.glb",
+   "name": "zuobiananniu_27",
+   "type": "mesh",
+   "materials": [
+    "bfb664b1-a9f0-4e8b-b1d6-e1cf1d71057e"
+   ]
+  },
+  "76b45f8c-07b4-4b6b-b257-664d3c61e162": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/xianshi.glb",
+   "name": "xianshi",
+   "type": "mesh",
+   "materials": [
+    "71aa9a50-c401-49ee-8138-d2930e8a7648"
+   ]
+  },
+  "8228ab43-077e-456c-acfb-239dd30450a4": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_5.glb",
+   "name": "zuobianzaomian_5",
+   "type": "mesh",
+   "materials": [
+    "eb3337b7-f939-4c67-ac23-8b1a05128dac"
+   ]
+  },
+  "83db085d-d937-4f1e-b9b1-153c6c554f0d": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobiananniu_1.glb",
+   "name": "zuobiananniu_1",
+   "type": "mesh",
+   "materials": [
+    "5dd99c98-b04c-4eba-9baa-2faed957144c"
+   ]
+  },
+  "8c6230fd-7c19-4511-999d-644e61d28f9e": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_26.glb",
+   "name": "youbinzaomian_26",
+   "type": "mesh",
+   "materials": [
+    "121cc645-3bf9-4997-a676-e34cdf64d776",
+    "8b658cf9-0e3c-4c26-8b50-0d3e07fc5ba0",
+    "6e066c03-ed63-4d96-af1d-75cb7d4b67bf"
+   ]
+  },
+  "a7c077fb-c0ce-4396-bee2-f2c18e4ba36f": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/dike.glb",
+   "name": "dike",
+   "type": "mesh",
+   "materials": [
+    "91e3a4ab-790c-4d2c-a4a8-03e9dc61c705"
+   ]
+  },
+  "b8b3a462-5356-4f3d-8eda-a988a2d3fb77": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_7.glb",
+   "name": "youbinzaomian_7",
+   "type": "mesh",
+   "materials": [
+    "5e31d915-634e-43f9-8fc7-ded3c87cbeea"
+   ]
+  },
+  "c6dfd2d8-699b-4bca-bd0a-10b58b31d65a": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zaomianxia.glb",
+   "name": "zaomianxia",
+   "type": "mesh",
+   "materials": [
+    "7e221c3b-4778-437f-ab04-e35aae954c7f"
+   ]
+  },
+  "ce5a2c5b-7698-43c1-b957-fa09be121c8a": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_21.glb",
+   "name": "zuobianzaomian_21",
+   "type": "mesh",
+   "materials": [
+    "c38ada10-573c-44e8-9bfd-151e0573436f",
+    "49bac627-8029-457a-a3df-dcb6639d7a0a",
+    "db891f16-2af4-48dd-a319-0185fc8fc833"
+   ]
+  },
+  "cff40b26-d217-458d-a77e-d4fa933f67e7": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_25.glb",
+   "name": "zuobianzaomian_25",
+   "type": "mesh",
+   "materials": [
+    "261cdfa8-d9a5-4f65-9893-9d2d7cb4c0de",
+    "d7c5210c-018c-49e0-b380-ed394711427b",
+    "30b57105-42ab-4a20-9c8b-61654e6a4dc4"
+   ]
+  },
+  "d60a5d5c-7465-4634-a512-d2e55ef6d6e9": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_3.glb",
+   "name": "youbiananniu_3",
+   "type": "mesh",
+   "materials": [
+    "11755626-6e28-402f-877f-cc355bff51ba"
+   ]
+  },
+  "d77739e0-4630-4bec-82e7-af88aab8d294": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youcetiezhi.glb",
+   "name": "youcetiezhi",
+   "type": "mesh",
+   "materials": [
+    "620543e0-ae89-4999-a6c9-4e2a590973e4"
+   ]
+  },
+  "d7efb241-c065-4a19-8c84-7ec8b2cdbcf4": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_003.glb",
+   "name": "youbiananniu_003",
+   "type": "mesh",
+   "materials": [
+    "f476911c-86ed-4a76-a1bb-66158149f5d3"
+   ]
+  },
+  "dccce319-20df-4d41-a049-a1d010784874": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_9.glb",
+   "name": "zuobianzaomian_9",
+   "type": "mesh",
+   "materials": [
+    "f557a167-f354-4832-9386-654ce1976c21"
+   ]
+  },
+  "ded49b21-858c-4621-b2ed-8d2176740644": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zuobianzaomian_10_001.glb",
+   "name": "zuobianzaomian_10_001",
+   "type": "mesh",
+   "materials": [
+    "a85dc407-722b-44fb-bfb3-f44214c1068f"
+   ]
+  },
+  "e0d50d73-e537-4a29-a8d1-2f108aee469a": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_19.glb",
+   "name": "youbiananniu_19",
+   "type": "mesh",
+   "materials": [
+    "03bfe0dd-294e-4372-ad30-f77fa16db124"
+   ]
+  },
+  "e3a6cfc4-4deb-4b97-b6e7-a533141e7a2e": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_001.glb",
+   "name": "youbiananniu_001",
+   "type": "mesh",
+   "materials": [
+    "ef4c6b16-1bb0-407f-a16b-515745f45479"
+   ]
+  },
+  "ec6f970f-73d9-471a-bc36-4b65bbfc0118": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbinzaomian_14.glb",
+   "name": "youbinzaomian_14",
+   "type": "mesh",
+   "materials": [
+    "5b0db4a2-bbe3-4d60-acd6-8d2bdb047ba1"
+   ]
+  },
+  "f6b9885c-7632-4502-b13e-ff93d62545c7": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/zaojuqian.glb",
+   "name": "zaojuqian",
+   "type": "mesh",
+   "materials": [
+    "f3be975c-6f95-4933-b9dc-a451148b8ce8"
+   ]
+  },
+  "f7d430cd-d079-488b-be92-7d604f1e606b": {
+   "url": "official_asset/template/Product_ZJG_5cam/models/youbiananniu_24.glb",
+   "name": "youbiananniu_24",
+   "type": "mesh",
+   "materials": [
+    "e0a8359e-6d72-40ad-acc1-a976ddf78aba"
+   ]
+  }
+ },
+ "models": {
+  "00000000-0000-0000-0000-000000000000": {
+   "name": "model_root",
+   "type": "root",
+   "children": [
+    "d3ab0287-7809-43bd-853c-cc3f4cd4b013",
+    "984d3c41-7be3-4192-92e6-a181d60eb41e",
+    "0161b9d6-3dc1-4428-9f2a-183100d69521",
+    "85921107-1f0a-46e9-bc8a-d4e18ea72e20",
+    "4ff97222-b1a6-4673-b05b-e044620f67e4"
+   ]
+  },
+  "0161b9d6-3dc1-4428-9f2a-183100d69521": {
+   "name": "anniuizuoce",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "4e091747-b727-40be-8d42-5686efbb88e7",
+    "60aaa2a9-68a9-4f31-b6e9-815f4cfd18fa",
+    "7fbc96c2-08cb-4483-b881-d37ce4b06a44",
+    "58e30b2d-d272-4c20-9405-e6d17f056f74",
+    "d352186f-cde6-4d75-9b7b-eec749e19fd6",
+    "5ec69fa2-452d-4d82-8b5b-4bf0b2794238",
+    "3ac1cb09-cc43-40fd-8891-6da9ccb25da9"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "0ac383f2-2734-4aca-9ec8-44772f191093": {
+   "mesh": "22219555-0e7e-4553-8c45-7a6b406c06a7",
+   "name": "zuobianzaomian_20",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.23022947314484277,
+    0.04059502064282504,
+    0.09673317969744595
+   ],
+   "is_locked": false,
+   "is_visible": false,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "16804d6a-ecee-4070-a7e0-40007e698a33": {
+   "mesh": "53f4e7e7-22ea-4cdf-8acd-f1377b4abd39",
+   "name": "youbinzaomian_13",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.2299999808956839,
+    0.0403682095319089,
+    0.05169999534785185
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "1a9ec71a-f0ab-439f-ae58-6b5d2cbb6525": {
+   "mesh": "c6dfd2d8-699b-4bca-bd0a-10b58b31d65a",
+   "name": "zaomianxia",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.02627197027206421,
+    0.006434398293495178,
+    0.033040919303894044
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "201f2104-f3a2-415e-aee7-25df380a7b74": {
+   "mesh": "d7efb241-c065-4a19-8c84-7ec8b2cdbcf4",
+   "name": "youbiananniu_003",
+   "type": "model",
+   "scale": [
+    1.978851079940796,
+    1.978851079940796,
+    1.978851079940796
+   ],
+   "position": [
+    -0.08262629508972168,
+    -0.16944995880126953,
+    0.0712409782409668
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "24631540-8544-4d6c-a670-de81a39cf7a0": {
+   "mesh": "53e5b548-e8fd-425d-8b3a-d2a318aae67f",
+   "name": "zuobianzaomian_15",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.22999999996916595,
+    0.04036818741123081,
+    0.07437951804836392
+   ],
+   "is_locked": false,
+   "is_visible": false,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "372f5ecd-8d25-4801-9cdb-040963d40ce3": {
+   "mesh": "e0d50d73-e537-4a29-a8d1-2f108aee469a",
+   "name": "youbiananniu_19",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.08247624397277832,
+    -0.16963180541992187,
+    0.043938889503479
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "3ac1cb09-cc43-40fd-8891-6da9ccb25da9": {
+   "mesh": "2ae6a946-93c7-45ce-bc84-a978776d0482",
+   "name": "zuobiananniu_28",
+   "type": "model",
+   "scale": [
+    1.978851079940796,
+    1.978851079940796,
+    1.978851079940796
+   ],
+   "position": [
+    0.08257884979248047,
+    -0.16944995880126953,
+    0.0712409782409668
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "3b86a33e-a16d-4a15-a2f5-b1b2fe7d2710": {
+   "mesh": "248bb01d-8e82-481e-8496-41cbe61e9cea",
+   "name": "youbiananniu_28",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.0825,
+    -0.16962751388549804,
+    0.06795300483703613
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "4e091747-b727-40be-8d42-5686efbb88e7": {
+   "mesh": "557c4255-9979-4f9a-9f5c-3aeece63af50",
+   "name": "zuocetiezhi",
+   "type": "model",
+   "scale": [
+    3.685732841491699,
+    3.685732841491699,
+    3.685732841491699
+   ],
+   "position": [
+    0.09022933959960938,
+    -0.1720806884765625,
+    0.04731344223022461
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000108958841,
+    179.99999400585494
+   ]
+  },
+  "4ff97222-b1a6-4673-b05b-e044620f67e4": {
+   "name": "zaotaidingmian02",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "9e02e313-7cf2-4086-8e2a-be3c02028e1b",
+    "16804d6a-ecee-4070-a7e0-40007e698a33",
+    "ecf0afa3-b271-404a-b951-66b438173ad4",
+    "ffbee2a4-802d-4578-9c19-439503c150be",
+    "995a52b0-9b48-4ebb-870f-795b864cf45b",
+    "6144c756-caa4-4885-b31b-16c59d0f7380"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "53ae23c4-d7f6-4c64-b50e-56b17fd185d0": {
+   "mesh": "d77739e0-4630-4bec-82e7-af88aab8d294",
+   "name": "youcetiezhi",
+   "type": "model",
+   "scale": [
+    3.685732841491699,
+    3.685732841491699,
+    3.685732841491699
+   ],
+   "position": [
+    -0.07623372077941895,
+    -0.1720806884765625,
+    0.04731344223022461
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000108958841,
+    179.99999400585494
+   ]
+  },
+  "58e30b2d-d272-4c20-9405-e6d17f056f74": {
+   "mesh": "282902b8-905d-49f3-a5ed-53255b4ff2c9",
+   "name": "zuobiananniu_11",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.08252375602722167,
+    -0.1696318244934082,
+    0.043938889503479
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "5ec69fa2-452d-4d82-8b5b-4bf0b2794238": {
+   "mesh": "74840033-20b7-456c-b4e8-16c11b44736f",
+   "name": "zuobiananniu_27",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.08250000953674316,
+    -0.16962751388549804,
+    0.06795300483703613
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "60aaa2a9-68a9-4f31-b6e9-815f4cfd18fa": {
+   "mesh": "83db085d-d937-4f1e-b9b1-153c6c554f0d",
+   "name": "zuobiananniu_1",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.08250000953674316,
+    -0.1601318359375,
+    0.07049194812774658
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "6144c756-caa4-4885-b31b-16c59d0f7380": {
+   "mesh": "20809d17-e653-49fe-a807-749d2093f872",
+   "name": "youbinzaomian_18",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.22999998089568444,
+    0.040368204721861936,
+    0.08749999939495937
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "6ebb7f10-74ed-4df9-a6b0-e895e7b2f60f": {
+   "mesh": "cff40b26-d217-458d-a77e-d4fa933f67e7",
+   "name": "zuobianzaomian_25",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.23367466068561582,
+    0.04044327317924903,
+    0.08769738138465474
+   ],
+   "is_locked": false,
+   "is_visible": false,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999908938342,
+    -89.99999999999983,
+    -1.8638692210970472e-05
+   ]
+  },
+  "7886153c-50ed-441b-9705-989c69cd0e42": {
+   "mesh": "f7d430cd-d079-488b-be92-7d604f1e606b",
+   "name": "youbiananniu_24",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.08249999046325683,
+    -0.16963180541992187,
+    0.06145300388336181
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "7fbc96c2-08cb-4483-b881-d37ce4b06a44": {
+   "mesh": "12ec6334-a697-4ac0-ad83-d16cba4d5832",
+   "name": "zuobiananniu_8",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.08252375602722167,
+    -0.16963258743286133,
+    0.05070000171661377
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "85921107-1f0a-46e9-bc8a-d4e18ea72e20": {
+   "name": "zaotaidingminan01",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "c120ca47-ab2c-4667-8001-e66a49541c70",
+    "c4120a89-9f63-4968-bfc5-33bae3e0ae96",
+    "24631540-8544-4d6c-a670-de81a39cf7a0",
+    "6ebb7f10-74ed-4df9-a6b0-e895e7b2f60f",
+    "0ac383f2-2734-4aca-9ec8-44772f191093",
+    "db2eecf7-8ffa-4c96-9925-cece06e4d75a"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "984d3c41-7be3-4192-92e6-a181d60eb41e": {
+   "name": "youceanniu",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "53ae23c4-d7f6-4c64-b50e-56b17fd185d0",
+    "c608dbc4-fbf6-4b4c-9347-670ace9765b8",
+    "f496266e-0cab-4acb-9f1e-d3c29ed9a8c3",
+    "372f5ecd-8d25-4801-9cdb-040963d40ce3",
+    "7886153c-50ed-441b-9705-989c69cd0e42",
+    "3b86a33e-a16d-4a15-a2f5-b1b2fe7d2710",
+    "d6b628ee-d2f9-42c3-9825-8d6bfb39e095",
+    "201f2104-f3a2-415e-aee7-25df380a7b74"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "995a52b0-9b48-4ebb-870f-795b864cf45b": {
+   "mesh": "ec6f970f-73d9-471a-bc36-4b65bbfc0118",
+   "name": "youbinzaomian_14",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.23022941592437882,
+    0.0405950587897977,
+    0.09673317969744595
+   ],
+   "is_locked": false,
+   "is_visible": false,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "9aad66cb-d114-4e11-8c30-e2eb3b45d2ce": {
+   "mesh": "4e3e02df-09be-4eaf-a024-9b6db6c37a43",
+   "name": "zaojumian",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    1.8376802017883165e-08,
+    -0.00963181734085083,
+    0.04660000324249267
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    1
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "9e02e313-7cf2-4086-8e2a-be3c02028e1b": {
+   "mesh": "39eabf5c-f25c-453b-b3e4-48e289ad9e78",
+   "name": "youbinzaomian_12",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.23100642870711505,
+    0.04036563796851325,
+    0.06219999389794182
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "bd59cdff-3667-419d-b6ec-69aac679b166": {
+   "mesh": "f6b9885c-7632-4502-b13e-ff93d62545c7",
+   "name": "zaojuqian",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.0003357227146625519,
+    -0.2347804832458496,
+    0.0428407621383667
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "c120ca47-ab2c-4667-8001-e66a49541c70": {
+   "mesh": "8228ab43-077e-456c-acfb-239dd30450a4",
+   "name": "zuobianzaomian_5",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.23000001904265757,
+    0.0403655950531684,
+    0.062199993897942465
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "c4120a89-9f63-4968-bfc5-33bae3e0ae96": {
+   "mesh": "dccce319-20df-4d41-a049-a1d010784874",
+   "name": "zuobianzaomian_9",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.23000001904265774,
+    0.04036816661656403,
+    0.05169999534785249
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "c608dbc4-fbf6-4b4c-9347-670ace9765b8": {
+   "mesh": "e3a6cfc4-4deb-4b97-b6e7-a533141e7a2e",
+   "name": "youbiananniu_001",
+   "type": "model",
+   "scale": [
+    1.9724750518798828,
+    1.9724750518798828,
+    1.9724750518798828
+   ],
+   "position": [
+    -0.10872907638549804,
+    -0.15348923683166504,
+    0.0607594108581543
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000112703037,
+    179.99999404329688
+   ]
+  },
+  "c84f12fe-b0a4-460a-8d42-2864e516d3a9": {
+   "mesh": "76b45f8c-07b4-4b6b-b257-664d3c61e162",
+   "name": "xianshi",
+   "type": "model",
+   "scale": [
+    3.3035123348236084,
+    3.304,
+    2.252377510070801
+   ],
+   "position": [
+    0.0033373359061250256,
+    -0.17533346176147557,
+    0.04726775813249783
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "d0f4fe63-2fdb-4fa6-8f55-34cf3f717b29": {
+   "mesh": "a7c077fb-c0ce-4396-bee2-f2c18e4ba36f",
+   "name": "dike",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    1.8352548067923635e-08,
+    -0.009910961985588074,
+    0.018861563205718995
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "d352186f-cde6-4d75-9b7b-eec749e19fd6": {
+   "mesh": "73b0d37e-1c2b-4864-825f-8b75e307d45a",
+   "name": "zuobiananniu_22",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.0825,
+    -0.1696318244934082,
+    0.06145300388336181
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "d3ab0287-7809-43bd-853c-cc3f4cd4b013": {
+   "name": "zaoju",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "c84f12fe-b0a4-460a-8d42-2864e516d3a9",
+    "d0f4fe63-2fdb-4fa6-8f55-34cf3f717b29",
+    "bd59cdff-3667-419d-b6ec-69aac679b166",
+    "9aad66cb-d114-4e11-8c30-e2eb3b45d2ce",
+    "1a9ec71a-f0ab-439f-ae58-6b5d2cbb6525"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "d6b628ee-d2f9-42c3-9825-8d6bfb39e095": {
+   "mesh": "d60a5d5c-7465-4634-a512-d2e55ef6d6e9",
+   "name": "youbiananniu_3",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.08247624397277832,
+    -0.169632568359375,
+    0.05070000171661377
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "db2eecf7-8ffa-4c96-9925-cece06e4d75a": {
+   "mesh": "ce5a2c5b-7698-43c1-b957-fa09be121c8a",
+   "name": "zuobianzaomian_21",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    0.23000001904265724,
+    0.04036816180651706,
+    0.08749999939496
+   ],
+   "is_locked": false,
+   "is_visible": false,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "ecf0afa3-b271-404a-b951-66b438173ad4": {
+   "mesh": "8c6230fd-7c19-4511-999d-644e61d28f9e",
+   "name": "youbinzaomian_26",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.2338211450999889,
+    0.04043631135580014,
+    0.0876973718488508
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999908938342,
+    -89.99999999999983,
+    -1.8638692210970472e-05
+   ]
+  },
+  "f496266e-0cab-4acb-9f1e-d3c29ed9a8c3": {
+   "mesh": "1d4f1422-5db5-481f-8008-86a0ad4a3e99",
+   "name": "youbiananniu_23",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.0825,
+    -0.16013181686401368,
+    0.07049194812774658
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  },
+  "ffbee2a4-802d-4578-9c19-439503c150be": {
+   "mesh": "b8b3a462-5356-4f3d-8eda-a988a2d3fb77",
+   "name": "youbinzaomian_7",
+   "type": "model",
+   "scale": [
+    0.10000000149011612,
+    0.10000000149011612,
+    0.10000000149011612
+   ],
+   "position": [
+    -0.2299999999691757,
+    0.04036823032657569,
+    0.07437951804836329
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "receive_decal": true,
+   "light_channels": [
+    0,
+    2
+   ],
+   "rotation_euler": [
+    -89.99999999999993,
+    -90.00000105271016,
+    179.99999396897667
+   ]
+  }
+ },
+ "cameras": {
+  "00000000-0000-0000-0000-000000000000": {
+   "ids": [],
+   "name": "camera_root",
+   "type": "free",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 35,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "children": [
+    "0181b872-4831-4f4b-b1e7-81f042ad792d"
+   ],
+   "position": [
+    0,
+    -1.45,
+    0.9
+   ],
+   "frame_size": [
+    1484.0625,
+    1001.015625
+   ],
+   "rotation_euler": [
+    0,
+    -30.000000000000004,
+    90
+   ]
+  },
+  "0181b872-4831-4f4b-b1e7-81f042ad792d": {
+   "name": "default_camera_group",
+   "type": "group",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "children": [
+    "028cb306-266e-476b-8426-b8d5b9bc4f49",
+    "ffbca653-0372-49a2-899d-104ba2452929",
+    "3925b2bb-a336-4b9c-ac77-1647e5f60dea",
+    "b5ba849e-edb7-44f2-a9e5-c66d076f2d3f",
+    "6436b8bf-db6a-4249-9c38-5a7a48f7004f"
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "is_locked": false,
+   "is_visible": true,
+   "rotation_euler": [
+    0,
+    0,
+    0
+   ]
+  },
+  "028cb306-266e-476b-8426-b8d5b9bc4f49": {
+   "name": "前视图",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 35,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    0,
+    -1.45,
+    0.9
+   ],
+   "is_locked": true,
+   "frame_size": [
+    1920,
+    1080
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    0,
+    -30.000000000000004,
+    90
+   ]
+  },
+  "0a07c9cc-554f-4d0b-8dd8-4f492840068d": {
+   "name": "顶视图-高",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 50,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    0,
+    0,
+    1
+   ],
+   "is_locked": true,
+   "frame_size": [
+    3840,
+    2160
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    0,
+    -90,
+    90
+   ]
+  },
+  "1020347b-98d5-461e-89d4-9f554cf98a24": {
+   "ids": [],
+   "name": "透视-高",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 50,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    -0.4,
+    -0.95,
+    0.88
+   ],
+   "is_locked": true,
+   "frame_size": [
+    3840,
+    2160
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    3.321535412241903e-13,
+    -40.000000000000014,
+    69.99999999999997
+   ]
+  },
+  "3925b2bb-a336-4b9c-ac77-1647e5f60dea": {
+   "name": "顶视图",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 50,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    0,
+    0,
+    1
+   ],
+   "is_locked": true,
+   "frame_size": [
+    1920,
+    1080
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    0,
+    -90,
+    90
+   ]
+  },
+  "6436b8bf-db6a-4249-9c38-5a7a48f7004f": {
+   "name": "灶头",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 50,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    -0.012367346543594185,
+    -0.25842963360542137,
+    0.4628438641099799
+   ],
+   "is_locked": true,
+   "frame_size": [
+    1920,
+    1080
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    0,
+    -47.999999999999964,
+    49.999999999999986
+   ]
+  },
+  "907a676c-b4b5-4c2b-86b6-74ed6aa6c626": {
+   "name": "旋钮-高",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 50,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    0.118,
+    -0.316,
+    0.317
+   ],
+   "is_locked": true,
+   "frame_size": [
+    3840,
+    2160
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    0,
+    -54.02645555272578,
+    121.73610769533758
+   ]
+  },
+  "a3748973-eddc-44c7-8a3c-cfae349b2696": {
+   "name": "灶头-高",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 50,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    -0.012367346543594185,
+    -0.25842963360542137,
+    0.4628438641099799
+   ],
+   "is_locked": true,
+   "frame_size": [
+    3840,
+    2160
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    0,
+    -47.999999999999964,
+    49.999999999999986
+   ]
+  },
+  "b5ba849e-edb7-44f2-a9e5-c66d076f2d3f": {
+   "ids": [],
+   "name": "旋钮",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 50,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    0.118,
+    -0.316,
+    0.317
+   ],
+   "is_locked": true,
+   "frame_size": [
+    1920,
+    1080
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    0,
+    -54.026,
+    121.736
+   ]
+  },
+  "eaceb6d4-dd07-49ac-96e7-08dd5345b4ae": {
+   "name": "前视图-高",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 35,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    0,
+    -1.45,
+    0.9
+   ],
+   "is_locked": true,
+   "frame_size": [
+    3840,
+    2160
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    2.797860693562078e-07,
+    -30.000000000000004,
+    90
+   ]
+  },
+  "ffbca653-0372-49a2-899d-104ba2452929": {
+   "name": "透视",
+   "type": "camera",
+   "scale": [
+    1,
+    1,
+    1
+   ],
+   "camera": {
+    "dof": false,
+    "fov": 50,
+    "type": "perspective",
+    "sensor_width": 24.576000213623047,
+    "aperture_fstop": 4,
+    "focal_distance": 0,
+    "post_processing_settings": {
+     "gain": 1,
+     "gamma": 1,
+     "offset": 0,
+     "contrast": 1.1,
+     "exposure": 1,
+     "vignette": 0,
+     "saturation": 1.2,
+     "bloom_scale": 0,
+     "temperature": 6500,
+     "bloom_intensity": 0,
+     "bloom_threshold": -1,
+     "shadow_contrast": 1,
+     "highlight_contrast": 1
+    }
+   },
+   "position": [
+    -0.4,
+    -0.95,
+    0.88
+   ],
+   "is_locked": true,
+   "frame_size": [
+    1920,
+    1080
+   ],
+   "is_visible": true,
+   "animatinons": [],
+   "frame_color": [
+    0,
+    0,
+    0
+   ],
+   "rotation_euler": [
+    3.321535412241903e-13,
+    -40.00000000000001,
+    69.99999999999997
+   ]
+  }
+ },
+ "textures": {
+  "066a14cc-4626-4ef8-9c21-66bf5bb738ac": {
+   "name": "XYJHW10x_diff",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/XYJHW10x_diff.png",
+   "format": "TC_DEFAULT"
+  },
+  "2620bf8c-1eda-45e1-b39c-514ec350c0fc": {
+   "name": "ZT_UI_A",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/ZT_UI_A.png",
+   "format": "TC_DEFAULT"
+  },
+  "3b973246-a7d3-4a87-88b2-eb6eb79daa4e": {
+   "name": "T_White_Color",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/T_White_Color.png",
+   "format": "TC_DEFAULT"
+  },
+  "57827b42-ce03-478f-bf3a-864f2260ba6d": {
+   "name": "ZY_1__Mask",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/ZY_1__Mask.png",
+   "format": "TC_EDITOR_ICON"
+  },
+  "809ae52b-dd85-4203-b12f-7aef984c39c7": {
+   "name": "T_MetalWear_Lines_N",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Lines_N.exr",
+   "format": "TC_DEFAULT"
+  },
+  "8c795b02-30f4-43bd-a136-993a410a5642": {
+   "name": "White",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/White.exr",
+   "format": "TC_HDR_COMPRESSED"
+  },
+  "91391735-aacd-4423-9ed0-43d2f4c84ce6": {
+   "name": "ZY_1",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/ZY_1.png",
+   "format": "TC_EDITOR_ICON"
+  },
+  "bbc5c55f-eff3-4207-8fb7-8dc0e24cf2f6": {
+   "name": "T_Metal_Painted_R",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/T_Metal_Painted_R.png",
+   "format": "TC_DEFAULT"
+  },
+  "dd5662e2-e4a6-4910-8509-031f4362d257": {
+   "name": "T_MetalWear_Lines_R",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Lines_R.exr",
+   "format": "TC_DEFAULT"
+  },
+  "ebc43cfe-a77b-4b98-97ec-fcdee5c05a58": {
+   "name": "T_MetalWear_Wear03_R",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Wear03_R.exr",
+   "format": "TC_DEFAULT"
+  },
+  "ec4ea28a-50b0-4a94-a885-23f982af73e7": {
+   "name": "T_MetalWear_Wear03_R",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Wear03_R.exr",
+   "format": "TC_DEFAULT"
+  },
+  "f7816676-6c50-4e05-bb6e-019b7cc142ea": {
+   "name": "GradientTexture0",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/GradientTexture0.tga",
+   "format": "TC_DEFAULT"
+  },
+  "fd64c3ab-5f45-4450-8766-4ec12296d204": {
+   "name": "T_MetalWear_Lines_N",
+   "type": "texture",
+   "urls": "official_asset/template/Product_ZJG_5cam/textures/T_MetalWear_Lines_N.exr",
+   "format": "TC_NORMALMAP"
+  }
+ },
+ "materials": {
+  "01275277-0bf3-4d57-b039-918e888c024c": {
+   "name": "MI_Ground4",
+   "type": "material",
+   "master": "M_Opaque_FingerprintsCC_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.015625,
+    0.015625,
+    0.015625
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 1,
+   "roughness_min_scalar": 0.5,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "03bfe0dd-294e-4372-ad30-f77fa16db124": {
+   "name": "MI_Ground4",
+   "type": "material",
+   "master": "M_Opaque_FingerprintsCC_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.015625,
+    0.015625,
+    0.015625
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 1,
+   "roughness_min_scalar": 0.5,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "11755626-6e28-402f-877f-cc355bff51ba": {
+   "name": "MI_Ground4",
+   "type": "material",
+   "master": "M_Opaque_FingerprintsCC_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.015625,
+    0.015625,
+    0.015625
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 1,
+   "roughness_min_scalar": 0.5,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "121cc645-3bf9-4997-a676-e34cdf64d776": {
+   "name": "Metal_Painted1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "bbc5c55f-eff3-4207-8fb7-8dc0e24cf2f6",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.01600000075995922,
+    0.01600000075995922,
+    0.01600000075995922
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 60,
+   "u_v_tile_v_scalar": 60,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "1a2506a6-9a92-4fd5-ac70-0ade46f2da97": {
+   "name": "MI_ZTUI1",
+   "type": "material",
+   "master": "M_EmissiveMask",
+   "mask_tex": "57827b42-ce03-478f-bf3a-864f2260ba6d",
+   "emiss_color_rgb": [
+    1,
+    1,
+    1
+   ],
+   "specular_scalar": 0,
+   "roughness_scalar": 0,
+   "color_gain_scalar": 1,
+   "emissivecolor_tex": "91391735-aacd-4423-9ed0-43d2f4c84ce6",
+   "color_gamma_scalar": 1,
+   "emiss_instensity_scalar": 1,
+   "desaturation_fraction_scalar": 1
+  },
+  "1a3efaeb-8553-40c6-98eb-bbf7e3bd8b39": {
+   "name": "MI_Ground1",
+   "type": "material",
+   "master": "M_Opaque_Fingerprints_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.00520800007507205,
+    0.00520800007507205,
+    0.00520800007507205
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.08160000294446945,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "1d23d491-e698-457c-8108-b421b4542be6": {
+   "name": "Metal_Painted2",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.40104201436042786,
+    0.25769901275634766,
+    0.09190499782562256
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 1,
+   "u_v_tile_v_scalar": 1,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "1d893d6d-1cd3-462d-b147-78eeac6ae53f": {
+   "name": "MI_Ground1",
+   "type": "material",
+   "master": "M_Opaque_Fingerprints_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.00520800007507205,
+    0.00520800007507205,
+    0.00520800007507205
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.08160000294446945,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "261cdfa8-d9a5-4f65-9893-9d2d7cb4c0de": {
+   "name": "Metal_Painted1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "bbc5c55f-eff3-4207-8fb7-8dc0e24cf2f6",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.01600000075995922,
+    0.01600000075995922,
+    0.01600000075995922
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 60,
+   "u_v_tile_v_scalar": 60,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "2a2c74ca-9f8e-4304-af09-5375fe7dc86b": {
+   "name": "Metal_Bump_Black1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.004999999888241291,
+    0.004999999888241291,
+    0.004999999888241291
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 150,
+   "u_v_tile_v_scalar": 150,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0.20000000298023224,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "30b57105-42ab-4a20-9c8b-61654e6a4dc4": {
+   "name": "Metal_Chrome_White2",
+   "type": "material",
+   "master": "M_Opaque_Metal_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "ec4ea28a-50b0-4a94-a885-23f982af73e7",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.875,
+    0.875,
+    0.875
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 2,
+   "u_v_tile_v_scalar": 2,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "33eab18b-5e19-4360-8baa-f8c1ad984e98": {
+   "name": "Metal_Painted2",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.40104201436042786,
+    0.25769901275634766,
+    0.09190499782562256
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 1,
+   "u_v_tile_v_scalar": 1,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "37655372-5028-426a-b580-d82cad583b92": {
+   "name": "MI_Ground1",
+   "type": "material",
+   "master": "M_Opaque_Fingerprints_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.00520800007507205,
+    0.00520800007507205,
+    0.00520800007507205
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.08160000294446945,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "3ba5498a-a0bb-44fc-9191-02aedfac2eb9": {
+   "name": "Metal_Chrome_White2",
+   "type": "material",
+   "master": "M_Opaque_Metal_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "ec4ea28a-50b0-4a94-a885-23f982af73e7",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.875,
+    0.875,
+    0.875
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 2,
+   "u_v_tile_v_scalar": 2,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "4935b6dd-92f1-4241-84c0-0668b73faa99": {
+   "name": "Metal_Painted1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "bbc5c55f-eff3-4207-8fb7-8dc0e24cf2f6",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.01600000075995922,
+    0.01600000075995922,
+    0.01600000075995922
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 60,
+   "u_v_tile_v_scalar": 60,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "49bac627-8029-457a-a3df-dcb6639d7a0a": {
+   "name": "Metal_Painted2",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.40104201436042786,
+    0.25769901275634766,
+    0.09190499782562256
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 1,
+   "u_v_tile_v_scalar": 1,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "4a23e377-6864-4775-bb4b-e589a217bc00": {
+   "name": "Metal_Chrome_White2",
+   "type": "material",
+   "master": "M_Opaque_Metal_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "ec4ea28a-50b0-4a94-a885-23f982af73e7",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.875,
+    0.875,
+    0.875
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 2,
+   "u_v_tile_v_scalar": 2,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "4f00b474-60f1-4bb2-bc92-aaee6b30a0ed": {
+   "name": "Metal_Bump_Black1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.004999999888241291,
+    0.004999999888241291,
+    0.004999999888241291
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 150,
+   "u_v_tile_v_scalar": 150,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0.20000000298023224,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "5b0db4a2-bbe3-4d60-acd6-8d2bdb047ba1": {
+   "name": "Metal_Bump_Black1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.004999999888241291,
+    0.004999999888241291,
+    0.004999999888241291
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 150,
+   "u_v_tile_v_scalar": 150,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0.20000000298023224,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "5dd99c98-b04c-4eba-9baa-2faed957144c": {
+   "name": "MI_Ground1",
+   "type": "material",
+   "master": "M_Opaque_Fingerprints_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.00520800007507205,
+    0.00520800007507205,
+    0.00520800007507205
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.08160000294446945,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "5e31d915-634e-43f9-8fc7-ded3c87cbeea": {
+   "name": "MI_Ground1",
+   "type": "material",
+   "master": "M_Opaque_Fingerprints_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.00520800007507205,
+    0.00520800007507205,
+    0.00520800007507205
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.08160000294446945,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "620543e0-ae89-4999-a6c9-4e2a590973e4": {
+   "name": "MI_ZTUI1",
+   "type": "material",
+   "master": "M_EmissiveMask",
+   "mask_tex": "57827b42-ce03-478f-bf3a-864f2260ba6d",
+   "emiss_color_rgb": [
+    1,
+    1,
+    1
+   ],
+   "specular_scalar": 0,
+   "roughness_scalar": 0,
+   "color_gain_scalar": 1,
+   "emissivecolor_tex": "91391735-aacd-4423-9ed0-43d2f4c84ce6",
+   "color_gamma_scalar": 1,
+   "emiss_instensity_scalar": 1,
+   "desaturation_fraction_scalar": 1
+  },
+  "6e066c03-ed63-4d96-af1d-75cb7d4b67bf": {
+   "name": "Metal_Chrome_White2",
+   "type": "material",
+   "master": "M_Opaque_Metal_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "ec4ea28a-50b0-4a94-a885-23f982af73e7",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.875,
+    0.875,
+    0.875
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 2,
+   "u_v_tile_v_scalar": 2,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "71aa9a50-c401-49ee-8138-d2930e8a7648": {
+   "name": "MI_ZTUI",
+   "type": "material",
+   "master": "M_EmissiveMask",
+   "mask_tex": "3b973246-a7d3-4a87-88b2-eb6eb79daa4e",
+   "emiss_color_rgb": [
+    1,
+    1,
+    1
+   ],
+   "specular_scalar": 0.30000001192092896,
+   "roughness_scalar": 0.3499999940395355,
+   "color_gain_scalar": 1,
+   "emissivecolor_tex": "2620bf8c-1eda-45e1-b39c-514ec350c0fc",
+   "color_gamma_scalar": 1,
+   "emiss_instensity_scalar": 1,
+   "desaturation_fraction_scalar": 1
+  },
+  "7a587b15-ce14-46e1-b435-00966d10cece": {
+   "name": "Metal_Painted1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "bbc5c55f-eff3-4207-8fb7-8dc0e24cf2f6",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.01600000075995922,
+    0.01600000075995922,
+    0.01600000075995922
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 60,
+   "u_v_tile_v_scalar": 60,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "7c90d5ea-f9f0-46d4-bbfa-ae80ddac7f8b": {
+   "name": "MI_Ground6",
+   "type": "material",
+   "master": "M_Opaque_FingerprintsCC_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "066a14cc-4626-4ef8-9c21-66bf5bb738ac",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.08854199945926666,
+    0.08854199945926666,
+    0.08854199945926666
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 9,
+   "u_v_tile_v_scalar": 9,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 1,
+   "roughness_min_scalar": 0.20000000298023224,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "7e221c3b-4778-437f-ab04-e35aae954c7f": {
+   "name": "MI_Ground4",
+   "type": "material",
+   "master": "M_Opaque_FingerprintsCC_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.015625,
+    0.015625,
+    0.015625
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 1,
+   "roughness_min_scalar": 0.5,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "89ba7041-af5b-4f38-959b-e04d06f60560": {
+   "name": "Metal_Radial1",
+   "type": "material",
+   "master": "M_BrakeRotor_MetalStains_Parent",
+   "mask_tex": "",
+   "metal_tex": "",
+   "normal_tex": "fd64c3ab-5f45-4450-8766-4ec12296d204",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "base_color_rgb": [
+    0.35416701436042786,
+    0.33224600553512573,
+    0.2969839870929718
+   ],
+   "u_v_tile_scalar": 1.7999999523162842,
+   "anisotropy_scalar": 0.699999988079071,
+   "cracks_scale_scalar": 20,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.8999999761581421,
+   "roughness_min_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "crack_intensity_scalar": 0.800000011920929,
+   "normal_intensity_scalar": 0.11999999731779099,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "8b658cf9-0e3c-4c26-8b50-0d3e07fc5ba0": {
+   "name": "Metal_Painted2",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.40104201436042786,
+    0.25769901275634766,
+    0.09190499782562256
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 1,
+   "u_v_tile_v_scalar": 1,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "91e3a4ab-790c-4d2c-a4a8-03e9dc61c705": {
+   "name": "Metal_Chrome_White",
+   "type": "material",
+   "master": "M_Opaque_Metal_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "ebc43cfe-a77b-4b98-97ec-fcdee5c05a58",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    1,
+    1,
+    1
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 2,
+   "u_v_tile_v_scalar": 2,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.15000000596046448,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "9a887ede-3209-4949-9326-60da476d8822": {
+   "name": "MI_Ground1",
+   "type": "material",
+   "master": "M_Opaque_Fingerprints_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.00520800007507205,
+    0.00520800007507205,
+    0.00520800007507205
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.08160000294446945,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "a3694c17-e375-47c8-96ce-926a362fa2d4": {
+   "name": "MI_Ground4",
+   "type": "material",
+   "master": "M_Opaque_FingerprintsCC_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.015625,
+    0.015625,
+    0.015625
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 1,
+   "roughness_min_scalar": 0.5,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "a6ff8c67-a401-4dc7-8a78-42d5c75621e8": {
+   "name": "Metal_Radial1",
+   "type": "material",
+   "master": "M_BrakeRotor_MetalStains_Parent",
+   "mask_tex": "",
+   "metal_tex": "",
+   "normal_tex": "fd64c3ab-5f45-4450-8766-4ec12296d204",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "base_color_rgb": [
+    0.35416701436042786,
+    0.33224600553512573,
+    0.2969839870929718
+   ],
+   "u_v_tile_scalar": 1.7999999523162842,
+   "anisotropy_scalar": 0.699999988079071,
+   "cracks_scale_scalar": 20,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.8999999761581421,
+   "roughness_min_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "crack_intensity_scalar": 0.800000011920929,
+   "normal_intensity_scalar": 0.11999999731779099,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "a84ef790-c07f-47fa-a209-47a61ecd4752": {
+   "name": "Metal_Bump_Black1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.004999999888241291,
+    0.004999999888241291,
+    0.004999999888241291
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 150,
+   "u_v_tile_v_scalar": 150,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0.20000000298023224,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "a85dc407-722b-44fb-bfb3-f44214c1068f": {
+   "name": "Metal_Painted1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "bbc5c55f-eff3-4207-8fb7-8dc0e24cf2f6",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.01600000075995922,
+    0.01600000075995922,
+    0.01600000075995922
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 60,
+   "u_v_tile_v_scalar": 60,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "a95154c2-a5b1-4886-a51b-c124dfe244fb": {
+   "name": "Metal_Chrome_White2",
+   "type": "material",
+   "master": "M_Opaque_Metal_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "ec4ea28a-50b0-4a94-a885-23f982af73e7",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.875,
+    0.875,
+    0.875
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 2,
+   "u_v_tile_v_scalar": 2,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "b813db0d-6abe-4622-ab00-d28a4ff8e765": {
+   "name": "Metal_Bump_Black1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.004999999888241291,
+    0.004999999888241291,
+    0.004999999888241291
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 150,
+   "u_v_tile_v_scalar": 150,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0.20000000298023224,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "bfb664b1-a9f0-4e8b-b1d6-e1cf1d71057e": {
+   "name": "MI_Ground1",
+   "type": "material",
+   "master": "M_Opaque_Fingerprints_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.00520800007507205,
+    0.00520800007507205,
+    0.00520800007507205
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.08160000294446945,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "c08c12ca-18bd-4bd9-a018-93ac7aa1ece9": {
+   "name": "Metal_Painted1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "bbc5c55f-eff3-4207-8fb7-8dc0e24cf2f6",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.01600000075995922,
+    0.01600000075995922,
+    0.01600000075995922
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 60,
+   "u_v_tile_v_scalar": 60,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "c38ada10-573c-44e8-9bfd-151e0573436f": {
+   "name": "Metal_Painted1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "bbc5c55f-eff3-4207-8fb7-8dc0e24cf2f6",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.01600000075995922,
+    0.01600000075995922,
+    0.01600000075995922
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 60,
+   "u_v_tile_v_scalar": 60,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "d7c5210c-018c-49e0-b380-ed394711427b": {
+   "name": "Metal_Painted2",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.40104201436042786,
+    0.25769901275634766,
+    0.09190499782562256
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 1,
+   "u_v_tile_v_scalar": 1,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "db891f16-2af4-48dd-a319-0185fc8fc833": {
+   "name": "Metal_Chrome_White2",
+   "type": "material",
+   "master": "M_Opaque_Metal_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "ec4ea28a-50b0-4a94-a885-23f982af73e7",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.875,
+    0.875,
+    0.875
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 2,
+   "u_v_tile_v_scalar": 2,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "e0a8359e-6d72-40ad-acc1-a976ddf78aba": {
+   "name": "Metal_Chrome_White2",
+   "type": "material",
+   "master": "M_Opaque_Metal_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "ec4ea28a-50b0-4a94-a885-23f982af73e7",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.875,
+    0.875,
+    0.875
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 2,
+   "u_v_tile_v_scalar": 2,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "e7d0b792-bd2a-4526-9e95-f6815b1281aa": {
+   "name": "MI_ZTUI1",
+   "type": "material",
+   "master": "M_EmissiveMask",
+   "mask_tex": "57827b42-ce03-478f-bf3a-864f2260ba6d",
+   "emiss_color_rgb": [
+    1,
+    1,
+    1
+   ],
+   "specular_scalar": 0,
+   "roughness_scalar": 0,
+   "color_gain_scalar": 1,
+   "emissivecolor_tex": "91391735-aacd-4423-9ed0-43d2f4c84ce6",
+   "color_gamma_scalar": 1,
+   "emiss_instensity_scalar": 1,
+   "desaturation_fraction_scalar": 1
+  },
+  "eb3337b7-f939-4c67-ac23-8b1a05128dac": {
+   "name": "Metal_Bump_Black1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.004999999888241291,
+    0.004999999888241291,
+    0.004999999888241291
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 150,
+   "u_v_tile_v_scalar": 150,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0.20000000298023224,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "ef4c6b16-1bb0-407f-a16b-515745f45479": {
+   "name": "MI_Ground4",
+   "type": "material",
+   "master": "M_Opaque_FingerprintsCC_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.015625,
+    0.015625,
+    0.015625
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 1,
+   "roughness_min_scalar": 0.5,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  },
+  "f3be975c-6f95-4933-b9dc-a451148b8ce8": {
+   "name": "Metal_Brushed1",
+   "type": "material",
+   "master": "M_Opaque_MetalAnTex_Parent",
+   "mask_tex": "",
+   "normal_tex": "809ae52b-dd85-4203-b12f-7aef984c39c7",
+   "basecolor_tex": "",
+   "roughness_tex": "dd5662e2-e4a6-4910-8509-031f4362d257",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.46875,
+    0.4248049855232239,
+    0.3710939884185791
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 30,
+   "u_v_tile_v_scalar": 45,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.30000001192092896,
+   "roughness_min_scalar": 0.10000000149011612,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 0.30000001192092896,
+   "stains_intensity_scalar": 1,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "f476911c-86ed-4a76-a1bb-66158149f5d3": {
+   "name": "Metal_Radial1",
+   "type": "material",
+   "master": "M_BrakeRotor_MetalStains_Parent",
+   "mask_tex": "",
+   "metal_tex": "",
+   "normal_tex": "fd64c3ab-5f45-4450-8766-4ec12296d204",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "base_color_rgb": [
+    0.35416701436042786,
+    0.33224600553512573,
+    0.2969839870929718
+   ],
+   "u_v_tile_scalar": 1.7999999523162842,
+   "anisotropy_scalar": 0.699999988079071,
+   "cracks_scale_scalar": 20,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.8999999761581421,
+   "roughness_min_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "crack_intensity_scalar": 0.800000011920929,
+   "normal_intensity_scalar": 0.11999999731779099,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "f557a167-f354-4832-9386-654ce1976c21": {
+   "name": "Metal_Bump_Black1",
+   "type": "material",
+   "master": "M_Opaque_Master",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.004999999888241291,
+    0.004999999888241291,
+    0.004999999888241291
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 150,
+   "u_v_tile_v_scalar": 150,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 0.5,
+   "roughness_min_scalar": 0.20000000298023224,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.800000011920929,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.3499999940395355
+  },
+  "f9ff6e2a-8c56-40cb-a295-ab206d48e2b5": {
+   "name": "MI_Ground4",
+   "type": "material",
+   "master": "M_Opaque_FingerprintsCC_Parent",
+   "mask_tex": "",
+   "normal_tex": "",
+   "basecolor_tex": "",
+   "roughness_tex": "",
+   "anisotropy_tex": "",
+   "base_color_rgb": [
+    0.015625,
+    0.015625,
+    0.015625
+   ],
+   "anisotropy_scalar": 0.5,
+   "u_v_tile_u_scalar": 15,
+   "u_v_tile_v_scalar": 15,
+   "u_v_offset_u_scalar": 0,
+   "u_v_offset_v_scalar": 0,
+   "roughness_max_scalar": 1,
+   "roughness_min_scalar": 0.5,
+   "tri_planar_pivot_xyz": [
+    0,
+    0,
+    0
+   ],
+   "aniso_mip_bias_scalar": 0,
+   "dust_intensity_scalar": 0.20000000298023224,
+   "mask_intensity_scalar": 1,
+   "normal_intensity_scalar": 1,
+   "stains_intensity_scalar": 0.20000000298023224,
+   "tri_planar_rotation_xyz": [
+    0,
+    0,
+    0
+   ],
+   "clear_coat_amount_scalar": 0.5,
+   "opacity_intensity_scalar": 1,
+   "clear_coat_roughness_scalar": 0.15000000596046448,
+   "fingerprints_intensity_scalar": 0.10000000149011612
+  }
+ },
+ "environments": {
+  "e5cf3914-df09-4b80-84ce-8a2d4e85f26a": {
+   "name": "白背景",
+   "lights": {
+    "00000000-0000-0000-0000-000000000000": {
+     "children": []
+    }
+   },
+   "settings": {
+    "image": "8c795b02-30f4-43bd-a136-993a410a5642",
+    "hdri_angle": 0,
+    "sun_height": 0,
+    "hdri_contrast": 1,
+    "sun_direction": 0,
+    "use_sun_light": false,
+    "background_type": "white",
+    "hdri_brightness": 100,
+    "hdri_resolution": 128,
+    "skylight_intensity": 0,
+    "sun_light_brightness": 1
+   }
+  }
+ },
+ "scene_settings": {
+  "active_camera": "028cb306-266e-476b-8426-b8d5b9bc4f49",
+  "active_environment": "e5cf3914-df09-4b80-84ce-8a2d4e85f26a"
+ }
+}

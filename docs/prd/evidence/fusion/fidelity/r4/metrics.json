@@ -1,0 +1,157 @@
+{
+ "metric_code": "tools/fusion-checks/fidelity_r4_analyze.py (gold 7680x4320->1920x1080 LANCZOS; fg mask = |lum - gold border median|>12; SSIM luminance 11x11 uniform)",
+ "baseline_r2": {
+  "mae": 12.7765,
+  "ssim": 0.921622,
+  "mae_fg": 34.4164,
+  "d_lum_fg": -13.759,
+  "fg_px": 513809
+ },
+ "e1": {
+  "mae": 15.1533,
+  "ssim": 0.910028,
+  "mae_fg": 52.0831,
+  "d_lum_fg": 40.687,
+  "fg_px": 513809
+ },
+ "e2": {
+  "mae": 14.3048,
+  "ssim": 0.913209,
+  "mae_fg": 42.9553,
+  "d_lum_fg": 18.374,
+  "fg_px": 513809
+ },
+ "r2_global_curve_fit": {
+  "mae_fg_before": 34.4164,
+  "mae_fg_after_lut": 26.3797,
+  "residual_fraction_fg": 0.7665,
+  "gain_gamma_per_channel": [
+   {
+    "gamma": 0.5542,
+    "gain": 0.9025
+   },
+   {
+    "gamma": 0.5862,
+    "gain": 0.9017
+   },
+   {
+    "gamma": 0.5999,
+    "gain": 0.8997
+   }
+  ],
+  "lut_samples_R_G_B_at_[32,64,128,192,224,250]": [
+   [
+    96.4,
+    121.9,
+    175.0,
+    212.2,
+    232.3,
+    232.3
+   ],
+   [
+    92.3,
+    112.9,
+    170.0,
+    198.8,
+    231.7,
+    231.7
+   ],
+   [
+    92.5,
+    139.0,
+    180.1,
+    186.9,
+    231.0,
+    231.0
+   ]
+  ]
+ },
+ "regions_lum": {
+  "background": {
+   "gold_p50": 255.0,
+   "r2_p50": 255.0,
+   "e1_p50": 255.0,
+   "e2_p50": 255.0,
+   "gold_p95": 255.0,
+   "r2_p95": 255.0,
+   "e1_p95": 255.0,
+   "r2_mae": 5.648,
+   "r2_mae_after_global_lut": null,
+   "e1_mae": 2.988,
+   "e2_mae": 4.867
+  },
+  "interior_cavity": {
+   "gold_p50": 180.9,
+   "r2_p50": 123.4,
+   "e1_p50": 184.6,
+   "e2_p50": 141.6,
+   "gold_p95": 242.1,
+   "r2_p95": 212.0,
+   "e1_p95": 255.0,
+   "r2_mae": 54.662,
+   "r2_mae_after_global_lut": 35.152,
+   "e1_mae": 61.966,
+   "e2_mae": 54.502
+  },
+  "crisper_bins": {
+   "gold_p50": 137.5,
+   "r2_p50": 116.1,
+   "e1_p50": 171.9,
+   "e2_p50": 130.3,
+   "gold_p95": 226.8,
+   "r2_p95": 208.0,
+   "e1_p95": 255.0,
+   "r2_mae": 33.715,
+   "r2_mae_after_global_lut": 38.317,
+   "e1_mae": 44.801,
+   "e2_mae": 29.636
+  },
+  "drawers": {
+   "gold_p50": 233.1,
+   "r2_p50": 218.9,
+   "e1_p50": 255.0,
+   "e2_p50": 246.0,
+   "gold_p95": 236.2,
+   "r2_p95": 219.9,
+   "e1_p95": 255.0,
+   "r2_mae": 20.063,
+   "r2_mae_after_global_lut": 9.448,
+   "e1_mae": 31.379,
+   "e2_mae": 19.839
+  },
+  "door_left_inner": {
+   "gold_p50": 180.4,
+   "r2_p50": 123.4,
+   "e1_p50": 255.0,
+   "e2_p50": 214.2,
+   "gold_p95": 227.2,
+   "r2_p95": 214.0,
+   "e1_p95": 255.0,
+   "r2_mae": 53.456,
+   "r2_mae_after_global_lut": 40.903,
+   "e1_mae": 65.886,
+   "e2_mae": 65.18
+  },
+  "door_right_inner": {
+   "gold_p50": 210.2,
+   "r2_p50": 154.3,
+   "e1_p50": 215.9,
+   "e2_p50": 167.0,
+   "gold_p95": 227.2,
+   "r2_p95": 214.0,
+   "e1_p95": 255.0,
+   "r2_mae": 43.145,
+   "r2_mae_after_global_lut": 27.286,
+   "e1_mae": 38.773,
+   "e2_mae": 35.689
+  }
+ },
+ "checker": {
+  "script": "tools/fusion-checks/fidelity_r4_check.py",
+  "selftest_r2_copy_exit": 1,
+  "e1_exit": 1,
+  "e2_exit": 1,
+  "rule": "exit0 only if mae_fg<0.99*best and mae<=best and ssim>=best-0.002 vs r2 baseline (and E1 for E2)"
+ },
+ "stopped": "2 rounds, no improvement vs r2 -> stopped per brief"
+}

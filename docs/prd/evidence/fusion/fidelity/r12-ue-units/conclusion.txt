@@ -1,0 +1,38 @@
+r12 结论：显示映射已统一到「引擎口径」opt-in 开关（--display-units engine），环境路径用纯单位变换锁死不变（329c 对照保住），灯光路径按 UE 5.5.4 源码 candela 公式打通——灶机从几乎全黑（fg_lum 19.35）到 126.82（金样 80.33），mae_fg 87.56→74.12、SSIM 0.646→0.785、Δlum −60.9→+46.5。灯路首次成为有效变量。但当前经验尺度比金样亮 1.58×，且源码推导与实测矛盾，显示常数未决。未调 k=3.1 原值，未开 F3/F5，未 commit。
+时间：2026-11-14 上午–12:40 Asia/Shanghai
+
+一、检查器先写后改（fail-first）
+
+命令：python3 tools/fusion-checks/ue_display_check.py（现在 exit 0，输出见 check-output.txt）
+- A：代码实现 ue_filmic.ue55_exposure_scale_engine == 0.18×683×2^bias（改前函数不存在）
+- B：环境路径单位变换一致性锁：k_new×s_new(b=0) == k_old×s_old = 2.5833，k_new=3.1/(683×0.18×1.2)=0.0210129603。这是纯单位变换（内容不变），不是新拟合，不违反「不按产品调 k」。
+- C：渲染门——329c mae_fg 19.7564 ≤ 22.3068（r8 基线+2.5）；灶机 fg_lum 126.82 ≥ 40。
+candela 检查器 ue_candela_unit_check.py 仍 exit 0（面光 2I/A 与 mutracer 2πI/683 一致）。
+
+二、代码改动（未 commit，备份 ~/mutracer-scratch/bak/r12/）
+
+- blender_inner.py：新增 --display-units legacy|engine（默认 legacy，默认路径字节不变）；candela 面光 W=2πI/683（r11）；emission 乘 emission_scale=1/147.528（engine 模式下的单位变换，灶机/2aa0/枕头场景均无 emission>0 的 stage，329c 有——靠它保住对照）。
+- ue_filmic.py：ue55_post 增加 display_units 分支；engine 分支 = W→nits(×683) 后 ×0.18×2^bias；legacy 分支原样。
+- run_blender_final.py：透传 --display-units。
+
+三、渲染结果（1920×1080 spp256 denoise1，Standard，k_new=0.0210129603）
+
+- 灶机 00ac0cff 前视（13 盏灯共 97.12 cd，无自发光）：fg_lum 126.82 vs 金样 80.33（+58%）；mae 27.34，mae_fg 74.12，SSIM 0.7851，Δlum_fg +46.49。r11→r12：mae_fg 87.56→74.12，SSIM 0.647→0.785，Δlum −60.89→+46.49。
+- 329c 对照（无灯）：mae_fg 19.7564（r8 基线 19.8068），Δlum_fg +2.35（r8 +2.48）。对照保持。
+- 枕头（2 盏灯 2.6cd，贡献可忽略）：与 r8 噪声级一致（mae_fg 26.5859 vs 26.5856）——环境路径不变性对照通过。
+- 2aa0（2 盏灯 1.1cd，hdri 背景，无自发光）：mae_fg 57.48→62.36，Δlum +54.2→+59.5；probe（legacy 灯能量+engine 显示）偏亮到 Δlum +65.9。归因：engine 显示把整条灯路 ×147.5 提升，两盏小灯从不可见变可见；环境路径被 k_new 锁住。2aa0 本身仍环境主导过亮 +54（r8 起就有的老问题，与灯无关）。
+
+四、未决（本轮最重要的发现，如实记录）
+
+显示常数矛盾：源码链 AEM_Manual+无物理曝光 → WhitePoint=1.0（EyeAdaptation.cpp:436），直方图钳制界 = WhitePoint×0.18（EyeAdaptation.cpp:508-509，r12 最后一轮 grep 新发现）→ TargetExposure=0.18/0.18=1.0 → GlobalExposure=Comp=2^bias（0.18 相消）。纯 2^bias 口径预言 mutracer 灯路还要再亮 5.56×（灶机约 8.8× 过冲金样），与渲染矛盾；现实现的 0.18×2^bias 是经验上最接近的（+58%，且含已知几何缺陷）。三个可能解释：MRQ/PT 渲染下曝光链另有覆盖（PipelineConfig uasset 无法读取）、mutracer 与 UE 的几何/tonemap 残差、或我们仍漏了某个 radiance 侧因子。仲裁需要 UE 对同一场景的 ground-truth 渲染（即带完整 Engine 的实例，要花钱，需 Bano 拍板）。
+灯路交叉验证到头：五个产品里只有灶机的灯是主导变量，其余产品灯贡献可忽略，无法用第二产品验证全局显示常数。
+
+五、下一刀（建议顺序）
+
+1. 几何残留（便宜、本地）：灶机 59px 高度差、左炉架 is_visible=false（金样两侧炉架完整）。注意：左炉架补回会让 fg_lum 更高（金样里它是亮的），过冲可能变大——先修几何再仲裁常数。
+2. UE ground-truth 渲染（要花钱，需批准）：单灯+白卡+同 JSON 场景，一次渲染即可同时定死显示常数与 2I/A 公式。
+3. 之后：烟机贴花（decal 路径）、r13 环境常数的纯引擎推导（SkyLight 强度语义，现经验锚 2.583× 差距）。
+
+六、回滚
+
+--display-units 默认 legacy，默认 Standard 成片不受影响；engine 分支全部 opt-in。删除三个文件的新增分支即可回滚；备份在 ~/mutracer-scratch/bak/r12/（blender_inner c11c2422…、ue_filmic 30ec118e…）。HEAD 仍 af527ef，工作区未 stage。

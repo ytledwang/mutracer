@@ -1,0 +1,2 @@
+RESULT PASS errors=0 warnings=0 file=/Users/wangjianzheng/Project/git/mutracer/tools/import-smoke/out/sample-fbx.glb
+/Users/wangjianzheng/Project/git/mutracer/tools/import-smoke/out/sample-fbx.glb OK (486968 bytes, glTF magic, contract checked)

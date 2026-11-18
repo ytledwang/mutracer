@@ -1,0 +1,1 @@
+可影金样 329c202e 不是厨房融合也不是 Blender，而是 UE 5.5 Movie Render Queue 的 Path Tracer 在单品场景上拍的：白天空球作背景、SkyLight 仍用 4.exr（强度 0.35、角度 182.9°）、无灯、1024 样本/32 次反弹、相机 Manual 曝光补偿 0.8 并走内置 Color Grading（对比 1.2、伽马 0.9、饱和 0.8），再经工程未覆盖的默认 Tonemapper 输出 7680×4320 PNG；MuTracer 要对齐，应先复现这条输入与算子，而不是继续在另一套灯光上调曲线。

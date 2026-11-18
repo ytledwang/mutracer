@@ -1,0 +1,195 @@
+{
+  "version": "mutracer-names/1",
+  "source": "gltf",
+  "nodes": [
+    {
+      "index": 0,
+      "name": "Fridge_Body",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "mesh",
+      "mesh": 0,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 1,
+      "name": "Fridge_Door",
+      "parent": "Door_Pivot",
+      "parentIndex": 3,
+      "kind": "mesh",
+      "mesh": 1,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 2,
+      "name": "Fridge_Handle",
+      "parent": "Door_Pivot",
+      "parentIndex": 3,
+      "kind": "mesh",
+      "mesh": 2,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 3,
+      "name": "Door_Pivot",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "node",
+      "mesh": null,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 4,
+      "name": "Crisper_Drawer",
+      "parent": "Crisper_Pivot",
+      "parentIndex": 5,
+      "kind": "mesh",
+      "mesh": 3,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 5,
+      "name": "Crisper_Pivot",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "node",
+      "mesh": null,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 6,
+      "name": "Fridge_Shelf",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "mesh",
+      "mesh": 4,
+      "camera": null,
+      "extras": null
+    },
+    {
+      "index": 7,
+      "name": "Product_Slot",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "node",
+      "mesh": null,
+      "camera": null,
+      "extras": {
+        "replace_id": "f1-named-pivot-placeholder"
+      }
+    },
+    {
+      "index": 8,
+      "name": "Cam_Front",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "camera",
+      "mesh": null,
+      "camera": 0,
+      "extras": null
+    },
+    {
+      "index": 9,
+      "name": "Cam_Close",
+      "parent": null,
+      "parentIndex": null,
+      "kind": "camera",
+      "mesh": null,
+      "camera": 1,
+      "extras": null
+    }
+  ],
+  "meshes": [
+    {
+      "index": 0,
+      "name": "Fridge_Body"
+    },
+    {
+      "index": 1,
+      "name": "Fridge_Door"
+    },
+    {
+      "index": 2,
+      "name": "Fridge_Handle"
+    },
+    {
+      "index": 3,
+      "name": "Crisper_Drawer"
+    },
+    {
+      "index": 4,
+      "name": "Fridge_Shelf"
+    }
+  ],
+  "materials": [
+    {
+      "index": 0,
+      "name": "Fridge_White",
+      "baseColorFactor": [
+        0.9200000166893005,
+        0.9300000071525574,
+        0.9399999976158142,
+        1
+      ]
+    },
+    {
+      "index": 1,
+      "name": "Handle_Brass",
+      "baseColorFactor": [
+        0.7799999713897705,
+        0.550000011920929,
+        0.2199999988079071,
+        1
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Crisper_Plastic",
+      "baseColorFactor": [
+        0.15000000596046448,
+        0.550000011920929,
+        0.6200000047683716,
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "name": "Fridge_Glass",
+      "baseColorFactor": [
+        0.8500000238418579,
+        0.9300000071525574,
+        0.9700000286102295,
+        0.3499999940395355
+      ]
+    }
+  ],
+  "cameras": [
+    "Cam_Front",
+    "Cam_Close"
+  ],
+  "pivots": [
+    "Door_Pivot",
+    "Crisper_Pivot"
+  ],
+  "placeholders": [
+    {
+      "name": "Product_Slot",
+      "replace_id": "f1-named-pivot-placeholder"
+    }
+  ],
+  "rootIndices": [
+    0,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9
+  ]
+}

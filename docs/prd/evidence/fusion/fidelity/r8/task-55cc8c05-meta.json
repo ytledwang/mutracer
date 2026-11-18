@@ -1,0 +1,69 @@
+{
+ "id": "55cc8c05-2d23-49e5-bc2a-69934328c591",
+ "name": "Leader欧近一体烟机场景渲染0605白.fbx-[单品渲染]_06112250",
+ "created_at": "2025-06-11T14:50:38.685335+00:00",
+ "file_id": "b4ee703c-c23b-443c-98f6-1e7a469dca77",
+ "image_url": "s3://render_results/55cc8c05-2d23-49e5-bc2a-69934328c591",
+ "status": "succeed",
+ "note": "customer_asset hood; 布朗摄影工作室 white bg; hdri_angle 63.9; 5 visible lights + 1 hidden spot. Chose Front over 新视图 (4d45a917).",
+ "view_choice": {
+  "id": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+  "name": "Front"
+ },
+ "env_remaps": [],
+ "environments": [
+  {
+   "id": "2ae4c424-3b59-403e-9da0-e8f922ec11d7",
+   "name": "布朗摄影工作室2",
+   "settings": {
+    "image": "f0297447-532f-4f4a-8ac3-0e6f68a343fc",
+    "hdri_angle": 63.9,
+    "sun_height": 0,
+    "hdri_contrast": 1,
+    "sun_direction": 0,
+    "use_sun_light": false,
+    "background_type": "hdri",
+    "hdri_brightness": 1,
+    "hdri_resolution": 8,
+    "skylight_intensity": 0.7,
+    "sun_light_brightness": 1
+   }
+  },
+  {
+   "id": "d59d6db6-7475-4502-ab79-8d26b334ac11",
+   "name": "布朗摄影工作室",
+   "settings": {
+    "image": "f0297447-532f-4f4a-8ac3-0e6f68a343fc",
+    "hdri_angle": 63.9,
+    "sun_height": 0,
+    "hdri_contrast": 1,
+    "sun_direction": 0,
+    "use_sun_light": false,
+    "background_type": "white",
+    "hdri_brightness": 1,
+    "hdri_resolution": 8,
+    "skylight_intensity": 0.7,
+    "sun_light_brightness": 1
+   }
+  }
+ ],
+ "views": [
+  {
+   "id": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+   "name": "Front",
+   "camera": "858db55c-ec03-4fa6-9ec4-948a6df1ea33",
+   "environment": "d59d6db6-7475-4502-ab79-8d26b334ac11"
+  },
+  {
+   "id": "4d45a917-ebfa-4b3a-843d-4a562f095f80",
+   "name": "新视图",
+   "camera": "b67ba347-ad8f-459f-a352-6349c839385f",
+   "environment": "d59d6db6-7475-4502-ab79-8d26b334ac11"
+  }
+ ],
+ "expected_hdri_angle": -26.1,
+ "hdri_angle": 63.9,
+ "background_type": "white",
+ "skylight_intensity": 0.7,
+ "env_name": "布朗摄影工作室"
+}

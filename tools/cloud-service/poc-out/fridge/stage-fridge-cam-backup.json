@@ -1,0 +1,55 @@
+{
+  "type": "camera",
+  "name": "Front",
+  "is_visible": true,
+  "is_locked": true,
+  "position": [
+    -0.04418734735240421,
+    -5.921519541671659,
+    0.9732134751511868
+  ],
+  "rotation_euler": [
+    4.839396666420842e-14,
+    0,
+    89.99999999999997
+  ],
+  "scale": [
+    1,
+    1,
+    1
+  ],
+  "animatinons": [],
+  "camera": {
+    "type": "perspective",
+    "fov": 35,
+    "dof": false,
+    "focal_distance": 0,
+    "aperture_fstop": 4,
+    "sensor_width": 24.576000213623047,
+    "post_processing_settings": {
+      "exposure": 0.8,
+      "temperature": 6500,
+      "saturation": 0.8,
+      "contrast": 1.266,
+      "gamma": 0.823,
+      "gain": 1,
+      "offset": 0,
+      "vignette": 0,
+      "bloom_intensity": 0,
+      "bloom_threshold": -1,
+      "bloom_scale": 0,
+      "highlight_contrast": 1,
+      "shadow_contrast": 1
+    }
+  },
+  "frame_size": [
+    3840,
+    2160
+  ],
+  "frame_color": [
+    0,
+    0,
+    0
+  ],
+  "ids": []
+}

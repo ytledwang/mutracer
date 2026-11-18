@@ -1,0 +1,4 @@
+UI steps (import visible, pick by name, apply template, realtime/quality) verified by tools/fusion-checks/f2_check.mjs
+evidence: /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2b
+launch=headed-chrome-metal headedOnRealGpu=True
+items=19 failed=0

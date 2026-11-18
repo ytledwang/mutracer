@@ -1,0 +1,222 @@
+{
+ "sweep": [
+  {
+   "a": 1.0,
+   "b": 0.0,
+   "mae": 18.937,
+   "mae_fg": 74.2816,
+   "d_lum_fg": -57.186,
+   "interior_cavity": [
+    243.1,
+    243.1
+   ],
+   "crisper_bins": [
+    35.1,
+    139.0
+   ],
+   "drawers": [
+    160.0,
+    233.9
+   ],
+   "door_left_inner": [
+    141.6,
+    178.6
+   ],
+   "door_right_inner": [
+    138.4,
+    212.6
+   ]
+  },
+  {
+   "a": 1.4,
+   "b": 0.0,
+   "mae": 13.8106,
+   "mae_fg": 53.6361,
+   "d_lum_fg": -31.421,
+   "interior_cavity": [
+    249.0,
+    243.1
+   ],
+   "crisper_bins": [
+    53.0,
+    139.0
+   ],
+   "drawers": [
+    190.0,
+    233.9
+   ],
+   "door_left_inner": [
+    175.4,
+    178.6
+   ],
+   "door_right_inner": [
+    171.6,
+    212.6
+   ]
+  },
+  {
+   "a": 2.0,
+   "b": 0.0,
+   "mae": 10.1934,
+   "mae_fg": 39.0335,
+   "d_lum_fg": -7.835,
+   "interior_cavity": [
+    253.0,
+    243.1
+   ],
+   "crisper_bins": [
+    78.1,
+    139.0
+   ],
+   "drawers": [
+    212.9,
+    233.9
+   ],
+   "door_left_inner": [
+    202.2,
+    178.6
+   ],
+   "door_right_inner": [
+    199.4,
+    212.6
+   ]
+  },
+  {
+   "a": 2.4,
+   "b": 0.0,
+   "mae": 9.168,
+   "mae_fg": 34.8958,
+   "d_lum_fg": 2.773,
+   "interior_cavity": [
+    254.0,
+    243.1
+   ],
+   "crisper_bins": [
+    93.2,
+    139.0
+   ],
+   "drawers": [
+    221.1,
+    233.9
+   ],
+   "door_left_inner": [
+    212.4,
+    178.6
+   ],
+   "door_right_inner": [
+    210.4,
+    212.6
+   ]
+  },
+  {
+   "a": 2.8,
+   "b": 0.0,
+   "mae": 8.6894,
+   "mae_fg": 32.9774,
+   "d_lum_fg": 10.993,
+   "interior_cavity": [
+    255.0,
+    243.1
+   ],
+   "crisper_bins": [
+    107.3,
+    139.0
+   ],
+   "drawers": [
+    227.9,
+    233.9
+   ],
+   "door_left_inner": [
+    220.2,
+    178.6
+   ],
+   "door_right_inner": [
+    218.4,
+    212.6
+   ],
+   "ssim": 0.918194
+  },
+  {
+   "a": 3.4,
+   "b": 0.0,
+   "mae": 8.8226,
+   "mae_fg": 33.5914,
+   "d_lum_fg": 20.408,
+   "interior_cavity": [
+    255.0,
+    243.1
+   ],
+   "crisper_bins": [
+    126.4,
+    139.0
+   ],
+   "drawers": [
+    234.1,
+    233.9
+   ],
+   "door_left_inner": [
+    228.2,
+    178.6
+   ],
+   "door_right_inner": [
+    227.2,
+    212.6
+   ]
+  },
+  {
+   "a": 4.0,
+   "b": 0.0,
+   "mae": 9.7075,
+   "mae_fg": 37.1774,
+   "d_lum_fg": 27.509,
+   "interior_cavity": [
+    255.0,
+    243.1
+   ],
+   "crisper_bins": [
+    143.3,
+    139.0
+   ],
+   "drawers": [
+    238.9,
+    233.9
+   ],
+   "door_left_inner": [
+    234.0,
+    178.6
+   ],
+   "door_right_inner": [
+    232.3,
+    212.6
+   ]
+  }
+ ],
+ "best_by_mae_fg": {
+  "a": 2.8,
+  "b": 0.0,
+  "mae": 8.6894,
+  "mae_fg": 32.9774,
+  "d_lum_fg": 10.993,
+  "interior_cavity": [
+   255.0,
+   243.1
+  ],
+  "crisper_bins": [
+   107.3,
+   139.0
+  ],
+  "drawers": [
+   227.9,
+   233.9
+  ],
+  "door_left_inner": [
+   220.2,
+   178.6
+  ],
+  "door_right_inner": [
+   218.4,
+   212.6
+  ],
+  "ssim": 0.918194
+ }
+}

@@ -1,0 +1,3 @@
+{"img": "tools/cloud-service/poc-out/noise-study/fridge-3views/cloud-preview-298cfe60-denoise-off.png", "flat_px": 40732, "mean_abs": 7.55, "p99": 45.0, "speckle_pct": 17.53}
+{"img": "tools/cloud-service/poc-out/noise-study/fridge-3views/cloud-preview-298cfe60-denoise-on.png", "flat_px": 44040, "mean_abs": 1.25, "p99": 25.0, "speckle_pct": 3.75}
+{"img": "tools/cloud-service/poc-out/noise-study/fridge-3views/preview-298cfe60.png", "flat_px": 44143, "mean_abs": 1.23, "p99": 25.0, "speckle_pct": 3.69}

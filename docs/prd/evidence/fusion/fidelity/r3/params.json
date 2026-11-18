@@ -1,0 +1,81 @@
+{
+  "status": "OK",
+  "require_official_content": true,
+  "camera": {
+    "view_id": "1c4a3883-8668-4c16-a10e-0b7c24272279",
+    "name": "Front",
+    "camera_id": "858db55c-ec03-4fa6-9ec4-948a6df1ea33",
+    "why": "Same Front camera as r2 official Standard and the 1.0 gold Front framing."
+  },
+  "common_params": {
+    "spp": 128,
+    "denoise": 1,
+    "width": 1920,
+    "height": 1080,
+    "view_transform": "Standard",
+    "default_view_transform_unchanged": "Standard (blender_inner.py not modified)",
+    "engine": "Blender 5.1.1 Cycles METAL",
+    "submit_path": "tools/dual-track/blender/run_blender_final.py -> blender_inner.py",
+    "background": "white studio for camera rays; real HDRI 16.exr on non-camera rays",
+    "lights": "official RF_Kitchen_0302_Scene 32 RectLights (all groups on)",
+    "hdri": "16.exr",
+    "hdri_path": "official_asset/environment/0d718b1b-976d-4225-8ce6-ae514f45eea9/textures/16.exr",
+    "scene": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r3/scene-official-preview.json",
+    "asset_map": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r3/official-assets.json",
+    "replace_id": "ccdaa114-cdb7-4ef5-af26-022938a780d5",
+    "m2_id_not_used": "c83a2f4a-0a3d-4494-8da9-37e6ca6943a7",
+    "customer_glb_hidden": 0,
+    "visible_models": 566
+  },
+  "renders": [
+    {
+      "png": "render-Front-1c4a3883-standard-official-customer-spp128-1920x1080.png",
+      "log": "render-Front-1c4a3883-standard-official-customer-spp128-1920x1080.log",
+      "sha256": "render-Front-1c4a3883-standard-official-customer-spp128-1920x1080.png.sha256",
+      "view_transform": "Standard",
+      "official_content_manifest": "tools/cloud-service/poc-out/official/ccdaa114/manifest.json",
+      "customer_missing_manifest": "docs/prd/evidence/fusion/fidelity/r3/customer-missing-manifest.json",
+      "wall_clock_s": 53.24,
+      "blender_render_s": 52.156,
+      "start": "2026-11-11 18:30:13 +0800 (Asia/Shanghai)",
+      "end": "2026-11-11 18:31:07 +0800 (Asia/Shanghai)",
+      "exit": 0,
+      "sha256_hex": "8c0936e2427335cf161fd69d7e430d309fecc43079325595caa7e0242e8862c2"
+    }
+  ],
+  "reference": {
+    "png_8k": "tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c.png",
+    "png": "reference-fridge-ref-front-329c-1920.png",
+    "origin": "Local 1.0 gold Front already on this Mac mini; resized 7680x4320 -> 1920x1080 for metrics.",
+    "sha256_hex_8k": "d81538fb4d1fc14f6e07744ab27c4f4dcb700dd3da650f70fdfdb65079a5bd35",
+    "sha256_hex_1920": "21aafa96599e4f164a0efa84cd98b79eecee1153079fe94b44de75e1816fbc80"
+  },
+  "previous_official": {
+    "png": "../r2/render-Front-1c4a3883-standard-official-spp128-1920x1080.png",
+    "sha256_hex": "3ede03b973144d43737c4384bc6def22f67d93c2498b68f445d07d1a1d59d775",
+    "note": "Same camera/spp/size/lights/HDRI; 50 fd26af6d product GLBs were hidden."
+  },
+  "comparison": "comparison-gold-r2-r3.png",
+  "comparison_sha256_hex": "7aff0c33c45ec0e094b2607b9ad99509454ad15d13de80392924f8560ca788c0",
+  "diff_vs_gold": {
+    "mae": 12.7765,
+    "ssim": 0.922736,
+    "mae_fg": 34.4164,
+    "d_lum_fg": -13.759,
+    "previous_mae": 12.7765,
+    "previous_ssim": 0.922736,
+    "previous_mae_fg": 34.4164,
+    "previous_d_lum_fg": -13.759,
+    "new_vs_previous_official_mae": 0.0,
+    "new_vs_previous_official_note": "216 / 2,073,600 pixels differ, max channel abs 2; MAE rounds to 0.0000 at 4 decimals. All 50 fd26af6d GLBs share names with already-local 38c97cce meshes (duplicate door parts).",
+    "method": "gold resized 7680x4320 -> 1920x1080 LANCZOS; full-frame mae (8-bit) and luminance SSIM (11x11 uniform window); also fridge-foreground mae/d_lum using gold border mask"
+  },
+  "customer_pull": {
+    "keys": 50,
+    "prefix": "customer_asset/fd26af6d-43e2-4fa5-8e7e-227d10a3e03f/models/",
+    "total_bytes": 16615136,
+    "manifest": "docs/prd/evidence/fusion/fidelity/r3/customer-missing-manifest.json",
+    "checker": "bash tools/fusion-checks/customer_missing_check.sh"
+  },
+  "conclusion": "补齐 r2 中被隐藏的 50 个 customer_asset 产品 GLB（fd26af6d，共 16.6MB）后，正视图 Standard 成片与上次官方渲染几乎相同（仅 216 个像素、最大通道差 2），相对 1.0 金样的全图平均绝对差仍是 12.78、前景 34.42、亮度差 −13.8；这 50 个网格与本机已有的 38c97cce 门体同名重合，当前 Front 机位下对交付质量没有可测改善，剩余差距不在这批缺失件上。"
+}

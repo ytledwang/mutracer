@@ -1,0 +1,76 @@
+{
+ "id": "2aa0b2f5-f10a-4ad2-af4d-944b2398cb36",
+ "name": "冰箱体.fbx-[单品渲染]_06261412",
+ "created_at": "2025-06-26T06:12:53.561592+00:00",
+ "file_id": "1d0db88a-5a8b-441a-a9f4-b70c2b26fe3a",
+ "image_url": "s3://render_results/2aa0b2f5-f10a-4ad2-af4d-944b2398cb36",
+ "status": "succeed",
+ "note": "views still pointed at env 4 id ab403659 which is absent from this snapshot environments dict; only env present is e73ef7d9 name 16 (r4 documented the gold view as env 16). preview remaps; raw is unmodified.",
+ "env_remaps": [
+  {
+   "view": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+   "from": "ab403659-925e-41d7-abed-17d9e0e107f2",
+   "to": "e73ef7d9-ab18-4108-bdbf-3742e4594801"
+  },
+  {
+   "view": "3c697acc-1228-4e46-ba54-77eb7bb87cfb",
+   "from": "ab403659-925e-41d7-abed-17d9e0e107f2",
+   "to": "e73ef7d9-ab18-4108-bdbf-3742e4594801"
+  },
+  {
+   "view": "ab38eaf9-e9f8-478f-ab09-6fa654369b71",
+   "from": "ab403659-925e-41d7-abed-17d9e0e107f2",
+   "to": "e73ef7d9-ab18-4108-bdbf-3742e4594801"
+  },
+  {
+   "view": "da307f8c-a522-4ec9-a1fe-03f7092e1dfc",
+   "from": "ab403659-925e-41d7-abed-17d9e0e107f2",
+   "to": "e73ef7d9-ab18-4108-bdbf-3742e4594801"
+  }
+ ],
+ "environments": [
+  {
+   "id": "e73ef7d9-ab18-4108-bdbf-3742e4594801",
+   "name": "16",
+   "settings": {
+    "image": "2a830f78-5f74-4803-98ef-a1d0d9382b2d",
+    "hdri_angle": 10.2,
+    "sun_height": 0,
+    "hdri_contrast": 1,
+    "sun_direction": 0,
+    "use_sun_light": false,
+    "background_type": "hdri",
+    "hdri_brightness": 100,
+    "hdri_resolution": 128,
+    "skylight_intensity": 0.35,
+    "sun_light_brightness": 1
+   }
+  }
+ ],
+ "views": [
+  {
+   "id": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+   "name": "Front",
+   "camera": "858db55c-ec03-4fa6-9ec4-948a6df1ea33",
+   "environment": "ab403659-925e-41d7-abed-17d9e0e107f2"
+  },
+  {
+   "id": "3c697acc-1228-4e46-ba54-77eb7bb87cfb",
+   "name": "新视图",
+   "camera": "c621bb75-3331-4524-a5b9-ff4344d660f7",
+   "environment": "ab403659-925e-41d7-abed-17d9e0e107f2"
+  },
+  {
+   "id": "ab38eaf9-e9f8-478f-ab09-6fa654369b71",
+   "name": "新视图",
+   "camera": "789617c9-c1ca-4bd3-a07e-df8e3207a8c5",
+   "environment": "ab403659-925e-41d7-abed-17d9e0e107f2"
+  },
+  {
+   "id": "da307f8c-a522-4ec9-a1fe-03f7092e1dfc",
+   "name": "新视图",
+   "camera": "76f5a459-9b06-41ce-9887-c33d740ab0f2",
+   "environment": "ab403659-925e-41d7-abed-17d9e0e107f2"
+  }
+ ]
+}

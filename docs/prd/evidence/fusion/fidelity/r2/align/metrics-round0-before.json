@@ -1,0 +1,73 @@
+{
+  "realtime": "docs/prd/evidence/fusion/fidelity/r2/align/realtime-round0-before.png",
+  "final": "docs/prd/evidence/fusion/fidelity/render-Front-1c4a3883-standard-spp128-1920x1080.png",
+  "size": [
+    1920,
+    1080
+  ],
+  "final_rgb": [
+    156.8800048828125,
+    156.5500030517578,
+    156.60000610351562
+  ],
+  "realtime_rgb": [
+    49.90999984741211,
+    51.2400016784668,
+    56.47999954223633
+  ],
+  "final_lum": 156.62,
+  "realtime_lum": 51.34,
+  "bg_final_rgb": [
+    255.0,
+    255.0,
+    255.0
+  ],
+  "bg_realtime_rgb": [
+    42.0,
+    43.0,
+    48.0
+  ],
+  "mask_iou": 0.2814,
+  "mask_px": 588680,
+  "mae_fg": 114.28,
+  "tolerance": {
+    "lum": 10.0,
+    "rgb": 12.0,
+    "bg": 12.0,
+    "iou": 0.8
+  },
+  "d_lum": -105.28,
+  "d_rgb": [
+    -106.97000122070312,
+    -105.30000305175781,
+    -100.12000274658203
+  ],
+  "d_bg_lum": -211.85,
+  "checks": [
+    {
+      "name": "fridge mean luminance |Δ| <= 10",
+      "pass": false,
+      "value": -105.28
+    },
+    {
+      "name": "fridge mean RGB max|Δ| <= 12",
+      "pass": false,
+      "value": [
+        -106.97000122070312,
+        -105.30000305175781,
+        -100.12000274658203
+      ]
+    },
+    {
+      "name": "background luminance |Δ| <= 12",
+      "pass": false,
+      "value": -211.85
+    },
+    {
+      "name": "fridge mask IoU >= 0.80",
+      "pass": false,
+      "value": 0.2814
+    }
+  ],
+  "pass": false
+}

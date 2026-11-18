@@ -1,0 +1,29 @@
+MuTracer POC — 真实可影多资产 scene 本机+云端出图
+时间: 2026-11-09 Asia/Shanghai
+
+任务: 0cb6bd41-3c9c-41da-b8e3-38112026f11a
+名称: Leader欧近一体烟机场景渲染0605白.fbx-[单品渲染] - 副本_06131428
+view: Front (298cfe60-923d-44fb-a0d1-f2206b9a48e1)
+camera: 858db55c-ec03-4fa6-9ec4-948a6df1ea33
+
+资产:
+- meshes 总计 25；可见模型挂 mesh 20；不可见跳过 0
+- 本地 GLB 命中 25/25（缺 0）；备份根仅有 customer_asset
+- HDRI/材质贴图 official_asset 缺失（env brown_photostudio_02_2k.exr 等），未入 assets.json
+- 已映射 GLB 合计约 0.64MB
+
+本机:
+- mutracer-render 512x512 spp8 bounces3 denoise0 timeout 300000
+- 成功 ~2s → tools/cloud-service/poc-out/stage-real-leader-512.png (147769 bytes)
+- log: stage-real-local.log
+- 产物几何可读，灰噪（低 spp + 无 denoise + 缺 HDRI/贴图）
+
+云端:
+- SSH 内网 POST /v1/jobs（公网 :8787 仍不可达）
+- job e917adc12bb14fe3af0abc778b61c044 status=succeed
+- PNG → stage-real-cloud-e917adc12bb14fe3af0abc778b61c044.png (147878 bytes)
+
+下一步建议:
+1. 补 official_asset HDRI/材质贴图到 backup files 或单独下载，再比有环境光的图
+2. 提 spp/开 denoise 看成片质量；核对相机朝向与可影原图
+3. 公网 :8787 / 安全组仍是运维缺口；提交继续走 SSH 隧道或修好入口

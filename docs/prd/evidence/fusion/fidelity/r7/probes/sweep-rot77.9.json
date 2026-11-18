@@ -1,0 +1,168 @@
+{
+ "sweep": [
+  {
+   "a": 2.2,
+   "b": 0.0,
+   "mae": 7.1929,
+   "mae_fg": 27.0659,
+   "d_lum_fg": -12.233,
+   "interior_cavity": [
+    253.1,
+    243.1
+   ],
+   "crisper_bins": [
+    83.5,
+    139.0
+   ],
+   "drawers": [
+    216.9,
+    233.9
+   ],
+   "door_left_inner": [
+    199.4,
+    178.6
+   ],
+   "door_right_inner": [
+    206.2,
+    212.6
+   ]
+  },
+  {
+   "a": 2.5,
+   "b": 0.0,
+   "mae": 6.4506,
+   "mae_fg": 24.0696,
+   "d_lum_fg": -4.891,
+   "interior_cavity": [
+    254.1,
+    243.1
+   ],
+   "crisper_bins": [
+    94.7,
+    139.0
+   ],
+   "drawers": [
+    222.9,
+    233.9
+   ],
+   "door_left_inner": [
+    207.4,
+    178.6
+   ],
+   "door_right_inner": [
+    213.2,
+    212.6
+   ]
+  },
+  {
+   "a": 2.8,
+   "b": 0.0,
+   "mae": 6.1108,
+   "mae_fg": 22.7103,
+   "d_lum_fg": 1.236,
+   "interior_cavity": [
+    255.0,
+    243.1
+   ],
+   "crisper_bins": [
+    105.3,
+    139.0
+   ],
+   "drawers": [
+    227.1,
+    233.9
+   ],
+   "door_left_inner": [
+    213.9,
+    178.6
+   ],
+   "door_right_inner": [
+    219.2,
+    212.6
+   ]
+  },
+  {
+   "a": 3.1,
+   "b": 0.0,
+   "mae": 6.0254,
+   "mae_fg": 22.413,
+   "d_lum_fg": 6.458,
+   "interior_cavity": [
+    255.0,
+    243.1
+   ],
+   "crisper_bins": [
+    115.1,
+    139.0
+   ],
+   "drawers": [
+    230.9,
+    233.9
+   ],
+   "door_left_inner": [
+    218.9,
+    178.6
+   ],
+   "door_right_inner": [
+    223.2,
+    212.6
+   ],
+   "ssim": 0.938105
+  },
+  {
+   "a": 3.4,
+   "b": 0.0,
+   "mae": 6.3048,
+   "mae_fg": 23.5629,
+   "d_lum_fg": 10.969,
+   "interior_cavity": [
+    255.0,
+    243.1
+   ],
+   "crisper_bins": [
+    124.3,
+    139.0
+   ],
+   "drawers": [
+    233.9,
+    233.9
+   ],
+   "door_left_inner": [
+    223.1,
+    178.6
+   ],
+   "door_right_inner": [
+    227.2,
+    212.6
+   ]
+  }
+ ],
+ "best_by_mae_fg": {
+  "a": 3.1,
+  "b": 0.0,
+  "mae": 6.0254,
+  "mae_fg": 22.413,
+  "d_lum_fg": 6.458,
+  "interior_cavity": [
+   255.0,
+   243.1
+  ],
+  "crisper_bins": [
+   115.1,
+   139.0
+  ],
+  "drawers": [
+   230.9,
+   233.9
+  ],
+  "door_left_inner": [
+   218.9,
+   178.6
+  ],
+  "door_right_inner": [
+   223.2,
+   212.6
+  ],
+  "ssim": 0.938105
+ }
+}

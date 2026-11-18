@@ -1,0 +1,53 @@
+r9 分析（只分析，未调 k/角度/后期，未开 F3/F5，未改渲染器，未 commit）
+时间：2026-11-12 00:09 Asia/Shanghai
+
+一、灶机构图：不是「用错相机」，也不是坐标轴把灶面竖起来
+
+1) 金样就是任务里唯一的「前视图」3c8d747b-24c6-428a-aa2c-b9124f60e2f2，相机 028cb306。备份 render_task（2026-10-24）的 render_data 与 r8 raw 的相机/模型/灯 0 差异；views_in_task 只有这一路，7680×4320，2048 spp。场景里虽有透视/顶视图/灶头/旋钮（及「-高」），但金样文件名就是 {task}_{前视图}_base_color.png，H1/H5/H6 排除。
+
+2) 「前视图」JSON：位置 [0, -1.45, 0.9]，rotation_euler [0, -30, 90]（roll, pitch, yaw，度），水平 FOV 35，sensor 24.576。blender_inner.camera_basis_from_ue 不乘父子链，落地为 Blender 位置 [0.0, 0.9, -1.45]，俯视 30.0°（场景上向 = swap_yz 后的 +Y）。camera_root 与前视图存了同一套世界坐标；若当本地变换再乘一层会加倍，金样宽度对得上「不乘父」的结果，所以当前相机路径是对的。
+
+3) 官方模板 mesh 是 Unreal Engine 5.5.4 导出，实体旋转 [-90, -90, 180]、缩放 0.1（厘米）；冰箱/枕头/烟机是 Khronos glTF、旋转 [0,0,90]、缩放 1。经 mesh_basis_from_ue 后灶面仍是水平的：zaojumian 世界尺寸 0.86×0.0012×0.45 m，薄轴是 Y。H4 排除。
+
+4) 16:9 下 FOV 轴不是问题。宽度外框几乎重合：金样 72–1846，r8 出图 73–1845，粘土诊断投影 72.0–1846.6。UE SetFieldOfView(fov) + MaintainYFOV 在同为 16:9 时不改画面。H3 在 16:9 下排除。
+
+5) 真正的外框差在高度：金样 311–846（高 536），出图/粘土 370–845 / 369.08–847.11（高约 476–478），背面差 59 px。Workbench 粘土（只看几何、不靠灯光）已经能看清两个灶头的俯视，不是「只看见玻璃沿」的相机。观感上像擦边，是因为 r8 美渲把灶面涂成了黑。残留 59 px 里，左边炉架在 JSON 里多块 zuobianzaomian* 为 is_visible=false（金样左右炉架都完整），再加一点尚未钉死的俯仰/剪影差。不是再猜一套 k 能补上的。
+
+二、灶机过暗：和构图是同一类实现问题（灯），再叠加白背景照明被关掉
+
+1) B4 成立。blender_inner.add_light 对每个 root/group 做 parent_matrix @ light_basis_from_ue(node)，即使变换是单位阵也会注入 swap_yz @ ue_basis_from_view。模型 walk() 是先在 UE 空间累乘再转换一次，灯没有走这条。灶机是两层（light_root → 三个 identity group → 13 盏灯），灯会被镜像：世界坐标约 (-x, y, -z)。主补光 RectLight24（38.78 cd，10×10 m）偏移 6.593389 m，从正确的 z=-3.213 翻到 z=+3.213（落到产品背面）。枕头/烟机/2aa0 只有一层，同样算错但错法不同；它们主要靠天光，所以这个 bug 不是那三张过亮的主因。329c 没有场景灯。
+
+2) B6 成立为灶机的主要环境光缺口。锁定 --white-sky-scale 0：相机射线走白底（alpha 合成），照明是 EXR × skylight × 3.1。灶机 skylight_intensity=0，环境光为零，只剩这 13 盏被放错的灯。UE SetEnvironmentSettings 在 background_type=white 时仍显示天空球（/Game/Blueprints/Assets/White.White，灶机 HDRI_Brightness=100），SkyLight 可见但强度为 0、cubemap 用 settings.image。若 Path Tracer 会采这颗可见白天空球，金样就会被白环境照亮，我们这边没有这条光。本轮未再渲染验证（不调参）。
+
+3) B3 部分成立。Candelas 已有引擎源：HaierJsonBlueprintFunctionLibrary.cpp SpawnLight 设 ULocalLightComponent->IntensityUnits = ELightUnits::Candelas，SetIntensity(power)；Rect 的 size_x/size_z 是 UE 厘米，与 blender_inner 除以 100 一致。Cycles 换算 W=πI/683（面光）、4πI/683（点/聚光）仍是光度学推理，未经 Path Tracer 对照。按此换算灶机全部灯光合计约 0.532 W，其中 RectLight24 仅 0.1784 W。即便位置正确，这个量级够不够对齐金样，还没在引擎里核实。
+
+4) 因此：灶机过暗不是再调一个 k 的问题；灯被放错（B4）+ 白背景不参与照明（B6）就能解释「灶面全黑、只剩旋钮和高光、看起来像擦边」。粘土图证明几何和 30.0° 相机已经能看出双灶头。
+
+三、五张图的亮度迁移
+
+k=3.1 是 329c 上的经验值（环境 4，天光 0.35，无灯，曝光 0.8），不是从单位推出来的通用系数。B1 成立。
+
+- 329c：天光 0.35×3.1，无灯，ev 0.8。前景 MAE 19.81，Δlum_fg +2.48。标定例，接近。
+- 2aa0：同一天光 0.35×3.1，但环境 16、ev 1.089、两盏灯。前景 MAE 57.48，Δlum_fg +54.24。过亮。k 不能跨环境照搬。
+- 枕头：天光 1.0×3.1，ev 2.056（2^2.056≈4.158），白色织物。前景 MAE 26.59，Δlum_fg +26.73，高光削白。
+- 灶机：天光 0，white-sky-scale 0，13 盏灯被镜像且换算总功率约 0.532 W，ev 1.0。前景 MAE 87.65，Δlum_fg -61.03。过暗。
+- 烟机：天光 0.7×3.1，ev 0.363。轮廓接近（SSIM 0.949），Δlum_fg +28.07，偏亮。
+
+ue55 后期（2^ev/1.2 → AP1 → 蓝色校正 0.6 → UE filmic）仍是文档来源，五张共用，单独解释不了「有的过亮、灶机过暗」。B2 未解决。
+
+四、烟机贴花
+
+场景里有可见贴花「卡萨帝logo」（f623dfcf，M_New_Decal_Master）。blender_inner.py 没有任何 decal 路径。这是渲染器缺能力，不是灯光问题。未实现贴花。
+
+五、对「固定默认、用户不用猜」的含义
+
+可以定为固定规则的：相机世界变换（不乘与根节点重复的父链）、水平 FOV 35 / sensor_fit HORIZONTAL（16:9 已与金样宽度对齐）、官方模板 [-90,-90,180]×0.1 仍走现有 mesh_basis_from_ue、Candelas 这一单位本身（引擎已写明）。
+
+还不能当固定默认的：把 k=3.1 当成跨产品亮度系数；当前灯的父子转换（实现错误，不是参数）；white-sky-scale=0 在天光为 0 的白背景上是否等于可影的白天空球照明；candela→Cycles 瓦特是否与 UE Path Tracer 一致；ue55 后期是否与引擎逐项相同。
+
+建议的下一刀（本轮未开工）：先改灯的父子累积，与模型一样「在 UE 空间乘完再转换一次」（这是正确性问题，不是按产品拟合）；再从单位和曝光推亮度规则——查清 UE 白天空球在 SkyLight=0 时是否进 Path Tracer，核 candela→W，不要再把 k=3.1 当万能系数。然后再看灶机残留的 59 px / 左侧炉架可见性，以及烟机贴花。不要开 F3/F5，不要按产品再调 k。
+
+检查器：python3 tools/fusion-checks/fidelity_r9_analysis_check.py docs/prd/evidence/fusion/fidelity/r9-analysis
+（exit 0 表示分析自洽，不表示画质已对齐。）
+
+本轮改动：仅 r9-analysis/ 下的分析文件、粘土诊断图，以及 tools/fusion-checks/fidelity_r9_analysis_check.py。未改 blender_inner.py / run_blender_final.py / ue_filmic.py，未 commit，未动 viewer 或 8787。

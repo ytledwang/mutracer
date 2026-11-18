@@ -1,0 +1,532 @@
+{
+  "title": "stove light poses before vs after r10 add_light fix",
+  "RectLight24": {
+    "before_buggy": {
+      "id": "ca05c81b-d2e9-4cb6-947a-9bef54a38283",
+      "r9_buggy_loc": [
+        -0.740132,
+        0.589719,
+        3.212538
+      ],
+      "expected_loc": [
+        0.740132,
+        0.589719,
+        -3.212538
+      ],
+      "r9_buggy_forward": [
+        0.0,
+        -0.788011,
+        -0.615661
+      ],
+      "expected_forward": [
+        -0.0,
+        -0.788011,
+        0.615661
+      ],
+      "impl_loc": [
+        -0.740132,
+        0.589719,
+        3.212538
+      ],
+      "impl_forward": [
+        0.0,
+        -0.788011,
+        -0.615661
+      ],
+      "r9_delta_m": 6.593389,
+      "independent_delta_m": 6.59339
+    },
+    "after": {
+      "id": "ca05c81b-d2e9-4cb6-947a-9bef54a38283",
+      "r9_buggy_loc": [
+        -0.740132,
+        0.589719,
+        3.212538
+      ],
+      "expected_loc": [
+        0.740132,
+        0.589719,
+        -3.212538
+      ],
+      "r9_buggy_forward": [
+        0.0,
+        -0.788011,
+        -0.615661
+      ],
+      "expected_forward": [
+        -0.0,
+        -0.788011,
+        0.615661
+      ],
+      "impl_loc": [
+        0.740132,
+        0.589719,
+        -3.212538
+      ],
+      "impl_forward": [
+        -0.0,
+        -0.788011,
+        0.615661
+      ],
+      "r9_delta_m": 6.593389,
+      "independent_delta_m": 6.59339
+    }
+  },
+  "lights": [
+    {
+      "name": "PointLight",
+      "id": "69fa63ad-5ad5-4fcd-90db-6bf884c8c2a1",
+      "before_loc": [
+        -0.55267,
+        0.087536,
+        -1.145431
+      ],
+      "after_loc": [
+        0.55267,
+        0.087536,
+        1.145431
+      ],
+      "before_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "after_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected_loc": [
+        0.55267,
+        0.087536,
+        1.145431
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "PointLight2",
+      "id": "720bb730-d0f4-4815-9a96-98e1063cedd1",
+      "before_loc": [
+        -0.1,
+        -0.231764,
+        -0.316548
+      ],
+      "after_loc": [
+        0.1,
+        -0.231764,
+        0.316548
+      ],
+      "before_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "after_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected_loc": [
+        0.1,
+        -0.231764,
+        0.316548
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "RectLight2",
+      "id": "f91c345b-13bc-46ab-91b8-de462a25d454",
+      "before_loc": [
+        0.014907,
+        0.318679,
+        -0.803299
+      ],
+      "after_loc": [
+        -0.014907,
+        0.318679,
+        0.803299
+      ],
+      "before_forward": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after_forward": [
+        -0.0,
+        0.0,
+        -1.0
+      ],
+      "expected_loc": [
+        -0.014907,
+        0.318679,
+        0.803299
+      ],
+      "expected_forward": [
+        -0.0,
+        0.0,
+        -1.0
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "PointLight3",
+      "id": "ad2b1620-00f4-4c00-a58d-e265ba24c9ad",
+      "before_loc": [
+        1.157479,
+        0.053048,
+        -1.145431
+      ],
+      "after_loc": [
+        -1.157479,
+        0.053048,
+        1.145431
+      ],
+      "before_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "after_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected_loc": [
+        -1.157479,
+        0.053048,
+        1.145431
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "PointLight4",
+      "id": "e691ce59-4374-4aa7-8aac-21f357d6c547",
+      "before_loc": [
+        0.167732,
+        0.03467,
+        -0.37935
+      ],
+      "after_loc": [
+        -0.167732,
+        0.03467,
+        0.37935
+      ],
+      "before_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "after_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected_loc": [
+        -0.167732,
+        0.03467,
+        0.37935
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "PointLight5",
+      "id": "ad67bc52-216d-4278-b86a-1f407acfeba1",
+      "before_loc": [
+        -0.343957,
+        0.03467,
+        0.336946
+      ],
+      "after_loc": [
+        0.343957,
+        0.03467,
+        -0.336946
+      ],
+      "before_forward": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "after_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected_loc": [
+        0.343957,
+        0.03467,
+        -0.336946
+      ],
+      "expected_forward": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "RectLight3",
+      "id": "0a9b2a72-03f3-4af3-94fb-7c49d01d2938",
+      "before_loc": [
+        -0.081285,
+        0.149843,
+        0.152878
+      ],
+      "after_loc": [
+        0.081285,
+        0.149843,
+        -0.152878
+      ],
+      "before_forward": [
+        -0.0,
+        -0.866025,
+        0.5
+      ],
+      "after_forward": [
+        0.0,
+        -0.866025,
+        -0.5
+      ],
+      "expected_loc": [
+        0.081285,
+        0.149843,
+        -0.152878
+      ],
+      "expected_forward": [
+        0.0,
+        -0.866025,
+        -0.5
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "RectLight4",
+      "id": "e3a87b32-8745-4c33-96fa-585bf38d4a9d",
+      "before_loc": [
+        0.08369,
+        0.149843,
+        0.152878
+      ],
+      "after_loc": [
+        -0.08369,
+        0.149843,
+        -0.152878
+      ],
+      "before_forward": [
+        0.0,
+        -0.866025,
+        0.5
+      ],
+      "after_forward": [
+        -0.0,
+        -0.866025,
+        -0.5
+      ],
+      "expected_loc": [
+        -0.08369,
+        0.149843,
+        -0.152878
+      ],
+      "expected_forward": [
+        -0.0,
+        -0.866025,
+        -0.5
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "RectLight5",
+      "id": "efc22348-8c94-4779-8677-e3782ec7c08c",
+      "before_loc": [
+        -0.187922,
+        0.051088,
+        0.271017
+      ],
+      "after_loc": [
+        0.187922,
+        0.051088,
+        -0.271017
+      ],
+      "before_forward": [
+        0.0,
+        -0.939693,
+        -0.34202
+      ],
+      "after_forward": [
+        -0.0,
+        -0.939693,
+        0.34202
+      ],
+      "expected_loc": [
+        0.187922,
+        0.051088,
+        -0.271017
+      ],
+      "expected_forward": [
+        -0.0,
+        -0.939693,
+        0.34202
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "RectLight20",
+      "id": "06622d11-6b19-40d6-9bb4-dad3d2a30a2a",
+      "before_loc": [
+        0.028699,
+        0.5472,
+        -0.803063
+      ],
+      "after_loc": [
+        -0.028699,
+        0.5472,
+        0.803063
+      ],
+      "before_forward": [
+        -0.045235,
+        -0.705124,
+        0.707639
+      ],
+      "after_forward": [
+        0.045235,
+        -0.705124,
+        -0.707639
+      ],
+      "expected_loc": [
+        -0.028699,
+        0.5472,
+        0.803063
+      ],
+      "expected_forward": [
+        0.045235,
+        -0.705124,
+        -0.707639
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "RectLight24",
+      "id": "ca05c81b-d2e9-4cb6-947a-9bef54a38283",
+      "before_loc": [
+        -0.740132,
+        0.589719,
+        3.212538
+      ],
+      "after_loc": [
+        0.740132,
+        0.589719,
+        -3.212538
+      ],
+      "before_forward": [
+        0.0,
+        -0.788011,
+        -0.615661
+      ],
+      "after_forward": [
+        -0.0,
+        -0.788011,
+        0.615661
+      ],
+      "expected_loc": [
+        0.740132,
+        0.589719,
+        -3.212538
+      ],
+      "expected_forward": [
+        -0.0,
+        -0.788011,
+        0.615661
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "RectLight25",
+      "id": "9f6f81b8-8919-4f13-aff0-2919e297dfe3",
+      "before_loc": [
+        -3.092473,
+        2.568387,
+        -0.0
+      ],
+      "after_loc": [
+        3.092473,
+        2.568387,
+        0.0
+      ],
+      "before_forward": [
+        0.829038,
+        -0.559193,
+        -0.0
+      ],
+      "after_forward": [
+        -0.829038,
+        -0.559193,
+        0.0
+      ],
+      "expected_loc": [
+        3.092473,
+        2.568387,
+        0.0
+      ],
+      "expected_forward": [
+        -0.829038,
+        -0.559193,
+        0.0
+      ],
+      "matches_expected": true
+    },
+    {
+      "name": "RectLight26",
+      "id": "ad732ef6-fb40-4552-af0b-0500226e28b7",
+      "before_loc": [
+        3.092473,
+        2.568387,
+        -0.0
+      ],
+      "after_loc": [
+        -3.092473,
+        2.568387,
+        0.0
+      ],
+      "before_forward": [
+        -0.829038,
+        -0.559193,
+        -0.0
+      ],
+      "after_forward": [
+        0.829038,
+        -0.559193,
+        0.0
+      ],
+      "expected_loc": [
+        -3.092473,
+        2.568387,
+        0.0
+      ],
+      "expected_forward": [
+        0.829038,
+        -0.559193,
+        0.0
+      ],
+      "matches_expected": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "pass": 7,
+  "fail": 0,
+  "evidence": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo",
+  "items": [
+    {"status": "PASS", "name": "import: validate good GLB", "exit": 0, "command": "validate_glb.py good-named-pivot.glb", "extra": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/validate-good.log"},
+    {"status": "PASS", "name": "import: bad GLB rejected (not silent)", "exit": 1, "command": "validate_glb.py bad-flattened-palette.glb", "extra": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/validate-bad.log"},
+    {"status": "PASS", "name": "import: STP convert+validate rejects bad output", "exit": 1, "command": "convert_stp_to_glb.sh box.step", "extra": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/convert-stp.log (no rejected.glb name, but failed)"},
+    {"status": "PASS", "name": "merge M2 template (replace_id c83a2f4a-…)", "exit": 0, "command": "merge_scene_template.mjs", "extra": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/merge.log"},
+    {"status": "PASS", "name": "prepare preview scene (hide missing kitchen meshes)", "exit": 0, "command": "prepare_preview_scene.mjs", "extra": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/prepare.log"},
+    {"status": "PASS", "name": "UI chain evidence (F2 r2b, headed Chrome Metal)", "exit": 0, "command": "f2_check.mjs (r2b)", "extra": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/ui"},
+    {"status": "PASS", "name": "submit render: one final per merged view (spp=4, local Blender)", "exit": 0, "command": "run_blender_final.py --spp 4", "extra": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/final-views-results.json"}
+  ]
+}

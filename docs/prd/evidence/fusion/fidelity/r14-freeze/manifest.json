@@ -1,0 +1,46 @@
+{
+ "frozen": {
+  "gray": 0.06779987,
+  "k_new": 0.0557867256,
+  "display_units": "engine",
+  "light_units": "candela"
+ },
+ "thresholds": {
+  "fg_lum_abs_diff_max": 10.0,
+  "ssim_min": 0.9
+ },
+ "products": {
+  "329c202e": {
+   "kind": "fridge/env-path",
+   "render": "r14-freeze/render-329c202e-a10.png",
+   "gold": "reference-fridge-ref-front-329c.png",
+   "skylight_scale": 0.0557867256,
+   "gray": 0.06779987,
+   "source": "A10 2026-11-17"
+  },
+  "00ac0cff": {
+   "kind": "stove/light-path",
+   "render": "r14-freeze/render-00ac0cff-a10.png",
+   "gold": "r8/golds/00ac0cff-front-1920.png",
+   "skylight_scale": 0.0557867256,
+   "gray": 0.06779987,
+   "source": "A10 2026-11-16"
+  },
+  "2aa0b2f5": {
+   "kind": "env-dominated",
+   "render": "r14-freeze/render-2aa0b2f5-a10.png",
+   "gold": "r8/golds/2aa0b2f5-view3c69-1920.png",
+   "skylight_scale": 0.0557867256,
+   "gray": 0.06779987,
+   "source": "A10 2026-11-17 rerender"
+  },
+  "2425a469": {
+   "kind": "pillow/env-path",
+   "render": "r14-freeze/render-2425a469-a10.png",
+   "gold": "r8/golds/2425a469-front-1920.png",
+   "skylight_scale": 0.0557867256,
+   "gray": 0.06779987,
+   "source": "A10 2026-11-17 rerender"
+  }
+ }
+}

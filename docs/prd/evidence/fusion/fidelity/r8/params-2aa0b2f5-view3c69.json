@@ -1,0 +1,48 @@
+{
+ "round": "r8-2aa0",
+ "task_id": "2aa0b2f5-f10a-4ad2-af4d-944b2398cb36",
+ "name": "冰箱体.fbx-[单品渲染]_06261412",
+ "product": "冰箱体",
+ "view": "3c697acc-1228-4e46-ba54-77eb7bb87cfb",
+ "view_name": "新视图",
+ "scene": "docs/prd/evidence/fusion/fidelity/r8/scene-2aa0b2f5-preview.json",
+ "env": {
+  "name": "16",
+  "background_type": "hdri",
+  "hdri_brightness": 100,
+  "skylight_intensity": 0.35,
+  "hdri_angle": 10.2,
+  "image": "official_asset/environment/0d718b1b-976d-4225-8ce6-ae514f45eea9/textures/16.exr"
+ },
+ "lights": "2 area lights (power 0.6 and 0.5, Candelas -> Cycles Watts via pi*I/683); preview sets parent=light_root so each light is instanced once",
+ "camera_post": {
+  "exposure": 1.089,
+  "gamma": 0.742,
+  "contrast": 1.29,
+  "saturation": 0.8,
+  "temperature": 6500
+ },
+ "fov": 35,
+ "expected_hdri_angle": -79.8,
+ "k_source": "locked_r7_R1",
+ "spp": "256",
+ "width": "1920",
+ "height": "1080",
+ "denoise": "1",
+ "flags": {
+  "env-mode": "ue",
+  "material-mode": "stage",
+  "tonemap": "ue55",
+  "fallback-light": "0",
+  "hdri-angle": "-79.8",
+  "skylight-scale": "3.1",
+  "white-sky-scale": "0",
+  "light-units": "candela"
+ },
+ "extra_cli": "--env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --hdri-angle -79.8 --skylight-scale 3.1 --white-sky-scale 0 --light-units candela",
+ "env_remap": "views pointed at missing env 4 id ab403659; snapshot environments only has e73ef7d9 name 16; preview remapped (raw unmodified). r4 already documented this gold as env 16.",
+ "blender_inner_sha256": "ed8ef353833b26ec53a910ace5ea8a17e56a034e85ac3a9832cc66d20d0ba565",
+ "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/2aa0b2f5-view3c69-1920.png",
+ "gold_full": "tools/cloud-service/poc-out/fridge/ref/fridge-ref-task-2aa0-view3c69.png",
+ "replace_id": "ccdaa114-cdb7-4ef5-af26-022938a780d5"
+}

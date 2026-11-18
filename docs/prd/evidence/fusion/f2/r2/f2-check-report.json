@@ -1,0 +1,10 @@
+{
+  "pass": 4,
+  "fail": 0,
+  "items": [
+    {"status": "PASS", "name": "typecheck:viewer", "exit": 0, "command": "npm run typecheck:viewer", "extra": ""},
+    {"status": "PASS", "name": "test:viewer", "exit": 0, "command": "npm run test:viewer", "extra": ""},
+    {"status": "PASS", "name": "scene-template smoke", "exit": 0, "command": "node tools/scene-template/smoke.mjs", "extra": ""},
+    {"status": "PASS", "name": "f2_check.mjs (headed UI)", "exit": 0, "command": "node tools/fusion-checks/f2_check.mjs --evidence /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2", "extra": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/f2/r2/f2-ui-report.json"}
+  ]
+}

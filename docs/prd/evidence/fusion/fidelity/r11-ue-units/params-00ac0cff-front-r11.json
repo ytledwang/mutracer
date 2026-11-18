@@ -1,0 +1,34 @@
+{
+ "round": "r11-ue-units",
+ "task_id": "00ac0cff-eb58-4d82-9578-97a8f732e1bb",
+ "view": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+ "scene": "docs/prd/evidence/fusion/fidelity/r8/scene-00ac0cff-preview.json",
+ "asset_map": "docs/prd/evidence/fusion/fidelity/r8/assets.json",
+ "flags": {
+  "env-mode": "ue",
+  "material-mode": "stage",
+  "tonemap": "ue55",
+  "fallback-light": "0",
+  "skylight-scale": "3.1",
+  "white-sky-scale": "0",
+  "light-units": "candela",
+  "hdri-angle": "-90",
+  "spp": "256",
+  "width": "1920",
+  "height": "1080",
+  "denoise": "1",
+  "view-transform": "Standard"
+ },
+ "delta_vs_r10": "blender_inner.py candela area_light energy: pi*I/683 -> 2*pi*I/683 (UE 5.5.4 engine-verified)",
+ "blender_inner_sha256": "c11c24229bad7deb756b5851d95d60cef1f3723cc859a5061c7ae8572ad362c8",
+ "blender_inner_backup": "~/mutracer-scratch/bak/r11/blender_inner.py (pre-fix 58013b92...)",
+ "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/00ac0cff-front-1920.png",
+ "camera_post": {
+  "exposure": 1,
+  "gamma": 1,
+  "contrast": 1.1,
+  "saturation": 1.2,
+  "temperature": 6500
+ },
+ "ue_expected_display_factor": "nits * 2^1 * 0.18 = nits * 0.36 (AEM_Manual, no physical exposure)"
+}

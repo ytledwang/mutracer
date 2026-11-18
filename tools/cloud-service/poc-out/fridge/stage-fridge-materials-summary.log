@@ -1,0 +1,11 @@
+MuTracer POC — scene.materials 覆写后重渲
+时间: 2026-11-09 Asia/Shanghai
+
+改动: stage_render.rs 在 import GLB 后用 scene.meshes[*].materials[0] → scene.materials 覆写 color/rough/metal/normal_scale/Glass transmission，并按 asset-map 挂 basecolor→slot0、normal→slot1、roughness→slot4；Cargo.toml 为 image 开 exr。本机+云端均重编 mutracer-render。
+
+本机: poc-out/fridge/stage-fridge-materials-local.png 512²/32spp/denoise ~16s
+云端: job bdee420f70c442029da5fba12375a841 succeed → stage-fridge-materials-cloud-bdee420f70c442029da5fba12375a841.png
+
+相对白模版(stage-fridge-local.png): colorfulness 24.8→50.5；frosted 日志确认 Metal_Frosted metal=0.85 + normal/rough maps；成片通道均值从近灰偏到更暖/有色差。
+
+残余: mask/指纹/渐变语义与完整 Haier_CMF 层未建模；多材质 mesh 只吃 materials[0]；相机 framing 仍可能非最佳 Front。

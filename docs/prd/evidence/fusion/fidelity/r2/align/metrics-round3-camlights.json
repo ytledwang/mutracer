@@ -1,0 +1,73 @@
+{
+  "realtime": "docs/prd/evidence/fusion/fidelity/r2/align/realtime-round3-camlights.png",
+  "final": "docs/prd/evidence/fusion/fidelity/render-Front-1c4a3883-standard-spp128-1920x1080.png",
+  "size": [
+    1920,
+    1080
+  ],
+  "final_rgb": [
+    156.8800048828125,
+    156.5500030517578,
+    156.60000610351562
+  ],
+  "realtime_rgb": [
+    159.17999267578125,
+    158.9600067138672,
+    159.14999389648438
+  ],
+  "final_lum": 156.62,
+  "realtime_lum": 159.02,
+  "bg_final_rgb": [
+    255.0,
+    255.0,
+    255.0
+  ],
+  "bg_realtime_rgb": [
+    255.0,
+    255.0,
+    255.0
+  ],
+  "mask_iou": 0.9874,
+  "mask_px": 588680,
+  "mae_fg": 36.59,
+  "tolerance": {
+    "lum": 10.0,
+    "rgb": 12.0,
+    "bg": 12.0,
+    "iou": 0.8
+  },
+  "d_lum": 2.4,
+  "d_rgb": [
+    2.299999952316284,
+    2.4100000858306885,
+    2.549999952316284
+  ],
+  "d_bg_lum": 0.0,
+  "checks": [
+    {
+      "name": "fridge mean luminance |Δ| <= 10",
+      "pass": true,
+      "value": 2.4
+    },
+    {
+      "name": "fridge mean RGB max|Δ| <= 12",
+      "pass": true,
+      "value": [
+        2.299999952316284,
+        2.4100000858306885,
+        2.549999952316284
+      ]
+    },
+    {
+      "name": "background luminance |Δ| <= 12",
+      "pass": true,
+      "value": 0.0
+    },
+    {
+      "name": "fridge mask IoU >= 0.80",
+      "pass": true,
+      "value": 0.9874
+    }
+  ],
+  "pass": true
+}

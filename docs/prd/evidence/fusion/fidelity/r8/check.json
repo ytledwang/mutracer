@@ -1,0 +1,116 @@
+{
+ "status": "PASS",
+ "n": 5,
+ "n_scored": 5,
+ "locked": {
+  "env-mode": "ue",
+  "material-mode": "stage",
+  "tonemap": "ue55",
+  "fallback-light": "0",
+  "skylight-scale": "3.1",
+  "white-sky-scale": "0",
+  "spp": "256",
+  "width": "1920",
+  "height": "1080",
+  "denoise": "1"
+ },
+ "rule": "hdri-angle = task.hdri_angle - 90; skylight_scale locked 3.1; post and exposure from the task camera; no per-task k/angle fit",
+ "does_not_require_fridge_r1_mae": true,
+ "tasks": [
+  {
+   "id": "329c202e-e89a-48c0-aa04-59a360510cbd",
+   "name": "冰箱体.fbx-[单品渲染]_06251729",
+   "view": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+   "metrics": {
+    "mae": 5.0454,
+    "mae_fg": 19.8068,
+    "ssim": 0.960352,
+    "d_lum_fg": 2.477,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "gold": "docs/prd/evidence/fusion/fidelity/r2/reference-fridge-ref-front-329c-1920.png",
+   "render": "docs/prd/evidence/fusion/fidelity/r8/render-329c202e-Front.png",
+   "status": "SCORED",
+   "verdict": "control (same flags as r7 R1); scored for the generalization set, not a new product."
+  },
+  {
+   "id": "2aa0b2f5-f10a-4ad2-af4d-944b2398cb36",
+   "name": "冰箱体.fbx-[单品渲染]_06261412",
+   "view": "3c697acc-1228-4e46-ba54-77eb7bb87cfb",
+   "metrics": {
+    "mae": 19.4896,
+    "mae_fg": 57.4812,
+    "ssim": 0.924056,
+    "d_lum_fg": 54.235,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/2aa0b2f5-view3c69-1920.png",
+   "render": "docs/prd/evidence/fusion/fidelity/r8/render-2aa0b2f5-view3c69.png",
+   "status": "SCORED",
+   "verdict": "same product, different view/env 16/lights/post; locked rules held, no k/angle retune."
+  },
+  {
+   "id": "2425a469-6e38-4783-84b1-7fccc66b2866",
+   "name": "枕头617.stp-[单品渲染]_06171445",
+   "view": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+   "metrics": {
+    "mae": 9.5753,
+    "mae_fg": 26.5857,
+    "ssim": 0.943861,
+    "d_lum_fg": 26.731,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/2425a469-front-1920.png",
+   "render": "docs/prd/evidence/fusion/fidelity/r8/render-2425a469-Front.png",
+   "status": "SCORED",
+   "verdict": "different product (枕头), env 布朗摄影工作室 / white, skylight 1.0, angle 0→-90, 2 area lights, exposure 2.056; locked rules held, no k/angle retune; subject clipped to white (too bright)."
+  },
+  {
+   "id": "00ac0cff-eb58-4d82-9578-97a8f732e1bb",
+   "name": "灶机-单品-5镜头 - 样例导入_05162215",
+   "view": "3c8d747b-24c6-428a-aa2c-b9124f60e2f2",
+   "metrics": {
+    "mae": 32.3524,
+    "mae_fg": 87.6523,
+    "ssim": 0.645989,
+    "d_lum_fg": -61.025,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/00ac0cff-front-1920.png",
+   "render": "docs/prd/evidence/fusion/fidelity/r8/render-00ac0cff-front.png",
+   "status": "SCORED",
+   "verdict": "different official-template product (灶机), 白背景, skylight 0, angle 0→-90, 13 lights; only task view 前视图; locked rules held, no k/angle retune; subject too dark, and framing does not match the gold (gold is a 3/4 look-down; render is flatter/edge-on)."
+  },
+  {
+   "id": "55cc8c05-2d23-49e5-bc2a-69934328c591",
+   "name": "Leader欧近一体烟机场景渲染0605白.fbx-[单品渲染]_06112250",
+   "view": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+   "metrics": {
+    "mae": 12.0891,
+    "mae_fg": 39.8915,
+    "ssim": 0.948577,
+    "d_lum_fg": 28.073,
+    "gold_size_loaded": [
+     1920,
+     1080
+    ]
+   },
+   "gold": "docs/prd/evidence/fusion/fidelity/r8/golds/55cc8c05-front-1920.png",
+   "render": "docs/prd/evidence/fusion/fidelity/r8/render-55cc8c05-Front.png",
+   "status": "SCORED",
+   "verdict": "different product (烟机), env 布朗摄影工作室 / white, skylight 0.7, angle 63.9→-26.1, 5 visible lights; chose Front over 新视图 4d45a917; locked rules held, no k/angle retune; silhouette close but too bright; Casarte/Leader decal not drawn."
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+PASS  import: validate good GLB  exit=0  /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/validate-good.log
+PASS  import: bad GLB rejected (not silent)  exit=1  /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/validate-bad.log
+PASS  import: STP convert+validate rejects bad output  exit=1  /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/convert-stp.log (no rejected.glb name, but failed)
+PASS  merge M2 template (replace_id c83a2f4a-…)  exit=0  /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/merge.log
+PASS  prepare preview scene (hide missing kitchen meshes)  exit=0  /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/prepare.log
+PASS  UI chain evidence (F2 r2b, headed Chrome Metal)  exit=0  /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/ui
+PASS  submit render: one final per merged view (spp=4, local Blender)  exit=0  /Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/demo/final-views-results.json

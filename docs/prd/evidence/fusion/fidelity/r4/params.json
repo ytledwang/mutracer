@@ -1,0 +1,20 @@
+{
+ "status": "NOT_IMPROVED_STOPPED",
+ "rounds": [
+  "params-e1.json",
+  "params-e2.json"
+ ],
+ "common": {
+  "engine": "Blender 5.1.1 Cycles METAL",
+  "spp": 128,
+  "denoise": 1,
+  "size": "1920x1080",
+  "view_transform": "Standard (CLI, default unchanged)",
+  "blender_inner_sha256": "f767d7ef5ef25a2ec14cf40ee3a55ec081742c6078d6e778b5fb34794db05a42"
+ },
+ "no_new_pulls": true,
+ "replace_id": "ccdaa114-cdb7-4ef5-af26-022938a780d5",
+ "m2_id_not_used": "c83a2f4a-0a3d-4494-8da9-37e6ca6943a7",
+ "comparison": "comparison-gold-r2-lut-e1-e2.png",
+ "comparison_sha256_hex": "2e0b1ac7e0166ea51783695867bdadedb8407e84d4c0697db9ec45b9b771d4b4"
+}

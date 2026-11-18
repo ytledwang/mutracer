@@ -1,0 +1,34 @@
+
+  VITE v4.4.7  ready in 327 ms
+
+  ➜  Local:   http://127.0.0.1:3012/
+3:07:07 PM [vite] page reload src/engine/loadSceneJson.ts
+3:07:33 PM [vite] page reload src/engine/ViewerEngine.ts
+3:12:55 PM [vite] hmr update /src/components/Inspector.tsx
+3:12:55 PM [vite] hmr update /src/components/SceneTree.tsx
+3:12:55 PM [vite] hmr update /src/components/panels/MaterialPanel.tsx
+3:12:55 PM [vite] hmr update /src/components/ViewControls.tsx
+3:12:55 PM [vite] hmr update /src/components/StatusBar.tsx
+3:13:15 PM [vite] hmr update /src/components/ResolutionSelect.tsx
+3:13:15 PM [vite] hmr update /src/components/StatusBar.tsx
+3:13:15 PM [vite] hmr update /src/components/Viewport.tsx
+3:13:15 PM [vite] hmr update /src/components/Toolbar.tsx
+3:13:15 PM [vite] hmr update /src/components/ExportDialog.tsx
+3:13:15 PM [vite] hmr update /src/components/ExamplesBrowser.tsx
+3:13:24 PM [vite] hmr update /src/components/Toolbar.tsx
+3:13:54 PM [vite] hmr update /src/components/Toolbar.tsx
+5:35:51 PM [vite] page reload src/dev/f2Probe.ts
+5:35:51 PM [vite] page reload src/engine/ViewerEngine.ts
+5:37:08 PM [vite] page reload src/engine/loadSceneJson.ts
+5:37:08 PM [vite] page reload src/engine/ViewerEngine.ts
+5:39:39 PM [vite] page reload src/engine/loadSceneJson.ts
+5:40:07 PM [vite] page reload src/engine/ViewerEngine.ts
+5:40:50 PM [vite] page reload src/engine/ViewerEngine.ts
+5:41:04 PM [vite] page reload src/dev/f2Probe.ts
+5:41:52 PM [vite] page reload src/engine/ViewerEngine.ts
+5:42:25 PM [vite] page reload src/engine/ViewerEngine.ts
+5:42:53 PM [vite] page reload src/engine/ViewerEngine.ts
+
+  VITE v4.4.7  ready in 275 ms
+
+  ➜  Local:   http://127.0.0.1:3012/

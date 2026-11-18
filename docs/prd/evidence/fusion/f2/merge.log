@@ -1,0 +1,3 @@
+merged: newModelId=d4f6a686-d566-40b1-8ab0-80e40be7bb5c parent=00000000-0000-0000-0000-000000000000 models=535 cameras=11 views=5 -> docs/prd/evidence/fusion/f2/m2-merged.json
+preview camera: product view 298cfe60-923d-44fb-a0d1-f2206b9a48e1 (858db55c-ec03-4fa6-9ec4-948a6df1ea33) -> merged view 1c4a3883-8668-4c16-a10e-0b7c24272279
+preview scene: hidden 87 models (87 missing glb), cleared 35 texture refs -> docs/prd/evidence/fusion/f2/m2-preview-scene.json

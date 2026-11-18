@@ -1,0 +1,280 @@
+{
+ "task": "r7 replicate 1.0 UE chain for gold 329c202e as opt-in overrides",
+ "time": "2026-11-11 Asia/Shanghai",
+ "baseline_r2": {
+  "mae": 12.7765,
+  "mae_fg": 34.4164,
+  "ssim": 0.921622
+ },
+ "must_beat_fg": 34.0722,
+ "best": "R1-ue55-k3.1",
+ "rounds": {
+  "R1-ue55-k3.1": {
+   "metrics": {
+    "mae": 5.0454,
+    "mae_fg": 19.8068,
+    "ssim": 0.960352,
+    "d_lum_fg": 2.477
+   },
+   "status": "IMPROVED",
+   "checker_exit": 0,
+   "params": "params-R1-ue55-k3.1.json",
+   "region_stats": "region-stats-R1-ue55-k3.1.json",
+   "render_sha256": "ae6942983d9e636c4d82385ed586d4451d98112202e8bc44b8ccd5761a20ce64"
+  },
+  "R2-thin-glass": {
+   "metrics": {
+    "mae": 5.7488,
+    "mae_fg": 22.2976,
+    "ssim": 0.955206,
+    "d_lum_fg": -0.303
+   },
+   "status": "NOT_IMPROVED",
+   "checker_exit": 1,
+   "params": "params-R2-thin-glass.json",
+   "region_stats": "region-stats-R2-thin-glass.json",
+   "render_sha256": "8ca97bd9184190a37585036dd69c85c0efa93066c058ef3532d45fbcb000b36e"
+  },
+  "R3-k3.1-spp512": {
+   "metrics": {
+    "mae": 5.0456,
+    "mae_fg": 19.8067,
+    "ssim": 0.960461,
+    "d_lum_fg": 2.464
+   },
+   "status": "NOT_IMPROVED",
+   "checker_exit": 1,
+   "params": "params-R3-k3.1-spp512.json",
+   "region_stats": "region-stats-R3-k3.1-spp512.json",
+   "render_sha256": "a50f7239d81386fc477f59c69782439ee2b888307e627456b66acf56ecf37f3e"
+  }
+ },
+ "best_cli": "run_blender_final.py --scene r5/scene-gold329c-preview.json --view 298cfe60 --width 1920 --height 1080 --spp 256 --denoise 1 --view-transform Standard --env-mode ue --material-mode stage --tonemap ue55 --fallback-light 0 --hdri-angle 92.9 --skylight-scale 3.1 --white-sky-scale 0",
+ "offline_basis_sweep": {
+  "basis": "A=4.exr SkyLight (0.35*1), B=white sky strength 1, C=no env (emissive only); 1920x1080 128spp",
+  "best": {
+   "a": 3.1,
+   "b": 0.0,
+   "mae": 5.0458,
+   "mae_fg": 19.8123,
+   "d_lum_fg": 2.41,
+   "interior_cavity": [
+    245.1,
+    243.1
+   ],
+   "crisper_bins": [
+    112.3,
+    139.4
+   ],
+   "drawers": [
+    230.9,
+    233.9
+   ],
+   "door_left_inner": [
+    216.2,
+    180.4
+   ],
+   "door_right_inner": [
+    217.2,
+    213.2
+   ],
+   "ssim": 0.960027
+  },
+  "files": [
+   "probes/sweep-basis-ABC.json",
+   "probes/sweep-basis-fine.json"
+  ]
+ },
+ "rotation_probes_960x540_32spp": {
+  "rot182.9": {
+   "a": 2.8,
+   "mae_fg": 32.9774,
+   "ssim": 0.918194,
+   "door_left_inner": [
+    220.2,
+    178.6
+   ],
+   "door_right_inner": [
+    218.4,
+    212.6
+   ]
+  },
+  "rot2.9": {
+   "a": 3.4,
+   "mae_fg": 32.9432,
+   "ssim": 0.916181,
+   "door_left_inner": [
+    231.2,
+    178.6
+   ],
+   "door_right_inner": [
+    222.2,
+    212.6
+   ]
+  },
+  "rot92.9": {
+   "a": 3.1,
+   "mae_fg": 22.6747,
+   "ssim": 0.937619,
+   "door_left_inner": [
+    217.1,
+    178.6
+   ],
+   "door_right_inner": [
+    225.2,
+    212.6
+   ]
+  },
+  "rot272.9": {
+   "a": 3.4,
+   "mae_fg": 32.1842,
+   "ssim": 0.912074,
+   "door_left_inner": [
+    223.2,
+    178.6
+   ],
+   "door_right_inner": [
+    214.4,
+    212.6
+   ]
+  },
+  "mir182.9": {
+   "a": 2.8,
+   "mae_fg": 33.2365,
+   "ssim": 0.920084,
+   "door_left_inner": [
+    217.2,
+    178.6
+   ],
+   "door_right_inner": [
+    217.2,
+    212.6
+   ]
+  },
+  "mir2.9": {
+   "a": 2.8,
+   "mae_fg": 32.9575,
+   "ssim": 0.916404,
+   "door_left_inner": [
+    227.2,
+    178.6
+   ],
+   "door_right_inner": [
+    214.4,
+    212.6
+   ]
+  },
+  "mir92.9": {
+   "a": 2.8,
+   "mae_fg": 22.9568,
+   "ssim": 0.939626,
+   "door_left_inner": [
+    210.5,
+    178.6
+   ],
+   "door_right_inner": [
+    220.2,
+    212.6
+   ]
+  },
+  "mir272.9": {
+   "a": 3.4,
+   "mae_fg": 32.2407,
+   "ssim": 0.912503,
+   "door_left_inner": [
+    223.2,
+    178.6
+   ],
+   "door_right_inner": [
+    215.1,
+    212.6
+   ]
+  },
+  "rot62.9": {
+   "a": 3.1,
+   "mae_fg": 23.0408,
+   "ssim": 0.936504,
+   "door_left_inner": [
+    221.2,
+    178.6
+   ],
+   "door_right_inner": [
+    222.2,
+    212.6
+   ]
+  },
+  "rot77.9": {
+   "a": 3.1,
+   "mae_fg": 22.413,
+   "ssim": 0.938105,
+   "door_left_inner": [
+    218.9,
+    178.6
+   ],
+   "door_right_inner": [
+    223.2,
+    212.6
+   ]
+  },
+  "rot107.9": {
+   "a": 3.1,
+   "mae_fg": 23.1842,
+   "ssim": 0.936366,
+   "door_left_inner": [
+    216.4,
+    178.6
+   ],
+   "door_right_inner": [
+    225.6,
+    212.6
+   ]
+  },
+  "rot122.9": {
+   "a": 3.1,
+   "mae_fg": 23.8567,
+   "ssim": 0.93505,
+   "door_left_inner": [
+    218.2,
+    178.6
+   ],
+   "door_right_inner": [
+    225.2,
+    212.6
+   ]
+  }
+ },
+ "rotation_convention": "Blender Mapping Z = UE angle - 90 deg (182.9 -> 92.9); mirror no effect; optimum flat 77.9..92.9; 182.9 raw gives fgMAE 32.98 vs 22.93",
+ "skylight_mapping": "units reasoning k=1 (Cycles strength = UE intensity 0.35) gives fg MAE 74 (too dark, dlum -57); empirical k=3.1 (~pi; 3.0..3.2 flat) -- unexplained factor, NOT code-verified",
+ "white_sky_leak": "b=0 best (any b>0 worse) -> consistent with PathTracingRayTypeSwitch keeping White skybox out of lighting",
+ "fov": {
+  "gold_bbox_x": [
+   591,
+   1278
+  ],
+  "R1_bbox_x": [
+   610,
+   1277
+  ],
+  "r2_bbox_x": [
+   590,
+   1278
+  ],
+  "result": "horizontal 35 deg matches; vertical-35 (MaintainYFOV literal) would give ~58.5 deg hfov / ~0.6x size -> rejected; left 19px offset = dark door edge rendered white (material gap)"
+ },
+ "samples": "R3 512spp == R1 256spp metrics (fg 19.8067 vs 19.8068) -> sampling converged at 1920; gold is 1024spp at 7680x4320 LANCZOS-downscaled",
+ "default_identity": {
+  "probe_state_sha256": "367c8c93504e19939f6ef7d0c5522291593b3d97df627352d4a7b406b5a56c96",
+  "probe_post_sha256": "024e98431d937525845ad2cbf88455a3fadbc55b641f2636b9d3cc0db72143e4",
+  "reference_pre_r5": "367c8c93504e19939f6ef7d0c5522291593b3d97df627352d4a7b406b5a56c96 / 024e98431d937525845ad2cbf88455a3fadbc55b641f2636b9d3cc0db72143e4",
+  "result": "IDENTICAL (re-run after every blender_inner edit; probe-inner.sha256)"
+ },
+ "changed_files_sha256": {
+  "tools/dual-track/blender/blender_inner.py": "affce4a6245efacea00173097194ac5d15784c2c233970dd94dce0799495b7cc",
+  "tools/dual-track/blender/run_blender_final.py": "07039ba4006cbdfda407b463e0eda3920845056a809e8265db09b81e5083b4d3",
+  "tools/dual-track/blender/ue_filmic.py": "30ec118ed66bf621e0f077a5479d39a174908f8d8f434eb3c9f3dc600f803c6c",
+  "tools/fusion-checks/test_ue55_post.py": "b8c6cdc85a164e4094a116660ed16d8e8de0865f9cf6c3f792e73a59f0a9e4a2",
+  "tools/fusion-checks/fidelity_r7_check.sh": "54b765852393530cdc3b46a57c0512b7b6caf678094b6f2ff12afbd8090860d3",
+  "tools/fusion-checks/fidelity_r7_sweep.py": "eb3f0a3743dda7b0c54e4b0a5d3a630349e9f12fb502c581fd463f887b1cb446"
+ },
+ "backups": "~/mutracer-scratch/bak/r7/ (pre-r7 originals + *.afterR1)"
+}

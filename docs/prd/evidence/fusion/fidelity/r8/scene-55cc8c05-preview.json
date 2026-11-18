@@ -1,0 +1,2328 @@
+{
+ "scene_json": {
+  "views": {
+   "298cfe60-923d-44fb-a0d1-f2206b9a48e1": {
+    "name": "Front",
+    "update_time": 1749639944541,
+    "active_camera": "858db55c-ec03-4fa6-9ec4-948a6df1ea33",
+    "active_environment": "d59d6db6-7475-4502-ab79-8d26b334ac11",
+    "material_group_states": {},
+    "decal_group_visibility": {
+     "c415a076-bb8e-4c11-9297-d18d4c18d85b": true,
+     "f623dfcf-af09-4f3c-8470-a169c7630c5d": true
+    },
+    "light_group_visibility": {},
+    "model_group_visibility": {
+     "0c188039-8621-4876-a0a4-706997b2d189": false,
+     "2ec23727-50df-43b5-9983-02086d5f45dd": true,
+     "675c1347-46fc-43f6-8f7a-1804943848e9": true,
+     "67d321c8-4950-430b-ae84-a5863d7cfe42": false,
+     "9930bd24-718c-41d6-937a-9d2b3889964d": true,
+     "a6d4277a-c5d7-4a92-becb-7a6a0717a1ce": true,
+     "a9fc1a55-57e3-4598-918f-594814184e1c": false
+    }
+   },
+   "4d45a917-ebfa-4b3a-843d-4a562f095f80": {
+    "name": "新视图",
+    "update_time": 1749644000685,
+    "active_camera": "b67ba347-ad8f-459f-a352-6349c839385f",
+    "active_environment": "d59d6db6-7475-4502-ab79-8d26b334ac11",
+    "material_group_states": {},
+    "decal_group_visibility": {},
+    "light_group_visibility": {},
+    "model_group_visibility": {
+     "675c1347-46fc-43f6-8f7a-1804943848e9": true
+    }
+   }
+  },
+  "decals": {
+   "00000000-0000-0000-0000-000000000000": {
+    "name": "decal_root",
+    "type": "root",
+    "children": [
+     "f623dfcf-af09-4f3c-8470-a169c7630c5d"
+    ]
+   },
+   "f623dfcf-af09-4f3c-8470-a169c7630c5d": {
+    "ids": [],
+    "name": "卡萨帝logo",
+    "type": "decal",
+    "scale": [
+     0.024702,
+     0.018472,
+     0.018472
+    ],
+    "master": "M_New_Decal_Master",
+    "position": [
+     -0.00633822426371161,
+     -0.11437934872912552,
+     0.3826271251984077
+    ],
+    "alpha_tex": "aa3cf893-dc7e-4043-80f2-7095b3a63f4a",
+    "is_locked": false,
+    "is_visible": true,
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "base_color_rgb": [
+     0,
+     0,
+     0
+    ],
+    "rotation_euler": [
+     90,
+     6.3611093629270335e-15,
+     90
+    ],
+    "metallic_scalar": 0,
+    "specular_scalar": 0,
+    "u_offset_scalar": 0,
+    "u_tiling_scalar": 1,
+    "v_offset_scalar": 0,
+    "v_tiling_scalar": 1,
+    "roughness_scalar": 0.5,
+    "color_gain_scalar": 1,
+    "color_gamma_scalar": 1,
+    "emiss_color_scalar": [
+     1,
+     1,
+     1
+    ],
+    "emiss_intensity_scalar": 0,
+    "normal_intensity_scalar": 0,
+    "desaturation_fraction_scalar": 1
+   }
+  },
+  "lights": {
+   "00000000-0000-0000-0000-000000000000": {
+    "name": "light_root",
+    "type": "root",
+    "children": [
+     "5a36ec01-bbb8-41d3-831c-e0859c101a0c",
+     "68848a15-aa17-4d36-95e7-59e9b845318f",
+     "647c0545-2a15-4b1d-bd9c-3dc17743c7d1",
+     "06cd1404-3f2c-4a27-8e05-1e6a18c548a3",
+     "85687dad-de02-43d8-bc11-7785a8663bc7",
+     "274a0bb7-b925-4c18-807f-e0f91e8e52f7"
+    ]
+   },
+   "06cd1404-3f2c-4a27-8e05-1e6a18c548a3": {
+    "ids": [],
+    "name": "聚光灯",
+    "type": "light",
+    "light": {
+     "type": "spot_light",
+     "blend": 0.15,
+     "color": [
+      1,
+      1,
+      1
+     ],
+     "power": 0.2,
+     "radius": 0.05,
+     "spot_size": 75.48
+    },
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0.5410740678560672,
+     -0.4034838586199354,
+     0.3196981391875688
+    ],
+    "is_locked": false,
+    "is_visible": false,
+    "light_channels": [
+     0,
+     2
+    ],
+    "rotation_euler": [
+     -2.2400103601376687e-06,
+     19.650613044024784,
+     121.9473869740541
+    ],
+    "parent": "00000000-0000-0000-0000-000000000000"
+   },
+   "274a0bb7-b925-4c18-807f-e0f91e8e52f7": {
+    "ids": [],
+    "name": "面光源",
+    "type": "light",
+    "light": {
+     "type": "area_light",
+     "color": [
+      1,
+      1,
+      1
+     ],
+     "power": 0.3,
+     "size_x": 64,
+     "size_z": 64,
+     "texture": "",
+     "function_mat": "",
+     "spread_angle": 88
+    },
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0,
+     -0.11769926242688702
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     8.513328658275891e-16,
+     90,
+     -1.2722218725854067e-14
+    ],
+    "parent": "00000000-0000-0000-0000-000000000000"
+   },
+   "5a36ec01-bbb8-41d3-831c-e0859c101a0c": {
+    "ids": [],
+    "name": "面光源",
+    "type": "light",
+    "light": {
+     "type": "area_light",
+     "color": [
+      1,
+      1,
+      1
+     ],
+     "power": 0.5,
+     "size_x": 64,
+     "size_z": 64,
+     "texture": "",
+     "function_mat": "",
+     "spread_angle": 88
+    },
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0.6517574833647027,
+     -0.8115369688138336,
+     0.5
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "light_channels": [
+     1
+    ],
+    "rotation_euler": [
+     -90.00000000000082,
+     -26.559065139711844,
+     124.01368759695934
+    ],
+    "parent": "00000000-0000-0000-0000-000000000000"
+   },
+   "647c0545-2a15-4b1d-bd9c-3dc17743c7d1": {
+    "ids": [],
+    "name": "面光源-复制",
+    "type": "light",
+    "light": {
+     "type": "area_light",
+     "color": [
+      1,
+      1,
+      1
+     ],
+     "power": 1,
+     "size_x": 64,
+     "size_z": 64,
+     "texture": "",
+     "function_mat": "",
+     "spread_angle": 88
+    },
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     -0.7403392612759854,
+     -0.42020645460213196,
+     0.43119394037122233
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "light_channels": [
+     1
+    ],
+    "rotation_euler": [
+     -90,
+     -26.559065139711475,
+     90
+    ],
+    "parent": "00000000-0000-0000-0000-000000000000"
+   },
+   "68848a15-aa17-4d36-95e7-59e9b845318f": {
+    "ids": [],
+    "name": "直射光",
+    "type": "light",
+    "light": {
+     "type": "directional_light",
+     "color": [
+      1,
+      1,
+      1
+     ],
+     "power": 1,
+     "source_angle": 10
+    },
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     -0.61269858790154,
+     0.3119119938674185
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     -90,
+     -22.542,
+     120
+    ],
+    "parent": "00000000-0000-0000-0000-000000000000"
+   },
+   "85687dad-de02-43d8-bc11-7785a8663bc7": {
+    "ids": [],
+    "name": "面光源-复制",
+    "type": "light",
+    "light": {
+     "type": "area_light",
+     "color": [
+      1,
+      1,
+      1
+     ],
+     "power": 1,
+     "size_x": 64,
+     "size_z": 64,
+     "texture": "",
+     "function_mat": "",
+     "spread_angle": 88
+    },
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     1.1683375433523764,
+     0.04585741153795171,
+     0.41793525030165707
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "light_channels": [
+     1
+    ],
+    "rotation_euler": [
+     -90.00000000000084,
+     -26.559065139711848,
+     179.99999414315522
+    ],
+    "parent": "00000000-0000-0000-0000-000000000000"
+   }
+  },
+  "meshes": {
+   "100b769b-f03a-4186-bb96-2d9530aa6cd3": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/af75fb13-155e-4987-ba86-a652a5451f66.glb",
+    "name": "hishot_clean_up.232",
+    "type": "mesh",
+    "materials": [
+     "9b6f1c36-35b5-4f9f-9600-343f24428b61"
+    ]
+   },
+   "1b4b0da6-25ff-4791-99ac-39cc3053a307": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4366169a-edaf-4839-93e5-d302d6b201a9.glb",
+    "name": "hishot_clean_up.235",
+    "type": "mesh",
+    "materials": [
+     "9368a4f7-3805-4c9a-95a7-788afea7663f"
+    ]
+   },
+   "2ac0fd6b-cce5-4a7c-9b97-8c6072609967": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4f082bb7-97ec-43b6-b2e2-da6207233e4f.glb",
+    "name": "hishot_clean_up.221",
+    "type": "mesh",
+    "materials": [
+     "a71d0971-9af5-488f-ae44-f9603d2712ea"
+    ]
+   },
+   "314f9f06-a3aa-4c49-a414-7943fa2a0b3b": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/53d44fdb-18f9-42d1-93e6-83d5ea25e2ee.glb",
+    "name": "资源 1@2x.003",
+    "type": "mesh",
+    "materials": [
+     "9c951dc5-6a2c-476f-8d6c-472e66ba7f32"
+    ]
+   },
+   "3994038c-9f5e-4d32-bd1a-6ef538d1b319": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/cc189264-edfd-4687-8be5-44021ff9df47.glb",
+    "name": "21034F642E82opa8",
+    "type": "mesh",
+    "materials": [
+     "af0bc425-dde4-4bc3-96d5-b64867913084"
+    ]
+   },
+   "39be0967-ba26-4668-8385-6c720711ca2b": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/8839ce32-fe87-42d9-91dc-9e0c2afa6ab6.glb",
+    "name": "hishot_clean_up.228",
+    "type": "mesh",
+    "materials": [
+     "9368a4f7-3805-4c9a-95a7-788afea7663f"
+    ]
+   },
+   "4d51538a-b0d0-4c4a-aa9d-69bebc418a2a": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/7558620e-b608-4cf2-9c1e-a3429d976b7f.glb",
+    "name": "hishot_clean_up.217",
+    "type": "mesh",
+    "materials": [
+     "9368a4f7-3805-4c9a-95a7-788afea7663f"
+    ]
+   },
+   "4e9bdf2a-9d5a-4068-b40f-6941155050c2": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/9089c078-5877-4a4d-8c24-63810f0f5ec6.glb",
+    "name": "hishot_clean_up.223",
+    "type": "mesh",
+    "materials": [
+     "98b6eb2d-24e7-4570-a74e-310452d54905"
+    ]
+   },
+   "5b7d9f72-1ecf-4283-b42f-5c1da0f767e9": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/ce56a775-1491-4f56-990d-106a5037e05e.glb",
+    "name": "hishot_clean_up.237",
+    "type": "mesh",
+    "materials": [
+     "a71d0971-9af5-488f-ae44-f9603d2712ea"
+    ]
+   },
+   "6042d727-4940-421d-99c7-58f6cd6a2ea4": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/0de1de51-9bbf-47b5-9ce1-28927161171f.glb",
+    "name": "hishot_clean_up.233",
+    "type": "mesh",
+    "materials": [
+     "a71d0971-9af5-488f-ae44-f9603d2712ea"
+    ]
+   },
+   "6449f616-fd50-415f-b443-5ad515743a92": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/c4f5e7b7-0a79-4164-a4e7-9b8396e0d17b.glb",
+    "name": "hishot_clean_up.218",
+    "type": "mesh",
+    "materials": [
+     "af0bc425-dde4-4bc3-96d5-b64867913084"
+    ]
+   },
+   "656135b9-7f97-4258-b72d-073d34ea81ff": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/16a0db7e-d7d0-4b8e-882c-77ec840cdb38.glb",
+    "name": "hishot_clean_up.163",
+    "type": "mesh",
+    "materials": [
+     "1d366192-93b6-4b98-946c-1889e6528778"
+    ]
+   },
+   "65a4fe3d-2493-4330-acf9-e56bc48f6f1b": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/63618d12-bf67-4cb2-904d-fbde9f9a172a.glb",
+    "name": "hishot_clean_up.224",
+    "type": "mesh",
+    "materials": [
+     "5b5ddd3c-0e3f-4331-9884-36cfcd800cae"
+    ]
+   },
+   "735817cf-efde-4379-922b-1d2bb4a45085": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/06a71876-4c39-4d66-a66a-b13cb52e7bc3.glb",
+    "name": "hishot_clean_up.222",
+    "type": "mesh",
+    "materials": [
+     "5b5ddd3c-0e3f-4331-9884-36cfcd800cae"
+    ]
+   },
+   "7ba4aa0b-db29-4f77-9c88-74ff1ff24220": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/75d8bb48-1ec6-4176-98f9-b1c3bb4e5914.glb",
+    "name": "hishot_clean_up.230",
+    "type": "mesh",
+    "materials": [
+     "af0bc425-dde4-4bc3-96d5-b64867913084"
+    ]
+   },
+   "7e75e8bc-1e57-4029-88df-f8b8e085dc84": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/c171a793-aeef-42f5-82b0-1c2c13382d5a.glb",
+    "name": "hishot_clean_up.165",
+    "type": "mesh",
+    "materials": [
+     "910e24a7-2cbd-4dcc-b7a1-f6a9d7d1c1ff"
+    ]
+   },
+   "9573648a-872c-4248-8405-1869f9472b41": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/df719308-14ee-4ba0-b148-2b30d40275f4.glb",
+    "name": "hishot_clean_up.231",
+    "type": "mesh",
+    "materials": [
+     "af0bc425-dde4-4bc3-96d5-b64867913084"
+    ]
+   },
+   "9b1c86a9-8631-4823-8947-c5fe18398bb3": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/098c71d1-71cd-486f-973b-4b92ec8cf975.glb",
+    "name": "hishot_clean_up.219",
+    "type": "mesh",
+    "materials": [
+     "af0bc425-dde4-4bc3-96d5-b64867913084"
+    ]
+   },
+   "bb027dc9-17f8-4099-98da-f54630894352": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/960905e7-19c7-470c-a1ca-a9d441dd780c.glb",
+    "name": "hishot_clean_up.234",
+    "type": "mesh",
+    "materials": [
+     "a71d0971-9af5-488f-ae44-f9603d2712ea"
+    ]
+   },
+   "c379cade-e324-4f5a-8ebc-abca708720dc": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/4477c12c-8b48-45ab-b0b0-4384644dfbce.glb",
+    "name": "hishot_clean_up.170",
+    "type": "mesh",
+    "materials": [
+     "e2419a16-359a-451d-8c36-2bf69e12e34f"
+    ]
+   },
+   "c86560e1-6ea9-4e3e-a118-2d6e3d7d210b": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/0b0009ee-5b90-4a6d-923e-755a92e178c3.glb",
+    "name": "hishot_clean_up.164",
+    "type": "mesh",
+    "materials": [
+     "910e24a7-2cbd-4dcc-b7a1-f6a9d7d1c1ff"
+    ]
+   },
+   "cb1bc9da-e465-4f49-a576-1d86029a586a": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/1ca27801-9cd2-46dc-99e4-0d33073b6509.glb",
+    "name": "hishot_clean_up.229",
+    "type": "mesh",
+    "materials": [
+     "9368a4f7-3805-4c9a-95a7-788afea7663f"
+    ]
+   },
+   "d99ead2e-550b-4596-987c-2393176b7c65": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/5f2253e4-da24-4881-aade-a0483f8c3349.glb",
+    "name": "hishot_clean_up.216",
+    "type": "mesh",
+    "materials": [
+     "af0bc425-dde4-4bc3-96d5-b64867913084"
+    ]
+   },
+   "dfc1e082-a1d4-47c6-abdc-18dde6e16766": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/65751d9b-fccb-4671-92a9-e87a487dca02.glb",
+    "name": "hishot_clean_up.236",
+    "type": "mesh",
+    "materials": [
+     "1fd3e906-6626-403b-bc35-312fc8f5112b"
+    ]
+   },
+   "f7f77f63-20b3-4d92-b64a-8c6e357fed7d": {
+    "url": "customer_asset/00ee50b7-87bc-4645-b899-7b9ecb6ba2cc/models/5046f278-5d82-45c0-a2eb-0eb94c749f91.glb",
+    "name": "hishot_clean_up.238",
+    "type": "mesh",
+    "materials": [
+     "774f880a-537c-47ab-854c-d550c68d412e"
+    ]
+   }
+  },
+  "models": {
+   "00000000-0000-0000-0000-000000000000": {
+    "name": "model_root",
+    "type": "root",
+    "children": [
+     "675c1347-46fc-43f6-8f7a-1804943848e9"
+    ]
+   },
+   "07ca5194-65da-4625-9707-98437c72e2c5": {
+    "mesh": "bb027dc9-17f8-4099-98da-f54630894352",
+    "name": "hishot_clean_up.234",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0.135164,
+     0.110453
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "0aba4375-ce38-47ea-9cfd-c709639fd1ef": {
+    "mesh": "dfc1e082-a1d4-47c6-abdc-18dde6e16766",
+    "name": "hishot_clean_up.236",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0.014014,
+     0.207957
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "0b4cfdb8-2347-4bc6-8cfe-ef8b0a689987": {
+    "mesh": "735817cf-efde-4379-922b-1d2bb4a45085",
+    "name": "hishot_clean_up.222",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0.141,
+     -0.157586,
+     0.186816
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "20f38ea2-e715-4237-bdf9-1166d1199d44": {
+    "mesh": "f7f77f63-20b3-4d92-b64a-8c6e357fed7d",
+    "name": "hishot_clean_up.238",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0.005,
+     -0.019226,
+     0.202599
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "2ec23727-50df-43b5-9983-02086d5f45dd": {
+    "ids": [],
+    "mesh": "39be0967-ba26-4668-8385-6c720711ca2b",
+    "name": "hishot_clean_up.228",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     -0.44429998013824246,
+     0.014996489788754718,
+     0.13402236378597576
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     89.99999999999999
+    ]
+   },
+   "30756809-6980-43f0-9d94-d6704298918e": {
+    "mesh": "7ba4aa0b-db29-4f77-9c88-74ff1ff24220",
+    "name": "hishot_clean_up.230",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     -0.159136,
+     0.184287
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     1
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "35d58dfe-b56a-4254-8f11-4de1992d2ae4": {
+    "mesh": "65a4fe3d-2493-4330-acf9-e56bc48f6f1b",
+    "name": "hishot_clean_up.224",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     -0.141,
+     -0.157586,
+     0.186816
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "36665ae4-4614-43a4-8853-a5a7e00e9572": {
+    "mesh": "100b769b-f03a-4186-bb96-2d9530aa6cd3",
+    "name": "hishot_clean_up.232",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     -0.44215,
+     0.014114,
+     0.133952
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "59152f8b-8952-4a84-9489-bc0b01e180d3": {
+    "ids": [],
+    "mesh": "6449f616-fd50-415f-b443-5ad515743a92",
+    "name": "hishot_clean_up.218",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     -0.0022599210599809033,
+     0.13301399702690542,
+     0.11045199753120541
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0,
+     1
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     89.99999999999999
+    ]
+   },
+   "5efb8219-e156-4c65-ac75-6b749288214a": {
+    "mesh": "5b7d9f72-1ecf-4283-b42f-5c1da0f767e9",
+    "name": "hishot_clean_up.237",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0.040718,
+     0.191724
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "623bb664-5afe-4e3a-9587-bb124b64bd93": {
+    "mesh": "9573648a-872c-4248-8405-1869f9472b41",
+    "name": "hishot_clean_up.231",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0.014014,
+     0.142953
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     1,
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "675c1347-46fc-43f6-8f7a-1804943848e9": {
+    "name": "Leader欧近一体烟机场景渲染0605白.fbx",
+    "type": "group",
+    "children": [
+     "20f38ea2-e715-4237-bdf9-1166d1199d44",
+     "5efb8219-e156-4c65-ac75-6b749288214a",
+     "0aba4375-ce38-47ea-9cfd-c709639fd1ef",
+     "8d6f8595-fd6b-4ac0-8905-163ec0fa25d3",
+     "07ca5194-65da-4625-9707-98437c72e2c5",
+     "f7fea973-ad1d-4bbc-8c0f-08e1cdc36f20",
+     "36665ae4-4614-43a4-8853-a5a7e00e9572",
+     "623bb664-5afe-4e3a-9587-bb124b64bd93",
+     "30756809-6980-43f0-9d94-d6704298918e",
+     "9930bd24-718c-41d6-937a-9d2b3889964d",
+     "2ec23727-50df-43b5-9983-02086d5f45dd",
+     "35d58dfe-b56a-4254-8f11-4de1992d2ae4",
+     "c14f7e35-0af2-4bbb-916f-c573d4fde519",
+     "0b4cfdb8-2347-4bc6-8cfe-ef8b0a689987",
+     "59152f8b-8952-4a84-9489-bc0b01e180d3",
+     "a6d4277a-c5d7-4a92-becb-7a6a0717a1ce",
+     "6be9498b-1e55-482c-8fad-01d1ef375cb5",
+     "9d6001ad-f6d9-4c37-a6e0-0b0aa41e06b7",
+     "cd12cca4-0321-4fce-b79b-548bcd573677",
+     "6896eade-7d07-49ae-bcd7-1d9911cc930b"
+    ],
+    "position": [
+     0,
+     0,
+     0
+    ],
+    "is_visible": true
+   },
+   "6896eade-7d07-49ae-bcd7-1d9911cc930b": {
+    "mesh": "2ac0fd6b-cce5-4a7c-9b97-8c6072609967",
+    "name": "hishot_clean_up.221",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0.021714,
+     0.158707
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "6be9498b-1e55-482c-8fad-01d1ef375cb5": {
+    "mesh": "d99ead2e-550b-4596-987c-2393176b7c65",
+    "name": "hishot_clean_up.216",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0.0025,
+     0.036753,
+     0.431457
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     1,
+     2
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "8d6f8595-fd6b-4ac0-8905-163ec0fa25d3": {
+    "mesh": "1b4b0da6-25ff-4791-99ac-39cc3053a307",
+    "name": "hishot_clean_up.235",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0.040458,
+     0.189838
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "9930bd24-718c-41d6-937a-9d2b3889964d": {
+    "mesh": "cb1bc9da-e465-4f49-a576-1d86029a586a",
+    "name": "hishot_clean_up.229",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0.4443,
+     0.014014,
+     0.133957
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "9d6001ad-f6d9-4c37-a6e0-0b0aa41e06b7": {
+    "mesh": "3994038c-9f5e-4d32-bd1a-6ef538d1b319",
+    "name": "21034F642E82opa8",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0.159014,
+     0.062453
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     1,
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "a6d4277a-c5d7-4a92-becb-7a6a0717a1ce": {
+    "ids": [],
+    "mesh": "4d51538a-b0d0-4c4a-aa9d-69bebc418a2a",
+    "name": "hishot_clean_up.217",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     -0.0013334040629743057,
+     -0.16128599639497698,
+     0.1439569967823103
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     89.99999999999999
+    ]
+   },
+   "c14f7e35-0af2-4bbb-916f-c573d4fde519": {
+    "mesh": "4e9bdf2a-9d5a-4068-b40f-6941155050c2",
+    "name": "hishot_clean_up.223",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     -0.140998,
+     -0.157486,
+     0.186818
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "cd12cca4-0321-4fce-b79b-548bcd573677": {
+    "mesh": "9b1c86a9-8631-4823-8947-c5fe18398bb3",
+    "name": "hishot_clean_up.219",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0,
+     0.021714,
+     0.156507
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0,
+     1
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   },
+   "f7fea973-ad1d-4bbc-8c0f-08e1cdc36f20": {
+    "mesh": "6042d727-4940-421d-99c7-58f6cd6a2ea4",
+    "name": "hishot_clean_up.233",
+    "type": "model",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "position": [
+     0.44215,
+     0.014114,
+     0.133952
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "receive_decal": true,
+    "light_channels": [
+     0
+    ],
+    "rotation_euler": [
+     0,
+     0,
+     90
+    ]
+   }
+  },
+  "cameras": {
+   "00000000-0000-0000-0000-000000000000": {
+    "ids": [],
+    "name": "camera_root",
+    "type": "free",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "camera": {
+     "dof": false,
+     "fov": 40.262,
+     "type": "perspective",
+     "sensor_width": 24.576000213623047,
+     "aperture_fstop": 4,
+     "focal_distance": 0,
+     "post_processing_settings": {
+      "gain": 1,
+      "gamma": 0.766,
+      "offset": 0,
+      "contrast": 1.169,
+      "exposure": 0.363,
+      "vignette": 0,
+      "saturation": 0.903,
+      "bloom_scale": 0,
+      "temperature": 6500,
+      "bloom_intensity": 0,
+      "bloom_threshold": -1,
+      "shadow_contrast": 1,
+      "highlight_contrast": 1
+     }
+    },
+    "children": [
+     "d2a85350-68b7-422c-a106-da49701cddb4"
+    ],
+    "position": [
+     -1.3498976435429433,
+     -1.8339100848410843,
+     -0.3513153090298841
+    ],
+    "frame_size": [
+     1134.296875,
+     807.7734375
+    ],
+    "rotation_euler": [
+     1.0078881782313369e-13,
+     15.745408058166504,
+     54.7685394287109
+    ]
+   },
+   "7f49dc62-7c18-45ce-928f-3b64f4e62a29": {
+    "ids": [],
+    "name": "新相机4",
+    "type": "camera",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "camera": {
+     "dof": false,
+     "fov": 40.262,
+     "type": "perspective",
+     "sensor_width": 24.576000213623047,
+     "aperture_fstop": 4,
+     "focal_distance": 0,
+     "post_processing_settings": {
+      "gain": 1,
+      "gamma": 0.766,
+      "offset": 0,
+      "contrast": 1.169,
+      "exposure": 0.363,
+      "vignette": 0,
+      "saturation": 0.903,
+      "bloom_scale": 0,
+      "temperature": 6500,
+      "bloom_intensity": 0,
+      "bloom_threshold": -1,
+      "shadow_contrast": 1,
+      "highlight_contrast": 1
+     }
+    },
+    "position": [
+     -0.9021736766958788,
+     -3.168223565318443,
+     -0.49700915568679044
+    ],
+    "is_locked": false,
+    "frame_size": [
+     3840,
+     2160
+    ],
+    "is_visible": true,
+    "animatinons": [],
+    "frame_color": [
+     0,
+     0,
+     0
+    ],
+    "rotation_euler": [
+     4.486763332810987e-14,
+     16.86690330505372,
+     73.48896789550778
+    ]
+   },
+   "858db55c-ec03-4fa6-9ec4-948a6df1ea33": {
+    "ids": [],
+    "name": "Front",
+    "type": "camera",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "camera": {
+     "dof": false,
+     "fov": 40.262,
+     "type": "perspective",
+     "sensor_width": 24.576000213623047,
+     "aperture_fstop": 4,
+     "focal_distance": 0,
+     "post_processing_settings": {
+      "gain": 1,
+      "gamma": 0.766,
+      "offset": 0,
+      "contrast": 1.169,
+      "exposure": 0.363,
+      "vignette": 0,
+      "saturation": 0.903,
+      "bloom_scale": 0,
+      "temperature": 6500,
+      "bloom_intensity": 0,
+      "bloom_threshold": -1,
+      "shadow_contrast": 1,
+      "highlight_contrast": 1
+     }
+    },
+    "position": [
+     -1.3498976435429433,
+     -1.8339100848410843,
+     -0.3513153090298841
+    ],
+    "is_locked": true,
+    "frame_size": [
+     3840,
+     2160
+    ],
+    "is_visible": true,
+    "animatinons": [],
+    "frame_color": [
+     0,
+     0,
+     0
+    ],
+    "rotation_euler": [
+     1.0078881782313369e-13,
+     15.745408058166504,
+     54.7685394287109
+    ]
+   },
+   "b67ba347-ad8f-459f-a352-6349c839385f": {
+    "ids": [],
+    "name": "新相机2",
+    "type": "camera",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "camera": {
+     "dof": false,
+     "fov": 33.609,
+     "type": "perspective",
+     "sensor_width": 24.576000213623047,
+     "aperture_fstop": 4,
+     "focal_distance": 0,
+     "post_processing_settings": {
+      "gain": 1,
+      "gamma": 0.75,
+      "offset": 0,
+      "contrast": 1.202,
+      "exposure": 0.484,
+      "vignette": 0,
+      "saturation": 0.903,
+      "bloom_scale": 0,
+      "temperature": 6500,
+      "bloom_intensity": 0,
+      "bloom_threshold": -1,
+      "shadow_contrast": 1,
+      "highlight_contrast": 1
+     }
+    },
+    "position": [
+     0.04383589001676828,
+     -2.7893280263317592,
+     0.04007798003463832
+    ],
+    "is_locked": false,
+    "frame_size": [
+     3840,
+     2160
+    ],
+    "is_visible": true,
+    "animatinons": [],
+    "frame_color": [
+     0,
+     0,
+     0
+    ],
+    "rotation_euler": [
+     1.1027470109184957e-13,
+     5.701668739318848,
+     90.72365570068362
+    ]
+   },
+   "c67b4a2e-c02f-4c8c-8003-3fce11a45da3": {
+    "ids": [],
+    "name": "新相机3",
+    "type": "camera",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "camera": {
+     "dof": false,
+     "fov": 40.262,
+     "type": "perspective",
+     "sensor_width": 24.576000213623047,
+     "aperture_fstop": 4,
+     "focal_distance": 0,
+     "post_processing_settings": {
+      "gain": 1,
+      "gamma": 0.766,
+      "offset": 0,
+      "contrast": 1.169,
+      "exposure": 0.363,
+      "vignette": 0,
+      "saturation": 0.903,
+      "bloom_scale": 0,
+      "temperature": 6500,
+      "bloom_intensity": 0,
+      "bloom_threshold": -1,
+      "shadow_contrast": 1,
+      "highlight_contrast": 1
+     }
+    },
+    "position": [
+     -0.8525690740582198,
+     -1.893934983260348,
+     -0.6749711095915404
+    ],
+    "is_locked": false,
+    "frame_size": [
+     3840,
+     2160
+    ],
+    "is_visible": true,
+    "animatinons": [],
+    "frame_color": [
+     0,
+     0,
+     0
+    ],
+    "rotation_euler": [
+     -2.7843988130940383e-12,
+     23.058692932128917,
+     69.69094085693357
+    ]
+   },
+   "d2a85350-68b7-422c-a106-da49701cddb4": {
+    "name": "default_camera_group",
+    "type": "group",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "children": [
+     "858db55c-ec03-4fa6-9ec4-948a6df1ea33"
+    ],
+    "position": [
+     0,
+     0,
+     0
+    ],
+    "is_locked": false,
+    "is_visible": true,
+    "rotation_euler": [
+     0,
+     0,
+     0
+    ]
+   },
+   "e3df5ef9-09f9-4fe5-9f19-7183f3811f66": {
+    "ids": [],
+    "name": "新相机1",
+    "type": "camera",
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "camera": {
+     "dof": false,
+     "fov": 40.262,
+     "type": "perspective",
+     "sensor_width": 24.576000213623047,
+     "aperture_fstop": 4,
+     "focal_distance": 0,
+     "post_processing_settings": {
+      "gain": 1,
+      "gamma": 0.839,
+      "offset": 0,
+      "contrast": 1.121,
+      "exposure": 0.847,
+      "vignette": 0,
+      "saturation": 0.8,
+      "bloom_scale": 0,
+      "temperature": 6500,
+      "bloom_intensity": 0,
+      "bloom_threshold": -1,
+      "shadow_contrast": 1,
+      "highlight_contrast": 1
+     }
+    },
+    "position": [
+     4.898031121843045,
+     -1.1783618266098053,
+     0.30535607926523134
+    ],
+    "is_locked": false,
+    "frame_size": [
+     3840,
+     2160
+    ],
+    "is_visible": true,
+    "animatinons": [],
+    "frame_color": [
+     0,
+     0,
+     0
+    ],
+    "rotation_euler": [
+     1.5280432616996106e-13,
+     -1.054631471633911,
+     169.633056640625
+    ]
+   }
+  },
+  "textures": {
+   "05d33ccb-93ca-460d-bf9c-20a0a422d044": {
+    "name": "KSD_Logo_Mask",
+    "type": "texture",
+    "urls": "official_asset/texture/d14c001f-3703-44c6-91e0-35a9b6f4cb71/textures/KSD_Logo_Mask.png",
+    "format": "TC_DEFAULT"
+   },
+   "07897fc3-ecd9-42cc-aea1-999b1a258148": {
+    "name": "KSD_Logo_Mask",
+    "type": "texture",
+    "urls": "official_asset/texture/d14c001f-3703-44c6-91e0-35a9b6f4cb71/textures/KSD_Logo_Mask.png",
+    "format": "TC_DEFAULT"
+   },
+   "0e777406-defe-48ab-9296-25105009013a": {
+    "name": "布朗摄影工作室",
+    "type": "texture",
+    "urls": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr"
+   },
+   "0f4332b7-0def-4b32-bc45-f5e78f3474cb": {
+    "name": "T_Wood_Oak_Varnished_Veneer_BC",
+    "type": "texture",
+    "urls": "official_asset/material/a0f59185-9d27-4bc5-9586-a81f0895cb26/textures/T_Wood_Oak_Varnished_Veneer_BC.png"
+   },
+   "3bc379d8-d7ca-47de-9ebe-7ff32b811978": {
+    "name": "Logo_A_Mask",
+    "type": "texture",
+    "urls": "official_asset/texture/31637ea4-58af-4c53-a5ae-4e207fe1d2b2/textures/Logo_A_Mask.png",
+    "format": "TC_DEFAULT"
+   },
+   "503e4dad-d2f5-4129-88b0-d1d63aae2769": {
+    "name": "布朗摄影工作室",
+    "type": "texture",
+    "urls": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr"
+   },
+   "515b1467-e629-411d-b4f6-e3e1224ee488": {
+    "name": "KSD_Logo_Mask",
+    "type": "texture",
+    "urls": "official_asset/texture/d14c001f-3703-44c6-91e0-35a9b6f4cb71/textures/KSD_Logo_Mask.png",
+    "format": "TC_DEFAULT"
+   },
+   "6bbb3527-34a0-483f-aa16-9b70b906c992": {
+    "name": "T_MetalWear_Lines_N",
+    "type": "texture",
+    "urls": "official_asset/material/902b4d64-da03-4425-b4cb-f474f3975584/textures/T_MetalWear_Lines_N.exr",
+    "format": "TC_NORMALMAP"
+   },
+   "8eb7c806-5946-4598-989b-5f811969b5a9": {
+    "size": [
+     4096,
+     4096
+    ],
+    "type": "texture",
+    "urls": "customer_asset/b4ee703c-c23b-443c-98f6-1e7a469dca77/textures/167f5833-2814-448b-9652-8541cc1a1a41.hdr"
+   },
+   "94a52149-37e9-4ae0-88b1-c392f326ffa7": {
+    "name": "GradientTexture0",
+    "type": "texture",
+    "urls": "official_asset/good_templates/Empty_file/textures/GradientTexture0.tga",
+    "format": "TC_DEFAULT"
+   },
+   "aa3cf893-dc7e-4043-80f2-7095b3a63f4a": {
+    "name": "KSD_Logo_Mask",
+    "type": "texture",
+    "urls": "official_asset/texture/d14c001f-3703-44c6-91e0-35a9b6f4cb71/textures/KSD_Logo_Mask.png",
+    "format": "TC_DEFAULT"
+   },
+   "b647ec8c-11d2-4393-abd4-18ea24eaf05d": {
+    "name": "KSD_Logo_Mask",
+    "type": "texture",
+    "urls": "official_asset/texture/d14c001f-3703-44c6-91e0-35a9b6f4cb71/textures/KSD_Logo_Mask.png",
+    "format": "TC_DEFAULT"
+   },
+   "c3dec387-243e-4361-af12-ba625368d8ca": {
+    "size": [
+     4096,
+     4096
+    ],
+    "type": "texture",
+    "urls": "customer_asset/b4ee703c-c23b-443c-98f6-1e7a469dca77/textures/f0bbe7c4-8143-4feb-9c71-58a699cd907a.hdr"
+   },
+   "d26bc49f-6720-444f-b296-b1c06e5ccc3c": {
+    "name": "KSD_Logo_Mask",
+    "type": "texture",
+    "urls": "official_asset/texture/d14c001f-3703-44c6-91e0-35a9b6f4cb71/textures/KSD_Logo_Mask.png",
+    "format": "TC_DEFAULT"
+   },
+   "dba35ef8-234b-4b7d-a511-85d76ebf8117": {
+    "size": [
+     646,
+     144
+    ],
+    "type": "texture",
+    "urls": "customer_asset/b4ee703c-c23b-443c-98f6-1e7a469dca77/textures/977ed78b-04aa-49be-8019-696c9b23ee83.png"
+   },
+   "e4a4ce1d-c838-4f61-bf2d-2dbd88402e10": {
+    "name": "T_Wood_Oak_Varnished_Veneer_R",
+    "type": "texture",
+    "urls": "official_asset/material/a0f59185-9d27-4bc5-9586-a81f0895cb26/textures/T_Wood_Oak_Varnished_Veneer_R.png"
+   },
+   "f0297447-532f-4f4a-8ac3-0e6f68a343fc": {
+    "name": "布朗摄影工作室",
+    "type": "texture",
+    "urls": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr"
+   },
+   "f8dae122-5689-4c5b-b6c1-4af9df90d358": {
+    "name": "布朗摄影工作室",
+    "type": "texture",
+    "urls": "official_asset/environment/76d03ac0-9721-4170-84a2-f461a78f9bf5/textures/brown_photostudio_02_2k.exr"
+   }
+  },
+  "materials": {
+   "0c46f89a-0305-472b-8192-63f7a6c69314": {
+    "name": "Color #b0b0b0ff.002",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0.694,
+     0.694,
+     0.694
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "0e42e278-c282-4c5b-9aad-b9a9c18794bb": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.9176470588235294,
+     0.8352941176470589,
+     0.7294117647058823
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   },
+   "1d366192-93b6-4b98-946c-1889e6528778": {
+    "name": "Color #999999ff.010",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0.6,
+     0.6,
+     0.6
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "1e5fce2a-943c-461f-8744-cc60f6199721": {
+    "name": "Color #b0b0b0ff.005",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0.694,
+     0.694,
+     0.694
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "1fd3e906-6626-403b-bc35-312fc8f5112b": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.7647058823529411,
+     0.6941176470588235,
+     0.6
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   },
+   "476128a0-e89f-4e8b-8ea2-6ca2a06c0dba": {
+    "name": "旋钮表面",
+    "type": "material",
+    "master": "M_BrakeRotor_MetalStains_Parent",
+    "mask_tex": "",
+    "metal_tex": "",
+    "normal_tex": "6bbb3527-34a0-483f-aa16-9b70b906c992",
+    "basecolor_tex": "dba35ef8-234b-4b7d-a511-85d76ebf8117",
+    "roughness_tex": "",
+    "base_color_rgb": [
+     0.9294117647058824,
+     0.9019607843137255,
+     0.9019607843137255
+    ],
+    "u_v_tile_scalar": 0.5,
+    "anisotropy_scalar": 0.75,
+    "cracks_scale_scalar": 20,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.28,
+    "roughness_min_scalar": 0,
+    "dust_intensity_scalar": 0.20000000298023224,
+    "mask_intensity_scalar": 1,
+    "crack_intensity_scalar": 0.800000011920929,
+    "normal_intensity_scalar": 0.11999999731779099,
+    "stains_intensity_scalar": 0.20000000298023224,
+    "fingerprints_intensity_scalar": 0.3499999940395355
+   },
+   "5b5ddd3c-0e3f-4331-9884-36cfcd800cae": {
+    "name": "Color #000000ff.008",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0,
+     0,
+     0
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "774f880a-537c-47ab-854c-d550c68d412e": {
+    "name": "Color #ffffffff.008",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     1,
+     1,
+     1
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "910e24a7-2cbd-4dcc-b7a1-f6a9d7d1c1ff": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.7647058823529411,
+     0.6941176470588235,
+     0.6
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   },
+   "9368a4f7-3805-4c9a-95a7-788afea7663f": {
+    "name": "Glass_Clear",
+    "type": "material",
+    "master": "M_Glass_Default_Parent",
+    "mask_tex": "",
+    "ior_scalar": 1,
+    "normal_tex": "",
+    "suncover_tex": "",
+    "thickness_scalar": 1,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "dust_intensity_scalar": 0,
+    "mask_intensity_scalar": 0,
+    "glass_roughness_scalar": 0.019999999552965164,
+    "normal_strength_scalar": 1,
+    "transmission_color_rgb": [
+     0.984375,
+     0.984375,
+     0.984375
+    ],
+    "stains_intensity_scalar": 0,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "sun_cover_intensity_scalar": 1,
+    "fingerprints_intensity_scalar": 0
+   },
+   "98b6eb2d-24e7-4570-a74e-310452d54905": {
+    "name": "Color #ff9900ff.001",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     1,
+     0.6,
+     0
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "9b6f1c36-35b5-4f9f-9600-343f24428b61": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.7647058823529411,
+     0.6941176470588235,
+     0.6
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   },
+   "9c951dc5-6a2c-476f-8d6c-472e66ba7f32": {
+    "name": "Wood_Oak_Veneer_02",
+    "type": "material",
+    "master": "M_Opaque_FingerprintsDustCC_Parent",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "0f4332b7-0def-4b32-bc45-f5e78f3474cb",
+    "roughness_tex": "e4a4ce1d-c838-4f61-bf2d-2dbd88402e10",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0.7204859852790833,
+     0.7204859852790833,
+     0.7204859852790833
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 3,
+    "u_v_tile_v_scalar": 2,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 1,
+    "roughness_min_scalar": 0,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.20000000298023224,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 0,
+    "stains_intensity_scalar": 0.20000000298023224,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 1,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15000000596046448,
+    "fingerprints_intensity_scalar": 1
+   },
+   "a4d763d9-c205-4255-ba3d-2e122ae2f7a0": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.7647058823529411,
+     0.6941176470588235,
+     0.6
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   },
+   "a71d0971-9af5-488f-ae44-f9603d2712ea": {
+    "name": "Color #999999ff.008",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0.6,
+     0.6,
+     0.6
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "a74b0522-a180-4cc6-af6d-8705790b6bcd": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.7647058823529411,
+     0.6941176470588235,
+     0.6
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   },
+   "af0bc425-dde4-4bc3-96d5-b64867913084": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.9529411764705882,
+     0.8313725490196079,
+     0.792156862745098
+    ],
+    "metallic_scalar": 0.34,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.35,
+    "clear_coat_scalar": 0.43,
+    "clear_coat_roughness_scalar": 0.17
+   },
+   "b0baf6f1-e0dc-420c-9e47-ab6b7d099c34": {
+    "name": "Color #b0b0b0ff.008",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0.694,
+     0.694,
+     0.694
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "d0bae8ee-a0ae-4672-83db-a7f8010fbcf3": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.7647058823529411,
+     0.6941176470588235,
+     0.6
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   },
+   "e11bda1b-eb8a-4a55-b005-3797b0fae35a": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.7647058823529411,
+     0.6941176470588235,
+     0.6
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   },
+   "e2419a16-359a-451d-8c36-2bf69e12e34f": {
+    "name": "Color #b0b0b0ff.003",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0.694,
+     0.694,
+     0.694
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "e8f2d809-4d05-4646-a363-9c01333594f4": {
+    "name": "资源 1@2x.001",
+    "type": "material",
+    "master": "M_Opaque_Master",
+    "mask_tex": "",
+    "normal_tex": "",
+    "basecolor_tex": "",
+    "roughness_tex": "",
+    "anisotropy_tex": "",
+    "base_color_rgb": [
+     0.8,
+     0.8,
+     0.8
+    ],
+    "anisotropy_scalar": 0.5,
+    "u_v_tile_u_scalar": 1,
+    "u_v_tile_v_scalar": 1,
+    "u_v_offset_u_scalar": 0,
+    "u_v_offset_v_scalar": 0,
+    "roughness_max_scalar": 0.5,
+    "roughness_min_scalar": 0.5,
+    "tri_planar_pivot_xyz": [
+     0,
+     0,
+     0
+    ],
+    "aniso_mip_bias_scalar": 0,
+    "dust_intensity_scalar": 0.1,
+    "mask_intensity_scalar": 1,
+    "normal_intensity_scalar": 1,
+    "stains_intensity_scalar": 0.2,
+    "tri_planar_rotation_xyz": [
+     0,
+     0,
+     0
+    ],
+    "clear_coat_amount_scalar": 0.8,
+    "opacity_intensity_scalar": 1,
+    "clear_coat_roughness_scalar": 0.15,
+    "fingerprints_intensity_scalar": 0.35
+   },
+   "f4ada54a-cfd4-4924-8564-0b2747994aa2": {
+    "name": "01珍珠米",
+    "type": "material",
+    "master": "Haier_CMF_01",
+    "base_color_rgb": [
+     0.7647058823529411,
+     0.6941176470588235,
+     0.6
+    ],
+    "metallic_scalar": 1,
+    "specular_scalar": 0.5,
+    "roughness_scalar": 0.53,
+    "clear_coat_scalar": 0.58,
+    "clear_coat_roughness_scalar": 0.35
+   }
+  },
+  "environments": {
+   "2ae4c424-3b59-403e-9da0-e8f922ec11d7": {
+    "name": "布朗摄影工作室2",
+    "lights": {
+     "00000000-0000-0000-0000-000000000000": {
+      "children": []
+     }
+    },
+    "ref_id": "76d03ac0-9721-4170-84a2-f461a78f9bf5",
+    "settings": {
+     "image": "f0297447-532f-4f4a-8ac3-0e6f68a343fc",
+     "hdri_angle": 63.9,
+     "sun_height": 0,
+     "hdri_contrast": 1,
+     "sun_direction": 0,
+     "use_sun_light": false,
+     "background_type": "hdri",
+     "hdri_brightness": 1,
+     "hdri_resolution": 8,
+     "skylight_intensity": 0.7,
+     "sun_light_brightness": 1
+    }
+   },
+   "d59d6db6-7475-4502-ab79-8d26b334ac11": {
+    "name": "布朗摄影工作室",
+    "lights": {
+     "00000000-0000-0000-0000-000000000000": {
+      "children": []
+     }
+    },
+    "ref_id": "76d03ac0-9721-4170-84a2-f461a78f9bf5",
+    "settings": {
+     "image": "f0297447-532f-4f4a-8ac3-0e6f68a343fc",
+     "hdri_angle": 63.9,
+     "sun_height": 0,
+     "hdri_contrast": 1,
+     "sun_direction": 0,
+     "use_sun_light": false,
+     "background_type": "white",
+     "hdri_brightness": 1,
+     "hdri_resolution": 8,
+     "skylight_intensity": 0.7,
+     "sun_light_brightness": 1
+    }
+   }
+  },
+  "scene_settings": {
+   "active_camera": "858db55c-ec03-4fa6-9ec4-948a6df1ea33",
+   "mouse_settings": {
+    "smoothness": 0.4
+   },
+   "active_environment": "2ae4c424-3b59-403e-9da0-e8f922ec11d7"
+  }
+ },
+ "render_settings": {
+  "depth": false,
+  "normal": false,
+  "denoise": true,
+  "object_id": false,
+  "base_color": true,
+  "material_id": false,
+  "max_bounces": 32,
+  "render_type": "image",
+  "output_scale": 2,
+  "output_format": "png",
+  "views_in_task": [
+   {
+    "id": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+    "resolution": [
+     7680,
+     4320
+    ]
+   },
+   {
+    "id": "4d45a917-ebfa-4b3a-843d-4a562f095f80",
+    "resolution": [
+     7680,
+     4320
+    ]
+   }
+  ],
+  "aa_spatial_samples": 1024,
+  "aa_temporal_samples": 1,
+  "animation_output_type": "frames"
+ }
+}

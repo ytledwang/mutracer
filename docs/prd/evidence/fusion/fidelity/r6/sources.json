@@ -1,0 +1,270 @@
+{
+  "gold_task": {
+    "id": "329c202e-e89a-48c0-aa04-59a360510cbd",
+    "name": "冰箱体.fbx-[单品渲染]_06251729",
+    "created_at_utc": "2025-06-25T09:29:16.235266+00:00",
+    "created_at_asia_shanghai": "2025-06-25 17:29 Asia/Shanghai",
+    "file_id": "1d0db88a-5a8b-441a-a9f4-b70c2b26fe3a",
+    "image_url": "s3://render_results/329c202e-e89a-48c0-aa04-59a360510cbd",
+    "png": "tools/cloud-service/poc-out/fridge/ref/fridge-ref-front-329c.png",
+    "path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r4/gold-render-task-329c202e-render_data.json",
+    "backup_row_path": "/Users/wangjianzheng/Project/HG/my-stage-hk/local-stack/backup/20261024-202722/tables/render_task.json",
+    "scene_snapshot_path": "/Users/wangjianzheng/Project/git/mutracer/docs/prd/evidence/fusion/fidelity/r4/scene-gold329c-raw.json"
+  },
+  "stages": {
+    "authoring": {
+      "frontend_root": {
+        "path": "/Users/wangjianzheng/Project/HG/my-stage-hk"
+      },
+      "analysis_doc": {
+        "path": "/Users/wangjianzheng/Project/HG/my-stage-hk/docs/3D-EDITOR-ANALYSIS.md"
+      },
+      "scene_types": {
+        "path": "/Users/wangjianzheng/Project/HG/my-stage-hk/types/stage.ts",
+        "fields": [
+          "cameras",
+          "environments",
+          "lights",
+          "materials",
+          "views",
+          "fov",
+          "post_processing_settings"
+        ]
+      },
+      "gold_view": {
+        "id": "298cfe60-923d-44fb-a0d1-f2206b9a48e1",
+        "name": "Front",
+        "active_camera": "858db55c-ec03-4fa6-9ec4-948a6df1ea33",
+        "active_environment": "ab403659-925e-41d7-abed-17d9e0e107f2",
+        "environment_name": "4",
+        "lights": "none (light_root.children empty)"
+      }
+    },
+    "submit": {
+      "dialog": {
+        "path": "/Users/wangjianzheng/Project/HG/my-stage-hk/components/editor/panel/render/dialog.tsx",
+        "function": "handleRender",
+        "fields": [
+          "aa_spatial_samples",
+          "output_scale",
+          "views_in_task.resolution=frame_size*output_scale",
+          "render_task.insert"
+        ]
+      },
+      "table_name": {
+        "path": "/Users/wangjianzheng/Project/HG/my-stage-hk/utils/supabase/constant.ts",
+        "value": "render_task"
+      },
+      "job_creator": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/job-creator-main/job-creator/job_creator.py"
+      },
+      "nomad_job": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/job-creator-main/job-creator/nomad_job.py",
+        "writes": "render_task.json",
+        "upload_bucket": "render_results"
+      },
+      "local_bridge": {
+        "path": "/Users/wangjianzheng/Project/HG/my-stage-hk/local-stack/render-bridge/bridge.py"
+      },
+      "architecture_local": {
+        "path": "/Users/wangjianzheng/Project/HG/my-stage-hk/local-stack/ARCHITECTURE-LOCAL.md"
+      },
+      "gold_render_settings": {
+        "aa_spatial_samples": 1024,
+        "aa_temporal_samples": 1,
+        "max_bounces": 32,
+        "denoise": true,
+        "base_color": true,
+        "output_format": "png",
+        "output_scale": 4,
+        "resolution": [
+          7680,
+          4320
+        ],
+        "frame_size": [
+          3840,
+          2160
+        ],
+        "note": "output_scale is frontend-only; UE uses views_in_task.resolution. Current dialog formula frame_size*4 would be 15360x8640; stored and rendered size is 7680x4320."
+      }
+    },
+    "engine": {
+      "uproject": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/PixelStreamingDemo.uproject",
+        "engine": "UE 5.5"
+      },
+      "render_actor": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/RenderActor.cpp",
+        "functions": [
+          "BeginPlay(-RenderWatchDir)",
+          "StartRenderTask/ParseRenderTask",
+          "RenderNextUnit/SetRenderView",
+          "RenderWithExecutor"
+        ],
+        "fields": [
+          "SpatialSampleCount=aa_spatial_samples",
+          "TemporalSampleCount=aa_temporal_samples",
+          "r.PathTracing.Denoiser",
+          "PathTracingMaxBounces=max_bounces",
+          "OutputResolution=views_in_task.resolution"
+        ]
+      },
+      "parse_and_env": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/HaierJsonBlueprintFunctionLibrary.cpp",
+        "functions": [
+          "ParseRenderTask",
+          "SetRenderView",
+          "SetEnvironmentSettings",
+          "SpawnMeshAsync",
+          "SetTextureAsync"
+        ]
+      },
+      "structs": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/JsonStructs.h",
+        "structs": [
+          "FJsonRenderSettings",
+          "FJsonCameraPostProcess",
+          "FJsonEnvironmentSettings"
+        ]
+      },
+      "default_engine": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Config/DefaultEngine.ini",
+        "cvars": [
+          "r.PathTracing=True",
+          "r.DefaultFeature.AutoExposure=False",
+          "r.DefaultFeature.Bloom=False",
+          "r.Tonemapper.Sharpen=2",
+          "r.PostProcessing.PropagateAlpha=1",
+          "r.Substrate=True",
+          "LocalExposure default 0.8"
+        ]
+      },
+      "mrq_config": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Content/Sequencers/dc_1080p24_HQ.uasset",
+        "contains": [
+          "MoviePipelineDeferredPass_PathTracer",
+          "MoviePipelineImageSequenceOutput_PNG",
+          "r.PathTracing.Denoiser"
+        ]
+      },
+      "light_studio": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Content/Blueprints/BP_LightStudio.uasset"
+      },
+      "white_cubemap": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Content/Blueprints/Assets/White.uasset"
+      },
+      "gold_env": {
+        "background_type": "white",
+        "hdri_brightness": 10,
+        "skylight_intensity": 0.35,
+        "hdri_angle": 182.9,
+        "hdri_resolution": 128,
+        "use_sun_light": false,
+        "image": "official_asset/environment/8ffebd47-fb14-4175-bcac-dd9a175b7bde/textures/4.exr",
+        "split": "visible skybox=White.White; SkyLight cubemap=4.exr"
+      }
+    },
+    "camera_post": {
+      "apply": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/HaierJsonBlueprintFunctionLibrary.cpp",
+        "function": "ActorSetCameraAttr",
+        "lines": "2095-2202"
+      },
+      "camera_defaults": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/HaierJsonBlueprintFunctionLibrary.cpp",
+        "lines": "1507-1526",
+        "values": {
+          "AutoExposureMethod": "AEM_Manual",
+          "AutoExposureApplyPhysicalCameraExposure": false,
+          "AspectRatioAxisConstraint": "AspectRatio_MaintainYFOV"
+        }
+      },
+      "gold_post": {
+        "exposure": 0.8,
+        "gamma": 0.9,
+        "contrast": 1.2,
+        "saturation": 0.8,
+        "temperature": 6500,
+        "gain": 1,
+        "offset": 0,
+        "vignette": 0,
+        "bloom_intensity": 0,
+        "bloom_threshold": -1,
+        "highlight_contrast": 1,
+        "shadow_contrast": 1,
+        "film_knobs": "not present; not overridden"
+      },
+      "mutracer_default_post": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/blender_inner.py",
+        "function": "display_post",
+        "note": "display-referred (x-0.5)*contrast+0.5 then x**gamma; not UE Color Grading"
+      },
+      "mutracer_optin_approx": {
+        "path": "/Users/wangjianzheng/Project/git/mutracer/tools/dual-track/blender/ue_filmic.py",
+        "note": "approximation only, not sourced from engine shader"
+      }
+    },
+    "materials": {
+      "remap": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/SceneContext.h",
+        "function": "ConvertToMaterialParamStruct/GetUEKey"
+      },
+      "apply": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/HaierJsonBlueprintFunctionLibrary.cpp",
+        "function": "ActorSetMaterialAttr",
+        "master_root": "/Game/Materials/Masters/"
+      },
+      "masters_dir": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Content/Materials/Masters"
+      },
+      "gold_master_counts": {
+        "M_Opaque_Master": 104,
+        "M_Glass_Default_Parent": 7,
+        "Haier_CMF_01": 6,
+        "M_Opaque_MetalFingerprints_Parent": 2,
+        "Haier_CMF_05": 2,
+        "Haier_CMF_06": 2
+      },
+      "later_edits": "5 of 126 materials differ in the later product scene (see r4 evidence)"
+    },
+    "output": {
+      "filename_format": "{TaskId}_{ViewId}_base_color",
+      "resolution": [
+        7680,
+        4320
+      ],
+      "format": "png",
+      "alpha": "opaque (all 255); white visible skybox, not transparent film",
+      "downsample": "none from a larger render; 1920 compare images are a later LANCZOS resize"
+    },
+    "other": {
+      "light_units": {
+        "path": "/Users/wangjianzheng/Project/HG/dyson/PixelStreaming/Source/PixelStreamingDemo/HaierJsonBlueprintFunctionLibrary.cpp",
+        "value": "ELightUnits::Candelas",
+        "note": "unused on gold (no lights)"
+      },
+      "fov": {
+        "value": 35,
+        "code": "AspectRatio_MaintainYFOV",
+        "puzzle": "r2 horizontal 35 silhouette almost matches gold; MRQ sequence camera not readable"
+      }
+    }
+  },
+  "mutracer_contrast": {
+    "r2_path": "kitchen shell 32 RectLights + synthesized 16.exr brightness 0.8 + later camera post (gamma 0.823, contrast 1.266) + Blender Standard display_post",
+    "r2_metrics": {
+      "mae": 12.7765,
+      "mae_fg": 34.4164,
+      "ssim": 0.921622
+    },
+    "r5_note": "opt-in ue-filmic + env scale 0.223 improved drawers and full-frame MAE but not fg MAE vs r2; remaining gap is lighting/materials, which this pipeline map explains"
+  },
+  "gaps": [
+    "UE 5.5 default tonemapper shader and Color Grading exact math (engine source not in repo)",
+    "Numeric defaults inside dc_1080p24_HQ.uasset and camera inside LS_RenderSequence.uasset",
+    "Whether hdri_brightness=10 on the white skybox material also affects Path Tracer lighting",
+    "Why output_scale=4 with frame_size 3840x2160 stored resolution 7680x4320",
+    "Whether MaintainYFOV applies to the MRQ still",
+    "Exact production build hash vs this source tree"
+  ]
+}
