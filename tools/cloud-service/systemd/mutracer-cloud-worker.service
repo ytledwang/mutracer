@@ -1,0 +1,17 @@
+[Unit]
+Description=MuTracer cloud GPU render worker
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/mutracer-cloud
+EnvironmentFile=/home/ubuntu/mutracer-cloud/env
+ExecStart=/usr/bin/python3 /home/ubuntu/mutracer-cloud/worker.py
+Restart=always
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -45,8 +45,10 @@ STOVE_FG_LUM_GATE = 40.0
 
 
 def engine_scale_w(bias_ev: float) -> float:
-    """UE 口径显示尺度，输入为 Cycles 辐射度 radiance（W）。"""
-    return 0.18 * LM_PER_W * (2.0 ** bias_ev)
+    """UE 口径显示尺度，输入为 Cycles 辐射度 radiance（W）。系数见 ENGINE_DISPLAY_GRAY。"""
+    sys.path.insert(0, str(REPO / "tools/dual-track/blender"))
+    from ue_filmic import ENGINE_DISPLAY_GRAY  # type: ignore
+    return ENGINE_DISPLAY_GRAY * LM_PER_W * (2.0 ** bias_ev)
 
 
 def main() -> int:
@@ -66,7 +68,9 @@ def main() -> int:
 
     # B. 环境路径单位变换一致性锁
     s_old = 1.0 / 1.2
-    k_new = K_OLD / (LM_PER_W * 0.18 * 1.2)
+    sys.path.insert(0, str(REPO / "tools/dual-track/blender"))
+    from ue_filmic import ENGINE_DISPLAY_GRAY  # type: ignore
+    k_new = K_OLD / (LM_PER_W * ENGINE_DISPLAY_GRAY * 1.2)
     lhs = k_new * engine_scale_w(0.0)
     rhs = K_OLD * s_old
     if abs(lhs - rhs) > 1e-9:
